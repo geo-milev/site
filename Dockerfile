@@ -1,18 +1,12 @@
-FROM node:19-alpine AS builder
-
+FROM node:19-alpine AS base
 WORKDIR /app
-COPY package*.json ./
+COPY ["package.json", "package-lock.json", "./"]
 RUN npm ci
 COPY . .
-RUN npm run build
-RUN npm prune --production
 
-FROM node:19-alpine
-
-WORKDIR /app
-COPY --from=builder /app/build build/
-COPY --from=builder /app/node_modules node_modules/
-COPY package.json ./
-EXPOSE 3000
+FROM base as production
 ENV NODE_ENV=production
+RUN npm run build
+RUN npm prune
+
 CMD [ "node", "build" ]
