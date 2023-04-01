@@ -43,9 +43,6 @@ steps:
     secretEnv:
       - "GITHUB_TOKEN"
 
-options:
-  dynamicSubstitutions: "true"
-
 availableSecrets:
   secretManager:
     - versionName: "projects/$PROJECT_ID/secrets/github_token/versions/latest"
