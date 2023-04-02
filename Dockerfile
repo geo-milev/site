@@ -13,5 +13,4 @@ FROM base as production
 ENV NODE_ENV=production
 RUN npm run build
 RUN npm prune
-
 CMD [ "node", "build" ]
