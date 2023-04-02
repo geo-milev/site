@@ -35,6 +35,7 @@ steps:
       - "${_SERVICE_NAME}"
       - "--repo-name"
       - "${_GITHUB_OWNER}/${REPO_NAME}"
+      - "--dry-run"
     secretEnv:
       - "GITHUB_TOKEN"
 
