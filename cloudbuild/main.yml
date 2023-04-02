@@ -39,8 +39,8 @@ steps:
       - "GITHUB_TOKEN"
 
 substitutions:
-  _SERVICE_NAME: "site"
   _REGION: "europe-central2"
+  _SERVICE_NAME: "site"
   _GITHUB_OWNER: "$(push.repository.owner.name)"
 
 availableSecrets:
