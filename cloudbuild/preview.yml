@@ -63,6 +63,7 @@ steps:
 substitutions:
   _REGION: "europe-central2"
   _SERVICE_NAME: "site"
+  _GITHUB_OWNER: "$(push.repository.owner.name)"
   _GITHUB_REPO: "$(pull_request.pull_request.base.repo.full_name)"
 
 availableSecrets:
