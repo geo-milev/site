@@ -24,7 +24,7 @@ steps:
 
   # Cleanup tags against closed pull requests
   - id: "clean up old tags"
-    name: "europe-docker.pkg.dev/${PROJECT_ID}/deployment-previews"
+    name: "europe-docker.pkg.dev/${PROJECT_ID}/utilities/deployment-preview"
     args:
       - "cleanup"
       - "--project-id"

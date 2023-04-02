@@ -25,7 +25,7 @@ steps:
       - "--no-traffic"
 
   - id: "link revision on pull request"
-    name: "europe-docker.pkg.dev/${PROJECT_ID}/deployment-previews"
+    name: "europe-docker.pkg.dev/${PROJECT_ID}/utilities/deployment-preview"
     args:
       - "set"
       - "--project-id"
