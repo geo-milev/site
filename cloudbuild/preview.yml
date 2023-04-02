@@ -43,6 +43,23 @@ steps:
     secretEnv:
       - "GITHUB_TOKEN"
 
+  # Cleanup tags against closed pull requests
+  - id: "clean up old tags"
+    name: "europe-docker.pkg.dev/${PROJECT_ID}/utilities/deployment-preview"
+    args:
+      - "cleanup"
+      - "--project-id"
+      - "${PROJECT_ID}"
+      - "--region"
+      - "${_REGION}"
+      - "--service"
+      - "${_SERVICE_NAME}"
+      - "--repo-name"
+      - "${_GITHUB_OWNER}/${REPO_NAME}"
+      - "--dry-run"
+    secretEnv:
+      - "GITHUB_TOKEN"
+
 substitutions:
   _REGION: "europe-central2"
   _SERVICE_NAME: "site"
