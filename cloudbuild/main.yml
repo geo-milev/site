@@ -1,11 +1,11 @@
 steps:
   - id: "build image"
     name: "gcr.io/cloud-builders/docker"
-    args: [ "build", "-t", "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}", "--target", "production", "." ]
+    args: [ "build", "-t", "europe-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}", "--target", "production", "." ]
 
   - id: "push image"
     name: "gcr.io/cloud-builders/docker"
-    args: [ "push", "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}" ]
+    args: [ "push", "europe-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}" ]
 
   - id: "deploy prod service"
     name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -20,11 +20,11 @@ steps:
       - "${_REGION}"
       - "--allow-unauthenticated"
       - "--image"
-      - "gcr.io/${PROJECT_ID}/${_SERVICE_NAME}"
+      - "europe-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
 
   # Cleanup tags against closed pull requests
   - id: "clean up old tags"
-    name: "gcr.io/${PROJECT_ID}/deployment-previews"
+    name: "europe-docker.pkg.dev/${PROJECT_ID}/utilities/deployment-preview"
     args:
       - "cleanup"
       - "--project-id"
