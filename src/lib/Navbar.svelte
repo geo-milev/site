@@ -43,7 +43,7 @@
         {/each}
     </nav>
 
-    <div class="logo" class:scrolled="{scrollY > 0}">
+    <div class="logo">
         <Logo />
     </div>
 
@@ -94,16 +94,9 @@
 
     .logo {
         width: auto;
-        transition: transform 250ms ease-in-out;
-    }
-
-    .logo.scrolled {
-        transform: translateY(15%);
-        background-color: rgba(0, 0, 0, 0);
     }
 
     .scrolled {
         background-color: #7d0b09;
-        max-height: 12vh;
     }
 </style>
