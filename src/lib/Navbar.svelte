@@ -62,12 +62,6 @@
 </div>
 
 <style>
-    :global(body) {
-        padding: 0;
-        margin: 0;
-        background-color: black;
-    }
-
     .navbar {
         position: sticky;
         top: 0;
