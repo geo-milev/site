@@ -20,11 +20,14 @@
         { key: "Контакти", href: "/contacts" },
     ];
 
-    let scrollY;
+    let scrollY = 0;
+
     // By default, the navbar is a part of the normal page to prevent content colliding with it
     // This prop allows it to be set to fixed in cases such as the main page, where the content
     // should go below the navbar
-    export let fixed: boolean;
+    export let fixed = false;
+
+    $: scrollMode = (scrollY > 0) || !fixed;
 </script>
 
 <svelte:head>
@@ -36,18 +39,22 @@
 
 <svelte:window bind:scrollY="{scrollY}" />
 
-<div class:scrolled="{scrollY > 0}" class="navbar" class:fixed="{fixed}">
-    <nav>
+<div class="navbar" class:fixed="{fixed}">
+    <div class="background" class:scrolled="{scrollMode}"></div>
+
+    <nav class:scrolled="{scrollMode}">
         {#each navigationLinksLeft as navigationLink}
             <a href="{navigationLink.href}">{navigationLink.key}</a>
         {/each}
     </nav>
 
     <div class="logo">
-        <Logo />
+        <a href="/">
+            <Logo />
+        </a>
     </div>
 
-    <nav>
+    <nav class:scrolled="{scrollMode}">
         {#each navigationLinksRight as navigationLink}
             <a href="{navigationLink.href}">{navigationLink.key}</a>
         {/each}
@@ -62,15 +69,16 @@
     }
 
     .navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
         display: flex;
         flex-direction: row;
-        width: 100%;
         justify-content: space-around;
         align-items: center;
         background-color: rgba(0, 0, 0, 0);
-        transition: all 250ms ease-in;
-        position: relative;
-        top: 0;
+        pointer-events: none;
+        z-index: 3;
     }
 
     .fixed {
@@ -82,6 +90,12 @@
         flex-direction: row;
         column-gap: 1.5rem;
         border-top: #ffffff 2px solid;
+        pointer-events: all;
+        transition: margin-bottom 250ms;
+    }
+
+    nav.scrolled {
+       margin-bottom: 1.5rem;
     }
 
     a {
@@ -94,9 +108,24 @@
 
     .logo {
         width: auto;
+        margin-top: 1rem;
+        pointer-events: all;
     }
 
-    .scrolled {
+    .background {
+        background-color: rgba(0, 0, 0, 0);
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: background-color 250ms ease-in-out;
+        transform: scaleY(0%);
+        transform-origin: top;
+        z-index: -1;
+        pointer-events: all;
+    }
+
+    .background.scrolled {
         background-color: #7d0b09;
+        transform: scaleY(70%);
     }
 </style>
