@@ -1,2 +1,16 @@
 <h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<p>
+    Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
+</p>
+
+<div style="height: 2000px;"></div>
+
+<style>
+    h1 {
+        color: white;
+    }
+
+    p {
+        color: white;
+    }
+</style>
