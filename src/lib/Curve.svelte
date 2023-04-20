@@ -2,8 +2,8 @@
 	export let fill = "#151515";
 </script>
 
-<svg viewBox="0 0 346 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-	<path fill-rule="evenodd" clip-rule="evenodd" d="M173 25C268.545 25 346 13.8071 346 0V33H0V0C0 13.8071 77.4547 25 173 25Z" fill="{fill}"/>
+<svg viewBox="0 0 298 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0L0 17H297.979V0.705564C275.605 6.59721 217.895 10.7921 150.231 10.7921C79.8958 10.7921 20.3163 6.25946 0 0Z" fill="{fill}"/>
 </svg>
 
 
