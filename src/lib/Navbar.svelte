@@ -35,7 +35,7 @@
 <div class="navbar" class:fixed="{fixed}">
     <div class="background" class:scrolled="{scrollMode}"></div>
 
-    <nav class:scrolled="{scrollMode}">
+    <nav class:scrolled="{scrollMode}" class="left-nav">
         {#each navigationLinksLeft as navigationLink}
             <a href="{navigationLink.href}">{navigationLink.key}</a>
         {/each}
@@ -47,7 +47,7 @@
         </a>
     </div>
 
-    <nav class:scrolled="{scrollMode}">
+    <nav class:scrolled="{scrollMode}" class="right-nav">
         {#each navigationLinksRight as navigationLink}
             <a href="{navigationLink.href}">{navigationLink.key}</a>
         {/each}
@@ -59,13 +59,13 @@
         position: sticky;
         top: 0;
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        display: grid;
+        justify-items: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0);
         pointer-events: none;
         z-index: 3;
+        grid-template-columns: 1fr 121px 1fr;
     }
 
     .fixed {
@@ -79,6 +79,16 @@
         border-top: #ffffff 2px solid;
         pointer-events: all;
         transition: margin-bottom 250ms;
+    }
+
+    .left-nav {
+        justify-self: flex-start;
+        margin-left: 3rem;
+    }
+
+    .right-nav {
+        justify-self: flex-end;
+        margin-right: 3rem;
     }
 
     nav.scrolled {
