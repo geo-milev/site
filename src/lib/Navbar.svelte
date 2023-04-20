@@ -26,45 +26,66 @@
     // This prop allows it to be set to fixed in cases such as the main page, where the content
     // should go below the navbar
     export let fixed = false;
+    export let title: string;
 
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
 
 <svelte:window bind:scrollY="{scrollY}" />
 
-<div class="navbar" class:fixed="{fixed}">
-    <div class="background" class:scrolled="{scrollMode}"></div>
+<div class="nav-container" class:fixed="{fixed}">
+    <div class="navbar">
+        <div class="background" class:scrolled="{scrollMode}"></div>
 
-    <nav class:scrolled="{scrollMode}" class="left-nav">
-        {#each navigationLinksLeft as navigationLink}
-            <a href="{navigationLink.href}">{navigationLink.key}</a>
-        {/each}
-    </nav>
+        <nav class:scrolled="{scrollMode}" class="left-nav">
+            {#each navigationLinksLeft as navigationLink}
+                <a href="{navigationLink.href}">{navigationLink.key}</a>
+            {/each}
+        </nav>
 
-    <div class="logo">
-        <a href="/">
-            <Logo />
-        </a>
+        <div class="logo">
+            <a href="/">
+                <Logo />
+            </a>
+        </div>
+
+        <nav class:scrolled="{scrollMode}" class="right-nav">
+            {#each navigationLinksRight as navigationLink}
+                <a href="{navigationLink.href}">{navigationLink.key}</a>
+            {/each}
+        </nav>
     </div>
-
-    <nav class:scrolled="{scrollMode}" class="right-nav">
-        {#each navigationLinksRight as navigationLink}
-            <a href="{navigationLink.href}">{navigationLink.key}</a>
-        {/each}
-    </nav>
+    {#if title != null && fixed}
+        <h1 class:scrolled="{scrollMode}">{title}</h1>
+    {:else}
+        {#if title != null}
+            <h1>{title}</h1>
+        {/if}
+    {/if}
 </div>
 
+
 <style>
-    .navbar {
+    .nav-container {
         position: sticky;
         top: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        justify-content: center;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .navbar {
+        position: relative;
         width: 100%;
         display: grid;
         justify-items: center;
         align-items: center;
         background-color: rgba(0, 0, 0, 0);
         pointer-events: none;
-        z-index: 3;
         grid-template-columns: 1fr 121px 1fr;
     }
 
@@ -124,5 +145,23 @@
     .background.scrolled {
         background-color: #7d0b09;
         transform: scaleY(70%);
+    }
+
+    h1 {
+        font-family: 'Alegreya', serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        text-transform: uppercase;
+        line-height: 33px;
+        text-align: center;
+
+        color: #FFFFFF;
+        transition: all 100ms ease-in-out;
+    }
+
+    h1.scrolled {
+        transform: translateY(-100px);
+        color: rgba(0, 0, 0, 0);
     }
 </style>

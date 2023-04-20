@@ -8,7 +8,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
-		href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500&display=swap"
 		rel="stylesheet"
 	/>
 	<link
@@ -17,7 +17,7 @@
 	/>
 </svelte:head>
 
-<Navbar fixed="{true}" />
+<Navbar fixed="{true}" title="Профилирана природоматематическа гимназия “Гео Милев”"/>
 
 <slot />
 
