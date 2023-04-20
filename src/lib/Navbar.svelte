@@ -35,7 +35,7 @@
 <div class="navbar" class:fixed="{fixed}">
     <div class="background" class:scrolled="{scrollMode}"></div>
 
-    <nav class:scrolled="{scrollMode}" class="first">
+    <nav class:scrolled="{scrollMode}" class="left-nav">
         {#each navigationLinksLeft as navigationLink}
             <a href="{navigationLink.href}">{navigationLink.key}</a>
         {/each}
@@ -47,7 +47,7 @@
         </a>
     </div>
 
-    <nav class:scrolled="{scrollMode}" class="second">
+    <nav class:scrolled="{scrollMode}" class="right-nav">
         {#each navigationLinksRight as navigationLink}
             <a href="{navigationLink.href}">{navigationLink.key}</a>
         {/each}
@@ -81,12 +81,12 @@
         transition: margin-bottom 250ms;
     }
 
-    .first {
+    .left-nav {
         justify-self: flex-start;
         margin-left: 3rem;
     }
 
-    .second {
+    .right-nav {
         justify-self: flex-end;
         margin-right: 3rem;
     }
