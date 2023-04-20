@@ -30,13 +30,6 @@
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
 
-<svelte:head>
-    <link
-        href="https://fonts.googleapis.com/css?family=Roboto"
-        rel="stylesheet"
-    />
-</svelte:head>
-
 <svelte:window bind:scrollY="{scrollY}" />
 
 <div class="navbar" class:fixed="{fixed}">
