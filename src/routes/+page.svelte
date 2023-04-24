@@ -1,16 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>
-    Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+<script>
+    import Slideshow from "$lib/Slideshow.svelte";
 
-<div style="height: 2000px;"></div>
+	let slides= ["/pexels-ezra-comeau-2387418.jpg",
+		"/pexels-francesco-ungaro-2325446.jpg",
+		"/pexels-eberhard-grossgasteiger-1287145.jpg"]
+</script>
 
-<style>
-    h1 {
-        color: white;
-    }
-
-    p {
-        color: white;
-    }
-</style>
+<Slideshow slides={slides} />
