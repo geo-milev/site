@@ -1,16 +1,12 @@
-<h1>Welcome to SvelteKit</h1>
-<p>
-    Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+<script lang="ts">
+    import Slideshow from "$lib/Slideshow.svelte";
+	import type { Slide } from "../lib/Slideshow.svelte";
 
-<div style="height: 2000px;"></div>
+	let slides: Slide[] = [
+		{ src: "/pexels-ezra-comeau-2387418.jpg" },
+		{ src: "/pexels-francesco-ungaro-2325446.jpg", text: "Добре дошли в сайта на ППМГ \"Гео Милев\""},
+		{ src: "/pexels-eberhard-grossgasteiger-1287145.jpg", text: "Вижте повече за нас", callToAction: {text: "За нас", dest: "/about-us"} }
+	];
+</script>
 
-<style>
-    h1 {
-        color: white;
-    }
-
-    p {
-        color: white;
-    }
-</style>
+<Slideshow slides={slides} />
