@@ -52,7 +52,6 @@ steps:
       - "3"
       - "-tag-filter-any"
       - "^${_PR_NUMBER}-.*$"
-      - "-dry-run"
 
 substitutions:
   _REGION: "europe-central2"
