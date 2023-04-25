@@ -72,7 +72,7 @@
 		display: flex;
 		justify-content: center;
 		width: 100%;
-		min-height: 40rem;
+		min-height: 100vh;
 		background-image: linear-gradient(rgba(0, 0, 0, var(--gradient-opacity)), rgba(0, 0, 0, var(--gradient-opacity))), var(--background-url);
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -87,7 +87,7 @@
 		justify-content: center;
 		align-items: center;
         width: auto;
-        bottom: 1rem;
+        bottom: 5rem;
         gap: 2rem;
 	}
 
