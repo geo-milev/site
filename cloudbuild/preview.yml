@@ -49,7 +49,7 @@ steps:
       - "-repo"
       - "europe-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
       - "-keep"
-      - "1"
+      - "3"
       - "-tag-filter-any"
       - "^${_PR_NUMBER}-.*$"
       - "-dry-run"
