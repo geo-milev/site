@@ -31,7 +31,7 @@ steps:
       - "update-traffic"
       - "${_SERVICE_NAME}"
       - "--region"
-      - "europe-central2"
+      - "${_REGION}"
       - "--to-latest"
       - "--async"
 
