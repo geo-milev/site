@@ -51,7 +51,7 @@ steps:
       - "-keep"
       - "1"
       - "-tag-filter-any"
-      - "${_PR_NUMBER}-*"
+      - "^${_PR_NUMBER}-.*$"
       - "-dry-run"
 
 substitutions:
