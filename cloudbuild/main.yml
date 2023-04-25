@@ -49,17 +49,6 @@ steps:
     secretEnv:
       - "GITHUB_TOKEN"
 
-  - id: "clean up old images"
-    name: "europe-docker.pkg.dev/gcr-cleaner/gcr-cleaner/gcr-cleaner-cli:latest"
-    args:
-      - "-repo"
-      - "europe-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
-      - "-keep"
-      - "3"
-      - "-tag-filter-any"
-      - ".*"
-      - "-dry-run"
-
 substitutions:
   _REGION: "europe-central2"
   _SERVICE_NAME: "site"
