@@ -22,6 +22,17 @@ steps:
       - "--image"
       - "europe-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}"
 
+  - id: "move traffic to latest revision"
+    name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      - "run"
+      - "services"
+      - "update-traffic"
+      - "${_SERVICE_NAME}"
+      - "--to-latest"
+      - "--async"
+
   # Cleanup tags against closed pull requests
   - id: "clean up old tags"
     name: "europe-docker.pkg.dev/${PROJECT_ID}/utilities/deployment-preview"
