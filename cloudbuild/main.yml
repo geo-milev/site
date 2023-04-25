@@ -60,7 +60,6 @@ steps:
       - ".*"
       - "-dry-run"
 
-
 substitutions:
   _REGION: "europe-central2"
   _SERVICE_NAME: "site"
