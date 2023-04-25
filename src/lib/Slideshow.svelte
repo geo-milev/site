@@ -46,8 +46,9 @@
 	}
 </script>
 
-<div class="slideshow-container"
-	 style="--background-url: url({slides[selectedIndex].src}); --gradient-opacity: {$darkGradientOpacity}; --transition-duration: {transitionDuration}ms">
+<div class="slideshow-container">
+	<div class="slideshow-background"
+		 style="--background-url: url({slides[selectedIndex].src}); --gradient-opacity: {$darkGradientOpacity}; --transition-duration: {transitionDuration}ms"></div>
 	<div class="content-container">
 		{#if slides[selectedIndex].text}
 			<h2 in:fade={{ duration: transitionDuration }} out:fade={{ duration: transitionDuration }}>{slides[selectedIndex].text}</h2>
@@ -73,11 +74,17 @@
 		justify-content: center;
 		width: 100%;
 		min-height: 100vh;
-		background-image: linear-gradient(rgba(0, 0, 0, var(--gradient-opacity)), rgba(0, 0, 0, var(--gradient-opacity))), var(--background-url);
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		transition: var(--transition-duration) background-image ease-in-out;
+	}
+
+	.slideshow-background {
+        background-image: linear-gradient(rgba(0, 0, 0, var(--gradient-opacity)), rgba(0, 0, 0, var(--gradient-opacity))), var(--background-url);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: var(--transition-duration) background-image ease-in-out;
+		position: absolute;
+		width: 100%;
+		height: 100%;
 	}
 
 	.content-container {
@@ -87,7 +94,8 @@
 		justify-content: center;
 		align-items: center;
         width: auto;
-        bottom: 5rem;
+		height: auto;
+		bottom: 5rem;
         gap: 2rem;
 	}
 
@@ -95,6 +103,7 @@
         display: flex;
         width: auto;
         position: relative;
+		bottom: 0;
         gap: 0.5rem;
 	}
 
