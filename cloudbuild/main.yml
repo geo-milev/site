@@ -30,6 +30,8 @@ steps:
       - "services"
       - "update-traffic"
       - "${_SERVICE_NAME}"
+      - "--region"
+      - "${_REGION}"
       - "--to-latest"
       - "--async"
 
