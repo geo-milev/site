@@ -2,6 +2,7 @@
     import Slideshow from "$lib/Slideshow.svelte";
 	import type { Slide } from "../lib/Slideshow.svelte";
 	import OvalContainer from "$lib/OvalContainer.svelte";
+	import ArticlePreview from "$lib/ArticlePreview.svelte";
 
 	let slides: Slide[] = [
 		{ src: "/pexels-ezra-comeau-2387418.jpg" },
@@ -30,6 +31,16 @@
 		</div>
 	</div>
 </OvalContainer>
+
+<div class="news-section">
+	<h3>Новини</h3>
+	<div style="width: 18rem; height: 25rem;">
+	<ArticlePreview title="Заглавие"
+					description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+					imgSrc="/pexels-eberhard-grossgasteiger-1287145.jpg"
+					href="/about-us" width="25%"></ArticlePreview>
+	</div>
+</div>
 
 <style>
 	.hello-section {
@@ -68,5 +79,25 @@
 		margin: 0;
 		padding-top: 2rem;
         color: #000000
+	}
+
+	.news-section {
+		background-color: #151515;
+        padding: 4rem 8rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+    }
+
+	.news-section h3 {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 49px;
+        line-height: 59px;
+		text-transform: uppercase;
+		text-align: center;
+
+        color: #FFFFFF;
 	}
 </style>
