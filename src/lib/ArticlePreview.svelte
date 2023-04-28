@@ -1,5 +1,12 @@
-<script>
+<script lang="ts">
 	import Button from "$lib/Button.svelte";
+
+	interface ArticlePreview {
+		title: string;
+		description: string;
+		imgSrc: string;
+		href: string;
+	}
 
 	export let title;
 	export let description;
@@ -49,6 +56,7 @@
         font-size: 20px;
         line-height: 24px;
         margin: 0 0 0.5rem;
+        text-overflow: ellipsis;
 
         color: #000000
 	}
@@ -57,9 +65,10 @@
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
-        font-size: 15px;
+        font-size: 16px;
         line-height: 18px;
 		margin: 0;
         color: #000000;
+        text-overflow: ellipsis;
 	}
 </style>

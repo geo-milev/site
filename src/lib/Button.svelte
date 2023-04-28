@@ -1,6 +1,6 @@
 <script lang="ts">
-	export let href: string;
-	export let action: () => void;
+	export let href: string = undefined;
+	export let action: () => void = undefined;
 	export let text: string;
 </script>
 
