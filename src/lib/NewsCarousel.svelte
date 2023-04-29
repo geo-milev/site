@@ -40,7 +40,7 @@
 		if (groupElements && carousel) {
 			let newIndex = findSelectedGroupIndex()
 
-			if (newIndex === undefined) return
+			if (selectedGroupIndex == newIndex) return;
 
 			selectedGroupIndex = newIndex
 		}
@@ -52,13 +52,18 @@
 		let biggestGroupShownWidth = 0;
 		for (let i = 0; i < groupElements.length; i++) {
 			let groupRect = groupElements[i].getBoundingClientRect()
+			// If the group is fully within the viewable part of the carousel, return early
+			if (groupRect.left > 0 && groupRect.right <= carouselRect.right + 10) {
+				return i;
+			}
+
 			let width;
 			if (groupRect.left <= carouselRect.left && groupRect.right >= carouselRect.left) {
 				width = groupRect.right - carouselRect.left;
 			} else if (groupRect.left >= carouselRect.left && groupRect.right >= carouselRect.right) {
 				width = carouselRect.right - groupRect.left;
 			} else {
-				width = 0;
+				continue;
 			}
 
 			if (width >= biggestGroupShownWidth) {
