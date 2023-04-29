@@ -48,13 +48,26 @@
 
 	const findSelectedGroupIndex = () => {
 		let carouselRect = carousel.getBoundingClientRect()
-		let roundedRight = Math.ceil(carouselRect.right)
+		let biggestGroupShownIndex = 0;
+		let biggestGroupShownWidth = 0;
 		for (let i = 0; i < groupElements.length; i++) {
 			let groupRect = groupElements[i].getBoundingClientRect()
-			if (groupRect.left > 0 && Math.floor(groupRect.right) <= roundedRight) {
-				return i;
+			let width;
+			if (groupRect.left <= carouselRect.left && groupRect.right >= carouselRect.left) {
+				width = groupRect.right - carouselRect.left;
+			} else if (groupRect.left >= carouselRect.left && groupRect.right >= carouselRect.right) {
+				width = carouselRect.right - groupRect.left;
+			} else {
+				width = 0;
+			}
+
+			if (width >= biggestGroupShownWidth) {
+				biggestGroupShownWidth = width;
+				biggestGroupShownIndex = i;
 			}
 		}
+
+		return biggestGroupShownIndex;
 	}
 
 	const updateArticleGroups = () => {
