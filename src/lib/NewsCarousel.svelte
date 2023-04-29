@@ -226,6 +226,6 @@
 	}
 
     .arrow-button:disabled :global(path) {
-        fill: #D9D9D9;
+        fill: #B3B3B3;
     }
 </style>
