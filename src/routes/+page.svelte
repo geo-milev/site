@@ -2,12 +2,19 @@
     import Slideshow from "$lib/Slideshow.svelte";
 	import type { Slide } from "../lib/Slideshow.svelte";
 	import OvalContainer from "$lib/OvalContainer.svelte";
+	import ArticlePreview from "$lib/ArticlePreview.svelte";
+	import NewsCarousel from "$lib/NewsCarousel.svelte";
 
 	let slides: Slide[] = [
 		{ src: "/pexels-ezra-comeau-2387418.jpg" },
 		{ src: "/pexels-francesco-ungaro-2325446.jpg", text: "Добре дошли в сайта на ППМГ \"Гео Милев\""},
 		{ src: "/pexels-eberhard-grossgasteiger-1287145.jpg", text: "Вижте повече за нас", callToAction: {text: "За нас", dest: "/about-us"} }
 	];
+
+	let articles: ArticlePreview[] = Array(9).fill({ title: "Заглавие",
+			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+			imgSrc: "/pexels-eberhard-grossgasteiger-1287145.jpg",
+			href: "/about-us" })
 </script>
 
 <Slideshow slides={slides} />
@@ -30,6 +37,11 @@
 		</div>
 	</div>
 </OvalContainer>
+
+<div class="news-section">
+	<h3>Новини</h3>
+	<NewsCarousel articles="{articles}"/>
+</div>
 
 <style>
 	.hello-section {
@@ -68,5 +80,25 @@
 		margin: 0;
 		padding-top: 2rem;
         color: #000000
+	}
+
+	.news-section {
+		background-color: #151515;
+        padding: 4rem 4rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+    }
+
+	.news-section h3 {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 49px;
+        line-height: 59px;
+		text-transform: uppercase;
+		text-align: center;
+
+        color: #FFFFFF;
 	}
 </style>
