@@ -27,6 +27,6 @@
     :global(body) {
         padding: 0;
         margin: 0;
-        background-color: black;
+        background-color: #4F0D0D;
     }
 </style>
