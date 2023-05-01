@@ -6,6 +6,7 @@
 		description: string;
 		imgSrc: string;
 		href: string;
+		date: Date;
 	}
 
 	export let title;

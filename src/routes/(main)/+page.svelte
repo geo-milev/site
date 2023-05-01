@@ -14,7 +14,8 @@
 	let articles: ArticlePreview[] = Array(9).fill({ title: "Заглавие",
 			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			imgSrc: "/pexels-eberhard-grossgasteiger-1287145.jpg",
-			href: "/about-us" })
+			href: "/about-us",
+			date: new Date() })
 </script>
 
 <Slideshow slides={slides} />
