@@ -9,20 +9,17 @@
 		date: Date;
 	}
 
-	export let title;
-	export let description;
-	export let imgSrc;
-	export let href;
+	export let preview: ArticlePreview;
 </script>
 
 <div class="container">
-	<div class="preview-image" style="--preview-img: url({imgSrc});"></div>
+	<div class="preview-image" style="--preview-img: url({preview.imgSrc});"></div>
 	<div class="content">
 		<div class="text">
-			<h4>{title}</h4>
-			<p>{description}</p>
+			<h4>{preview.title}</h4>
+			<p>{preview.description}</p>
 		</div>
-		<div class="button"><Button href="{href}" text="Виж още" /></div>
+		<div class="button"><Button href="{preview.href}" text="Виж още" /></div>
 	</div>
 </div>
 
