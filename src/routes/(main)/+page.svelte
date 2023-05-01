@@ -1,6 +1,6 @@
 <script lang="ts">
     import Slideshow from "$lib/Slideshow.svelte";
-	import type { Slide } from "../lib/Slideshow.svelte";
+	import type { Slide } from "../../lib/Slideshow.svelte";
 	import OvalContainer from "$lib/OvalContainer.svelte";
 	import ArticlePreview from "$lib/ArticlePreview.svelte";
 	import NewsCarousel from "$lib/NewsCarousel.svelte";
