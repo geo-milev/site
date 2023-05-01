@@ -26,7 +26,7 @@
     // This prop allows it to be set to fixed in cases such as the main page, where the content
     // should go below the navbar
     export let fixed = false;
-    export let title: string;
+    export let title: string = null;
 
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
