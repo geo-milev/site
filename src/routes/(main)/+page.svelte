@@ -1,6 +1,6 @@
 <script lang="ts">
     import Slideshow from "$lib/Slideshow.svelte";
-	import type { Slide } from "../lib/Slideshow.svelte";
+	import type { Slide } from "../../lib/Slideshow.svelte";
 	import OvalContainer from "$lib/OvalContainer.svelte";
 	import ArticlePreview from "$lib/ArticlePreview.svelte";
 	import NewsCarousel from "$lib/NewsCarousel.svelte";
@@ -27,7 +27,8 @@
 	let articles: ArticlePreview[] = Array(9).fill({ title: "Заглавие",
 			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			imgSrc: "/pexels-eberhard-grossgasteiger-1287145.jpg",
-			href: "/about-us" })
+			href: "/about-us",
+			date: new Date() })
 </script>
 
 <Slideshow slides={slides} />

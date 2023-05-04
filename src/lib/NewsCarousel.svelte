@@ -145,17 +145,11 @@
 						<div class="article-preview"
 							 bind:offsetWidth="{previewWidth}"
 							 bind:this={lastGroupItem}>
-							<ArticlePreview title="{article.title}"
-											description="{article.description}"
-											imgSrc="{article.imgSrc}"
-											href="{article.href}"/>
+							<ArticlePreview preview="{article}"/>
 						</div>
 						{:else}
 						<div class="article-preview">
-							<ArticlePreview title="{article.title}"
-											description="{article.description}"
-											imgSrc="{article.imgSrc}"
-											href="{article.href}"/>
+							<ArticlePreview preview="{article}"/>
 						</div>
 					{/if}
 				{/each}
