@@ -115,6 +115,26 @@
         color: #000000
 	}
 
+    .news-section {
+        background-color: #151515;
+        padding: 4rem 4rem 8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .news-section h3 {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 49px;
+        line-height: 59px;
+        text-transform: uppercase;
+        text-align: center;
+
+        color: #FFFFFF;
+    }
+
     .what-we-study-section {
 		width: 100%;
         display: flex;
@@ -192,25 +212,5 @@
         text-align: center;
 		width: auto;
         color: #000000;
-	}
-
-	.news-section {
-		background-color: #151515;
-        padding: 4rem 4rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-    }
-
-	.news-section h3 {
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 49px;
-        line-height: 59px;
-		text-transform: uppercase;
-		text-align: center;
-
-        color: #FFFFFF;
 	}
 </style>
