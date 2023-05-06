@@ -3,7 +3,7 @@
 	import type { Slide } from "../../lib/Slideshow.svelte";
 	import OvalContainer from "$lib/OvalContainer.svelte";
 	import ArticlePreview from "$lib/ArticlePreview.svelte";
-	import NewsCarousel from "$lib/NewsCarousel.svelte";
+	import Carousel from "$lib/Carousel.svelte";
 	import Button from "$lib/Button.svelte";
 
 	interface Profile {
@@ -24,11 +24,15 @@
 		{ imgSrc: "/biology-profile.png", name: "Биология и Химия", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "}
 	]
 
-	let articles: ArticlePreview[] = Array(9).fill({ title: "Заглавие",
+	let articleProps = Array(9).fill({ title: "Заглавие",
 			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 			imgSrc: "/pexels-eberhard-grossgasteiger-1287145.jpg",
 			href: "/about-us",
-			date: new Date() })
+			date: new Date() }).map((article: ArticlePreview) => {
+		return {
+			preview: article
+		}
+	})
 </script>
 
 <Slideshow slides={slides} />
@@ -54,7 +58,7 @@
 
 <div class="news-section">
 	<h3>Новини</h3>
-	<NewsCarousel articles="{articles}"/>
+	<Carousel elementProps="{articleProps}" component="{ArticlePreview}"/>
 </div>
 
 <OvalContainer>
