@@ -58,7 +58,7 @@
 
 <div class="news-section">
 	<h3>Новини</h3>
-	<Carousel elementProps="{articleProps}" component="{ArticlePreview}"/>
+	<Carousel elementProps="{articleProps}" component="{ArticlePreview}" componentHeight="23rem" componentWidth="16rem"/>
 </div>
 
 <OvalContainer>

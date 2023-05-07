@@ -17,6 +17,8 @@
 
 	export let elementProps: unknown[];
 	export let component;
+	export let componentHeight;
+	export let componentWidth;
 
 	const scrollConfig: ScrollIntoViewOptions = {
 		behavior: 'smooth',
@@ -127,7 +129,7 @@
 	}
 </script>
 
-<div class="container">
+<div class="container" style="--component-width: {componentWidth}; --component-height: {componentHeight};">
 	<button on:click={scrollLeft} class="arrow-button" disabled="{selectedGroupIndex === 0}">
 		<ArrowLeft />
 	</button>
@@ -208,8 +210,8 @@
 
 	.element-preview {
 		display: flex;
-		height: 23rem;
-		width: 16rem;
+		height: var(--component-height);
+		width: var(--component-width);
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
