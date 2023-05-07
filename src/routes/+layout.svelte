@@ -2,9 +2,18 @@
     import Navbar from "$lib/Navbar.svelte";
 	import Footer from "$lib/Footer.svelte";
 	import { onMount, setContext } from "svelte";
-	import { layout } from "../lib/setLayout";
+	import { layout, mainLayout, setLayout } from "../lib/setLayout";
+
+	let address = "Августа Траяна 42, Стара Загора, 6000"
+	let schoolName = "Профилирана природоматематическа гимназия \"Гео Милев\""
+	let phone = "0899999999"
+	let email = "mgto@abv.bg"
 
 	setContext('layout', layout);
+
+	mainLayout.navbar.title = schoolName
+
+	setLayout(mainLayout)
 
 	onMount(() => {
 		layout.subscribe((layoutProps) => {
@@ -30,7 +39,7 @@
 
 <slot />
 
-<Footer />
+<Footer address="{address}" schoolName="{schoolName}" phone="{phone}" email="{email}"/>
 
 <style>
     :global(body) {
