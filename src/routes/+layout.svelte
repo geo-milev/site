@@ -3,15 +3,10 @@
 	import Footer from "$lib/Footer.svelte";
 	import { onMount, setContext } from "svelte";
 	import { layout, mainLayout, setLayout } from "../lib/setLayout";
-
-	let address = "Августа Траяна 42, Стара Загора, 6000"
-	let schoolName = "Профилирана природоматематическа гимназия \"Гео Милев\""
-	let phone = "0899999999"
-	let email = "mgto@abv.bg"
+	import { mainInfo } from "../lib/mainInfo";
 
 	setContext('layout', layout);
-
-	mainLayout.navbar.title = schoolName
+	setContext('mainInfo', mainInfo)
 
 	setLayout(mainLayout)
 
@@ -35,11 +30,18 @@
 	/>
 </svelte:head>
 
-<Navbar fixed="{$layout.navbar.fixed}" title="{$layout.navbar.title}" />
+<Navbar fixed="{$layout.navbar.fixed}"
+		title="{$mainInfo.schoolName}"
+		showTitle="{$layout.navbar.showTitle}"
+		logoHref="{$mainInfo.logoHref}"
+		logoHrefAlt="{$mainInfo.logoHrefAlt}" />
 
 <slot />
 
-<Footer address="{address}" schoolName="{schoolName}" phone="{phone}" email="{email}"/>
+<Footer address="{$mainInfo.contact.address}"
+		schoolName="{$mainInfo.schoolName}"
+		phone="{$mainInfo.contact.principalPhone}"
+		email="{$mainInfo.contact.mainEmail}"/>
 
 <style>
     :global(body) {
