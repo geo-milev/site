@@ -118,6 +118,10 @@
 				carouselRect.right - groupSize * lastGroupItemRect.width > lastGroupItemRect.width) {
 				updateGroups()
 			}
+
+			if (groupElements && groupElements[selectedGroupIndex] && groupElements[selectedGroupIndex][0]) {
+				groupElements[selectedGroupIndex][0].scrollIntoView(scrollConfig)
+			}
 		}
 	}
 </script>
