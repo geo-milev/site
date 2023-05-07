@@ -30,7 +30,9 @@ const mainInfo = writable(defaults);
 
 // Dummy function
 const fetchRemoteInfo = async () => {
-    setTimeout(null, 2000);
+    await new Promise((res) => {
+        setTimeout(res, 3000);
+    });
     const newObjects = Object.assign({}, defaults);
     newObjects.schoolName = "Природоматематическа гимназия “Гео Милев”";
     return newObjects;
