@@ -96,13 +96,6 @@
 		}
 
 		groups = newGroups;
-
-		// Scroll to beginning when updating groups to avoid jitter
-		// This should only happen when resizing screen from the non-first group
-		// It is not a perfect solution, but probably the best one
-		if (groupElements[0]) {
-			groupElements[0].scrollIntoView(scrollConfig)
-		}
 	}
 
 	onMount(() => {
