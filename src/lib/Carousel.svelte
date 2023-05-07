@@ -1,10 +1,9 @@
 <script lang="ts">
-	import ArticlePreview from "./ArticlePreview.svelte";
 	import ArrowLeft from "$lib/ArrowLeft.svelte";
 	import ArrowRight from "$lib/ArrowRight.svelte";
 	import { onMount } from "svelte";
 
-	let articleGroups: ArticlePreview[][] = [];
+	let groups: unknown[][] = [];
 	let groupSize = 4;
 
 	let carousel;
@@ -16,7 +15,10 @@
 	let groupElements = [];
 	let selectedGroupIndex = 0;
 
-	export let articles: ArticlePreview[];
+	export let elementProps: unknown[];
+	export let component;
+	export let componentHeight;
+	export let componentWidth;
 
 	const scrollConfig: ScrollIntoViewOptions = {
 		behavior: 'smooth',
@@ -75,7 +77,7 @@
 		return biggestGroupShownIndex;
 	}
 
-	const updateArticleGroups = () => {
+	const updateGroups = () => {
 		if (carouselWidth && previewWidth) {
 			let newGroupSize = Math.floor(carouselWidth / previewWidth);
 			if (newGroupSize != groupSize)  {
@@ -85,17 +87,17 @@
 
 		let newGroups = [];
 
-		for (let i = 0; i < articles.length; i+= groupSize) {
-			let group: ArticlePreview[] = [];
-			for (let j = i; j < i + groupSize && j < articles.length; j++) {
-				group.push(articles[j])
+		for (let i = 0; i < elementProps.length; i+= groupSize) {
+			let group: unknown[] = [];
+			for (let j = i; j < i + groupSize && j < elementProps.length; j++) {
+				group.push(elementProps[j])
 			}
 			newGroups.push(group)
 		}
 
-		articleGroups = newGroups;
+		groups = newGroups;
 
-		// Scroll to beginning when updating article groups to avoid jitter
+		// Scroll to beginning when updating groups to avoid jitter
 		// This should only happen when resizing screen from the non-first group
 		// It is not a perfect solution, but probably the best one
 		if (groupElements[0]) {
@@ -104,7 +106,7 @@
 	}
 
 	onMount(() => {
-		updateArticleGroups();
+		updateGroups();
 	})
 
 	$: {
@@ -121,42 +123,42 @@
 
 			if (lastGroupItemRect.right > carouselRect.right ||
 				carouselRect.right - groupSize * lastGroupItemRect.width > lastGroupItemRect.width) {
-				updateArticleGroups()
+				updateGroups()
 			}
 		}
 	}
 </script>
 
-<div class="container">
+<div class="container" style="--component-width: {componentWidth}; --component-height: {componentHeight};">
 	<button on:click={scrollLeft} class="arrow-button" disabled="{selectedGroupIndex === 0}">
 		<ArrowLeft />
 	</button>
 	<div class="carousel" bind:clientWidth={carouselWidth} bind:this={carousel} on:scroll={updateSelectedGroupIndex}>
-		{#each articleGroups as group, i}
+		{#each groups as group, i}
 			<div class="group"
 				 style="--group-width: {carouselWidth}px"
 				 class:non-full="{group.length !== groupSize}"
 				 bind:this={groupElements[i]}
 				>
-				{#each group as article, j}
+				{#each group as element, j}
 					<!-- bind:clientWidth is a costly operation, so it is best done on a single element
 					 Unfortunately, there are no conditional binds in svelte, so the only way to achieve that is through this ugly block-->
 					{#if i === selectedGroupIndex && j === group.length - 1}
-						<div class="article-preview"
+						<div class="element-preview"
 							 bind:offsetWidth="{previewWidth}"
 							 bind:this={lastGroupItem}>
-							<ArticlePreview preview="{article}"/>
+							<svelte:component this="{component}" {...element} />
 						</div>
 						{:else}
-						<div class="article-preview">
-							<ArticlePreview preview="{article}"/>
+						<div class="element-preview">
+							<svelte:component this="{component}" {...element} />
 						</div>
 					{/if}
 				{/each}
 			</div>
 		{/each}
 	</div>
-	<button on:click={scrollRight} class="arrow-button" disabled="{selectedGroupIndex === articleGroups.length - 1}">
+	<button on:click={scrollRight} class="arrow-button" disabled="{selectedGroupIndex === groups.length - 1}">
 		<ArrowRight />
 	</button>
 </div>
@@ -206,10 +208,10 @@
         justify-content: flex-start;
 	}
 
-	.article-preview {
+	.element-preview {
 		display: flex;
-		height: 23rem;
-		width: 16rem;
+		height: var(--component-height);
+		width: var(--component-width);
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
