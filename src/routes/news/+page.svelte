@@ -1,8 +1,11 @@
 <script lang="ts">
-	import ArticlePreview from "../../../lib/ArticlePreview.svelte";
+	import ArticlePreview from "../../lib/ArticlePreview.svelte";
 	import BigArticlePreview from "$lib/BigArticlePreview.svelte";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { fly } from "svelte/transition";
+	import { secondaryLayout, setLayout } from "../../lib/setLayout";
+
+	setLayout(secondaryLayout)
 
 	let articles: ArticlePreview[] = Array(9).fill({ title: "Заглавие",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -31,7 +34,7 @@
 			<BigArticlePreview preview="{articles[0]}" />
 		</div>
 		{#each articles as article}
-			<div class="article-preview" transition:fly={{ duration: 300 }}>
+			<div class="article-preview" in:fly={{ duration: 300 }}>
 				<ArticlePreview preview="{article}" />
 			</div>
 		{/each}
