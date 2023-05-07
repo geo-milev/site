@@ -34,7 +34,7 @@
 			<BigArticlePreview preview="{articles[0]}" />
 		</div>
 		{#each articles as article}
-			<div class="article-preview" transition:fly={{ duration: 300 }}>
+			<div class="article-preview" in:fly={{ duration: 300 }}>
 				<ArticlePreview preview="{article}" />
 			</div>
 		{/each}
