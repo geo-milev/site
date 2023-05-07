@@ -1,8 +1,17 @@
-<script>
+<script lang="ts">
     import Navbar from "$lib/Navbar.svelte";
 	import Footer from "$lib/Footer.svelte";
-</script>
+	import { onMount, setContext } from "svelte";
+	import { layout } from "../lib/setLayout";
 
+	setContext('layout', layout);
+
+	onMount(() => {
+		layout.subscribe((layoutProps) => {
+			window.document.body.style.backgroundColor = layoutProps.navbar.backgroundColor
+		})
+	})
+</script>
 
 <svelte:head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +26,7 @@
 	/>
 </svelte:head>
 
-<Navbar fixed="{true}" title="Профилирана природоматематическа гимназия “Гео Милев”"/>
+<Navbar fixed="{$layout.navbar.fixed}" title="{$layout.navbar.title}" />
 
 <slot />
 
@@ -27,6 +36,6 @@
     :global(body) {
         padding: 0;
         margin: 0;
-        background-color: black;
+		background-color: #000000;
     }
 </style>

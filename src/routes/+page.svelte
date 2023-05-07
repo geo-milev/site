@@ -1,10 +1,13 @@
 <script lang="ts">
     import Slideshow from "$lib/Slideshow.svelte";
-	import type { Slide } from "../../lib/Slideshow.svelte";
+	import type { Slide } from "../lib/Slideshow.svelte";
 	import OvalContainer from "$lib/OvalContainer.svelte";
 	import ArticlePreview from "$lib/ArticlePreview.svelte";
 	import Carousel from "$lib/Carousel.svelte";
 	import Button from "$lib/Button.svelte";
+	import { mainLayout, setLayout } from "../lib/setLayout";
+
+	setLayout(mainLayout)
 
 	interface Profile {
 		imgSrc: string
