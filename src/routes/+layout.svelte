@@ -4,6 +4,8 @@
 	import { onMount, setContext } from "svelte";
 	import { layout, mainLayout, setLayout } from "../lib/setLayout";
 	import { mainInfo } from "../lib/mainInfo";
+	import { Client, cacheExchange, fetchExchange, setContextClient } from "@urql/svelte"
+	import { PUBLIC_SERVER_URL } from "$env/static/public"
 
 	setContext('layout', layout);
 	setContext('mainInfo', mainInfo)
@@ -15,6 +17,13 @@
 			window.document.body.style.backgroundColor = layoutProps.navbar.backgroundColor
 		})
 	})
+
+	const client = new Client({
+		url: PUBLIC_SERVER_URL,
+		exchanges: [cacheExchange, fetchExchange],
+	});
+
+	setContextClient(client);
 </script>
 
 <svelte:head>
