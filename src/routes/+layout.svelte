@@ -1,10 +1,10 @@
 <script lang="ts">
-    import Navbar from "$lib/Navbar.svelte";
+	import Navbar from "$lib/Navbar.svelte";
 	import Footer from "$lib/Footer.svelte";
 	import { onMount, setContext } from "svelte";
-	import { layout, mainLayout, setLayout } from "../lib/setLayout";
-	import { Client, cacheExchange, fetchExchange, setContextClient } from "@urql/svelte";
-	import { PUBLIC_SERVER_GRAPHQL_ENDPOINT, PUBLIC_IMAGE_ENDPOINT } from "$env/static/public"
+	import { layout, mainLayout, setLayout } from "$lib/setLayout";
+	import { cacheExchange, Client, fetchExchange, setContextClient } from "@urql/svelte";
+	import { PUBLIC_IMAGE_ENDPOINT, PUBLIC_SERVER_GRAPHQL_ENDPOINT } from "$env/static/public";
 
 	setContext('layout', layout);
 
