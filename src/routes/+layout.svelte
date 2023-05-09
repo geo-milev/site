@@ -3,12 +3,10 @@
 	import Footer from "$lib/Footer.svelte";
 	import { onMount, setContext } from "svelte";
 	import { layout, mainLayout, setLayout } from "../lib/setLayout";
-	import { mainInfo } from "../lib/mainInfo";
-	import { Client, cacheExchange, fetchExchange, setContextClient } from "@urql/svelte"
-	import { PUBLIC_SERVER_URL } from "$env/static/public"
+	import { Client, cacheExchange, fetchExchange, setContextClient } from "@urql/svelte";
+	import { PUBLIC_SERVER_GRAPHQL_ENDPOINT, PUBLIC_IMAGE_ENDPOINT } from "$env/static/public"
 
 	setContext('layout', layout);
-	setContext('mainInfo', mainInfo)
 
 	setLayout(mainLayout)
 
@@ -19,11 +17,13 @@
 	})
 
 	const client = new Client({
-		url: PUBLIC_SERVER_URL,
+		url: PUBLIC_SERVER_GRAPHQL_ENDPOINT,
 		exchanges: [cacheExchange, fetchExchange],
 	});
 
 	setContextClient(client);
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -40,17 +40,17 @@
 </svelte:head>
 
 <Navbar fixed="{$layout.navbar.fixed}"
-		title="{$mainInfo.schoolName}"
+		title="{data.MainInfo.name}"
 		showTitle="{$layout.navbar.showTitle}"
-		logoHref="{$mainInfo.logoHref}"
-		logoHrefAlt="{$mainInfo.logoHrefAlt}" />
+		logoHref="{PUBLIC_IMAGE_ENDPOINT + data.MainInfo.logo.url}"
+		logoHrefAlt="{data.MainInfo.logo.alt}" />
 
 <slot />
 
-<Footer address="{$mainInfo.contact.address}"
-		schoolName="{$mainInfo.schoolName}"
-		phone="{$mainInfo.contact.principalPhone}"
-		email="{$mainInfo.contact.mainEmail}"/>
+<Footer address="{data.Contact.address}"
+		schoolName="{data.MainInfo.name}"
+		phone="{data.Contact.phones.principalPhone}"
+		email="{data.Contact.emails.mainEmail}"/>
 
 <style>
     :global(body) {
