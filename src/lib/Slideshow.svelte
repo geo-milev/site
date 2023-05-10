@@ -53,7 +53,9 @@
 		{#if slides[selectedIndex].text}
 			<h2 in:fade={{ duration: transitionDuration }} out:fade={{ duration: transitionDuration }}>{slides[selectedIndex].text}</h2>
 		{/if}
-		{#if slides[selectedIndex].callToAction}
+		{#if slides[selectedIndex].callToAction &&
+			slides[selectedIndex].callToAction.dest &&
+			slides[selectedIndex].callToAction.text}
 			<div in:fade={{ duration: transitionDuration }} out:fade={{ duration: transitionDuration }}>
 				<Button href="{slides[selectedIndex].callToAction.dest}"
 						text="{slides[selectedIndex].callToAction.text}" />
