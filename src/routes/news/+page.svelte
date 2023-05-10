@@ -4,26 +4,41 @@
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { fly } from "svelte/transition";
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
+	import { getContextClient } from "@urql/svelte";
+	import { mapArticles } from "../../lib/mapArticles";
 
 	setLayout(secondaryLayout)
 
-	let articles: ArticlePreview[] = Array(9).fill({ title: "Заглавие",
-		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-		imgSrc: "/pexels-eberhard-grossgasteiger-1287145.jpg",
-		href: "/about-us",
-		date: new Date() })
+	export let data;
+
+	let articles = mapArticles(data.allNews.docs)
 
 	let remainArticles = true;
+	let page = 1;
+	let client = getContextClient()
 
-	// This is currently a dummy function showcasing functionality that will only be available
-	// once the backend is
 	const requestMoreArticles = () => {
-		if (articles.length > 20) {
-			remainArticles = false;
-			return;
-		}
-
-		articles = articles.concat(articles);
+		page++;
+		client.query(
+			`query($page: Int!) {
+					allNews(page: $page, limit: 10, sort: "-publishDate") {
+						docs {
+						  title
+						  description
+						  postImage {
+							url
+							alt
+						  }
+						  publishDate
+						  id
+						}
+						hasNextPage,
+					}
+				}
+   		 	`, { page }).then(result => {
+					articles = articles.concat(mapArticles(result.data.allNews.docs))
+					remainArticles = result.data.hasNextPage
+				})
 	}
 </script>
 

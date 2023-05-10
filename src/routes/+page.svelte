@@ -7,6 +7,7 @@
 	import Button from "$lib/Button.svelte";
 	import { mainLayout, setLayout } from "../lib/setLayout";
 	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+	import { mapArticles } from "../lib/mapArticles";
 
 	setLayout(mainLayout)
 
@@ -37,18 +38,9 @@
 		}
 	})
 
-	let articleProps = data.allNews.docs.map((article) => {
+	let articleProps = mapArticles(data.allNews.docs).map((article) => {
 		return {
-			preview: {
-				title: article.title,
-				description: article.description,
-				image: {
-					url: PUBLIC_IMAGE_ENDPOINT + article.postImage.url,
-					alt: article.postImage.alt
-				},
-				href: "/news/" + article.id,
-				date: article.publishDate
-			}
+			preview: article
 		}
 	})
 </script>

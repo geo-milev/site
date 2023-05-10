@@ -5,7 +5,7 @@
 	export let preview: ArticlePreview;
 </script>
 
-<div class="container" style="--preview-img: url({preview.imgSrc});">
+<div class="container" style="--preview-img: url({preview.image.url});">
 	<div class="content">
 		<div class="text">
 			<span>{preview.date.toLocaleDateString("bg-BG", { year: 'numeric', month: 'long', day: 'numeric' })}</span>
