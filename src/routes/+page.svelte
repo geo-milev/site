@@ -54,15 +54,15 @@
 			<iframe
 				width="560"
 				height="315"
-				src="https://www.youtube-nocookie.com/embed/eMf3qqGoIMM"
+				src="{data.VideoSection.video}"
 				title="YouTube video player"
 				frameborder="0"
 				allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 				allowfullscreen></iframe>
 		</div>
 		<div class="hello-column">
-			<h3>Здравейте</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velзit esse cillum dolore eu fugiat nulla pariatur.</p>
+			<h3>{data.VideoSection.header}</h3>
+			<p>{data.VideoSection.text}</p>
 		</div>
 	</div>
 </OvalContainer>
