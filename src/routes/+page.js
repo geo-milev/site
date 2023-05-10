@@ -27,6 +27,7 @@ export async function load() {
 					url
 					alt
 				  }
+				  name
 				  description
 				}
 				text

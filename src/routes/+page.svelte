@@ -29,11 +29,13 @@
 		}
 	})
 
-	let profiles: Profile[] = [
-		{ imgSrc: "/it-profile.png", name: "Софтуерни и Хардуерни Науки", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
-		{ imgSrc: "/math-profile.png", name: "Математика и Информационни технологии", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
-		{ imgSrc: "/biology-profile.png", name: "Биология и Химия", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "}
-	]
+	let profiles: Profile[] = data.WhatIsStudied.profiles.map((profile) => {
+		return {
+			imgSrc: PUBLIC_IMAGE_ENDPOINT + profile.image.url,
+			name: profile.name,
+			description: profile.description
+		}
+	})
 
 	let articleProps = Array(9).fill({ title: "Заглавие",
 			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -74,8 +76,8 @@
 
 <OvalContainer>
 	<div class="what-we-study-section">
-		<h3>Какво се учи в ППМГ “Гео Милев”</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velзit esse cillum dolore eu fugiat nulla pariatur.</p>
+		<h3>{data.WhatIsStudied.header}</h3>
+		<p>{data.WhatIsStudied.text}</p>
 		<div class="profiles">
 			{#each profiles as profile}
 				<div class="profile">
