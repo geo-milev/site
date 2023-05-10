@@ -6,6 +6,7 @@
 	import Carousel from "$lib/Carousel.svelte";
 	import Button from "$lib/Button.svelte";
 	import { mainLayout, setLayout } from "../lib/setLayout";
+	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public"
 
 	setLayout(mainLayout)
 
@@ -15,11 +16,18 @@
 		description: string
 	}
 
-	let slides: Slide[] = [
-		{ src: "/pexels-ezra-comeau-2387418.jpg" },
-		{ src: "/pexels-francesco-ungaro-2325446.jpg", text: "Добре дошли в сайта на ППМГ \"Гео Милев\""},
-		{ src: "/pexels-eberhard-grossgasteiger-1287145.jpg", text: "Вижте повече за нас", callToAction: {text: "За нас", dest: "/about-us"} }
-	];
+	export let data;
+
+	let slides: Slide[] = data.Slideshow.slides.map((slide) => {
+		return {
+			src: PUBLIC_IMAGE_ENDPOINT + slide.image.url,
+			text: slide.text,
+			callToAction: {
+				text: slide.button.text,
+				dest: slide.button.href
+			}
+		}
+	})
 
 	let profiles: Profile[] = [
 		{ imgSrc: "/it-profile.png", name: "Софтуерни и Хардуерни Науки", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
