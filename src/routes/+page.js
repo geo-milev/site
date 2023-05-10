@@ -9,6 +9,18 @@ export async function load() {
 
     const QUERY = `
      	query {
+            allNews(limit: 10, sort: "-publishDate") {
+                docs {
+                  title
+                  description
+                  postImage {
+                    url
+                    alt
+                  }
+                  publishDate
+                  id
+                }
+            }
             Slideshow {
 				slides {
 				  text

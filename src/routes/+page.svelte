@@ -6,7 +6,7 @@
 	import Carousel from "$lib/Carousel.svelte";
 	import Button from "$lib/Button.svelte";
 	import { mainLayout, setLayout } from "../lib/setLayout";
-	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public"
+	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
 
 	setLayout(mainLayout)
 
@@ -37,13 +37,18 @@
 		}
 	})
 
-	let articleProps = Array(9).fill({ title: "Заглавие",
-			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-			imgSrc: "/pexels-eberhard-grossgasteiger-1287145.jpg",
-			href: "/about-us",
-			date: new Date() }).map((article: ArticlePreview) => {
+	let articleProps = data.allNews.docs.map((article) => {
 		return {
-			preview: article
+			preview: {
+				title: article.title,
+				description: article.description,
+				image: {
+					url: PUBLIC_IMAGE_ENDPOINT + article.postImage.url,
+					alt: article.postImage.alt
+				},
+				href: "/news/" + article.id,
+				date: article.publishDate
+			}
 		}
 	})
 </script>

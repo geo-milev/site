@@ -4,7 +4,10 @@
 	interface ArticlePreview {
 		title: string;
 		description: string;
-		imgSrc: string;
+		image: {
+			url,
+			alt
+		}
 		href: string;
 		date: Date;
 	}
@@ -13,7 +16,7 @@
 </script>
 
 <div class="container">
-	<div class="preview-image" style="--preview-img: url({preview.imgSrc});"></div>
+	<div class="preview-image" style="--preview-img: url({preview.image.url});"></div>
 	<div class="content">
 		<div class="text">
 			<h4>{preview.title}</h4>
