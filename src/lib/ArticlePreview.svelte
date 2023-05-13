@@ -69,6 +69,9 @@
         line-height: 18px;
 		margin: 0;
         color: #000000;
-        text-overflow: ellipsis;
-	}
+		text-overflow: ellipsis;
+        overflow: hidden;
+        word-wrap: break-word;
+		white-space: nowrap;
+    }
 </style>
