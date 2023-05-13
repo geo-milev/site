@@ -5,7 +5,8 @@
 	export let preview: ArticlePreview;
 </script>
 
-<div class="container" style="--preview-img: url({preview.image.url});">
+<div class="container">
+	<img class="preview-image" src="{preview.image.url}" alt="{preview.image.alt}">
 	<div class="content">
 		<div class="text">
 			<span>{preview.date.toLocaleDateString("bg-BG", { year: 'numeric', month: 'long', day: 'numeric' })}</span>
@@ -21,12 +22,19 @@
         width: 100%;
         height: 100%;
         position: relative;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--preview-img);
-        background-size: cover;
 		display: flex;
         flex-direction: column;
 		justify-content: flex-end;
     }
+
+	.preview-image {
+		position: absolute;
+        object-fit: cover;
+		width: 100%;
+		height: 100%;
+		bottom: 0;
+		filter: brightness(0.5);;
+	}
 
 	.content {
         position: relative;

@@ -16,7 +16,7 @@
 </script>
 
 <div class="container">
-	<div class="preview-image" style="--preview-img: url({preview.image.url});"></div>
+	<img class="preview-image" src="{preview.image.url}" alt="{preview.image.alt}"/>
 	<div class="content">
 		<div class="text">
 			<h4>{preview.title}</h4>
@@ -37,8 +37,7 @@
 	}
 
 	.preview-image {
-		background-image: var(--preview-img);
-		background-size: cover;
+		object-fit: cover;
 		height: 150%;
 	}
 
