@@ -1,16 +1,29 @@
 <script lang="ts">
-    import Navbar from "$lib/Navbar.svelte";
+	import Navbar from "$lib/Navbar.svelte";
 	import Footer from "$lib/Footer.svelte";
 	import { onMount, setContext } from "svelte";
-	import { layout } from "../lib/setLayout";
+	import { layout, mainLayout, setLayout } from "$lib/setLayout";
+	import { cacheExchange, Client, fetchExchange, setContextClient } from "@urql/svelte";
+	import { PUBLIC_IMAGE_ENDPOINT, PUBLIC_SERVER_GRAPHQL_ENDPOINT } from "$env/static/public";
 
 	setContext('layout', layout);
+
+	setLayout(mainLayout)
 
 	onMount(() => {
 		layout.subscribe((layoutProps) => {
 			window.document.body.style.backgroundColor = layoutProps.navbar.backgroundColor
 		})
 	})
+
+	const client = new Client({
+		url: PUBLIC_SERVER_GRAPHQL_ENDPOINT,
+		exchanges: [cacheExchange, fetchExchange],
+	});
+
+	setContextClient(client);
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -26,11 +39,18 @@
 	/>
 </svelte:head>
 
-<Navbar fixed="{$layout.navbar.fixed}" title="{$layout.navbar.title}" />
+<Navbar fixed="{$layout.navbar.fixed}"
+		title="{data.MainInfo.name}"
+		showTitle="{$layout.navbar.showTitle}"
+		logoHref="{PUBLIC_IMAGE_ENDPOINT + data.MainInfo.logo.url}"
+		logoHrefAlt="{data.MainInfo.logo.alt}" />
 
 <slot />
 
-<Footer />
+<Footer address="{data.Contact.address}"
+		schoolName="{data.MainInfo.name}"
+		phone="{data.Contact.phones.principalPhone}"
+		email="{data.Contact.emails.mainEmail}"/>
 
 <style>
     :global(body) {

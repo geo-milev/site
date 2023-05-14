@@ -1,6 +1,4 @@
 <script lang="ts">
-    import Logo from "../lib/Logo.svelte";
-
     interface NavigationLink {
         key: string;
         href: string;
@@ -26,7 +24,10 @@
     // This prop allows it to be set to fixed in cases such as the main page, where the content
     // should go below the navbar
     export let fixed = false;
-    export let title: string = null;
+    export let showTitle = true;
+    export let title: string;
+    export let logoHref: string;
+    export let logoHrefAlt: string;
 
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
@@ -45,7 +46,7 @@
 
         <div class="logo">
             <a href="/">
-                <Logo />
+                <img alt="{logoHrefAlt}" src="{logoHref}"/>
             </a>
         </div>
 
@@ -55,10 +56,10 @@
             {/each}
         </nav>
     </div>
-    {#if title != null && fixed}
+    {#if showTitle && fixed}
         <h1 class:scrolled="{scrollMode}">{title}</h1>
     {:else}
-        {#if title != null}
+        {#if showTitle }
             <h1>{title}</h1>
         {/if}
     {/if}

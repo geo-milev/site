@@ -4,7 +4,10 @@
 	interface ArticlePreview {
 		title: string;
 		description: string;
-		imgSrc: string;
+		image: {
+			url,
+			alt
+		}
 		href: string;
 		date: Date;
 	}
@@ -13,7 +16,7 @@
 </script>
 
 <div class="container">
-	<div class="preview-image" style="--preview-img: url({preview.imgSrc});"></div>
+	<img class="preview-image" src="{preview.image.url}" alt="{preview.image.alt}"/>
 	<div class="content">
 		<div class="text">
 			<h4>{preview.title}</h4>
@@ -34,8 +37,7 @@
 	}
 
 	.preview-image {
-		background-image: var(--preview-img);
-		background-size: cover;
+		object-fit: cover;
 		height: 150%;
 	}
 
@@ -67,6 +69,9 @@
         line-height: 18px;
 		margin: 0;
         color: #000000;
-        text-overflow: ellipsis;
-	}
+		text-overflow: ellipsis;
+        overflow: hidden;
+        word-wrap: break-word;
+		white-space: nowrap;
+    }
 </style>

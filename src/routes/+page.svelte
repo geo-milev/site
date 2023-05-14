@@ -6,6 +6,8 @@
 	import Carousel from "$lib/Carousel.svelte";
 	import Button from "$lib/Button.svelte";
 	import { mainLayout, setLayout } from "../lib/setLayout";
+	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+	import { mapArticles } from "../lib/mapArticles";
 
 	setLayout(mainLayout)
 
@@ -15,23 +17,28 @@
 		description: string
 	}
 
-	let slides: Slide[] = [
-		{ src: "/pexels-ezra-comeau-2387418.jpg" },
-		{ src: "/pexels-francesco-ungaro-2325446.jpg", text: "Добре дошли в сайта на ППМГ \"Гео Милев\""},
-		{ src: "/pexels-eberhard-grossgasteiger-1287145.jpg", text: "Вижте повече за нас", callToAction: {text: "За нас", dest: "/about-us"} }
-	];
+	export let data;
 
-	let profiles: Profile[] = [
-		{ imgSrc: "/it-profile.png", name: "Софтуерни и Хардуерни Науки", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
-		{ imgSrc: "/math-profile.png", name: "Математика и Информационни технологии", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "},
-		{ imgSrc: "/biology-profile.png", name: "Биология и Химия", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "}
-	]
+	let slides: Slide[] = data.Slideshow.slides.map((slide) => {
+		return {
+			src: PUBLIC_IMAGE_ENDPOINT + slide.image.url,
+			text: slide.text,
+			callToAction: {
+				text: slide.button.text,
+				dest: slide.button.href
+			}
+		}
+	})
 
-	let articleProps = Array(9).fill({ title: "Заглавие",
-			description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-			imgSrc: "/pexels-eberhard-grossgasteiger-1287145.jpg",
-			href: "/about-us",
-			date: new Date() }).map((article: ArticlePreview) => {
+	let profiles: Profile[] = data.WhatIsStudied.profiles.map((profile) => {
+		return {
+			imgSrc: PUBLIC_IMAGE_ENDPOINT + profile.image.url,
+			name: profile.name,
+			description: profile.description
+		}
+	})
+
+	let articleProps = mapArticles(data.allNews.docs).map((article) => {
 		return {
 			preview: article
 		}
@@ -46,15 +53,15 @@
 			<iframe
 				width="560"
 				height="315"
-				src="https://www.youtube-nocookie.com/embed/eMf3qqGoIMM"
+				src="{data.VideoSection.video}"
 				title="YouTube video player"
 				frameborder="0"
 				allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 				allowfullscreen></iframe>
 		</div>
 		<div class="hello-column">
-			<h3>Здравейте</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velзit esse cillum dolore eu fugiat nulla pariatur.</p>
+			<h3>{data.VideoSection.header}</h3>
+			<p>{data.VideoSection.text}</p>
 		</div>
 	</div>
 </OvalContainer>
@@ -66,8 +73,8 @@
 
 <OvalContainer>
 	<div class="what-we-study-section">
-		<h3>Какво се учи в ППМГ “Гео Милев”</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velзit esse cillum dolore eu fugiat nulla pariatur.</p>
+		<h3>{data.WhatIsStudied.header}</h3>
+		<p>{data.WhatIsStudied.text}</p>
 		<div class="profiles">
 			{#each profiles as profile}
 				<div class="profile">

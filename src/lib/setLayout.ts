@@ -3,7 +3,7 @@ import { writable } from "svelte/store";
 interface LayoutProps {
     navbar: {
         fixed: boolean;
-        title: string | null;
+        showTitle: boolean;
         backgroundColor: string;
     };
 }
@@ -15,7 +15,7 @@ const setLayout = (layoutProps: LayoutProps) => {
 const mainLayout: LayoutProps = {
     navbar: {
         fixed: true,
-        title: "Профилирана природоматематическа гимназия “Гео Милев”",
+        showTitle: true,
         backgroundColor: "#000000",
     },
 };
@@ -23,7 +23,7 @@ const mainLayout: LayoutProps = {
 const secondaryLayout: LayoutProps = {
     navbar: {
         fixed: false,
-        title: null,
+        showTitle: false,
         backgroundColor: "#4F0D0D",
     },
 };

@@ -1,9 +1,14 @@
-<script>
+<script lang="ts">
 	import Logo from "$lib/Logo.svelte";
 	import Curve from "$lib/Curve.svelte";
 	import PhoneIcon from "$lib/PhoneIcon.svelte";
 	import MailIcon from "$lib/MailIcon.svelte";
 	import IconLink from "$lib/IconLink.svelte";
+
+	export let address: string;
+	export let schoolName: string;
+	export let phone: string;
+	export let email: string;
 </script>
 
 <footer>
@@ -15,13 +20,13 @@
 			<Logo />
 		</div>
 		<h1>
-			Профилирана природоматематическа гимназия "Гео Милев"
+			{schoolName}
 		</h1>
-		<h2>Августа Траяна 42, Стара Загора, 6000</h2>
+		<h2>{address}</h2>
 		<h3>Контакти</h3>
 		<div class="links">
-			<IconLink href="tel:+359899999999" text="0899999999"><PhoneIcon /></IconLink>
-			<IconLink href="mailto:mgto@abv.bg" text="mgto@abv.bg"><MailIcon /></IconLink>
+			<IconLink href="tel:{phone}" text="{phone}"><PhoneIcon /></IconLink>
+			<IconLink href="mailto:{email}" text="{email}"><MailIcon /></IconLink>
 		</div>
 		<h4>
 			<a href="/about-us">За нас</a>
