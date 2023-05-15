@@ -47,7 +47,7 @@
 
 <slot />
 
-<Footer address="{data.Contact.address}"
+<Footer address="{data.Contact.locationInfo.address}"
 		schoolName="{data.MainInfo.name}"
 		phone="{data.Contact.phones.principalPhone}"
 		email="{data.Contact.emails.mainEmail}"/>
