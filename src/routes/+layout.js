@@ -17,7 +17,9 @@ export async function load() {
                 }
             }
             Contact {
-                address
+                locationInfo {
+                  address
+                }
                 workingHours {
                     workingHoursStart
                     workingHoursEnd
