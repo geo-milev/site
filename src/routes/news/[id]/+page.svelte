@@ -1,8 +1,8 @@
 <script>
 	import { parseRichText } from "$lib/parseRichText";
-	import { secondaryLayout, setLayout } from "$lib/setLayout";
+	import { setLayout, tertiaryLayout } from "$lib/setLayout";
 
-	setLayout(secondaryLayout)
+	setLayout(tertiaryLayout)
 
 	export let data;
 </script>
@@ -12,7 +12,4 @@
 </div>
 
 <style>
-	.article-content {
-		color: white;
-	}
 </style>
