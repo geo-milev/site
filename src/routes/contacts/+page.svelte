@@ -11,9 +11,31 @@
 
 	const workingHoursEnd = new Date(data.Contact.workingHours.workingHoursEnd)
 		.toLocaleTimeString('bg', dateFormatOptions)
+
+	const formHtml = data.Form.fields.map((value) => {
+		let type = "text";
+		if (value.blockType === "email") type = "email"
+		if (value.blockType === "textarea") {
+			return`<label for="${value.name}">${value.label}</label>
+					<textarea name="${value.name}" form="contactUsForm" rows="10" style="resize: none;" required="${value.required}"></textarea>`
+		}
+
+		return `<label for="${value.name}">${value.label}</label>
+				<input type="${type}" id="${value.name}" name="${value.name}" required="${value.required}">`
+	}).join("")
+
+
+	/** @type {import('./$types').ActionData} */
+	export let form;
 </script>
 
 <div class="container">
+	{#if form?.success}
+		<p class="message">Успешно изпратено!</p>
+	{/if}
+	{#if form?.failure}
+		<p class="message">Имаше грешка при изпращането. Опитайте отново по-късно!</p>
+	{/if}
 	<div class="header-container">
 		<h1>Контакти</h1>
 		<div class="line"></div>
@@ -25,6 +47,7 @@
 					style="border:0"
 					loading="lazy"
 					allowfullscreen
+					title="Адрес: {data.Contact.locationInfo.address}"
 					src="{data.Contact.locationInfo.locationLink}">
 			</iframe>
 		</div>
@@ -57,7 +80,15 @@
 		</div>
 	</div>
 	<div class="form">
-
+		<div class="header-container">
+			<h1>Свържи се с нас</h1>
+			<div class="line"></div>
+		</div>
+		<form method="POST" action="/contacts" id="contactUsForm">
+			{@html formHtml}
+			<input type="hidden" name="formId" value="{data.Form.id}"/>
+			<input type="submit" value="{data.Form.submitButtonLabel}" />
+		</form>
 	</div>
 </div>
 
@@ -101,6 +132,7 @@
 		flex-direction: row;
 		width: 100%;
 		gap: 2rem;
+        margin-bottom: 4rem;
 	}
 
 	.map {
@@ -143,4 +175,84 @@
     .contact-item span a {
         color: #FFFFFF;
     }
+
+	.form {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.form form {
+		width: 30rem;
+        color: #FFFFFF;
+		display: flex;
+		flex-direction: column;
+    }
+
+	/*
+		Since the form is dynamically built, SvelteKit detects most of its fields as unused css and drops it
+		:global needs to be used for this reason
+	*/
+
+    :global(.form form input) {
+		width: 100%;
+        background-color: #FFFFFF;
+		border: none;
+		margin-bottom: 1.5rem;
+		min-height: 1.5rem;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+	}
+
+    :global(.form form input[type=submit]) {
+		background-color: rgba(0, 0, 0, 0);
+        border: 2px solid #FFFFFF;
+        font-weight: 300;
+        font-size: 19px;
+        line-height: 22px;
+        padding: 0.5rem 3rem;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        text-align: center;
+        cursor: pointer;
+        margin-top: 2rem;
+		display: flex;
+		width: auto;
+    }
+
+    :global(.form form label) {
+		width: 100%;
+		text-align: center;
+		font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FFFFFF;
+        margin-bottom: 0.5rem;
+    }
+
+    :global(.form form textarea) {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+	:global(.message) {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19px;
+        line-height: 22px;
+        color: #FFFFFF;
+		text-align: center;
+		margin: 0;
+	}
 </style>
