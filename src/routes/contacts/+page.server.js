@@ -10,14 +10,14 @@ export const actions = {
         };
 
         for (const [key, value] of data.entries()) {
-            if (key !== "formId")
+            if (key !== "formId") {
                 queryData.submissionData.push({
                     field: key,
                     value: value,
                 });
+            }
         }
 
-        console.log(JSON.stringify(queryData));
         const response = await fetch(
             PUBLIC_SERVER_URL + "/api/form-submissions",
             {
