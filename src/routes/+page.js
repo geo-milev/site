@@ -54,9 +54,7 @@ export async function load({ fetch }) {
         }
     `;
 
-    client.query(QUERY, {}).subscribe((data) => {
-        console.log(data.error);
-    });
+    console.log(PUBLIC_SERVER_GRAPHQL_ENDPOINT);
 
-    return {};
+    return (await client.query(QUERY, {})).data;
 }
