@@ -50,7 +50,9 @@
 <Footer address="{data.Contact.address}"
 		schoolName="{data.MainInfo.name}"
 		phone="{data.Contact.phones.principalPhone}"
-		email="{data.Contact.emails.mainEmail}"/>
+		email="{data.Contact.emails.mainEmail}"
+		logoHref="{PUBLIC_IMAGE_ENDPOINT + data.MainInfo.logo.url}"
+		logoHrefAlt="{data.MainInfo.logo.alt}" />
 
 <style>
     :global(body) {

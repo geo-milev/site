@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Logo from "$lib/Logo.svelte";
 	import Curve from "$lib/Curve.svelte";
 	import PhoneIcon from "$lib/PhoneIcon.svelte";
 	import MailIcon from "$lib/MailIcon.svelte";
@@ -9,6 +8,8 @@
 	export let schoolName: string;
 	export let phone: string;
 	export let email: string;
+	export let logoHref: string;
+	export let logoHrefAlt: string;
 </script>
 
 <footer>
@@ -17,7 +18,7 @@
 	</div>
 	<div class="content">
 		<div class="logo">
-			<Logo />
+			<img alt="{logoHrefAlt}" src="{logoHref}"/>
 		</div>
 		<h1>
 			{schoolName}
