@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
 	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+	import Timeline from "$lib/Timeline.svelte";
+	import EventView from "$lib/EventView.svelte";
 
 	setLayout(secondaryLayout)
 
@@ -19,6 +21,15 @@
 		<img src="{PUBLIC_IMAGE_ENDPOINT + data.AboutUs.aboutUs.image.url}"
 			 alt="{data.AboutUs.aboutUs.image.alt}">
 	</div>
+	<div class="history">
+		<div class="header-container">
+			<h1>{data.AboutUs.history.title}</h1>
+			<div class="line"></div>
+		</div>
+		<Timeline componentProps="{data.AboutUs.history.events.map((val) => ({ event: val }))}"
+				  timelineTextProperty="year"
+				  component="{EventView}"></Timeline>
+	</div>
 </div>
 
 <style>
@@ -27,7 +38,7 @@
 		flex-direction: column;
 		align-items: center;
 		margin-bottom: 4rem;
-		gap: 3rem;
+		gap: 5rem;
 		padding-right: 3rem;
 		padding-left: 3rem;
 	}
@@ -39,11 +50,14 @@
 	}
 
     .line {
-        width: 50%;
         height: 1px;
         background-color: rgba(255, 255, 255, 0.31);
         margin-top: -1px;
     }
+
+	.about-us .line {
+        width: 50%;
+	}
 
     .about-us .text {
         width: 100%;
@@ -51,16 +65,19 @@
 		flex-direction: column;
     }
 
-	.about-us .text h1 {
+	h1 {
         border-bottom: 2px #FFFFFF solid;
         margin: 0;
-        padding-bottom: 0.5rem;
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 700;
         font-size: 40px;
         line-height: 54px;
         color: #FFFFFF;
+	}
+
+	.about-us .text h1 {
+        padding-bottom: 0.5rem;
 	}
 
 	.about-us .text p {
@@ -79,6 +96,30 @@
 	}
 
     .about-us img {
-        width: 100%;
+		width: 100%;
+      	object-fit: contain;
+    }
+
+	.history {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+    .history .line {
+        width: 20rem;
+    }
+
+    .history h1 {
+        padding-bottom: 1rem;
+    }
+
+    .history .header-container {
+        width: auto;
+        display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
     }
 </style>
