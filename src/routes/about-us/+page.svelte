@@ -26,7 +26,9 @@
 			<h1>{data.AboutUs.history.title}</h1>
 			<div class="line"></div>
 		</div>
-		<Timeline componentProps="{data.AboutUs.history.events.map((val) => ({ event: val }))}"
+		<Timeline componentProps="{data.AboutUs.history.events
+									.sort((a, b) => {return a.year - b.year})
+									.map((val) => ({ event: val }))}"
 				  timelineTextProperty="year"
 				  component="{EventView}"></Timeline>
 	</div>
