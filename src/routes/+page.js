@@ -54,5 +54,9 @@ export async function load({ fetch }) {
         }
     `;
 
-    return (await client.query(QUERY, {})).data;
+    client.query(QUERY, {}).subscribe((data) => {
+        console.log(data.error);
+    });
+
+    return {};
 }

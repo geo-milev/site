@@ -10,6 +10,6 @@ import { Handle } from "@sveltejs/kit";
 export const handle: Handle = async ({ event, resolve }) => {
     return resolve(event, {
         filterSerializedResponseHeaders: (name: string) =>
-            name === "content-type",
+            name === "content-type" || name === "Access-Control-Allow-Origin",
     });
 };
