@@ -1,14 +1,19 @@
 <script lang="ts">
     interface NavigationLink {
         key: string;
-        href: string;
+        href?: string;
+        subsections?: NavigationLink[]
     }
+
+    let shownSubsectionsHref = ""
 
     const navigationLinksLeft: NavigationLink[] = [
         { key: "Новини", href: "/news" },
         { key: "За ученика", href: "/student" },
         { key: "Прием", href: "/acceptance" },
-        { key: "Организация", href: "/organisation" },
+        { key: "Организация", subsections: [
+                { key: "Седмично разписание", href: "/organisation/weekly-schedule" }
+            ]},
     ];
 
     const navigationLinksRight: NavigationLink[] = [
@@ -40,7 +45,22 @@
 
         <nav class:scrolled="{scrollMode}" class="left-nav">
             {#each navigationLinksLeft as navigationLink}
-                <a href="{navigationLink.href}">{navigationLink.key}</a>
+                {#if !navigationLink.subsections}
+                    <a href="{navigationLink.href}">{navigationLink.key}</a>
+                    {:else}
+                    <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.href }}
+                         on:mouseleave="{() => { shownSubsectionsHref = '' }}"
+                         class="subsection-container">
+                        <span>{navigationLink.key}</span>
+                        {#if shownSubsectionsHref === navigationLink.href}
+                            <div class="subsections">
+                                {#each navigationLink.subsections as subsection}
+                                    <a href="{subsection.href}">{subsection.key}</a>
+                                 {/each}
+                            </div>
+                        {/if}
+                    </div>
+                {/if}
             {/each}
         </nav>
 
@@ -52,7 +72,22 @@
 
         <nav class:scrolled="{scrollMode}" class="right-nav">
             {#each navigationLinksRight as navigationLink}
-                <a href="{navigationLink.href}">{navigationLink.key}</a>
+                {#if !navigationLink.subsections}
+                    <a href="{navigationLink.href}">{navigationLink.key}</a>
+                {:else}
+                    <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.href }}
+                         on:mouseleave="{() => { shownSubsectionsHref = '' }}"
+                         class="subsection-container">
+                        <span>{navigationLink.key}</span>
+                        {#if shownSubsectionsHref === navigationLink.href}
+                            <div class="subsections">
+                                {#each navigationLink.subsections as subsection}
+                                    <a href="{subsection.href}">{subsection.key}</a>
+                                {/each}
+                            </div>
+                        {/if}
+                    </div>
+                {/if}
             {/each}
         </nav>
     </div>
@@ -125,6 +160,14 @@
         font-family: Roboto, serif;
     }
 
+    span {
+        text-decoration: none;
+        color: #ffffff;
+        text-transform: uppercase;
+        margin-top: 10px;
+        font-family: Roboto, serif;
+    }
+
     .logo {
         width: auto;
         margin-top: 1rem;
@@ -164,5 +207,25 @@
     h1.scrolled {
         transform: translateY(-100px);
         color: rgba(0, 0, 0, 0);
+    }
+
+    .subsection-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        flex-direction: column;
+    }
+
+    .subsections {
+        display: flex;
+        position: absolute;
+        background-color: #7d0b09;
+        flex-direction: column;
+        min-width: 15rem;
+        top: 2rem;
+        left: 0;
+        padding: 1rem;
+        gap: 1rem;
     }
 </style>
