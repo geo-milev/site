@@ -12,7 +12,7 @@ const parseRichText = (richText) => {
                     }
 
                     if (node.code) {
-                        text = `<code}>${text}</code>`;
+                        text = `<pre><code>${text}</code></pre>`;
                     }
 
                     if (node.italic) {
@@ -36,17 +36,29 @@ const parseRichText = (richText) => {
 
                 switch (node.type) {
                     case "h1":
-                        return `<h1>${parseRichText(node.children)}</h1>`;
+                        return `<div class="header-container"><h1>${parseRichText(
+                            node.children
+                        )}</h1></div>`;
                     case "h2":
-                        return `<h2>${parseRichText(node.children)}</h2>`;
+                        return `<div class="header-container"><h2>${parseRichText(
+                            node.children
+                        )}</h2></div>`;
                     case "h3":
-                        return `<h3>${parseRichText(node.children)}</h3>`;
+                        return `<div class="header-container"><h3>${parseRichText(
+                            node.children
+                        )}</h3></div>`;
                     case "h4":
-                        return `<h4>${parseRichText(node.children)}</h4>`;
+                        return `<div class="header-container"><h4>${parseRichText(
+                            node.children
+                        )}</h4></div>`;
                     case "h5":
-                        return `<h5>${parseRichText(node.children)}</h5>`;
+                        return `<div class="header-container"><h5>${parseRichText(
+                            node.children
+                        )}</h5></div>`;
                     case "h6":
-                        return `<h6>${parseRichText(node.children)}</h6>`;
+                        return `<div class="header-container"><h6>${parseRichText(
+                            node.children
+                        )}</h6></div>`;
                     case "ul":
                         return `<ul>${parseRichText(node.children)}</ul>`;
                     case "ol":
@@ -67,7 +79,7 @@ const parseRichText = (richText) => {
                         }
                     }
                     case "indent": {
-                        return `<div style="padding-left: 1rem">${parseRichText(
+                        return `<div style="padding-left: 2rem">${parseRichText(
                             node.children
                         )}</div>`;
                     }
@@ -76,8 +88,11 @@ const parseRichText = (richText) => {
                             return `<a href="${node.value.id}" target="_blank">${node.value.title}</a>`;
                         } else return "";
                     }
-                    default:
-                        return `<p>${parseRichText(node.children)}</p>`;
+                    default: {
+                        const parsed = parseRichText(node.children);
+                        if (parsed) return `<p>${parsed}</p>`;
+                        return "";
+                    }
                 }
             })
             .join("");
