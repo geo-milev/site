@@ -1,11 +1,15 @@
 import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+import sanitizeHtml from "sanitize-html";
 
 const parseRichText = (richText) => {
     if (richText) {
         return richText
             .map((node) => {
                 if (node.text && node.text.length > 0) {
-                    let text = `<span>${node.text}</span>`;
+                    const sanitizedText = sanitizeHtml(node.text);
+                    if (!sanitizedText) return null;
+
+                    let text = `<span>${sanitizedText}</span>`;
 
                     if (node.bold) {
                         text = `<strong>${text}</strong>`;
