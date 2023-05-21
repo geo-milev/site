@@ -24,7 +24,12 @@
 </div>
 
 <style>
-	:global(.article-content h1, h2, h3, h4, h5, h6) {
+	:global(.article-content h1,
+	.article-content h2,
+	.article-content h3,
+	.article-content h4,
+	.article-content h5,
+	.article-content h6) {
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
@@ -68,11 +73,26 @@
         justify-content: flex-start;
         align-items: center;
         padding-left: 0;
+		margin-top: 1rem;
 	}
+
+    :global(.markup-content img) {
+		align-self: center;
+		justify-self: center;
+		margin-top: 1rem;
+    }
+
+    :global(.markup-content pre) {
+        overflow-x: auto;
+    }
+
+    :global(.markup-content p) {
+        text-indent: 1rem;
+    }
 
 	.markup-content {
 		display: flex;
-		max-width: 50%;
+		max-width: min(40rem, 100%);
 		flex-direction: column;
 		align-items: flex-start;
 	}
@@ -90,12 +110,13 @@
 		margin-right: 3rem;
 		justify-content: center;
 		align-items: center;
+		margin-bottom: 5rem;
 	}
 
 	.top-container {
 		display: flex;
 		flex-direction: column;
-		max-width: 50%;
+        max-width: min(40rem, 100%);
         justify-content: center;
         align-items: center;
 	}

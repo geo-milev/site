@@ -79,7 +79,7 @@ const parseRichText = (richText) => {
                         if (value.mimeType.startsWith("image/")) {
                             return `<img src="${src}" alt="${value.alt}" style="width: 100%"/>`;
                         } else {
-                            return `<a href="${src}" target="_blank">${value.alt}</a>`;
+                            return `<p><a href="${src}" target="_blank">${value.alt}</a></p>`;
                         }
                     }
                     case "indent": {
