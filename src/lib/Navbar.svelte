@@ -24,6 +24,8 @@
     ];
 
     let scrollY = 0;
+    let leftNavWidth;
+    let rightNavWidth;
 
     // By default, the navbar is a part of the normal page to prevent content colliding with it
     // This prop allows it to be set to fixed in cases such as the main page, where the content
@@ -43,7 +45,7 @@
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
-        <nav class:scrolled="{scrollMode}" class="left-nav">
+        <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
             {#each navigationLinksLeft as navigationLink}
                 {#if !navigationLink.subsections}
                     <a href="{navigationLink.href}">{navigationLink.key}</a>
@@ -53,7 +55,11 @@
                          class="subsection-container">
                         <span>{navigationLink.key}</span>
                         {#if shownSubsectionsHref === navigationLink.href}
-                            <div class="subsections">
+                            <div class="subsections" style="--subsection-width: {leftNavWidth + 'px'}">
+                                <div class="subsection-top">
+                                    <div class="subsection-line"></div>
+                                    <span class="subsection-title">{navigationLink.key}</span>
+                                </div>
                                 {#each navigationLink.subsections as subsection}
                                     <a href="{subsection.href}">{subsection.key}</a>
                                  {/each}
@@ -70,7 +76,7 @@
             </a>
         </div>
 
-        <nav class:scrolled="{scrollMode}" class="right-nav">
+        <nav class:scrolled="{scrollMode}" class="right-nav" bind:clientWidth={rightNavWidth}>
             {#each navigationLinksRight as navigationLink}
                 {#if !navigationLink.subsections}
                     <a href="{navigationLink.href}">{navigationLink.key}</a>
@@ -80,7 +86,11 @@
                          class="subsection-container">
                         <span>{navigationLink.key}</span>
                         {#if shownSubsectionsHref === navigationLink.href}
-                            <div class="subsections">
+                            <div class="subsections" style="--subsection-width: {rightNavWidth + 'px'}">
+                                <div class="subsection-top">
+                                    <div class="subsection-line"></div>
+                                    <span class="subsection-title">{navigationLink.key}</span>
+                                </div>
                                 {#each navigationLink.subsections as subsection}
                                     <a href="{subsection.href}">{subsection.key}</a>
                                 {/each}
@@ -213,7 +223,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
         flex-direction: column;
     }
 
@@ -222,10 +231,45 @@
         position: absolute;
         background-color: #7d0b09;
         flex-direction: column;
-        min-width: 15rem;
-        top: 2rem;
-        left: 0;
-        padding: 1rem;
+        width: var(--subsection-width);
+        top: 0;
+        right: 0;
+        margin-top: 0.5rem;
+        padding-bottom: 1rem;
         gap: 1rem;
+    }
+
+    .subsections a {
+        margin-left: 8px;
+    }
+
+    .subsection-top {
+        display: flex;
+        width: 100%;
+        padding-top: 4px;
+        align-items: center;
+    }
+
+    .subsection-line {
+        display: flex;
+        background-color: #FFFFFF;
+        height: 1px;
+        padding-right: 4px;
+        flex-grow: 1;
+        margin-left: 8px;
+    }
+
+    .subsection-title {
+        padding-right: 4px;
+        padding-left: 4px;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 18px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0;
     }
 </style>
