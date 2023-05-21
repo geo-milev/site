@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
+	import { enhance } from '$app/forms';
 
 	setLayout(secondaryLayout)
 
@@ -30,12 +31,6 @@
 </script>
 
 <div class="container">
-	{#if form?.success}
-		<p class="message">Успешно изпратено!</p>
-	{/if}
-	{#if form?.failure}
-		<p class="message">Имаше грешка при изпращането. Опитайте отново по-късно!</p>
-	{/if}
 	<div class="header-container">
 		<h1>Контакти</h1>
 		<div class="line"></div>
@@ -81,14 +76,22 @@
 	</div>
 	<div class="form">
 		<div class="header-container">
-			<h1>Свържи се с нас</h1>
+			{#if form?.success}
+				<h1>Поздравления!</h1>
+				{:else}
+				<h1>Свържи се с нас</h1>
+			{/if}
 			<div class="line"></div>
 		</div>
-		<form method="POST" action="/contacts" id="contactUsForm">
-			{@html formHtml}
-			<input type="hidden" name="formId" value="{data.Form.id}"/>
-			<input type="submit" value="{data.Form.submitButtonLabel}" />
-		</form>
+		{#if form?.success}
+			<p class="send-message">Изпратихте съобщение на екипът на ППМГ “Гео Милев!</p>
+		{:else}
+			<form method="POST" action="/contacts" id="contactUsForm" use:enhance>
+				{@html formHtml}
+				<input type="hidden" name="formId" value="{data.Form.id}"/>
+				<input type="submit" value="{data.Form.submitButtonLabel}" />
+			</form>
+		{/if}
 	</div>
 </div>
 
@@ -255,4 +258,15 @@
 		text-align: center;
 		margin: 0;
 	}
+
+	.send-message {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 26px;
+        line-height: 33px;
+        text-align: center;
+        color: #FFFFFF;
+
+    }
 </style>

@@ -28,6 +28,6 @@ export const actions = {
                 body: JSON.stringify(queryData),
             }
         );
-        return { success: response.ok, failure: !response.ok };
+        return { success: response.ok };
     },
 };
