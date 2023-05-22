@@ -2,8 +2,8 @@
 	import { secondaryLayout, setLayout } from "../../../lib/setLayout";
 	import { getContextClient } from "@urql/svelte";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
-	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
 	import { onMount } from "svelte";
+	import { env } from "$env/dynamic/public";
 
 	setLayout(secondaryLayout)
 
@@ -109,7 +109,7 @@
 				<p>{data.Schedule.dailySchedule.text}</p>
 			</div>
 			<SecondaryButton
-				href="{PUBLIC_IMAGE_ENDPOINT + data.Schedule.dailySchedule.file.url}"
+				href="{env.PUBLIC_SERVER_URL + data.Schedule.dailySchedule.file.url}"
 				text="Изтегли"></SecondaryButton>
 		</div>
 	</div>

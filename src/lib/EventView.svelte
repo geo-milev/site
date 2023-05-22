@@ -1,12 +1,12 @@
 <script>
-	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+	import { env } from "$env/dynamic/public";
 
 	export let event;
 </script>
 
 <div class="container">
 	<div class="image-container">
-		<img src="{PUBLIC_IMAGE_ENDPOINT + event.image.url}" alt="{event.image.alt}"/>
+		<img src="{env.PUBLIC_SERVER_URL + event.image.url}" alt="{event.image.alt}"/>
 	</div>
 	<div class="text">
 		<h2>{event.title}</h2>

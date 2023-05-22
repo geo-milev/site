@@ -1,4 +1,4 @@
-import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 
 const mapArticles = (docs) => {
     return docs.map((article) => {
@@ -6,7 +6,7 @@ const mapArticles = (docs) => {
             title: article.title,
             description: article.description,
             image: {
-                url: PUBLIC_IMAGE_ENDPOINT + article.postImage.url,
+                url: env.PUBLIC_SERVER_URL + article.postImage.url,
                 alt: article.postImage.alt,
             },
             href: "/news/" + article.id,

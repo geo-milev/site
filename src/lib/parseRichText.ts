@@ -1,5 +1,5 @@
-import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
 import sanitizeHtml from "sanitize-html";
+import { env } from "$env/dynamic/public";
 
 const parseRichText = (richText) => {
     if (richText) {
@@ -75,7 +75,7 @@ const parseRichText = (richText) => {
                         }>${parseRichText(node.children)}</a>`;
                     case "upload": {
                         const value = node.value;
-                        const src = PUBLIC_IMAGE_ENDPOINT + value.url;
+                        const src = env.PUBLIC_SERVER_URL + value.url;
                         if (value.mimeType.startsWith("image/")) {
                             return `<img src="${src}" alt="${value.alt}" style="width: 100%"/>`;
                         } else {
