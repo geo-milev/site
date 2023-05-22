@@ -1,7 +1,7 @@
 <script>
 	import { parseRichText } from "$lib/parseRichText";
 	import { setLayout, tertiaryLayout } from "$lib/setLayout";
-	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+	import { env } from "$env/dynamic/public";
 
 	setLayout(tertiaryLayout)
 
@@ -17,7 +17,7 @@
 			<p>{data.News.description}</p>
 		</div>
 	</div>
-	<img src="{PUBLIC_IMAGE_ENDPOINT + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
+	<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
 	<div class="markup-content">
 		{@html parseRichText(data.News.content)}
 	</div>

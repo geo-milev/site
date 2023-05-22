@@ -1,9 +1,9 @@
 import { cacheExchange, Client, fetchExchange } from "@urql/svelte";
-import { PUBLIC_SERVER_GRAPHQL_ENDPOINT } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 
 export async function load({ fetch }) {
     const client = new Client({
-        url: PUBLIC_SERVER_GRAPHQL_ENDPOINT,
+        url: env.PUBLIC_SERVER_URL + "/api/graphql",
         exchanges: [cacheExchange, fetchExchange],
         fetch: fetch,
     });

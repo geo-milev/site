@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
-	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+	import { env } from '$env/dynamic/public';
 	import Timeline from "$lib/Timeline.svelte";
 	import EventView from "$lib/EventView.svelte";
 
@@ -18,7 +18,7 @@
 			<div class="line"></div>
 			<p>{data.AboutUs.aboutUs.text}</p>
 		</div>
-		<img src="{PUBLIC_IMAGE_ENDPOINT + data.AboutUs.aboutUs.image.url}"
+		<img src="{env.PUBLIC_SERVER_URL + data.AboutUs.aboutUs.image.url}"
 			 alt="{data.AboutUs.aboutUs.image.alt}">
 	</div>
 	<div class="history">

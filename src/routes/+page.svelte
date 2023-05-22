@@ -5,9 +5,9 @@
 	import ArticlePreview from "$lib/ArticlePreview.svelte";
 	import Carousel from "$lib/Carousel.svelte";
 	import Button from "$lib/Button.svelte";
-	import { mainLayout, setLayout } from "../lib/setLayout";
-	import { PUBLIC_IMAGE_ENDPOINT } from "$env/static/public";
+	import { mainLayout, setLayout } from "../lib/setLayout"
 	import { mapArticles } from "../lib/mapArticles";
+	import { env } from "$env/dynamic/public";
 
 	setLayout(mainLayout)
 
@@ -21,7 +21,7 @@
 
 	let slides: Slide[] = data.Slideshow.slides.map((slide) => {
 		return {
-			src: PUBLIC_IMAGE_ENDPOINT + slide.image.url,
+			src: env.PUBLIC_SERVER_URL + slide.image.url,
 			text: slide.text,
 			callToAction: {
 				text: slide.button.text,
@@ -32,7 +32,7 @@
 
 	let profiles: Profile[] = data.WhatIsStudied.profiles.map((profile) => {
 		return {
-			imgSrc: PUBLIC_IMAGE_ENDPOINT + profile.image.url,
+			imgSrc: env.PUBLIC_SERVER_URL + profile.image.url,
 			name: profile.name,
 			description: profile.description
 		}
