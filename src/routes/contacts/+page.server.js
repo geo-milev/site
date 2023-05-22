@@ -1,4 +1,4 @@
-import { PUBLIC_SERVER_URL } from "$env/static/public";
+import { env } from "$env/dynamic/public";
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -19,7 +19,7 @@ export const actions = {
         }
 
         const response = await fetch(
-            PUBLIC_SERVER_URL + "/api/form-submissions",
+            env.PUBLIC_SERVER_URL + "/api/form-submissions",
             {
                 method: "POST",
                 headers: {
