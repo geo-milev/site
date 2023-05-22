@@ -15,6 +15,7 @@ export async function load({ fetch }) {
                 logo {
                     url
                     alt
+                    width
                 }
             }
             Contact {

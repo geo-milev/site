@@ -35,13 +35,14 @@
     export let title: string;
     export let logoHref: string;
     export let logoHrefAlt: string;
+    export let logoWidth: number;
 
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
 
 <svelte:window bind:scrollY="{scrollY}" />
 
-<div class="nav-container" class:fixed="{fixed}">
+<div class="nav-container" class:fixed="{fixed}" style="--logo-width: {logoWidth}px">
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
@@ -132,7 +133,7 @@
         align-items: center;
         background-color: rgba(0, 0, 0, 0);
         pointer-events: none;
-        grid-template-columns: 1fr 121px 1fr;
+        grid-template-columns: 1fr var(--logo-width) 1fr;
     }
 
     .fixed {
