@@ -14,6 +14,7 @@ export async function load() {
                 logo {
                     url
                     alt
+                    width
                 }
             }
             Contact {

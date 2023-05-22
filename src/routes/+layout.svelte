@@ -43,7 +43,8 @@
 		title="{data.MainInfo.name}"
 		showTitle="{$layout.navbar.showTitle}"
 		logoHref="{PUBLIC_IMAGE_ENDPOINT + data.MainInfo.logo.url}"
-		logoHrefAlt="{data.MainInfo.logo.alt}" />
+		logoHrefAlt="{data.MainInfo.logo.alt}"
+		logoWidth="{data.MainInfo.logo.width}" />
 
 <slot />
 
