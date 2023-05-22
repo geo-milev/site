@@ -28,6 +28,21 @@ const secondaryLayout: LayoutProps = {
     },
 };
 
+const tertiaryLayout: LayoutProps = {
+    navbar: {
+        fixed: false,
+        showTitle: false,
+        backgroundColor: "#FFFFFF",
+    },
+};
+
 const layout = writable(mainLayout);
 
-export { layout, LayoutProps, setLayout, mainLayout, secondaryLayout };
+export {
+    layout,
+    LayoutProps,
+    setLayout,
+    mainLayout,
+    secondaryLayout,
+    tertiaryLayout,
+};
