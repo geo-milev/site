@@ -11,8 +11,13 @@
         { key: "Новини", href: "/news" },
         { key: "За ученика", href: "/student" },
         { key: "Прием", href: "/acceptance" },
+        { key: "Прием", href: "/acceptance" },
         { key: "Организация", subsections: [
-                { key: "Седмично разписание", href: "/organisation/weekly-schedule" }
+                { key: "Седмично разписание", href: "/organisation/weekly-schedule" },
+                { key: "Графици", href: "/organisation/schedules" },
+                { key: "Документи", href: "/organisation/documents" },
+                { key: "Административни услуги", href: "/organisation/administrative-services" },
+                { key: "Бланки", href: "/organisation/forms" }
             ]},
     ];
 
