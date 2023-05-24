@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../../lib/setLayout";
 	import { getContextClient } from "@urql/svelte";
-	import { classNumbers } from "$lib/classNumberNames.js";
+	import { classNumberNames } from "$lib/classNumberNames.js";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { env } from "$env/dynamic/public";
 	import BookPreview from "$lib/BookPreview.svelte";
@@ -45,7 +45,6 @@
     	`;
 
 		client.query(QUERY, { className }).then((res) => {
-			console.log(res.data.Books.docs)
 			books = res.data.Books.docs
 		})
 	}
@@ -69,7 +68,7 @@
 		<label for="classNumber">Въведи своя клас:</label>
 		<select name="classNumber" id="classNumber" bind:this={classSelect} on:change={changeBooks}>
 			{#each [5, 6, 7, 8, 9, 10, 11, 12] as classNumber}
-				<option value="{classNumber}">{classNumbers[classNumber - 1]}</option>
+				<option value="{classNumber}">{classNumberNames[classNumber - 1]}</option>
 			{/each}
 		</select>
 	</div>
