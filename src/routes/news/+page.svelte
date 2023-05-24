@@ -48,7 +48,7 @@
 		<div class="big-article-preview">
 			<BigArticlePreview preview="{articles[0]}" />
 		</div>
-		{#each articles as article}
+		{#each articles.slice(1) as article}
 			<div class="article-preview" in:fly={{ duration: 300 }}>
 				<ArticlePreview preview="{article}" />
 			</div>
