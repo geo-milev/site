@@ -1,4 +1,4 @@
-const classNumbers = [
+const classNumberNames = [
     "Първи",
     "Втори",
     "Трети",
@@ -13,4 +13,4 @@ const classNumbers = [
     "Дванадесети",
 ];
 
-export { classNumbers };
+export { classNumberNames };

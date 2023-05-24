@@ -4,6 +4,7 @@
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { onMount } from "svelte";
 	import { env } from "$env/dynamic/public";
+	import { classNumberNames } from "../../../lib/classNumberNames";
 
 	setLayout(secondaryLayout)
 
@@ -122,7 +123,7 @@
 			<div class="class-selects">
 				<select name="classNumber" id="classNumber" bind:this={classNumberSelect} on:change={changeSchedule}>
 					{#each classNumbers as classNumber}
-						<option value="{classNumber}">{classNumbers[classNumber - 1]}</option>
+						<option value="{classNumber}">{classNumberNames[classNumber - 1]}</option>
 					{/each}
 				</select>
 				<select name="class" id="class" bind:this={classLetterSelect} on:change={changeSchedule}>

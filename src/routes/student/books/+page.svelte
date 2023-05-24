@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../../lib/setLayout";
 	import { getContextClient } from "@urql/svelte";
-	import { classNumbers } from "$lib/classNumbers.js";
+	import { classNumbers } from "$lib/classNumberNames.js";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { env } from "$env/dynamic/public";
 	import BookPreview from "$lib/BookPreview.svelte";
