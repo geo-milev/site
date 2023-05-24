@@ -9,7 +9,9 @@
 
     const navigationLinksLeft: NavigationLink[] = [
         { key: "Новини", href: "/news" },
-        { key: "За ученика", href: "/student" },
+        { key: "За ученика", subsections: [
+                { key: "Учебници", href: "/student/books" }
+            ]},
         { key: "Прием", href: "/acceptance" },
         { key: "Организация", subsections: [
                 { key: "Седмично разписание", href: "/organisation/weekly-schedule" }
@@ -38,6 +40,7 @@
     export let logoWidth: number;
 
     $: scrollMode = (scrollY > 0) || !fixed;
+    $: console.log(shownSubsectionsHref)
 </script>
 
 <svelte:window bind:scrollY="{scrollY}" />
@@ -51,11 +54,11 @@
                 {#if !navigationLink.subsections}
                     <a href="{navigationLink.href}">{navigationLink.key}</a>
                     {:else}
-                    <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.href }}
+                    <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.key }}
                          on:mouseleave="{() => { shownSubsectionsHref = '' }}"
                          class="subsection-container">
                         <span>{navigationLink.key}</span>
-                        {#if shownSubsectionsHref === navigationLink.href}
+                        {#if shownSubsectionsHref === navigationLink.key}
                             <div class="subsections" style="--subsection-width: {leftNavWidth + 'px'}">
                                 <div class="subsection-top">
                                     <div class="subsection-line"></div>
