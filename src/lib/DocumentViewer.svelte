@@ -62,7 +62,6 @@
 		{#if hoveredDocument}
 			<iframe src="{env.PUBLIC_SERVER_URL + hoveredDocument.file.url}"
 					title="{hoveredDocument.name}"
-					sandbox="allow-scripts"
 					referrerpolicy="no-referrer"></iframe>
 		{:else}
 			<p>Поставете мишката си върху елемент от списъка за да се покаже тук.</p>
