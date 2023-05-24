@@ -40,8 +40,6 @@
 		return classNumberSelect && !classes.includes(classNumber + classLetter)
 	}
 
-	const numbers = ["Първи", "Втори", "Трети", "Четвърти", "Пети", "Шести", "Седми", "Осми", "Девети", "Десети", "Единадесети", "Дванадесети"]
-
 	const hours = data.Schedule.dailySchedule.hours.slice(0)
 	hours.splice(data.Schedule.dailySchedule.bigBreak.after, 0, {});
 
@@ -119,12 +117,12 @@
 	</div>
 	<div class="weekly-schedule-container">
 		<div class="class-selector">
-			<label for="class">Въведи своят клас:</label>
+			<label for="class">Въведи своя клас:</label>
 
 			<div class="class-selects">
 				<select name="classNumber" id="classNumber" bind:this={classNumberSelect} on:change={changeSchedule}>
 					{#each classNumbers as classNumber}
-						<option value="{classNumber}">{numbers[classNumber - 1]}</option>
+						<option value="{classNumber}">{classNumbers[classNumber - 1]}</option>
 					{/each}
 				</select>
 				<select name="class" id="class" bind:this={classLetterSelect} on:change={changeSchedule}>
@@ -347,7 +345,6 @@
         line-height: 20px;
         color: #151515;
     }
-
 
     .class-selects option:disabled {
         font-family: 'Roboto', serif;

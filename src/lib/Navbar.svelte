@@ -40,7 +40,6 @@
     export let logoWidth: number;
 
     $: scrollMode = (scrollY > 0) || !fixed;
-    $: console.log(shownSubsectionsHref)
 </script>
 
 <svelte:window bind:scrollY="{scrollY}" />
