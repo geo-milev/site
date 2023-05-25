@@ -11,7 +11,6 @@
         { key: "Новини", href: "/news" },
         { key: "За ученика", href: "/student" },
         { key: "Прием", href: "/acceptance" },
-        { key: "Прием", href: "/acceptance" },
         { key: "Организация", subsections: [
                 { key: "Седмично разписание", href: "/organisation/weekly-schedule" },
                 { key: "Графици", href: "/organisation/schedules" },
