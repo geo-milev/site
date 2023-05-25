@@ -73,7 +73,6 @@
         width: auto;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 4rem;
     }
 
     .line {
@@ -119,8 +118,8 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-left: 5.5rem;
-		padding-right: 5.5rem;
+		padding-left: 6.5rem;
+		padding-right: 6.5rem;
 	}
 
     .achievement-header-container h3 {
