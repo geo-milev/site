@@ -120,12 +120,16 @@
 	.list ul {
         padding-left: 0;
         overflow-y: auto;
+		padding-top: 0;
 	}
 
 	.list li {
 		list-style: none;
-        margin: 10px 0;
-	}
+        border-bottom: 1px solid #000000;
+        margin: 10px 2rem 10px 0;
+		padding-bottom: 8px;
+		padding-top: 8px;
+    }
 
 	.list li a {
         text-decoration: none;
