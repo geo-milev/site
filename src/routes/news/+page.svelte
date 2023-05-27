@@ -13,7 +13,7 @@
 
 	let articles = mapArticles(data.allNews.docs)
 
-	let remainArticles = true;
+	let remainArticles = data.allNews.hasNextPage;
 	let page = 1;
 	let client = getContextClient()
 

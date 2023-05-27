@@ -9,8 +9,8 @@ export async function load({ fetch }) {
     });
 
     const QUERY = `
-     	query {
-            allNews(limit: 10, sort: "-publishDate") {
+     	query($page: Int!) {
+            allNews(page: $page, limit: 10, sort: "-publishDate") {
                 docs {
                   title
                   description
@@ -21,9 +21,10 @@ export async function load({ fetch }) {
                   publishDate
                   id
                 }
+                hasNextPage
             }
         }
     `;
 
-    return (await client.query(QUERY, {})).data;
+    return (await client.query(QUERY, { page: 1 })).data;
 }
