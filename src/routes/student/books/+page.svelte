@@ -172,12 +172,11 @@
     }
 
 	.book-container {
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	.book {
-		height: 15rem;
-		width: 20rem;
+		display: grid;
+        grid-gap: 2rem;
+		width: 100%;
+        grid-template-columns: repeat(auto-fill, 20rem);
+		place-content: center;
+		margin-top: 1rem;
 	}
 </style>
