@@ -183,6 +183,7 @@
         width: auto;
         margin-top: 1rem;
         pointer-events: all;
+        user-select: none;
     }
 
     .background {

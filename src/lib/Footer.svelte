@@ -62,6 +62,7 @@
         height: auto;
         position: relative;
         top: -5.5rem;
+        user-select: none;
     }
 
     h1 {
