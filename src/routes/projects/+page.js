@@ -27,5 +27,5 @@ export async function load({ fetch }) {
         }
     `;
 
-    return (await client.query(QUERY, { page: 0 })).data;
+    return (await client.query(QUERY, { page: 1 })).data;
 }
