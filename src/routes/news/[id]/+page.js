@@ -1,5 +1,6 @@
 import { cacheExchange, Client, fetchExchange } from "@urql/svelte";
 import { env } from "$env/dynamic/public";
+import { error } from "@sveltejs/kit";
 
 export async function load({ fetch, params }) {
     const client = new Client({
@@ -23,5 +24,11 @@ export async function load({ fetch, params }) {
         }
     `;
 
-    return (await client.query(QUERY, { id: params.id })).data;
+    const data = (await client.query(QUERY, { id: params.id })).data;
+
+    if (!data.News) {
+        throw error(404);
+    }
+
+    return data;
 }
