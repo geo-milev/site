@@ -22,7 +22,7 @@
 			})
 	}
 
-	let page = 0;
+	let page = 1;
 	let isRequestingNext = false;
 
 	const onScrollList = () => {
