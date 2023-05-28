@@ -16,7 +16,8 @@
                 { key: "Графици", href: "/organisation/schedules" },
                 { key: "Документи", href: "/organisation/documents" },
                 { key: "Административни услуги", href: "/organisation/administrative-services" },
-                { key: "Бланки", href: "/organisation/forms" }
+                { key: "Бланки", href: "/organisation/forms" },
+                { key: "Бюджет", href: "/organisation/budget" }
             ]},
     ];
 
