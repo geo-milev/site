@@ -199,7 +199,7 @@
 </div>
 
 <style>
-    :global(.noScroll) {
+    :global(.no-scroll) {
         overflow: hidden;
     }
 
