@@ -3,6 +3,7 @@
     import NavClose from "$lib/NavClose.svelte";
     import NavMinus from "$lib/NavMinus.svelte";
     import NavPlus from "$lib/NavPlus.svelte";
+    import { afterNavigate } from '$app/navigation';
 
     interface NavigationLink {
         key: string;
@@ -45,6 +46,10 @@
     let innerWidth;
     let isMobileMenuOpen;
     let navBackground;
+
+    afterNavigate(() => {
+        isMobileMenuOpen = false
+    })
 
     const onBackgroundClick = (event) => {
         if (event.target == navBackground) isMobileMenuOpen = false;
