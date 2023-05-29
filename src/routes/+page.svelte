@@ -115,6 +115,13 @@
 		}
     }
 
+    @media only screen and (max-width: 580px) {
+		.news-section {
+			padding-left: 2rem !important;
+			padding-right: 2rem !important;
+		}
+    }
+
 	.hello-column {
 		width: 100%;
 	}
