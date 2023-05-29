@@ -113,6 +113,10 @@
 			grid-template-columns: 1fr;
             grid-auto-rows: max-content;
 		}
+
+		.what-we-study-section {
+			padding-bottom: 3rem;
+		}
     }
 
     @media only screen and (max-width: 580px) {
