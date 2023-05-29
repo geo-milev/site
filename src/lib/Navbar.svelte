@@ -10,7 +10,7 @@
     const navigationLinksLeft: NavigationLink[] = [
         { key: "Новини", href: "/news" },
         { key: "За ученика", subsections: [
-                { key: "Учебници", href: "/student/books" }
+                { key: "Учебници", href: "/student/books" },
                 { key: "Вестник", href: "/student/newspaper" }
             ]},
         { key: "Прием", href: "/acceptance" },
