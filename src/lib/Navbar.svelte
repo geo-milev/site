@@ -47,12 +47,15 @@
     let isMobileMenuOpen;
     let navBackground;
 
-    afterNavigate(() => {
-        isMobileMenuOpen = false
-    })
+    const closeNavbar = () => {
+        isMobileMenuOpen = false;
+        document.body.classList.remove("no-scroll")
+    }
+
+    afterNavigate(closeNavbar)
 
     const onBackgroundClick = (event) => {
-        if (event.target == navBackground) isMobileMenuOpen = false;
+        if (event.target == navBackground) closeNavbar()
     }
 
     $: isMobile = innerWidth < mobileBreakpoint;
@@ -158,7 +161,7 @@
         <div class="nav-background" on:click={onBackgroundClick} bind:this={navBackground}></div>
         <div class="mobile-nav">
             <div class="close">
-                <button class="icon-button" on:click={() => { isMobileMenuOpen = false }}>
+                <button class="icon-button" on:click={closeNavbar}>
                     <NavClose />
                 </button>
             </div>
