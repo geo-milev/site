@@ -158,6 +158,9 @@
 				{/each}
 			</table>
 		</div>
+		<SecondaryButton
+			href="{env.PUBLIC_SERVER_URL + data.Schedule.weeklySchedule.file.url}"
+			text="Изтегли"></SecondaryButton>
 	</div>
 </div>
 
