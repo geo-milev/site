@@ -173,10 +173,11 @@
 
 	.book-container {
 		display: grid;
-        grid-gap: 2rem;
+		grid-gap: 2rem;
 		width: 100%;
         grid-template-columns: repeat(auto-fill, 20rem);
 		place-content: center;
 		margin-top: 1rem;
+		overflow-x: hidden;
 	}
 </style>
