@@ -112,7 +112,7 @@
     {#if showTitle && fixed}
         <h1 class:scrolled="{scrollMode}">{title}</h1>
     {:else}
-        {#if showTitle }
+        {#if showTitle}
             <h1>{title}</h1>
         {/if}
     {/if}
@@ -190,6 +190,7 @@
         width: auto;
         margin-top: 1rem;
         pointer-events: all;
+        user-select: none;
     }
 
     .background {
@@ -225,6 +226,7 @@
     h1.scrolled {
         transform: translateY(-100px);
         color: rgba(0, 0, 0, 0);
+        user-select: none;
     }
 
     .subsection-container {
