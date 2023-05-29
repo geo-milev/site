@@ -146,5 +146,9 @@
 			align-items: center;
 			gap: 1rem;
 		}
+
+		.logo {
+            top: -3.5rem;
+		}
     }
 </style>
