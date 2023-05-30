@@ -15,7 +15,7 @@
 <style>
 	button {
 		background-color: #7D0B09;
-		border: none;
+		border: 2px solid #7d0b09;
         padding: 0.5rem 3rem;
         color: #FFFFFF;
 		text-transform: uppercase;
@@ -26,5 +26,12 @@
         line-height: 15px;
         text-align: center;
 		cursor: pointer;
+		transition: all 300ms ease-in;
     }
+
+	button:hover {
+		color: #7d0b09;
+		background-color: #FFFFFF;
+        border: 2px solid #7d0b09;
+	}
 </style>
