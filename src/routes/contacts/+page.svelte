@@ -250,17 +250,6 @@
         line-height: 19px;
     }
 
-	:global(.message) {
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 19px;
-        line-height: 22px;
-        color: #FFFFFF;
-		text-align: center;
-		margin: 0;
-	}
-
 	.send-message {
         font-family: 'Roboto', serif;
         font-style: normal;
