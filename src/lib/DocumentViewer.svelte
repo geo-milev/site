@@ -39,6 +39,12 @@
 	let hoveredDocument: Document;
 	let list;
 
+	$:  {
+		if (typeof documents !== 'undefined') {
+			hoveredDocument = undefined
+		}
+	}
+
 	export let documents: Document[];
 	export let getNext: (page: number) => Promise<Document[]>;
 	export let header: string;
