@@ -155,5 +155,10 @@
 		.container {
 			gap: 0;
 		}
+
+		.header-container {
+			padding-left: 0;
+			padding-right: 0;
+		}
     }
 </style>
