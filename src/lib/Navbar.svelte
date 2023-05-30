@@ -4,6 +4,7 @@
     import NavMinus from "$lib/NavMinus.svelte";
     import NavPlus from "$lib/NavPlus.svelte";
     import { afterNavigate } from '$app/navigation';
+    import { fly } from 'svelte/transition';
 
     interface NavigationLink {
         key: string;
@@ -159,7 +160,7 @@
 
     {#if isMobile && isMobileMenuOpen}
         <div class="nav-background" on:click={onBackgroundClick} bind:this={navBackground}></div>
-        <div class="mobile-nav">
+        <div class="mobile-nav" transition:fly="{{ x: 300, duration: 300 }}">
             <div class="close">
                 <button class="icon-button" on:click={closeNavbar}>
                     <NavClose />
@@ -187,13 +188,11 @@
                                 <NavPlus />
                             {/if}
                         </button>
-                        {#if mobileOpenSubsectionsKeys.includes(navigationLink.key)}
-                            <div class="mobile-subsection">
-                                {#each navigationLink.subsections as subsection}
-                                    <a href="{subsection.href}">{subsection.key}</a>
-                                {/each}
-                            </div>
-                        {/if}
+                        <div class="mobile-subsection" class:open={mobileOpenSubsectionsKeys.includes(navigationLink.key)}>
+                            {#each navigationLink.subsections as subsection}
+                                <a href="{subsection.href}">{subsection.key}</a>
+                            {/each}
+                        </div>
                     {/if}
                 {/each}
             </nav>
@@ -404,7 +403,6 @@
         align-items: flex-start;
         justify-content: flex-start;
         padding: 0 2rem 1rem 1rem;
-        gap: 10px;
         box-sizing: border-box;
     }
 
@@ -426,13 +424,24 @@
         border-right: none;
         font-size: 16px;
         cursor: pointer;
+        margin-top: 15px;
     }
 
     .mobile-subsection {
-        padding-top: 4px;
         display: flex;
         flex-direction: column;
         gap: 10px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 300ms ease-in;
+    }
+
+    .mobile-subsection.open {
+        max-height: 25rem;
+    }
+
+    .mobile-subsection a:first-child {
+        padding-top: 4px;
     }
 
     .mobile-subsection a {
