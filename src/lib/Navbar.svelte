@@ -6,6 +6,7 @@
     }
 
     let shownSubsectionsHref = ""
+    let shownSubsectionLeftShift = 0;
 
     const navigationLinksLeft: NavigationLink[] = [
         { key: "Новини", href: "/news" },
@@ -44,6 +45,8 @@
     export let logoHref: string;
     export let logoHrefAlt: string;
     export let logoWidth: number;
+    let _refs = []
+    $: refs = _refs.filter(Boolean)
 
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
@@ -59,14 +62,21 @@
                 {#if !navigationLink.subsections}
                     <a href="{navigationLink.href}">{navigationLink.key}</a>
                     {:else}
-                    <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.key }}
+                    <div on:mouseenter={(event) => {
+                        shownSubsectionLeftShift = event.target.offsetLeft
+                        shownSubsectionsHref = navigationLink.key
+                    }}
                          on:mouseleave="{() => { shownSubsectionsHref = '' }}"
                          class="subsection-container">
                         <span>{navigationLink.key}</span>
-                        <div class="subsections" style="--subsection-width: {leftNavWidth + 'px'}" class:open={shownSubsectionsHref === navigationLink.key}>
+                        <div class="subsections"
+                             style="--subsection-width: {leftNavWidth}px"
+                             class:open={shownSubsectionsHref === navigationLink.key}>
                             <div class="subsection-top">
                                 <div class="subsection-line"></div>
-                                <span class="subsection-title">{navigationLink.key}</span>
+                                <span class="subsection-title"
+                                      style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">
+                                    {navigationLink.key}</span>
                             </div>
                             {#each navigationLink.subsections as subsection}
                                 <a href="{subsection.href}">{subsection.key}</a>
@@ -88,7 +98,10 @@
                 {#if !navigationLink.subsections}
                     <a href="{navigationLink.href}">{navigationLink.key}</a>
                 {:else}
-                    <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.href }}
+                    <div on:mouseenter={(event) => {
+                        shownSubsectionLeftShift = event.target.offsetLeft
+                        shownSubsectionsHref = navigationLink.href
+                    }}
                          on:mouseleave="{() => { shownSubsectionsHref = '' }}"
                          class="subsection-container">
                         <span>{navigationLink.key}</span>
@@ -96,7 +109,8 @@
                             <div class="subsections" style="--subsection-width: {rightNavWidth + 'px'}">
                                 <div class="subsection-top">
                                     <div class="subsection-line"></div>
-                                    <span class="subsection-title">{navigationLink.key}</span>
+                                    <span class="subsection-title"
+                                          style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">{navigationLink.key}</span>
                                 </div>
                                 {#each navigationLink.subsections as subsection}
                                     <a href="{subsection.href}">{subsection.key}</a>
@@ -269,15 +283,17 @@
         width: 100%;
         padding-top: 4px;
         align-items: center;
+        position: relative;
+        min-height: 21px;
     }
 
     .subsection-line {
         display: flex;
         background-color: #FFFFFF;
         height: 1px;
-        padding-right: 4px;
         flex-grow: 1;
-        margin-left: 8px;
+        margin-right: 8px;
+        width: 100%;
     }
 
     .subsection-title {
@@ -291,6 +307,9 @@
         color: #FFFFFF;
         text-transform: uppercase;
         text-align: center;
-        margin: 0;
+        position: absolute;
+        height: 100%;
+        background-color: #7d0b09;
+        left: var(--subsection-left-shift)
     }
 </style>
