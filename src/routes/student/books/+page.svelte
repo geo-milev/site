@@ -14,6 +14,7 @@
 	let books = [];
 
 	let classSelect;
+	const classNumbers = [5, 6, 7, 8, 9, 10, 11, 12];
 
 	const changeBooks = () => {
 		const className = classSelect.options[classSelect.selectedIndex].value
@@ -52,6 +53,9 @@
 	export let data;
 
 	onMount(() => {
+		if (data.classNumber && classNumbers.indexOf(parseInt(data.classNumber)) !== -1) {
+			classSelect.selectedIndex = classNumbers.indexOf(parseInt(data.classNumber))
+		}
 		changeBooks()
 	})
 </script>
@@ -67,7 +71,7 @@
 	<div class="class-selector">
 		<label for="classNumber">Въведи своя клас:</label>
 		<select name="classNumber" id="classNumber" bind:this={classSelect} on:change={changeBooks}>
-			{#each [5, 6, 7, 8, 9, 10, 11, 12] as classNumber}
+			{#each classNumbers as classNumber}
 				<option value="{classNumber}">{classNumberNames[classNumber - 1]}</option>
 			{/each}
 		</select>
