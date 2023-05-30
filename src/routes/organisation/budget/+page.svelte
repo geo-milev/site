@@ -88,7 +88,7 @@
 		{/if}
 	</div>
 	{#if documents}
-		<DocumentViewer documents="{documents}"
+		<DocumentViewer documents="{documents}" autoSelect="{true}"
 						header="{selectedBudget.isYearly ? 'Годишен': 'Месеци'}"
 						getNext="{() => { return }}"></DocumentViewer>
 	{/if}

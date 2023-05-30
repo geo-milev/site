@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { env } from "$env/dynamic/public";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
+	import { onMount } from "svelte";
 
 	export interface Document {
 		name: string;
@@ -41,13 +42,22 @@
 
 	$:  {
 		if (typeof documents !== 'undefined') {
-			hoveredDocument = undefined
+			if (autoSelect) {
+				hoveredDocument = documents[0]
+			} else {
+				hoveredDocument = undefined
+			}
 		}
 	}
 
 	export let documents: Document[];
 	export let getNext: (page: number) => Promise<Document[]>;
 	export let header: string;
+	export let autoSelect = false;
+
+	onMount(() => {
+		if (autoSelect) hoveredDocument = documents[0]
+	})
 </script>
 
 <div class="container">
