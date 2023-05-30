@@ -17,6 +17,12 @@ export async function load({ fetch }) {
                     alt
                     width
                 }
+                favicons {
+                    size
+                    favicon {
+                        url
+                    }
+                }
             }
             Contact {
                 locationInfo {
