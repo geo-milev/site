@@ -1,20 +1,29 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../../lib/setLayout";
 	import DocumentViewer from "$lib/DocumentViewer.svelte";
+	import { onMount } from "svelte";
 
 	setLayout(secondaryLayout)
 
 	let year = new Date().getFullYear();
 
-	$: budgets = data.AvailableBudget.years.filter((val) => val.year === year)[0].budgets
-
-	$: yearlyBudgets = budgets.filter((val) => val.budget.isYearly)
-	$: quarterlyBudgets = budgets.filter((val) => !val.budget.isYearly)
+	let budgets;
+	let yearlyBudgets;
+	let quarterlyBudgets;
 
 	let selectedBudgetId;
 
 	let selectedBudget;
 	let documents;
+
+	const onYearChange = () => {
+		budgets = data.AvailableBudget.years.filter((val) => val.year === year)[0].budgets
+		yearlyBudgets = budgets.filter((val) => val.budget.isYearly)
+		quarterlyBudgets = budgets.filter((val) => !val.budget.isYearly)
+
+		selectedBudgetId = budgets[0].budget.id
+		changeSelectedBudget()
+	}
 
 	const changeSelectedBudget = () => {
 		selectedBudget = budgets.filter((val) => val.budget.id === selectedBudgetId)[0].budget;
@@ -43,6 +52,10 @@
 		].filter((val) => val.file != null)
 	}
 
+	onMount(() => {
+		onYearChange()
+	})
+
 	export let data;
 </script>
 
@@ -53,24 +66,26 @@
 	</div>
 	<div class="selects">
 		<label for="year">Година</label>
-		<select name="year" id="year" bind:value={year}>
+		<select name="year" id="year" bind:value={year} on:change={onYearChange}>
 			{#each data.AvailableBudget.years as year}
 				<option value="{year.year}">{year.year}</option>
 			{/each}
 		</select>
 		<label for="year">Бюджет</label>
-		<select name="classNumber" id="classNumber" bind:value={selectedBudgetId} on:change={changeSelectedBudget}>
-			<optgroup label="Годишни">
-				{#each yearlyBudgets as budget}
-					<option value="{budget.budget.id}">{budget.budget.name}</option>
-				{/each}
-			</optgroup>
-			<optgroup label="Тримесечни">
-				{#each quarterlyBudgets as budget}
-					<option value="{budget.budget.id}">{budget.budget.name}</option>
-				{/each}
-			</optgroup>
-		</select>
+		{#if yearlyBudgets && quarterlyBudgets}
+			<select name="classNumber" id="classNumber" bind:value={selectedBudgetId} on:change={changeSelectedBudget}>
+				<optgroup label="Годишни">
+					{#each yearlyBudgets as budget}
+						<option value="{budget.budget.id}">{budget.budget.name}</option>
+					{/each}
+				</optgroup>
+				<optgroup label="Тримесечни">
+					{#each quarterlyBudgets as budget}
+						<option value="{budget.budget.id}">{budget.budget.name}</option>
+					{/each}
+				</optgroup>
+			</select>
+		{/if}
 	</div>
 	{#if documents}
 		<DocumentViewer documents="{documents}"
