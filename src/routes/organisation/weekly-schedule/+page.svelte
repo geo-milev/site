@@ -67,6 +67,18 @@
 	}
 
 	onMount(() => {
+		if (data.className) {
+			let classNumber = data.className.match(/\d+/)[0]
+			if (classNumber && classNumbers.indexOf(classNumber) !== -1) {
+				classNumberSelect.value = classNumber
+				let classLetter = data.className.match(/[A-Za-zА-Яа-я]/)[0]
+				if (classLetter &&
+					classLetters.indexOf(classLetter) !== -1 &&
+					!isLetterDisabled(classNumber, classLetter)) {
+					classLetterSelect.value = classLetter
+				}
+			}
+		}
 		changeSchedule()
 	})
 </script>
