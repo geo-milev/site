@@ -55,7 +55,7 @@
         <div class="background" class:scrolled="{scrollMode}"></div>
 
         <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
-            {#each navigationLinksLeft as navigationLink}
+            {#each navigationLinksLeft as navigationLink, index (navigationLink.key)}
                 {#if !navigationLink.subsections}
                     <a href="{navigationLink.href}">{navigationLink.key}</a>
                     {:else}
@@ -63,17 +63,15 @@
                          on:mouseleave="{() => { shownSubsectionsHref = '' }}"
                          class="subsection-container">
                         <span>{navigationLink.key}</span>
-                        {#if shownSubsectionsHref === navigationLink.key}
-                            <div class="subsections" style="--subsection-width: {leftNavWidth + 'px'}">
-                                <div class="subsection-top">
-                                    <div class="subsection-line"></div>
-                                    <span class="subsection-title">{navigationLink.key}</span>
-                                </div>
-                                {#each navigationLink.subsections as subsection}
-                                    <a href="{subsection.href}">{subsection.key}</a>
-                                 {/each}
+                        <div class="subsections" style="--subsection-width: {leftNavWidth + 'px'}" class:open={shownSubsectionsHref === navigationLink.key}>
+                            <div class="subsection-top">
+                                <div class="subsection-line"></div>
+                                <span class="subsection-title">{navigationLink.key}</span>
                             </div>
-                        {/if}
+                            {#each navigationLink.subsections as subsection}
+                                <a href="{subsection.href}">{subsection.key}</a>
+                            {/each}
+                        </div>
                     </div>
                 {/if}
             {/each}
@@ -245,13 +243,25 @@
         width: var(--subsection-width);
         top: 0;
         right: 0;
-        margin-top: 0.5rem;
-        padding-bottom: 1rem;
         gap: 1rem;
+        max-height: 0;
+        margin-top: 0.5rem;
+        transition: max-height 300ms linear;
+        transform-origin: top;
+        overflow: hidden;
+    }
+
+    .subsections.open {
+        max-height: 25rem;
     }
 
     .subsections a {
         margin-left: 8px;
+    }
+
+    .subsections a:last-child {
+        margin-left: 8px;
+        padding-bottom: 1rem;
     }
 
     .subsection-top {
