@@ -47,8 +47,9 @@
 
 	.about-us {
 		width: 100%;
-		display: flex;
+		display: grid;
 		gap: 10rem;
+		grid-template-columns: repeat(2, 1fr);
 	}
 
     .line {
@@ -89,7 +90,6 @@
         font-size: 16px;
         line-height: 19px;
         color: #FFFFFF;
-
     }
 
 	.about-us .header-container {
@@ -123,5 +123,13 @@
 		justify-content: center;
 		flex-direction: column;
 		align-items: center;
+    }
+
+    @media only screen and (max-width: 1050px) {
+    	.about-us {
+			gap: 2rem;
+			grid-template-columns: 1fr;
+            grid-auto-rows: max-content;
+		}
     }
 </style>

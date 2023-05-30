@@ -16,28 +16,28 @@
 
 <style>
 	.container {
+		display: grid;
+		grid-template-columns: repeat(2, 50%);
 		width: 100%;
-		display: flex;
-        flex-shrink: 0;
-		min-height: 25rem;
+		height: 100%;
 	}
 
 	.image-container {
-		width: 100%;
 		display: flex;
 		justify-content: center;
+		margin-right: 3rem;
 	}
 
 	img {
-		max-width: 75%;
+		max-width: 100%;
 		object-fit: contain;
 	}
 
 	.text {
-		width: 125%;
 		display: flex;
 		flex-direction: column;
         gap: 1rem;
+        position: relative;
 	}
 
 	h2 {
@@ -48,6 +48,9 @@
         line-height: 39px;
         color: #FFFFFF;
 		text-transform: uppercase;
+        width: 100%;
+        word-break: break-all;
+        white-space: normal;
 	}
 
 	p {
@@ -57,5 +60,26 @@
         font-size: 16px;
         line-height: 19px;
         color: #FFFFFF;
+        width: 100%;
+        word-break: break-all;
+        white-space: normal;
 	}
+
+    @media only screen and (max-width: 950px) {
+		.container {
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            grid-auto-rows: max-content;
+		}
+
+		.image-container {
+			order: 1;
+			margin-right: 0;
+		}
+
+		.text {
+			order: -1;
+			gap: 0;
+		}
+    }
 </style>
