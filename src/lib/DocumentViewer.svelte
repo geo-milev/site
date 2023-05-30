@@ -65,7 +65,8 @@
 		<h2>{header}</h2>
 		<ul bind:this={list} on:scroll={onScrollList}>
 			{#each documents as document}
-				<li on:mouseenter={() => { hoveredDocument = document}}>
+				<li on:mouseenter={() => { hoveredDocument = document}}
+					class:selected={hoveredDocument.file.url === document.file.url}>
 					<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
 				</li>
 			{/each}
@@ -146,6 +147,14 @@
 		padding-bottom: 8px;
 		padding-top: 8px;
     }
+
+	.list li.selected {
+        border-color: #7d0b09;
+	}
+
+	.list li.selected a {
+        color: #7d0b09;
+	}
 
 	.list li a {
         text-decoration: none;
