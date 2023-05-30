@@ -144,6 +144,11 @@
 			flex-direction: column;
 		}
 
+		.achievements-container {
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+
 		.button-bottom {
 			display: flex;
 		}

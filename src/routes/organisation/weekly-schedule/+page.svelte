@@ -407,7 +407,7 @@
 		}
 
 		.container {
-			gap: 2rem;
+			gap: 1rem;
 		}
 
 		.header-container {
