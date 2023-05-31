@@ -34,6 +34,10 @@
 		rel="stylesheet"
 	/>
 	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,400,45;8..144,400,50;8..144,1000,0&display=swap"
+		rel="stylesheet"
+	/>
+	<link
 		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap"
 		rel="stylesheet"
 	/>

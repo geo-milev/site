@@ -13,6 +13,7 @@
     }
 
     let shownSubsectionsHref = ""
+    let shownSubsectionLeftShift = 0;
     let mobileOpenSubsectionsKeys = []
 
     const navigationLinksLeft: NavigationLink[] = [
@@ -82,25 +83,30 @@
 
         {#if !isMobile}
             <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
-                {#each navigationLinksLeft as navigationLink}
+                {#each navigationLinksLeft as navigationLink, index (navigationLink.key)}
                     {#if !navigationLink.subsections}
                         <a href="{navigationLink.href}">{navigationLink.key}</a>
                         {:else}
-                        <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.key }}
+                        <div on:mouseenter={(event) => {
+                            shownSubsectionLeftShift = event.target.offsetLeft
+                            shownSubsectionsHref = navigationLink.key
+                        }}
                              on:mouseleave="{() => { shownSubsectionsHref = '' }}"
                              class="subsection-container">
                             <span>{navigationLink.key}</span>
-                            {#if shownSubsectionsHref === navigationLink.key}
-                                <div class="subsections" style="--subsection-width: {leftNavWidth + 'px'}">
+                                <div class="subsections"
+                                     style="--subsection-width: {leftNavWidth}px"
+                                    class:open={shownSubsectionsHref === navigationLink.key}>
                                     <div class="subsection-top">
                                         <div class="subsection-line"></div>
-                                        <span class="subsection-title">{navigationLink.key}</span>
+                                        <span class="subsection-title"
+                                              style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">
+                                            {navigationLink.key}</span>
                                     </div>
                                     {#each navigationLink.subsections as subsection}
                                         <a href="{subsection.href}">{subsection.key}</a>
                                      {/each}
                                 </div>
-                            {/if}
                         </div>
                     {/if}
                 {/each}
@@ -120,7 +126,10 @@
                     {#if !navigationLink.subsections}
                         <a href="{navigationLink.href}">{navigationLink.key}</a>
                     {:else}
-                        <div on:mouseenter={() => { shownSubsectionsHref = navigationLink.href }}
+                        <div on:mouseenter={(event) => {
+                            shownSubsectionLeftShift = event.target.offsetLeft
+                            shownSubsectionsHref = navigationLink.href
+                        }}
                              on:mouseleave="{() => { shownSubsectionsHref = '' }}"
                              class="subsection-container">
                             <span>{navigationLink.key}</span>
@@ -128,7 +137,8 @@
                                 <div class="subsections" style="--subsection-width: {rightNavWidth + 'px'}">
                                     <div class="subsection-top">
                                         <div class="subsection-line"></div>
-                                        <span class="subsection-title">{navigationLink.key}</span>
+                                        <span class="subsection-title"
+                                          style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">{navigationLink.key}</span>
                                     </div>
                                     {#each navigationLink.subsections as subsection}
                                         <a href="{subsection.href}">{subsection.key}</a>
@@ -329,13 +339,25 @@
         width: var(--subsection-width);
         top: 0;
         right: 0;
-        margin-top: 0.5rem;
-        padding-bottom: 1rem;
         gap: 1rem;
+        max-height: 0;
+        margin-top: 0.5rem;
+        transition: max-height 300ms linear;
+        transform-origin: top;
+        overflow: hidden;
+    }
+
+    .subsections.open {
+        max-height: 25rem;
     }
 
     .subsections a {
         margin-left: 8px;
+    }
+
+    .subsections a:last-child {
+        margin-left: 8px;
+        padding-bottom: 1rem;
     }
 
     .subsection-top {
@@ -343,15 +365,17 @@
         width: 100%;
         padding-top: 4px;
         align-items: center;
+        position: relative;
+        min-height: 21px;
     }
 
     .subsection-line {
         display: flex;
         background-color: #FFFFFF;
         height: 1px;
-        padding-right: 4px;
         flex-grow: 1;
-        margin-left: 8px;
+        margin-right: 8px;
+        width: 100%;
     }
 
     .subsection-title {
@@ -365,7 +389,10 @@
         color: #FFFFFF;
         text-transform: uppercase;
         text-align: center;
-        margin: 0;
+        position: absolute;
+        height: 100%;
+        background-color: #7d0b09;
+        left: var(--subsection-left-shift)
     }
 
     .nav-background {
