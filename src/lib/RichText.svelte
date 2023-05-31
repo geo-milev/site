@@ -12,6 +12,10 @@
 </div>
 
 <style>
+	.markup-content {
+		width: 100%;
+	}
+
     :global(.markup-content h1,
 	.markup-content h2,
 	.markup-content h3,
@@ -36,6 +40,10 @@
         justify-content: flex-start;
         padding-left: 0;
         margin-top: 1rem;
+    }
+
+    :global(.markup-content a) {
+        color: var(--color)
     }
 
     :global(.markup-content img) {
@@ -110,6 +118,11 @@
 	.markup-content :global(> *) {
         color: var(--text-color);
 	}
+
+    :global(.markup-content.centered) {
+		width: 100%;
+		max-width: 100%;
+    }
 
 	.markup-content.centered :global(> *) {
 		text-align: center;

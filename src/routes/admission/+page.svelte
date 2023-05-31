@@ -39,7 +39,7 @@
         flex-direction: column;
         align-items: center;
         margin-bottom: 3rem;
-        gap: 3rem;
+        gap: 1rem;
         padding-left: 2rem;
         padding-right: 2rem;
     }
