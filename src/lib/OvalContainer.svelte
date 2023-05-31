@@ -18,6 +18,22 @@
         overflow-x: clip;
 	}
 
+    @media only screen and (max-width: 1050px) {
+        .content {
+            padding: 2rem !important;
+        }
+
+		.container:before {
+            height: 4rem !important;
+            top: -2rem !important;
+		}
+
+        .container:after {
+            height: 4rem !important;
+            bottom: -2rem !important;
+        }
+    }
+
 	.container:before {
 		content: "";
 		width: 106%;

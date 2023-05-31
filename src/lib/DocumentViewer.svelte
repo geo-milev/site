@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { env } from "$env/dynamic/public";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
+	import { onMount } from "svelte";
 
 	export interface Document {
 		name: string;
@@ -39,9 +40,24 @@
 	let hoveredDocument: Document;
 	let list;
 
+	$:  {
+		if (typeof documents !== 'undefined') {
+			if (autoSelect) {
+				hoveredDocument = documents[0]
+			} else {
+				hoveredDocument = undefined
+			}
+		}
+	}
+
 	export let documents: Document[];
 	export let getNext: (page: number) => Promise<Document[]>;
 	export let header: string;
+	export let autoSelect = false;
+
+	onMount(() => {
+		if (autoSelect) hoveredDocument = documents[0]
+	})
 </script>
 
 <div class="container">
@@ -49,7 +65,8 @@
 		<h2>{header}</h2>
 		<ul bind:this={list} on:scroll={onScrollList}>
 			{#each documents as document}
-				<li on:mouseenter={() => { hoveredDocument = document}}>
+				<li on:mouseenter={() => { hoveredDocument = document}}
+					class:selected={hoveredDocument.file.url === document.file.url}>
 					<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
 				</li>
 			{/each}
@@ -73,7 +90,7 @@
 	.container {
 		display: flex;
 		width: 100%;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		flex-wrap: wrap;
 	}
@@ -130,6 +147,14 @@
 		padding-bottom: 8px;
 		padding-top: 8px;
     }
+
+	.list li.selected {
+        border-color: #7d0b09;
+	}
+
+	.list li.selected a {
+        color: #7d0b09;
+	}
 
 	.list li a {
         text-decoration: none;

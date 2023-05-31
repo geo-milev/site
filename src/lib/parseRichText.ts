@@ -6,8 +6,10 @@ const parseRichText = (richText) => {
         return richText
             .map((node) => {
                 if (node.text && node.text.length > 0) {
-                    const sanitizedText = sanitizeHtml(node.text);
-                    if (!sanitizedText) return null;
+                    const sanitizedText = sanitizeHtml(node.text, {
+                        disallowedTagsMode: "recursiveEscape",
+                    });
+                    if (!sanitizedText || sanitizedText == "") return null;
 
                     let text = `<span>${sanitizedText}</span>`;
 
@@ -16,7 +18,7 @@ const parseRichText = (richText) => {
                     }
 
                     if (node.code) {
-                        text = `<pre><code>${text}</code></pre>`;
+                        text = `<div class="code-container"><pre><code>${text}</code></pre></div>`;
                     }
 
                     if (node.italic) {
@@ -94,7 +96,7 @@ const parseRichText = (richText) => {
                     }
                     default: {
                         const parsed = parseRichText(node.children);
-                        if (parsed) return `<p>${parsed}</p>`;
+                        if (parsed && parsed != "") return `<p>${parsed}</p>`;
                         return "";
                     }
                 }

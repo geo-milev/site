@@ -127,7 +127,7 @@
 </script>
 
 <div class="container" style="--component-width: {componentWidth}; --component-height: {componentHeight};">
-	<button on:click={scrollLeft} class="arrow-button" disabled="{selectedGroupIndex === 0}">
+	<button on:click={scrollLeft} class="arrow-button big-screen" disabled="{selectedGroupIndex === 0}">
 		<ArrowLeft />
 	</button>
 	<div class="carousel" bind:clientWidth={carouselWidth} bind:this={carousel} on:scroll={updateSelectedGroupIndex}>
@@ -155,9 +155,17 @@
 			</div>
 		{/each}
 	</div>
-	<button on:click={scrollRight} class="arrow-button" disabled="{selectedGroupIndex === groups.length - 1}">
+	<button on:click={scrollRight} class="arrow-button big-screen" disabled="{selectedGroupIndex === groups.length - 1}">
 		<ArrowRight />
 	</button>
+	<div class="small-screen-navigation">
+		<button on:click={scrollLeft} class="arrow-button" disabled="{selectedGroupIndex === 0}">
+			<ArrowLeft />
+		</button>
+		<button on:click={scrollRight} class="arrow-button" disabled="{selectedGroupIndex === groups.length - 1}">
+			<ArrowRight />
+		</button>
+	</div>
 </div>
 
 <style>
@@ -168,6 +176,28 @@
 		align-items: center;
 		flex-shrink: 0;
 	}
+
+	.small-screen-navigation {
+		display: none;
+		width: 100%;
+		margin-top: 1rem;
+		justify-content: space-evenly;
+		align-items: center;
+	}
+
+    @media only screen and (max-width: 580px) {
+		.big-screen {
+			display: none;
+		}
+
+		.container {
+			flex-direction: column;
+		}
+
+		.small-screen-navigation {
+			display: flex;
+		}
+    }
 
     .container :global(svg) {
         flex-shrink: 0;

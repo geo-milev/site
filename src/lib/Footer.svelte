@@ -137,4 +137,18 @@
         padding: 1.5rem;
         border-top: #FFFFFF 1px solid;
 	}
+
+
+    @media only screen and (max-width: 1050px) {
+		.links {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.logo {
+            top: -3.5rem;
+		}
+    }
 </style>

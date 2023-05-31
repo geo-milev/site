@@ -376,4 +376,71 @@
         justify-content: center;
         align-items: center;
 	}
+
+    @media only screen and (max-width: 700px) {
+      .header-container {
+        width: 90%;
+      }
+
+          .line {
+        width: 10rem;
+      }
+    }
+
+    @media only screen and (max-width: 1275px) {
+        thead td {
+            font-family: 'Alegreya', serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 33px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+    }
+
+    @media only screen and (max-width: 1070px) {
+       	.daily-schedule-container {
+			flex-direction: column-reverse;
+			gap: 3rem;
+            justify-content: center;
+            align-items: center;
+		}
+
+		.daily-schedule {
+			margin: 0;
+		}
+
+		.daily-schedule-info {
+			justify-content: center;
+			align-items: center;
+			width: 90%;
+			gap: 1rem;
+		}
+
+		.container {
+			gap: 1rem;
+		}
+
+		.header-container {
+			margin-bottom: 2rem;
+		}
+
+        .weekly-schedule table {
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 750px) {
+        .weekly-schedule {
+			      display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+            width: 100vw;
+        }
+
+        .weekly-schedule table {
+            min-width: 50rem;
+        }
+    }
 </style>

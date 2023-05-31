@@ -83,4 +83,28 @@
         margin-top: -1px;
     }
 
+    @media only screen and (max-width: 640px) {
+		.container {
+			flex-direction: column;
+		}
+
+		img {
+			width: 100%;
+		}
+
+		.content {
+			width: 100%;
+			padding-left: 2rem;
+			padding-right: 2rem;
+			box-sizing: border-box;
+		}
+
+		h2 {
+			padding-bottom: 0.5rem;
+		}
+
+		p {
+			margin-top: 0;
+		}
+    }
 </style>
