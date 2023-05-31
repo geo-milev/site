@@ -107,6 +107,10 @@
 		margin-top: 1rem;
 	}
 
+	.markup-content :global(> *) {
+        color: var(--text-color);
+	}
+
 	.markup-content.centered :global(> *) {
 		text-align: center;
 		justify-content: center;

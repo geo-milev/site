@@ -36,6 +36,7 @@
   "type": "module",
   "dependencies": {
     "@urql/svelte": "^4.0.1",
+    "expr-eval": "^2.0.2",
     "graphql": "^16.6.0",
     "sanitize-html": "^2.10.0"
   }

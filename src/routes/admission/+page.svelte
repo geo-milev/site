@@ -3,6 +3,7 @@
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import RichText from "$lib/RichText.svelte";
 	import { parseRichText } from "$lib/parseRichText.js";
+	import Stepper from "$lib/Stepper.svelte";
 
 	setLayout(secondaryLayout)
 
@@ -27,6 +28,7 @@
 	</div>
 	<div class="content">
 		<RichText richText="{parseRichText(activeGrade.importantInfo)}" isCentered="{true}" />
+		<Stepper steps="{activeGrade.steps}"></Stepper>
 		<RichText richText="{parseRichText(activeGrade.bonusInfo)}" isCentered="{true}" />
 	</div>
 </div>
