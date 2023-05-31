@@ -95,4 +95,15 @@
 		align-items: center;
 		flex-direction: column;
 	}
+
+    @media only screen and (max-width: 750px) {
+		.container {
+			padding-left: 0;
+			padding-right: 0;
+		}
+
+        .content {
+            width: 100%;
+        }
+    }
 </style>

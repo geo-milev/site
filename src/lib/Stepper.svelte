@@ -101,9 +101,9 @@
 		width: 10px;
 		position: absolute;
 		left: calc(4rem - 5px);
-		top: 0;
+		top: 5px;
         background-color: #FFFFFF;
-	}
+    }
 
 	.step-container {
         display: flex;
@@ -258,15 +258,47 @@
     }
 
     @media only screen and (max-width: 750px) {
-        .table-wrapper {
-            display: block;
-            overflow-x: auto;
-            white-space: nowrap;
-            width: 100vw;
+		.content-container {
+			overflow-x: auto;
+		}
+
+		.table-wrapper table {
+            min-width: 50rem;
         }
 
-        .table-wrapper table {
-            min-width: 50rem;
+		.formula form .variables {
+			justify-content: center;
+		}
+
+		.formula form .variable-pair {
+			justify-content: center;
+			align-items: center;
+		}
+
+        .formula form .variable-pair label {
+            text-align: center;
+        }
+
+		.line {
+			left: calc(2rem - 5px);
+		}
+
+		.circle {
+			width: calc(2rem + 10px);
+            height: calc(2rem + 10px);
+		}
+
+		.circle span {
+            font-size: 32px;
+            line-height: 44px;
+		}
+
+        .formula form input {
+            width: 100%;
+        }
+
+        .formula form .variables {
+            grid-template-columns: repeat(auto-fill, 10rem);
         }
     }
 </style>
