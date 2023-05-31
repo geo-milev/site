@@ -37,6 +37,10 @@
 		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap"
 		rel="stylesheet"
 	/>
+	{#each data.MainInfo.favicons as favicon}
+		<link rel="icon" type="image/png" sizes="{favicon.size}"
+			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
+	{/each}
 </svelte:head>
 
 <Navbar fixed="{$layout.navbar.fixed}"
