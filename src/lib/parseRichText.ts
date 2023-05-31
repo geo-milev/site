@@ -78,9 +78,15 @@ const parseRichText = (richText) => {
                     case "upload": {
                         const value = node.value;
                         const src = env.PUBLIC_SERVER_URL + value.url;
+                        if (node.fields) {
+                            if (node.fields.isNonImage) {
+                                return `<div class="button"><a href="${src}" target="_blank"><button>${node.fields.buttonText}</button></a></div>`;
+                            }
+                        }
                         if (value.mimeType.startsWith("image/")) {
                             return `<img src="${src}" alt="${value.alt}" style="width: 100%"/>`;
                         } else {
+                            if (value.alt.match(/^\s*$/)) value.alt = "Изтегли";
                             return `<div class="button"><a href="${src}" target="_blank"><button>${value.alt}</button></a></div>`;
                         }
                     }

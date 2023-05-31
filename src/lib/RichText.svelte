@@ -2,9 +2,12 @@
 	export let richText;
 	export let isCentered = false;
 	export let buttonColor = "#FFFFFF";
+	export let textColor = "#FFFFFF"
+	export let headerLineColor = "#FFFFFF"
 </script>
 
-<div class="markup-content" style="--color: {buttonColor}" class:centered={isCentered}>
+<div class="markup-content" style="--color: {buttonColor}; --text-color: {textColor}; --header-line: {headerLineColor}"
+	 class:centered={isCentered}>
 	{@html richText}
 </div>
 
@@ -18,8 +21,8 @@
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
-        color: #000000;
-        border-bottom: 2px #7D0B09 solid;
+        color: var(--text-color);
+        border-bottom: 2px var(--header-line) solid;
         margin: 0;
         padding: 1rem;
     }
@@ -65,6 +68,7 @@
         text-indent: 1rem;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+		color: var(--text-color);
     }
 
     :global(.markup-content .code-container) {
@@ -99,6 +103,8 @@
         font-size: 19px;
         line-height: 22px;
         color: var(--color);
+		margin-bottom: 1rem;
+		margin-top: 1rem;
 	}
 
 	.markup-content.centered :global(> *) {
@@ -124,7 +130,6 @@
 	.markup-content.centered :global(p) {
 		text-indent: 0;
 	}
-
 
     .markup-content.centered :global(pre) {
         text-align: left !important;

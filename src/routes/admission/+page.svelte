@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
+	import RichText from "$lib/RichText.svelte";
+	import { parseRichText } from "$lib/parseRichText.js";
 
 	setLayout(secondaryLayout)
 
 	export let data;
 
-	console.log(data)
+	let activeGrade = data.admission.grades[0]
 </script>
 
 <div class="container">
@@ -16,8 +18,16 @@
 	</div>
 	<div class="select-buttons">
 		{#each data.admission.grades as grade}
-			<SecondaryButton action="{() => {}}" text="{grade.grade}"></SecondaryButton>
+			<SecondaryButton active={grade.grade === activeGrade.grade}
+							 action="{() => {
+								 activeGrade = grade
+							 }}"
+							 text="{grade.grade}"></SecondaryButton>
 		{/each}
+	</div>
+	<div class="content">
+		<RichText richText="{parseRichText(activeGrade.importantInfo)}" isCentered="{true}" />
+		<RichText richText="{parseRichText(activeGrade.bonusInfo)}" isCentered="{true}" />
 	</div>
 </div>
 
@@ -66,7 +76,21 @@
 		flex-direction: row;
 	}
 
-    .select-buttons :global(button:active) {
+	.select-buttons :global(button) {
+        min-width: 10rem;
+	}
 
+    @supports not (font-variation-settings: 'GRAD' 150) {
+        .select-buttons :global(button:active)  {
+            font-weight: 600;
+        }
     }
+
+	.content {
+		display: flex;
+		width: 90%;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
 </style>
