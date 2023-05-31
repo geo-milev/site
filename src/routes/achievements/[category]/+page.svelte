@@ -120,4 +120,15 @@
         text-align: center;
         color: #FFFFFF
     }
+
+    @media only screen and (max-width: 740px) {
+        .header-container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+		.line {
+			width: 15rem;
+		}
+    }
 </style>

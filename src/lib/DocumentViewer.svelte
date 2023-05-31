@@ -73,7 +73,7 @@
 	.container {
 		display: flex;
 		width: 100%;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		flex-wrap: wrap;
 	}

@@ -88,6 +88,13 @@
 
     :global(.markup-content p) {
         text-indent: 1rem;
+		margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    :global(.markup-content .code-container) {
+		width: 100%;
+		overflow-x: auto;
     }
 
 	.markup-content {

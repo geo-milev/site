@@ -38,7 +38,7 @@
 	<div class="main">
 		<div class="map">
 			<iframe width="90%"
-					height="500px"
+					height="100%"
 					style="border:0"
 					loading="lazy"
 					allowfullscreen
@@ -48,7 +48,7 @@
 		</div>
 		<div class="contact-info">
 			<div class="contact-item">
-				<h2>Работно Време</h2>
+				<h2>Работно време</h2>
 				<span>{workingHoursStart} - {workingHoursEnd}</span>
 			</div>
 			<div class="contact-item">
@@ -142,6 +142,7 @@
 		width: 100%;
 		display: flex;
 		justify-content: center;
+		height: 30rem;
 	}
 
 	.contact-info {
@@ -186,7 +187,7 @@
 	}
 
 	.form form {
-		width: 30rem;
+		width: min(30rem, 100%);
         color: #FFFFFF;
 		display: flex;
 		flex-direction: column;
@@ -241,23 +242,13 @@
     }
 
     :global(.form form textarea) {
+		width: 100%;
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
     }
-
-	:global(.message) {
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 19px;
-        line-height: 22px;
-        color: #FFFFFF;
-		text-align: center;
-		margin: 0;
-	}
 
 	.send-message {
         font-family: 'Roboto', serif;
@@ -268,5 +259,31 @@
         text-align: center;
         color: #FFFFFF;
 
+    }
+
+    @media only screen and (max-width: 1050px) {
+		.main {
+			flex-direction: column-reverse;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.contact-item {
+			text-align: center;
+		}
+    }
+
+    @media only screen and (max-width: 520px) {
+		.header-container {
+			margin-bottom: 1rem;
+		}
+
+		.contact-info {
+			gap: 1rem;
+		}
+
+		.map {
+			height: 25rem;
+		}
     }
 </style>

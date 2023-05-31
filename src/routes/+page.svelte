@@ -50,14 +50,13 @@
 <OvalContainer>
 	<div class="hello-section">
 		<div class="video-column">
-			<iframe
-				width="560"
-				height="315"
-				src="{data.VideoSection.video}"
-				title="YouTube video player"
-				frameborder="0"
-				allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-				allowfullscreen></iframe>
+				<iframe
+					class="video"
+					src="{data.VideoSection.video}"
+					title="YouTube video player"
+					frameborder="0"
+					allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen></iframe>
 		</div>
 		<div class="hello-column">
 			<h3>{data.VideoSection.header}</h3>
@@ -93,13 +92,42 @@
 <style>
 	.hello-section {
 		width: 100%;
-		display: flex;
-		justify-content: center;
-		gap: 5rem;
+        display: grid;
+        grid-gap: 5rem;
+        grid-template-columns: repeat(2, 1fr);
+        place-content: center;
+        margin-top: 1rem;
 	}
 
+    @media only screen and (max-width: 1050px) {
+        .hello-column {
+			order: -1;
+		}
+
+		.video-column {
+			order: 1;
+		}
+
+		.hello-section {
+			grid-gap: 2rem;
+			grid-template-columns: 1fr;
+            grid-auto-rows: max-content;
+		}
+
+		.what-we-study-section {
+			padding-bottom: 3rem;
+		}
+    }
+
+    @media only screen and (max-width: 580px) {
+		.news-section {
+			padding-left: 2rem !important;
+			padding-right: 2rem !important;
+		}
+    }
+
 	.hello-column {
-		max-width: 33%;
+		width: 100%;
 	}
 
 	.hello-column h3 {
@@ -227,4 +255,23 @@
 		width: auto;
         color: #000000;
 	}
+
+    .video-column {
+		display: flex;
+        position: relative;
+		overflow: hidden;
+        width: 100%;
+		height: auto;
+        padding-top: 56.25%;
+    }
+
+    .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
 </style>

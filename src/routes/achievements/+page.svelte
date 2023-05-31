@@ -26,6 +26,12 @@
 			preview: article
 		}
 	})
+
+	const entries = [
+		{ title: "Олимпиади", key: "olympiads", elementProps: olympiads },
+		{ title: "Спорт", key: "sports", elementProps: sports },
+		{ title: "Творчество", key: "arts", elementProps: arts },
+	]
 </script>
 
 <div class="container">
@@ -34,27 +40,20 @@
 		<div class="line"></div>
 	</div>
 	<div class="achievements-container">
-		<div class="achievements-section">
-			<div class="achievement-header-container">
-				<h3>Олимпиади</h3>
-				<SecondaryButton href="/achievements/olympiads" text="Виж още"></SecondaryButton>
+		{#each entries as entry}
+			<div class="achievements-section">
+				<div class="achievement-header-container">
+					<h3>{entry.title}</h3>
+					<div class="button-top">
+						<SecondaryButton href="/achievements/{entry.key}" text="Виж още"></SecondaryButton>
+					</div>
+				</div>
+				<Carousel elementProps="{entry.elementProps}" component="{ArticlePreview}" componentHeight="23rem" componentWidth="16rem" />
+				<div class="button-bottom">
+					<SecondaryButton href="/achievements/{entry.key}" text="Виж още"></SecondaryButton>
+				</div>
 			</div>
-			<Carousel elementProps="{olympiads}" component="{ArticlePreview}" componentHeight="23rem" componentWidth="16rem" />
-		</div>
-		<div class="achievements-section">
-			<div class="achievement-header-container">
-				<h3>Спорт</h3>
-				<SecondaryButton href="/achievements/sports" text="Виж още"></SecondaryButton>
-			</div>
-			<Carousel elementProps="{sports}" component="{ArticlePreview}" componentHeight="23rem" componentWidth="16rem" />
-		</div>
-		<div class="achievements-section">
-			<div class="achievement-header-container">
-				<h3>Творчество</h3>
-				<SecondaryButton href="/achievements/arts" text="Виж още"></SecondaryButton>
-			</div>
-			<Carousel elementProps="{arts}" component="{ArticlePreview}" componentHeight="23rem" componentWidth="16rem" />
-		</div>
+		{/each}
 	</div>
 </div>
 
@@ -70,13 +69,13 @@
 
     .header-container {
         display: flex;
-        width: auto;
         flex-direction: column;
         align-items: center;
+		width: min(100%, 30rem)
     }
 
     .line {
-        width: 30rem;
+        width: 100%;
         height: 1px;
         background-color: rgba(255, 255, 255, 0.31);
         margin-top: -1px;
@@ -129,5 +128,42 @@
         font-size: 32px;
         line-height: 38px;
         color: #FFFFFF;
+    }
+
+	.button-bottom {
+		display: none;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		margin-top: 1rem;
+	}
+
+    @media only screen and (max-width: 740px) {
+		.achievement-header-container {
+			padding: 0;
+			flex-direction: column;
+		}
+
+		.achievements-container {
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+
+		.button-bottom {
+			display: flex;
+		}
+
+		.button-top {
+			display: none;
+		}
+
+		.container {
+			gap: 0;
+		}
+
+		.header-container {
+			padding-left: 0;
+			padding-right: 0;
+		}
     }
 </style>

@@ -61,12 +61,13 @@
 
 <style>
 	.container {
-		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin-bottom: 3rem;
 		gap: 3rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 
 	h1 {

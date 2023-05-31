@@ -4,15 +4,25 @@
 	export let timelineTextProperty;
 
 	let selectedIndex = 0;
+	let carouselWidth;
 
 	$: moveCoefficient = (componentProps.length % 2 == 0 ? 0.5 : 1) *
 		(-(selectedIndex - Math.floor(componentProps.length / 2)));
+
+	let clientWidth;
+
+	$: circleRadius = clientWidth > 675 ? 9 : 5;
+	$: circleGap = clientWidth > 675 ? 5: 3;
 </script>
 
-<div class="container">
-	<div class="carousel" style="--move-coefficient-carousel: {-100 * selectedIndex}%">
+<svelte:window bind:innerWidth={clientWidth} />
+
+<div class="container" style="--circle-radius: {circleRadius}rem; --circle-gap: {circleGap}rem">
+	<div class="carousel" style="--move-coefficient-carousel: {selectedIndex}" bind:offsetWidth={carouselWidth}>
 		{#each componentProps as props, index}
-			<svelte:component this="{component}" {...componentProps[index]}></svelte:component>
+			<div class="item-container" style="--carousel-width: {carouselWidth}px">
+				<svelte:component this="{component}" {...componentProps[index]}></svelte:component>
+			</div>
 		{/each}
 	</div>
 	<div class="timeline">
@@ -33,11 +43,12 @@
 	}
 
 	.carousel {
-		display: flex;
+        display: flex;
         position: relative;
         flex-wrap: nowrap;
+		gap: 8px;
         transition: transform 300ms ease-out;
-        transform: translateX(calc(var(--move-coefficient-carousel)));
+        transform: translateX(calc(-100% * var(--move-coefficient-carousel) - 8px * var(--move-coefficient-carousel)));
 	}
 
 	.timeline {
@@ -63,15 +74,15 @@
 	.circles {
 		display: flex;
 		flex-direction: row;
-		gap: 5rem;
+		gap: var(--circle-gap);
 		transition: transform 300ms ease-out;
-        transform: translateX(calc(9rem * var(--move-coefficient) + 5rem * var(--move-coefficient)));
+        transform: translateX(calc(var(--circle-radius) * var(--move-coefficient) + var(--circle-gap) * var(--move-coefficient)));
 	}
 
 	.circle {
 		display: flex;
-		height: 9rem;
-		width: 9rem;
+		height: var(--circle-radius);
+		width: var(--circle-radius);
         border-radius: 50%;
         background-color: #D9D9D9;
 		justify-content: center;
@@ -80,5 +91,12 @@
         border: none;
         padding: 0;
         cursor: pointer;
+	}
+
+	.item-container {
+		width: var(--carousel-width);
+		flex-shrink: 0;
+		position: relative;
+		overflow-x: hidden;
 	}
 </style>
