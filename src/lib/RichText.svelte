@@ -4,7 +4,7 @@
 	export let buttonColor = "#FFFFFF";
 </script>
 
-<div class="markup-content" style="--color: {buttonColor}">
+<div class="markup-content" style="--color: {buttonColor}" class:centered={isCentered}>
 	{@html richText}
 </div>
 
@@ -100,4 +100,37 @@
         line-height: 22px;
         color: var(--color);
 	}
+
+	.markup-content.centered :global(> *) {
+		text-align: center;
+		justify-content: center;
+		align-items: center;
+	}
+
+    .markup-content.centered {
+        justify-content: center;
+        align-items: center;
+    }
+
+	.markup-content.centered :global(.header-container) {
+        padding-right: 2rem;
+		padding-left: 2rem;
+    }
+
+	.markup-content.centered :global(li) {
+		text-align: left !important;
+	}
+
+	.markup-content.centered :global(p) {
+		text-indent: 0;
+	}
+
+
+    .markup-content.centered :global(pre) {
+        text-align: left !important;
+    }
+
+    .markup-content.centered :global(div.code-container) {
+        align-items: start;
+    }
 </style>
