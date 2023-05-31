@@ -1,9 +1,10 @@
 <script>
 	export let richText;
 	export let isCentered = false;
+	export let buttonColor = "#FFFFFF";
 </script>
 
-<div class="markup-content">
+<div class="markup-content" style="--color: {buttonColor}">
 	{@html richText}
 </div>
 
@@ -83,4 +84,20 @@
         flex-direction: column;
         align-items: flex-start;
     }
+
+	.markup-content :global(button) {
+        background-color: #7D0B09;
+        padding: 0.5rem 3rem;
+        text-transform: uppercase;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        text-align: center;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0);
+        border: 2px solid var(--color);
+        font-weight: 300;
+        font-size: 19px;
+        line-height: 22px;
+        color: var(--color);
+	}
 </style>

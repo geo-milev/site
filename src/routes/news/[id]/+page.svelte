@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
-	<RichText richText="{parseRichText(data.News.content)}"></RichText>
+	<RichText richText="{parseRichText(data.News.content)}" buttonColor="#7D0B09"></RichText>
 </div>
 
 <style>
