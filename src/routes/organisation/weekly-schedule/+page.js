@@ -1,12 +1,14 @@
 import { cacheExchange, Client, fetchExchange } from "@urql/svelte";
 import { env } from "$env/dynamic/public";
 
-export async function load({ fetch }) {
+export async function load({ fetch, url }) {
     const client = new Client({
         url: env.PUBLIC_SERVER_URL + "/api/graphql",
         exchanges: [cacheExchange, fetchExchange],
         fetch: fetch,
     });
+
+    let className = url.searchParams.get("className");
 
     const QUERY = `
      	query {
@@ -46,5 +48,5 @@ export async function load({ fetch }) {
         }
     `;
 
-    return (await client.query(QUERY, {})).data;
+    return Object.assign({ className }, (await client.query(QUERY, {})).data);
 }

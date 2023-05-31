@@ -67,6 +67,18 @@
 	}
 
 	onMount(() => {
+		if (data.className) {
+			let classNumber = data.className.match(/\d+/)[0]
+			if (classNumber && classNumbers.indexOf(classNumber) !== -1) {
+				classNumberSelect.value = classNumber
+				let classLetter = data.className.match(/[A-Za-zА-Яа-я]/)[0]
+				if (classLetter &&
+					classLetters.indexOf(classLetter) !== -1 &&
+					!isLetterDisabled(classNumber, classLetter)) {
+					classLetterSelect.value = classLetter
+				}
+			}
+		}
 		changeSchedule()
 	})
 </script>
@@ -366,13 +378,13 @@
 	}
 
     @media only screen and (max-width: 700px) {
-		.header-container {
-			width: 90%;
-		}
+      .header-container {
+        width: 90%;
+      }
 
-        .line {
-			width: 10rem;
-		}
+          .line {
+        width: 10rem;
+      }
     }
 
     @media only screen and (max-width: 1275px) {
@@ -421,14 +433,14 @@
 
     @media only screen and (max-width: 750px) {
         .weekly-schedule {
-			display: block;
+			      display: block;
             overflow-x: auto;
             white-space: nowrap;
-			width: 100vw;
+            width: 100vw;
         }
 
-		.weekly-schedule table {
-			min-width: 50rem;
-		}
+        .weekly-schedule table {
+            min-width: 50rem;
+        }
     }
 </style>
