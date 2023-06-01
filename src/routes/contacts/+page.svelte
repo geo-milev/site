@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
 	import { enhance } from '$app/forms';
+	import SecondarySubmit from "$lib/SecondarySubmit.svelte";
 
 	setLayout(secondaryLayout)
 
@@ -89,7 +90,7 @@
 			<form method="POST" action="/contacts" id="contactUsForm" use:enhance>
 				{@html formHtml}
 				<input type="hidden" name="formId" value="{data.Form.id}"/>
-				<input type="submit" value="{data.Form.submitButtonLabel}" />
+				<SecondarySubmit text="{data.Form.submitButtonLabel}"></SecondarySubmit>
 			</form>
 		{/if}
 	</div>
@@ -210,24 +211,6 @@
         font-size: 16px;
         line-height: 19px;
 	}
-
-    :global(.form form input[type=submit]) {
-		background-color: rgba(0, 0, 0, 0);
-        border: 2px solid #FFFFFF;
-        font-weight: 300;
-        font-size: 19px;
-        line-height: 22px;
-        padding: 0.5rem 3rem;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        text-align: center;
-        cursor: pointer;
-        margin-top: 2rem;
-		display: flex;
-		width: auto;
-    }
 
     :global(.form form label) {
 		width: 100%;

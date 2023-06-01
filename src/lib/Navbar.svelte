@@ -22,7 +22,7 @@
                 { key: "Учебници", href: "/student/books" },
                 { key: "Вестник", href: "/student/newspaper" }
             ]},
-        { key: "Прием", href: "/acceptance" },
+        { key: "Прием", href: "/admission" },
         { key: "Организация", subsections: [
                 { key: "Седмично разписание", href: "/organisation/weekly-schedule" },
                 { key: "Графици", href: "/organisation/schedules" },

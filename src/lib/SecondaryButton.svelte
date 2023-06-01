@@ -5,9 +5,10 @@
 	export let action: () => void = undefined;
 	export let text: string;
 	export let color = "#FFFFFF";
+	export let active = false;
 </script>
 
-<div class="content-button" style="--color: {color}">
+<div class="content-button" style="--color: {color}" class:active={active}>
 	<Button href="{href}" action="{action}" text="{text}" />
 </div>
 
@@ -30,6 +31,13 @@
         border: 2px solid #FFFFFF;
         font-variation-settings: 'GRAD' 150;
     }
+    .content-button.active :global(button) {
+        color: #000000;
+        background-color: #FFFFFF;
+        border: 2px solid #FFFFFF;
+        font-variation-settings: 'GRAD' 150;
+    }
+
 
     @supports not (font-variation-settings: 'GRAD' 150) {
         .content-button :global(button) {
