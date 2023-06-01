@@ -66,7 +66,7 @@
 		<ul bind:this={list} on:scroll={onScrollList}>
 			{#each documents as document}
 				<li on:mouseenter={() => { hoveredDocument = document}}
-					class:selected={hoveredDocument.file.url === document.file.url}>
+					class:selected={hoveredDocument ? (hoveredDocument.file.url === document.file.url) : false}>
 					<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
 				</li>
 			{/each}
