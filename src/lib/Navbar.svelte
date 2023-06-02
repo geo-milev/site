@@ -455,6 +455,10 @@
         margin-top: 15px;
     }
 
+    .mobile-nav .link-wrapper a {
+        width: 100%;
+    }
+
     .mobile-subsection {
         display: flex;
         flex-direction: column;
@@ -466,6 +470,7 @@
 
     .mobile-subsection.open {
         max-height: 25rem;
+        width: 100%;
     }
 
     .mobile-subsection a:first-child {
@@ -480,6 +485,7 @@
         line-height: 17px;
         text-transform: none;
         color: #FFFFFF;
+        width: 100%;
     }
 
     .icon-button {
