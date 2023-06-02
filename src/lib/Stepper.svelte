@@ -67,7 +67,8 @@
 													   name="{variable.variable}"
 													   required
 													   min="{variable.min}"
-													   max="{variable.max}"/>
+													   max="{variable.max}"
+													   step="any" />
 											</div>
 										{/each}
 									</div>
