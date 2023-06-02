@@ -74,6 +74,8 @@
 <style>
 	.container {
 		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.carousel {
@@ -133,4 +135,10 @@
 		position: relative;
 		overflow-x: hidden;
 	}
+
+    @media only screen and (max-width: 950px) {
+        .container {
+			flex-direction: column-reverse;
+        }
+    }
 </style>
