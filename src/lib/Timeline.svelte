@@ -13,6 +13,40 @@
 
 	$: circleRadius = clientWidth > 675 ? 9 : 5;
 	$: circleGap = clientWidth > 675 ? 5: 3;
+
+	let touchStartX;
+	let touchStartY;
+	let touchEndX;
+	let touchEndY;
+
+	const onTouchStart = (e) => {
+		console.log("touch start")
+		touchStartX = e.changedTouches[0].screenX;
+		touchStartY = e.changedTouches[0].screenY;
+	};
+
+	const onTouchEnd = (e) => {
+		console.log("touch end")
+		touchEndX = e.changedTouches[0].screenX;
+		touchEndY = e.changedTouches[0].screenY;
+		handleGesture();
+	}
+
+	function handleGesture() {
+		console.log("evaluating")
+		const xChange = Math.abs(touchEndX - touchStartX);
+		const yChange = Math.abs(touchEndY - touchStartY)
+
+		if (yChange > xChange) return;
+
+		if (touchEndX < touchStartX) {
+			selectedIndex++;
+		}
+
+		if (touchEndX > touchStartX) {
+			selectedIndex--;
+		}
+	}
 </script>
 
 <svelte:window bind:innerWidth={clientWidth} />
@@ -25,7 +59,7 @@
 			</div>
 		{/each}
 	</div>
-	<div class="timeline">
+	<div class="timeline" on:touchstart={onTouchStart} on:touchend={onTouchEnd}>
 		<div class="line"></div>
 		<div class="circles" style="--move-coefficient: {moveCoefficient}">
 			{#each componentProps as props, index}
