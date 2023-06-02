@@ -50,6 +50,8 @@
         object-fit: contain;
         width: 100%;
         max-width: 40rem;
+		height: 100%;
+		max-height: 40rem;
     }
 
     :global(.markup-content) {
