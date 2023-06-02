@@ -376,6 +376,7 @@
         flex-grow: 1;
         margin-right: 8px;
         width: 100%;
+        margin-left: 8px;
     }
 
     .subsection-title {
