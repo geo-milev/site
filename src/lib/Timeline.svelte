@@ -6,7 +6,7 @@
 	let selectedIndex = 0;
 	let carouselWidth;
 
-	$: moveCoefficient = (componentProps.length % 2 == 0 ? 0.5 : 1) *
+	$: moveCoefficient = (componentProps.length % 2 == 0 ? -0.5: 0) +
 		(-(selectedIndex - Math.floor(componentProps.length / 2)));
 
 	let clientWidth;
