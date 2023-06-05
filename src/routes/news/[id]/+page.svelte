@@ -61,6 +61,7 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 5rem;
+		gap: 1rem;
     }
 
 	.article-content p {
