@@ -6,7 +6,7 @@
 
 <div class="container">
 	<div class="image-container">
-		<img src="{env.PUBLIC_SERVER_URL + event.image.url}" alt="{event.image.alt}"/>
+		<img src="{env.PUBLIC_SERVER_URL + event.image.url}" alt="{event.image.alt}" loading="lazy"/>
 	</div>
 	<div class="text">
 		<h2>{event.title}</h2>

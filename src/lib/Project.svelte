@@ -6,7 +6,7 @@
 </script>
 
 <div class="container">
-	<img src="{env.PUBLIC_SERVER_URL + project.image.url}" alt="{project.image.alt}">
+	<img src="{env.PUBLIC_SERVER_URL + project.image.url}" alt="{project.image.alt}" loading="lazy">
 	<div class="content">
 		<div class="header-container">
 			<h2>{project.name}</h2>
