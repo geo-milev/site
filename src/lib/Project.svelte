@@ -31,14 +31,14 @@
 	}
 
 	img {
-		width: 140%;
+		width: 40%;
 		object-fit: cover;
 	}
 
 	.content {
 		display: flex;
 		flex-direction: column;
-        width: 160%;
+        width: 60%;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 		gap: 0.5rem;
