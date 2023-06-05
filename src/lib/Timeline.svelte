@@ -52,13 +52,6 @@
 <svelte:window bind:innerWidth={clientWidth} />
 
 <div class="container" style="--circle-radius: {circleRadius}rem; --circle-gap: {circleGap}rem">
-	<div class="carousel" style="--move-coefficient-carousel: {selectedIndex}" bind:offsetWidth={carouselWidth}>
-		{#each componentProps as props, index}
-			<div class="item-container" style="--carousel-width: {carouselWidth}px">
-				<svelte:component this="{component}" {...componentProps[index]}></svelte:component>
-			</div>
-		{/each}
-	</div>
 	<div class="timeline" on:touchstart={onTouchStart} on:touchend={onTouchEnd}>
 		<div class="line"></div>
 		<div class="circles" style="--move-coefficient: {moveCoefficient}">
@@ -68,6 +61,13 @@
 				</button>
 			{/each}
 		</div>
+	</div>
+	<div class="carousel" style="--move-coefficient-carousel: {selectedIndex}" bind:offsetWidth={carouselWidth}>
+		{#each componentProps as props, index}
+			<div class="item-container" style="--carousel-width: {carouselWidth}px">
+				<svelte:component this="{component}" {...componentProps[index]}></svelte:component>
+			</div>
+		{/each}
 	</div>
 </div>
 
@@ -94,7 +94,7 @@
 		justify-content: center;
 		position: relative;
 		overflow: hidden;
-		margin-top: 3rem;
+		margin-bottom: 3rem;
 	}
 
 	.line {
@@ -135,10 +135,4 @@
 		position: relative;
 		overflow-x: hidden;
 	}
-
-    @media only screen and (max-width: 950px) {
-        .container {
-			flex-direction: column-reverse;
-        }
-    }
 </style>
