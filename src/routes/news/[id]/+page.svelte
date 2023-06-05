@@ -31,6 +31,7 @@
         border-bottom: 2px #7D0B09 solid;
         margin: 0;
         padding: 1rem;
+		text-align: center;
 	}
 
     .header-container {
