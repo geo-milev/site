@@ -32,7 +32,13 @@
 
 	const changeSchedule = () => {
 		currentClassNumber = classNumberSelect.value
-		currentClassLetter = classLetterSelect.value
+
+		if (isLetterDisabled(currentClassNumber, classLetterSelect.value)) {
+			currentClassLetter = classLetters[0]
+			classLetterSelect.value = currentClassLetter
+		} else {
+			currentClassLetter = classLetterSelect.value
+		}
 
 		setSchedule(currentClassNumber + currentClassLetter)
 	}

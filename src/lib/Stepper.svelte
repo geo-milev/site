@@ -67,7 +67,8 @@
 													   name="{variable.variable}"
 													   required
 													   min="{variable.min}"
-													   max="{variable.max}"/>
+													   max="{variable.max}"
+													   step="any" />
 											</div>
 										{/each}
 									</div>
@@ -179,6 +180,10 @@
         display: flex;
     }
 
+    .table-wrapper table {
+        width: 100%;
+    }
+
 	.formula {
 		display: flex;
 		flex-direction: column;
@@ -251,13 +256,7 @@
 		width: 10rem;
     }
 
-    @media only screen and (max-width: 1070px) {
-        .table-wrapper table {
-            width: 100%;
-        }
-    }
-
-    @media only screen and (max-width: 750px) {
+    @media only screen and (max-width: 1050px) {
 		.content-container {
 			overflow-x: auto;
 		}

@@ -6,26 +6,53 @@
 	let selectedIndex = 0;
 	let carouselWidth;
 
-	$: moveCoefficient = (componentProps.length % 2 == 0 ? 0.5 : 1) *
+	$: moveCoefficient = (componentProps.length % 2 == 0 ? -0.5: 0) +
 		(-(selectedIndex - Math.floor(componentProps.length / 2)));
 
 	let clientWidth;
 
 	$: circleRadius = clientWidth > 675 ? 9 : 5;
 	$: circleGap = clientWidth > 675 ? 5: 3;
+
+	let touchStartX;
+	let touchStartY;
+	let touchEndX;
+	let touchEndY;
+
+	const onTouchStart = (e) => {
+		console.log("touch start")
+		touchStartX = e.changedTouches[0].screenX;
+		touchStartY = e.changedTouches[0].screenY;
+	};
+
+	const onTouchEnd = (e) => {
+		console.log("touch end")
+		touchEndX = e.changedTouches[0].screenX;
+		touchEndY = e.changedTouches[0].screenY;
+		handleGesture();
+	}
+
+	function handleGesture() {
+		console.log("evaluating")
+		const xChange = Math.abs(touchEndX - touchStartX);
+		const yChange = Math.abs(touchEndY - touchStartY)
+
+		if (yChange > xChange) return;
+
+		if (touchEndX < touchStartX) {
+			selectedIndex++;
+		}
+
+		if (touchEndX > touchStartX) {
+			selectedIndex--;
+		}
+	}
 </script>
 
 <svelte:window bind:innerWidth={clientWidth} />
 
 <div class="container" style="--circle-radius: {circleRadius}rem; --circle-gap: {circleGap}rem">
-	<div class="carousel" style="--move-coefficient-carousel: {selectedIndex}" bind:offsetWidth={carouselWidth}>
-		{#each componentProps as props, index}
-			<div class="item-container" style="--carousel-width: {carouselWidth}px">
-				<svelte:component this="{component}" {...componentProps[index]}></svelte:component>
-			</div>
-		{/each}
-	</div>
-	<div class="timeline">
+	<div class="timeline" on:touchstart={onTouchStart} on:touchend={onTouchEnd}>
 		<div class="line"></div>
 		<div class="circles" style="--move-coefficient: {moveCoefficient}">
 			{#each componentProps as props, index}
@@ -35,11 +62,20 @@
 			{/each}
 		</div>
 	</div>
+	<div class="carousel" style="--move-coefficient-carousel: {selectedIndex}" bind:offsetWidth={carouselWidth}>
+		{#each componentProps as props, index}
+			<div class="item-container" style="--carousel-width: {carouselWidth}px">
+				<svelte:component this="{component}" {...componentProps[index]}></svelte:component>
+			</div>
+		{/each}
+	</div>
 </div>
 
 <style>
 	.container {
 		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.carousel {
@@ -58,7 +94,7 @@
 		justify-content: center;
 		position: relative;
 		overflow: hidden;
-		margin-top: 3rem;
+		margin-bottom: 3rem;
 	}
 
 	.line {

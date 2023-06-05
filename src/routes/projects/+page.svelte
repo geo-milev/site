@@ -114,9 +114,10 @@
 		flex-direction: column;
 		flex-wrap: nowrap;
 		gap: 4rem;
+        align-items: center;
 	}
 
 	.project-preview {
-		max-width: 40rem;
+		max-width: min(40rem, 100%);
 	}
 </style>
