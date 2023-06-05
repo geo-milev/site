@@ -45,8 +45,10 @@
 
     .article-content img {
         object-fit: contain;
-        max-width: 50vw;
-        max-height: 50vh;
+        width: 100%;
+        max-width: 40rem;
+        height: 100%;
+        max-height: 40rem;
     }
 
     .article-content {
