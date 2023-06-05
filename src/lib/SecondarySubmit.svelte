@@ -23,6 +23,8 @@
         width: auto;
         font-variation-settings: 'GRAD' -150;
         transition: all 300ms ease-in;
+		justify-content: center;
+		align-items: center;
     }
 
     @supports not (font-variation-settings: 'GRAD' 150) {
