@@ -24,40 +24,38 @@
         }
 
 		.container:before {
-            height: 4rem !important;
-            top: -2rem !important;
+            clip-path: ellipse(50% 30% at 50% 50%);
 		}
 
         .container:after {
-            height: 4rem !important;
-            bottom: -2rem !important;
+            clip-path: ellipse(50% 30% at 50% 50%);
         }
     }
 
 	.container:before {
 		content: "";
-		width: 106%;
+		width: 100%;
 		left: 50%;
-		margin-left: -53%;
+		margin-left: -50%;
         height: 8rem;
-        border-radius: 50%;
         background-color: white;
 		position: absolute;
 		top: -4rem;
 		display: var(--top-display);
+		clip-path: ellipse(50% 40% at 50% 50%);
 	}
 
 	.container:after {
         content: "";
-        width: 106%;
+        width: 109%;
         left: 50%;
-        margin-left: -53%;
+        margin-left: -50%;
         height: 8rem;
-        border-radius: 50%;
         background-color: #FFFFFF;
         position: absolute;
        	bottom: -4rem;
         display: var(--bottom-display);
+		clip-path: ellipse(50% 40% at 50% 50%);
 	}
 
 	.content {
