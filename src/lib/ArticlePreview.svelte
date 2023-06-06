@@ -16,7 +16,7 @@
 </script>
 
 <div class="container">
-	<img class="preview-image" src="{preview.image.url}" alt="{preview.image.alt}"/>
+	<img class="preview-image" loading="lazy" src="{preview.image.url}" alt="{preview.image.alt}"/>
 	<div class="content">
 		<div class="text">
 			<h4>{preview.title}</h4>
