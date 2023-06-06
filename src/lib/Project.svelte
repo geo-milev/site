@@ -28,6 +28,7 @@
 		flex-direction: row;
         background-color: #FFFFFF;
 		gap: 1rem;
+		margin-right: 1rem;
 	}
 
 	img {
@@ -42,6 +43,7 @@
 		padding-top: 1rem;
 		padding-bottom: 1rem;
 		gap: 0.5rem;
+		padding-right: 1rem;
 	}
 
 	.content p {
