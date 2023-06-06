@@ -34,6 +34,11 @@
 </div>
 
 <style>
+
+	:global(.content-button button) {
+        margin: 0;
+	}
+
     .container {
         display: flex;
         flex-direction: column;
