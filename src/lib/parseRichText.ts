@@ -120,6 +120,11 @@ const parseRichText = (richText) => {
                             node.children
                         )}</div>`;
                     }
+                    case "blockquote": {
+                        return `<blockquote>${parseRichText(
+                            node.children
+                        )}</blockquote>`;
+                    }
                     default: {
                         const parsed = parseRichText(node.children);
                         if (parsed && parsed != "") return `<p>${parsed}</p>`;

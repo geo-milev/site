@@ -97,6 +97,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+		margin-top: 0.5rem;
     }
 
 	.markup-content :global(button) {
@@ -210,4 +211,8 @@
         padding-right: 2rem;
         padding-left: 0;
     }
+	:global(.markup-content blockquote) {
+		border-left: 1px solid var(--header-line);
+		padding-left: 1rem;
+	}
 </style>
