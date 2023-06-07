@@ -18,7 +18,8 @@
 				  isCentered="{block.isCentered}"
 				  buttonColor={buttonColor}
 				  textColor={textColor}
-				  headerLineColor={headerLineColor} />
+				  headerLineColor={headerLineColor}
+				  buttonHoverTextColor="#FFFFFF" />
 	{/if}
 	{#if block.blockType === "admission-requirements"}
 		<div class="table-wrapper" style="--text-color: {textColor}">
@@ -72,8 +73,7 @@
 					  buttonColor={buttonColor}
 					  textColor={textColor}
 					  headerLineColor={headerLineColor}
-					  floatedImage="{block.image}"
-			          floatDirection="{block.float}" />
+					  buttonHoverTextColor="#FFFFFF"/>
 		</div>
 	{/if}
 	{#if block.blockType === "formula"}

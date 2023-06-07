@@ -2,12 +2,16 @@
 	export let richText;
 	export let isCentered = false;
 	export let buttonColor = "#FFFFFF";
+	export let buttonHoverTextColor = "#000000";
 	export let textColor = "#FFFFFF"
 	export let headerLineColor = "#FFFFFF"
 </script>
 
 <div class="markup-content"
-	 style="--color: {buttonColor}; --text-color: {textColor}; --header-line: {headerLineColor}"
+	 style="--color: {buttonColor};
+	 	--text-color: {textColor};
+	 	--header-line: {headerLineColor};
+	 	--button-hover-text-color: {buttonHoverTextColor}"
 	 class:centered={isCentered}>
 	{@html richText}
 </div>
@@ -102,7 +106,6 @@
     }
 
 	.markup-content :global(button) {
-        background-color: #7D0B09;
         padding: 0.5rem 3rem;
         text-transform: uppercase;
         font-family: 'Roboto', serif;
@@ -116,8 +119,15 @@
         line-height: 22px;
         color: var(--color);
 		margin-bottom: 1rem;
+        transition: all 300ms ease-in;
 		margin-top: 1rem;
 	}
+
+    .markup-content :global(button:hover) {
+        background-color: var(--color);
+        border: 2px solid var(--color);
+        color: var(--button-hover-text-color);
+    }
 
 	.markup-content :global(> *) {
         color: var(--text-color);
@@ -159,8 +169,6 @@
     .markup-content.centered :global(div.code-container) {
         align-items: start;
     }
-
-
 
     :global(.markup-content div.center-align) {
         width: 100%;
