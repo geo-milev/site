@@ -82,8 +82,4 @@
         justify-content: center;
         align-items: center;
 	}
-
-	.rendered-content {
-        max-width: 100%;
-	}
 </style>

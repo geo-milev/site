@@ -3,6 +3,7 @@
 	import { parseRichText } from "$lib/parseRichText";
 	import SecondarySubmit from "$lib/SecondarySubmit.svelte";
 	import { env } from "$env/dynamic/public";
+	import BlockRenderer from "$lib/BlockRenderer.svelte";
 
 	let formulaResults: Map<string, string> = new Map<string, string>()
 
@@ -10,6 +11,7 @@
 	export let buttonColor = "#FFFFFF";
 	export let textColor = "#FFFFFF"
 	export let headerLineColor = "#FFFFFF"
+	export let buttonHoverTextColor = "#FFFFFF"
 </script>
 
 {#each blocks as block}
@@ -19,7 +21,7 @@
 				  buttonColor={buttonColor}
 				  textColor={textColor}
 				  headerLineColor={headerLineColor}
-				  buttonHoverTextColor="#FFFFFF" />
+				  buttonHoverTextColor="{buttonHoverTextColor}" />
 	{/if}
 	{#if block.blockType === "admission-requirements"}
 		<div class="table-wrapper" style="--text-color: {textColor}">
@@ -63,17 +65,19 @@
 			</table>
 		</div>
 	{/if}
-	{#if block.blockType === "floated-rich-text"}
-		<div class="floated-rich-text-wrapper" style="flex-direction: {block.float === 'left' ? 'row': 'row-reverse'}">
+	{#if block.blockType === "floated-content"}
+		<div class="floated-blocks-wrapper" style="flex-direction: {block.float === 'left' ? 'row': 'row-reverse'}">
 			<img src="{env.PUBLIC_SERVER_URL + block.image.url}"
 				 alt="{block.image.alt}"
 				 loading="lazy"/>
-			<RichText richText="{parseRichText(block.text)}"
-					  isCentered="{block.isCentered}"
-					  buttonColor={buttonColor}
-					  textColor={textColor}
-					  headerLineColor={headerLineColor}
-					  buttonHoverTextColor="#FFFFFF"/>
+			<div class="block-renderer">
+				<BlockRenderer blocks="{block.content}"
+							   buttonColor={buttonColor}
+							   textColor={textColor}
+							   headerLineColor={headerLineColor}
+							   buttonHoverTextColor = {buttonHoverTextColor}/>
+
+			</div>
 		</div>
 	{/if}
 	{#if block.blockType === "formula"}
@@ -120,7 +124,6 @@
 <style>
     table {
         table-layout: fixed;
-        width: 75%;
         border-collapse: collapse;
         border: 3px solid #FFFFFF;
     }
@@ -148,13 +151,8 @@
     }
 
     .table-wrapper {
-        width: 100%;
         display: flex;
 		overflow-x: auto;
-    }
-
-    .table-wrapper table {
-        width: 100%;
     }
 
     .formula {
@@ -229,23 +227,30 @@
         width: 10rem;
     }
 
-    .floated-rich-text-wrapper {
+    .floated-blocks-wrapper {
 		display: flex;
 		margin-bottom: 1rem;
 		margin-top: 1rem;
 		width: 100%;
 		flex-wrap: wrap;
-		align-items: center;
 		justify-content: space-around;
 	}
 
-	.floated-rich-text-wrapper img {
+	.floated-blocks-wrapper img {
         object-fit: contain;
         width: 100%;
         max-width: 30rem;
         height: 100%;
         max-height: 30rem;
+		margin: 1rem;
 	}
+
+    .floated-blocks-wrapper .block-renderer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+		width: 50%;
+    }
 
     @media only screen and (max-width: 1050px) {
         .table-wrapper table {
