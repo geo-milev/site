@@ -84,7 +84,7 @@ const parseRichText = (richText) => {
                             }
                         }
                         if (value.mimeType.startsWith("image/")) {
-                            return `<img src="${src}" alt="${value.alt}" style="width: 100%"/>`;
+                            return `<img src="${src}" alt="${value.alt}" style="width: 100%" loading="lazy"/>`;
                         } else {
                             if (value.alt.match(/^\s*$/)) value.alt = "Изтегли";
                             return `<div class="button"><a href="${src}" target="_blank"><button>${value.alt}</button></a></div>`;

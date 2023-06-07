@@ -2,6 +2,7 @@
 	import RichText from "$lib/RichText.svelte";
 	import { parseRichText } from "$lib/parseRichText";
 	import SecondarySubmit from "$lib/SecondarySubmit.svelte";
+	import { env } from "$env/dynamic/public";
 
 	let formulaResults: Map<string, string> = new Map<string, string>()
 
@@ -59,6 +60,20 @@
 					</tr>
 				{/each}
 			</table>
+		</div>
+	{/if}
+	{#if block.blockType === "floated-rich-text"}
+		<div class="floated-rich-text-wrapper" style="flex-direction: {block.float === 'left' ? 'row': 'row-reverse'}">
+			<img src="{env.PUBLIC_SERVER_URL + block.image.url}"
+				 alt="{block.image.alt}"
+				 loading="lazy"/>
+			<RichText richText="{parseRichText(block.text)}"
+					  isCentered="{block.isCentered}"
+					  buttonColor={buttonColor}
+					  textColor={textColor}
+					  headerLineColor={headerLineColor}
+					  floatedImage="{block.image}"
+			          floatDirection="{block.float}" />
 		</div>
 	{/if}
 	{#if block.blockType === "formula"}
@@ -213,6 +228,24 @@
     .formula form input {
         width: 10rem;
     }
+
+    .floated-rich-text-wrapper {
+		display: flex;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+		width: 100%;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.floated-rich-text-wrapper img {
+        object-fit: contain;
+        width: 100%;
+        max-width: 30rem;
+        height: 100%;
+        max-height: 30rem;
+	}
 
     @media only screen and (max-width: 1050px) {
         .table-wrapper table {

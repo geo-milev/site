@@ -6,7 +6,8 @@
 	export let headerLineColor = "#FFFFFF"
 </script>
 
-<div class="markup-content" style="--color: {buttonColor}; --text-color: {textColor}; --header-line: {headerLineColor}"
+<div class="markup-content"
+	 style="--color: {buttonColor}; --text-color: {textColor}; --header-line: {headerLineColor}"
 	 class:centered={isCentered}>
 	{@html richText}
 </div>
