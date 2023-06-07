@@ -124,6 +124,7 @@
 <style>
     table {
         table-layout: fixed;
+		width: 100%;
         border-collapse: collapse;
         border: 3px solid #FFFFFF;
     }
@@ -151,6 +152,7 @@
     }
 
     .table-wrapper {
+		width: 100%;
         display: flex;
 		overflow-x: auto;
     }
@@ -254,13 +256,8 @@
     }
 
     @media only screen and (max-width: 1050px) {
-
         .floated-blocks-wrapper .block-renderer {
             width: 100%;
-        }
-
-        .table-wrapper {
-			width: 100%;
         }
 
         .table-wrapper table {
