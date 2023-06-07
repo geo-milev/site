@@ -237,6 +237,7 @@
 	}
 
 	.floated-blocks-wrapper img {
+		display: flex;
         object-fit: contain;
         width: 100%;
         max-width: 30rem;
@@ -253,8 +254,18 @@
     }
 
     @media only screen and (max-width: 1050px) {
+
+        .floated-blocks-wrapper .block-renderer {
+            width: 100%;
+        }
+
+        .table-wrapper {
+			width: 100%;
+        }
+
         .table-wrapper table {
             min-width: 50rem;
+			width: 100%;
         }
 
         .formula form .variables {
