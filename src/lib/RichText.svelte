@@ -160,7 +160,7 @@
 
 
 
-    :global(div.center-align) {
+    :global(.markup-content div.center-align) {
         width: 100%;
         display: flex;
         align-items: center;
@@ -168,7 +168,7 @@
         text-align: center;
     }
 
-    :global(div.right-align) {
+    :global(.markup-content div.right-align) {
         width: 100%;
         display: flex;
         align-items: center;
@@ -176,7 +176,7 @@
         text-align: right;
     }
 
-    :global(div.justify-align) {
+    :global(.markup-content div.justify-align) {
         width: 100%;
         display: flex;
         align-items: center;
@@ -184,7 +184,7 @@
         text-align: center;
     }
 
-    :global(div.left-align) {
+    :global(.markup-content div.left-align) {
         width: 100%;
         display: flex;
         align-items: center;
@@ -192,21 +192,21 @@
         text-align: left;
     }
 
-    :global(.center-align .header-container) {
+    :global(.markup-content .center-align .header-container) {
         padding-left: 2rem;
         padding-right: 2rem;
     }
 
-    :global(.right-align .header-container) {
+    :global(.markup-content .right-align .header-container) {
         padding-left: 2rem;
         padding-right: 0;
     }
 
-    :global(.justify-align .header-container) {
+    :global(.markup-content .justify-align .header-container) {
         padding-left: 2rem;
     }
 
-    :global(.left-align .header-container) {
+    :global(.markup-content .left-align .header-container) {
         padding-right: 2rem;
         padding-left: 0;
     }
