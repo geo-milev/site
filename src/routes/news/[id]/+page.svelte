@@ -18,7 +18,12 @@
 		</div>
 	</div>
 	<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
-	<BlockRenderer blocks="{data.News.content}" buttonColor="#7D0B09" textColor="#000000" headerLineColor="#7D0B09" />
+	<div class="rendered-content">
+		<BlockRenderer blocks="{data.News.content}"
+					   buttonColor="#7D0B09"
+					   textColor="#000000"
+					   headerLineColor="#7D0B09" />
+	</div>
 </div>
 
 <style>
@@ -78,5 +83,9 @@
         max-width: min(40rem, 100%);
         justify-content: center;
         align-items: center;
+	}
+
+	.rendered-content {
+        max-width: min(40rem, 100%);
 	}
 </style>
