@@ -157,4 +157,57 @@
     .markup-content.centered :global(div.code-container) {
         align-items: start;
     }
+
+
+
+    :global(div.center-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    :global(div.right-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: right;
+    }
+
+    :global(div.justify-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    :global(div.left-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    :global(.center-align .header-container) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    :global(.right-align .header-container) {
+        padding-left: 2rem;
+        padding-right: 0;
+    }
+
+    :global(.justify-align .header-container) {
+        padding-left: 2rem;
+    }
+
+    :global(.left-align .header-container) {
+        padding-right: 2rem;
+        padding-left: 0;
+    }
 </style>

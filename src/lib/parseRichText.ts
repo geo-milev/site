@@ -100,6 +100,26 @@ const parseRichText = (richText) => {
                             return `<a href="${node.value.id}" target="_blank">${node.value.title}</a>`;
                         } else return "";
                     }
+                    case "center": {
+                        return `<div class="center-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
+                    case "left": {
+                        return `<div class="left-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
+                    case "right": {
+                        return `<div class="right-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
+                    case "justify": {
+                        return `<div class="justify-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
                     default: {
                         const parsed = parseRichText(node.children);
                         if (parsed && parsed != "") return `<p>${parsed}</p>`;
