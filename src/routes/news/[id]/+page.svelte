@@ -1,8 +1,7 @@
 <script>
-	import { parseRichText } from "$lib/parseRichText";
 	import { setLayout, tertiaryLayout } from "$lib/setLayout";
 	import { env } from "$env/dynamic/public";
-	import RichText from "$lib/RichText.svelte";
+	import BlockRenderer from "$lib/BlockRenderer.svelte";
 
 	setLayout(tertiaryLayout)
 
@@ -19,7 +18,7 @@
 		</div>
 	</div>
 	<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
-	<RichText richText="{parseRichText(data.News.content)}" buttonColor="#7D0B09" textColor="#000000" headerLineColor="#7D0B09"></RichText>
+	<BlockRenderer blocks="{data.News.content}" buttonColor="#7D0B09" textColor="#000000" headerLineColor="#7D0B09" />
 </div>
 
 <style>
