@@ -32,7 +32,6 @@
 
 	const scrollLeft = () => {
 		selectedImageIndex--;
-		console.log(elements[selectedImageIndex])
 		elements[selectedImageIndex].scrollIntoView(scrollConfig)
 	}
 
@@ -65,14 +64,14 @@
 		<button on:click={scrollRight} class="arrow-button big-screen" disabled="{selectedImageIndex === images.length - 1}">
 			<ArrowRight />
 		</button>
-	</div>
-	<div class="small-screen-navigation">
-		<button on:click={scrollLeft} class="arrow-button" disabled="{selectedImageIndex === 0}">
-			<ArrowLeft />
-		</button>
-		<button on:click={scrollRight} class="arrow-button" disabled="{selectedImageIndex === images.length - 1}">
-			<ArrowRight />
-		</button>
+		<div class="small-screen-navigation">
+			<button on:click={scrollLeft} class="arrow-button" disabled="{selectedImageIndex === 0}">
+				<ArrowLeft />
+			</button>
+			<button on:click={scrollRight} class="arrow-button" disabled="{selectedImageIndex === images.length - 1}">
+				<ArrowRight />
+			</button>
+		</div>
 	</div>
 </div>
 
@@ -155,6 +154,10 @@
         .big-screen {
             display: none;
         }
+
+		.selector {
+			flex-direction: column;
+		}
 
         .small-screen-navigation {
             display: flex;
