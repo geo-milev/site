@@ -22,22 +22,28 @@
 	const transitionDuration = 250;
 	let opacity = tweened(1, { duration: transitionDuration, easing: linear });
 
-	const onClick = (_, index) => {
-		opacity.set(0).then(() => {
+	const setSelectedImageIndex = (index) => {
+		return opacity.set(0).then(() => {
 				selectedImageIndex = index
 				opacity.set(1);
 			}
 		)
 	}
 
+	const onClick = (_, index) => {
+		setSelectedImageIndex(index)
+	}
+
 	const scrollLeft = () => {
-		selectedImageIndex--;
-		elements[selectedImageIndex].scrollIntoView(scrollConfig)
+		setSelectedImageIndex(selectedImageIndex - 1).then(() => {
+			elements[selectedImageIndex].scrollIntoView(scrollConfig)
+		});
 	}
 
 	const scrollRight = () => {
-		selectedImageIndex++;
-		elements[selectedImageIndex].scrollIntoView(scrollConfig)
+		setSelectedImageIndex(selectedImageIndex + 1).then(() => {
+			elements[selectedImageIndex].scrollIntoView(scrollConfig)
+		});
 	}
 </script>
 
@@ -119,14 +125,16 @@
 
 	.previews {
 		width: 100%;
+        height: 100%;
 		display: flex;
 		flex-wrap: nowrap;
         overflow-y: hidden;
 		overflow-x: auto;
-		height: auto;
 		gap: 1rem;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
+        max-width: 60rem;
+        max-height: 60rem;
 	}
 
     .arrow-button {
