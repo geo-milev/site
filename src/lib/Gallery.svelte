@@ -1,5 +1,4 @@
 <script>
-	import GalleryImagePreview from "$lib/GalleryImagePreview.svelte";
 	import { env } from "$env/dynamic/public";
 	import { tweened } from "svelte/motion";
 	import { linear } from "svelte/easing";
