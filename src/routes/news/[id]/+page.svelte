@@ -49,9 +49,9 @@
     .article-content img {
         object-fit: contain;
         width: 100%;
-        max-width: 40rem;
+        max-width: 50rem;
         height: 100%;
-        max-height: 40rem;
+        max-height: 50rem;
     }
 
     .article-content {
@@ -70,15 +70,15 @@
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 300;
-        font-size: 16px;
-        line-height: 19px;
+        font-size: 19px;
+        line-height: 23px;
         text-align: center;
 	}
 
 	.top-container {
 		display: flex;
 		flex-direction: column;
-        max-width: min(40rem, 100%);
+        max-width: min(50rem, 100%);
         justify-content: center;
         align-items: center;
 	}
