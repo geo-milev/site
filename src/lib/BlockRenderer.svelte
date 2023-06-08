@@ -4,6 +4,7 @@
 	import SecondarySubmit from "$lib/SecondarySubmit.svelte";
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
+	import Gallery from "$lib/Gallery.svelte";
 
 	let formulaResults: Map<string, string> = new Map<string, string>()
 
@@ -79,6 +80,9 @@
 
 			</div>
 		</div>
+	{/if}
+	{#if block.blockType === "gallery"}
+		<Gallery images="{block.images}"></Gallery>
 	{/if}
 	{#if block.blockType === "formula"}
 		<div class="formula" style="--text-color: {textColor}">
