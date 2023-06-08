@@ -55,6 +55,7 @@
 					src="{data.VideoSection.video}"
 					title="YouTube video player"
 					frameborder="0"
+					loading="lazy"
 					allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 					allowfullscreen></iframe>
 		</div>
@@ -78,7 +79,7 @@
 			{#each profiles as profile}
 				<div class="profile">
 					<div class="image-container">
-						<img src="{profile.imgSrc}" alt="{profile.name}"/>
+						<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
 					</div>
 					<h4>{profile.name}</h4>
 					<p>{profile.description}</p>

@@ -6,7 +6,7 @@
 </script>
 
 <div class="container">
-	<img class="preview-image" src="{preview.image.url}" alt="{preview.image.alt}">
+	<img class="preview-image" loading="lazy" src="{preview.image.url}" alt="{preview.image.alt}">
 	<div class="content">
 		<div class="text">
 			<span>{preview.date.toLocaleDateString("bg-BG", { year: 'numeric', month: 'long', day: 'numeric' })}</span>

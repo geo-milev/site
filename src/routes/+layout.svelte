@@ -45,6 +45,7 @@
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
 	{/each}
+	<title>{data.MainInfo.name}</title>
 </svelte:head>
 
 <Navbar fixed="{$layout.navbar.fixed}"

@@ -17,7 +17,7 @@
 
 <div class="container">
 	{#if book.image}
-		<img class="cover" src="{env.PUBLIC_SERVER_URL + book.image.url}" alt="{book.image.alt}"/>
+		<img class="cover" loading="lazy" src="{env.PUBLIC_SERVER_URL + book.image.url}" alt="{book.image.alt}"/>
 		{:else}
 		<div class="rotated">Няма снимка</div>
 	{/if}
