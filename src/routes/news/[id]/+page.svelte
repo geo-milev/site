@@ -82,4 +82,11 @@
         justify-content: center;
         align-items: center;
 	}
+
+    @media only screen and (max-width: 740px) {
+		.article-content {
+			margin-left: 1rem;
+			margin-right: 1rem;
+		}
+    }
 </style>
