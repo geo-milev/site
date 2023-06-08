@@ -127,7 +127,6 @@
 
 <style>
     table {
-        table-layout: fixed;
 		width: 100%;
         border-collapse: collapse;
         border: 3px solid #FFFFFF;
@@ -265,7 +264,6 @@
         }
 
         .table-wrapper table {
-            min-width: 50rem;
 			width: 100%;
         }
 
