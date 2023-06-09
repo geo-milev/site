@@ -2,11 +2,16 @@
 	export let richText;
 	export let isCentered = false;
 	export let buttonColor = "#FFFFFF";
+	export let buttonHoverTextColor = "#000000";
 	export let textColor = "#FFFFFF"
 	export let headerLineColor = "#FFFFFF"
 </script>
 
-<div class="markup-content" style="--color: {buttonColor}; --text-color: {textColor}; --header-line: {headerLineColor}"
+<div class="markup-content"
+	 style="--color: {buttonColor};
+	 	--text-color: {textColor};
+	 	--header-line: {headerLineColor};
+	 	--button-hover-text-color: {buttonHoverTextColor}"
 	 class:centered={isCentered}>
 	{@html richText}
 </div>
@@ -49,9 +54,9 @@
     :global(.markup-content img) {
         object-fit: contain;
         width: 100%;
-        max-width: 40rem;
+        max-width: 50rem;
 		height: 100%;
-		max-height: 40rem;
+		max-height: 50rem;
     }
 
     :global(.markup-content) {
@@ -59,9 +64,9 @@
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 300;
-        font-size: 16px;
-        line-height: 19px;
-        color: #000000;
+        font-size: 20px;
+        line-height: 23px;
+        color: var(--text-color);
     }
 
     :global(.markup-content img) {
@@ -88,7 +93,7 @@
 
     .markup-content {
         display: flex;
-        max-width: min(40rem, 100%);
+        max-width: min(50rem, 100%);
         flex-direction: column;
         align-items: flex-start;
     }
@@ -97,10 +102,10 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+		margin-top: 0.5rem;
     }
 
 	.markup-content :global(button) {
-        background-color: #7D0B09;
         padding: 0.5rem 3rem;
         text-transform: uppercase;
         font-family: 'Roboto', serif;
@@ -114,7 +119,21 @@
         line-height: 22px;
         color: var(--color);
 		margin-bottom: 1rem;
+        transition: all 300ms ease-in;
 		margin-top: 1rem;
+	}
+
+    .markup-content :global(button:hover) {
+        background-color: var(--color);
+        border: 2px solid var(--color);
+        color: var(--button-hover-text-color);
+    }
+
+	.markup-content :global(.button) {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.markup-content :global(> *) {
@@ -157,4 +176,59 @@
     .markup-content.centered :global(div.code-container) {
         align-items: start;
     }
+
+    :global(.markup-content div.center-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    :global(.markup-content div.right-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: right;
+    }
+
+    :global(.markup-content div.justify-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    :global(.markup-content div.left-align) {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    :global(.markup-content .center-align .header-container) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    :global(.markup-content .right-align .header-container) {
+        padding-left: 2rem;
+        padding-right: 0;
+    }
+
+    :global(.markup-content .justify-align .header-container) {
+        padding-left: 2rem;
+    }
+
+    :global(.markup-content .left-align .header-container) {
+        padding-right: 2rem;
+        padding-left: 0;
+    }
+	:global(.markup-content blockquote) {
+		border-left: 1px solid var(--header-line);
+		padding-left: 1rem;
+	}
 </style>

@@ -1,9 +1,6 @@
 <script lang="ts">
-	import RichText from "$lib/RichText.svelte";
-	import { parseRichText } from "$lib/parseRichText";
-	import SecondarySubmit from "$lib/SecondarySubmit.svelte";
 
-	let formulaResults: Map<string, string> = new Map<string, string>()
+	import BlockRenderer from "$lib/BlockRenderer.svelte";
 
 	export let steps;
 </script>
@@ -17,72 +14,7 @@
 					<span>{step.stepNumber}</span>
 				</div>
 				<div class="content-container">
-					{#each step.info as block}
-						{#if block.blockType === "rich-text"}
-							<RichText richText="{parseRichText(block.importantInfo)}" isCentered="{block.isCentered}" />
-						{/if}
-						{#if block.blockType === "admission-requirements"}
-							<div class="table-wrapper">
-								<table>
-									<thead>
-									<tr>
-										<td>Изява</td>
-										<td>Дата</td>
-										<td>Максимален брой точки</td>
-										<td>Коефициент</td>
-									</tr>
-									</thead>
-									{#each block.requirements as requirement}
-										<tr>
-											<td>{requirement.name}</td>
-											<td>{requirement.date ? (new Date(requirement.date)).toLocaleDateString("bg-BG"): ""}</td>
-											<td>{requirement.maxPoints}</td>
-											<td>{requirement.coefficient}</td>
-										</tr>
-									{/each}
-								</table>
-							</div>
-						{/if}
-						{#if block.blockType === "formula"}
-							<div class="formula">
-								<form method="POST" on:submit|preventDefault={async function handleSubmit(event) {
-									const data = new FormData(event.target);
-									const formVariables = {}
-									for (let v of block.variables) {
-										formVariables[v.variable] = data.get(v.variable)
-									}
-
-									import("expr-eval").then((lib) => {
-										const res = lib.Parser.evaluate(block.formula, formVariables)
-										formulaResults.set(block.id, res.toFixed(2))
-										formulaResults = formulaResults
-									});
-								}}>
-									<div class="variables">
-										{#each block.variables as variable}
-											<div class="variable-pair">
-												<label for="{variable.variable}">{variable.label}</label>
-												<input type="number"
-													   id="{variable.variable}"
-													   name="{variable.variable}"
-													   required
-													   min="{variable.min}"
-													   max="{variable.max}"
-													   step="any" />
-											</div>
-										{/each}
-									</div>
-									<SecondarySubmit text="Сметни"></SecondarySubmit>
-								</form>
-								{#if formulaResults.has(block.id)}
-									<div class="result">
-										<span class="result-text">Твоят резултат е: </span>
-										<span class="result-number">{formulaResults.get(block.id)}</span>
-									</div>
-								{/if}
-							</div>
-						{/if}
-					{/each}
+					<BlockRenderer blocks="{step.info}" />
 				</div>
 			</div>
 		{/each}
@@ -146,137 +78,10 @@
 		position: relative;
 	}
 
-    table {
-        table-layout: fixed;
-        width: 75%;
-        border-collapse: collapse;
-        border: 3px solid #FFFFFF;
-    }
-
-    thead td {
-        font-family: 'Alegreya', serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22px;
-        line-height: 33px;
-        text-align: center;
-        color: #FFFFFF;
-    }
-
-    td {
-        padding: 1rem;
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 20px;
-        text-align: center;
-        color: #FFFFFF;
-        border: 3px solid #FFFFFF;
-    }
-
-    .table-wrapper {
-        width: 100%;
-        display: flex;
-    }
-
-    .table-wrapper table {
-        width: 100%;
-    }
-
-	.formula {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.formula .result {
-		display: flex;
-		flex-direction: row;
-        margin-top: 1rem;
-		gap: 1rem;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.formula .result-number {
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 28px;
-        line-height: 34px;
-        color: #FFFFFF;
-	}
-
-    .formula .result-text {
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22px;
-        line-height: 28px;
-        color: #FFFFFF;
-    }
-
-	.formula form .variable-pair {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-		max-width: 20rem;
-		justify-content: flex-end;
-	}
-
-    .formula form {
-        display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-    }
-
-	.formula form .variables {
-        display: grid;
-		grid-template-columns: repeat(auto-fill, 20rem);
-		grid-template-rows: repeat(auto-fill, max-content);
-		grid-gap: 3rem;
-		width: 100%;
-	}
-
-    .formula form label {
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-        color: #FFFFFF;
-    }
-
-    .formula form input {
-		width: 10rem;
-    }
-
     @media only screen and (max-width: 1050px) {
 		.content-container {
 			overflow-x: auto;
 		}
-
-		.table-wrapper table {
-            min-width: 50rem;
-        }
-
-		.formula form .variables {
-			justify-content: center;
-		}
-
-		.formula form .variable-pair {
-			justify-content: center;
-			align-items: center;
-		}
-
-        .formula form .variable-pair label {
-            text-align: center;
-        }
 
 		.line {
 			left: calc(2rem - 5px);
@@ -291,13 +96,5 @@
             font-size: 32px;
             line-height: 44px;
 		}
-
-        .formula form input {
-            width: 100%;
-        }
-
-        .formula form .variables {
-            grid-template-columns: repeat(auto-fill, 10rem);
-        }
     }
 </style>

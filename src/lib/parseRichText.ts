@@ -84,7 +84,7 @@ const parseRichText = (richText) => {
                             }
                         }
                         if (value.mimeType.startsWith("image/")) {
-                            return `<img src="${src}" alt="${value.alt}" loading="lazy" style="width: 100%"/>`;
+                            return `<img src="${src}" alt="${value.alt}" style="width: 100%" loading="lazy"/>`;
                         } else {
                             if (value.alt.match(/^\s*$/)) value.alt = "Изтегли";
                             return `<div class="button"><a href="${src}" target="_blank"><button>${value.alt}</button></a></div>`;
@@ -99,6 +99,31 @@ const parseRichText = (richText) => {
                         if (node.relationTo === "news") {
                             return `<a href="${node.value.id}" target="_blank">${node.value.title}</a>`;
                         } else return "";
+                    }
+                    case "center": {
+                        return `<div class="center-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
+                    case "left": {
+                        return `<div class="left-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
+                    case "right": {
+                        return `<div class="right-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
+                    case "justify": {
+                        return `<div class="justify-align">${parseRichText(
+                            node.children
+                        )}</div>`;
+                    }
+                    case "blockquote": {
+                        return `<blockquote>${parseRichText(
+                            node.children
+                        )}</blockquote>`;
                     }
                     default: {
                         const parsed = parseRichText(node.children);

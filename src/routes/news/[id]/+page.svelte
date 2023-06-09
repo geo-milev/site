@@ -1,8 +1,7 @@
 <script>
-	import { parseRichText } from "$lib/parseRichText";
 	import { setLayout, tertiaryLayout } from "$lib/setLayout";
 	import { env } from "$env/dynamic/public";
-	import RichText from "$lib/RichText.svelte";
+	import BlockRenderer from "$lib/BlockRenderer.svelte";
 
 	setLayout(tertiaryLayout)
 
@@ -19,7 +18,10 @@
 		</div>
 	</div>
 	<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
-	<RichText richText="{parseRichText(data.News.content)}" buttonColor="#7D0B09" textColor="#000000" headerLineColor="#7D0B09"></RichText>
+	<BlockRenderer blocks="{data.News.content}"
+				   buttonColor="#7D0B09"
+				   textColor="#000000"
+				   headerLineColor="#7D0B09" />
 </div>
 
 <style>
@@ -31,6 +33,7 @@
         border-bottom: 2px #7D0B09 solid;
         margin: 0;
         padding: 1rem;
+		text-align: center;
 	}
 
     .header-container {
@@ -45,8 +48,10 @@
 
     .article-content img {
         object-fit: contain;
-        max-width: 50vw;
-        max-height: 50vh;
+        width: 100%;
+        max-width: 50rem;
+        height: 100%;
+        max-height: 50rem;
     }
 
     .article-content {
@@ -58,22 +63,30 @@
         justify-content: center;
         align-items: center;
         margin-bottom: 5rem;
+		gap: 1rem;
     }
 
 	.article-content p {
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 300;
-        font-size: 16px;
-        line-height: 19px;
+        font-size: 19px;
+        line-height: 23px;
         text-align: center;
 	}
 
 	.top-container {
 		display: flex;
 		flex-direction: column;
-        max-width: min(40rem, 100%);
+        max-width: min(50rem, 100%);
         justify-content: center;
         align-items: center;
 	}
+
+    @media only screen and (max-width: 740px) {
+		.article-content {
+			margin-left: 1rem;
+			margin-right: 1rem;
+		}
+    }
 </style>
