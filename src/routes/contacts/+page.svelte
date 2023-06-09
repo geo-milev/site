@@ -19,7 +19,10 @@
 		if (value.blockType === "email") type = "email"
 		if (value.blockType === "textarea") {
 			return`<label for="${value.name}">${value.label}</label>
-					<textarea name="${value.name}" form="contactUsForm" rows="10" style="resize: none;" required="${value.required}"></textarea>`
+					<textarea name="${value.name}"
+						form="contactUsForm" rows="10" style="resize: none;"
+						required="${value.required}"
+						id="${value.name}"></textarea>`
 		}
 
 		return `<label for="${value.name}">${value.label}</label>
