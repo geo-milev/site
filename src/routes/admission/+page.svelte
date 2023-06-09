@@ -34,6 +34,11 @@
 </div>
 
 <style>
+
+	:global(.content-button button) {
+        margin: 0;
+	}
+
     .container {
         display: flex;
         flex-direction: column;
@@ -94,6 +99,7 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		gap: 2rem;
 	}
 
     @media only screen and (max-width: 750px) {

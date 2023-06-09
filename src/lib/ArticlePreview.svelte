@@ -38,7 +38,8 @@
 
 	.preview-image {
 		object-fit: cover;
-		height: 150%;
+		height: 60%;
+		width: 100%;
 	}
 
 	.content {
@@ -46,7 +47,7 @@
 		padding: 1rem;
 		flex-direction: column;
 		justify-content: space-between;
-		height: 100%;
+		height: 40%;
 	}
 
 	h4 {
