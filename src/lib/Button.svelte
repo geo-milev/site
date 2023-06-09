@@ -6,7 +6,7 @@
 
 {#if href}
 	<a href="{href}">
-		<button>{text}</button>
+		<button tabindex="-1">{text}</button>
 	</a>
 {:else}
 	<button on:click={action}>{text}</button>
