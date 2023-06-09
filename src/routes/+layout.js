@@ -12,6 +12,7 @@ export async function load({ fetch }) {
      	query {
             MainInfo {
                 name
+                metaDescription
                 logo {
                     url
                     alt

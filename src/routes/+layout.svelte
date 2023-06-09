@@ -46,6 +46,7 @@
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
 	{/each}
 	<title>{data.MainInfo.name}</title>
+	<meta name="description" content="{data.MainInfo.metaDescription}">
 </svelte:head>
 
 <Navbar fixed="{$layout.navbar.fixed}"
