@@ -17,6 +17,9 @@ export async function load({ fetch, url }) {
                 file {
                     url
                 }
+                classes {
+                    class
+                }
             }
         }
     `;
