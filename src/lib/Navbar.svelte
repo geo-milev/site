@@ -151,7 +151,7 @@
             </nav>
             {:else}
             <div class="right-nav" class:scrolled="{scrollMode}" >
-                <button class="icon-button" on:click={() => {
+                <button class="icon-button" aria-label="отвори мобилна навигация" on:click={() => {
                     isMobileMenuOpen = true
                     document.body.classList.add("no-scroll")
                 }}>
@@ -172,7 +172,7 @@
         <div class="nav-background" on:click={onBackgroundClick} bind:this={navBackground}></div>
         <div class="mobile-nav" transition:fly="{{ x: 300, duration: 300 }}">
             <div class="close">
-                <button class="icon-button" on:click={closeNavbar}>
+                <button class="icon-button" aria-label="затвори мобилна навигация" on:click={closeNavbar}>
                     <NavClose />
                 </button>
             </div>
