@@ -19,7 +19,7 @@
 	export let component;
 	export let componentHeight;
 	export let componentWidth;
-	export let arrowFill;
+	export let arrowFill = "#FFFFFF";
 
 	const scrollConfig: ScrollIntoViewOptions = {
 		behavior: 'smooth',

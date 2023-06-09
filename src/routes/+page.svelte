@@ -60,20 +60,20 @@
 					allowfullscreen></iframe>
 		</div>
 		<div class="hello-column">
-			<h3>{data.VideoSection.header}</h3>
+			<h2>{data.VideoSection.header}</h2>
 			<p>{data.VideoSection.text}</p>
 		</div>
 	</div>
 </OvalContainer>
 
 <div class="news-section">
-	<h3>Новини</h3>
+	<h2>Новини</h2>
 	<Carousel elementProps="{articleProps}" component="{ArticlePreview}" componentHeight="23rem" componentWidth="16rem"/>
 </div>
 
 <OvalContainer>
 	<div class="what-we-study-section">
-		<h3>{data.WhatIsStudied.header}</h3>
+		<h2>{data.WhatIsStudied.header}</h2>
 		<p>{data.WhatIsStudied.text}</p>
 		<div class="profiles">
 			{#each profiles as profile}
@@ -81,7 +81,7 @@
 					<div class="image-container">
 						<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
 					</div>
-					<h4>{profile.name}</h4>
+					<h3>{profile.name}</h3>
 					<p>{profile.description}</p>
 				</div>
 			{/each}
@@ -131,7 +131,7 @@
 		width: 100%;
 	}
 
-	.hello-column h3 {
+	.hello-column h2 {
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
@@ -166,7 +166,7 @@
         justify-content: center;
     }
 
-    .news-section h3 {
+    .news-section h2 {
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 700;
@@ -186,7 +186,7 @@
 		flex-direction: column;
     }
 
-	.what-we-study-section h3 {
+	.what-we-study-section h2 {
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 700;
@@ -236,7 +236,7 @@
 		justify-content: center;
 	}
 
-	.profile h4 {
+	.profile h3 {
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 600;

@@ -19,7 +19,7 @@
 	<img class="preview-image" loading="lazy" src="{preview.image.url}" alt="{preview.image.alt}"/>
 	<div class="content">
 		<div class="text">
-			<h4>{preview.title}</h4>
+			<h3>{preview.title}</h3>
 			<p>{preview.description}</p>
 		</div>
 		<div class="button"><Button href="{preview.href}" text="Виж още" /></div>
@@ -50,7 +50,7 @@
 		height: 40%;
 	}
 
-	h4 {
+	h3 {
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 700;
