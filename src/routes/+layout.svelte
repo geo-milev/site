@@ -1,10 +1,11 @@
-<script lang="ts">
+<script>
 	import Navbar from "$lib/Navbar.svelte";
 	import Footer from "$lib/Footer.svelte";
 	import { onMount, setContext } from "svelte";
 	import { layout, mainLayout, setLayout } from "$lib/setLayout";
 	import { cacheExchange, Client, fetchExchange, setContextClient } from "@urql/svelte";
 	import { env } from "$env/dynamic/public";
+	import { seoInfo } from "../lib/seoInfo";
 
 	setContext('layout', layout);
 
@@ -24,6 +25,15 @@
 	setContextClient(client);
 
 	export let data;
+
+	seoInfo.set({
+		title: data.MainInfo.name,
+		description: data.MainInfo.metaDescription,
+		url: env.FRONTEND_URL,
+		siteName: data.MainInfo.name,
+		imageUrl: undefined,
+		type: undefined
+	})
 </script>
 
 <svelte:head>
@@ -45,8 +55,22 @@
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
 	{/each}
-	<title>{data.MainInfo.name}</title>
-	<meta name="description" content="{data.MainInfo.metaDescription}">
+	<title>{$seoInfo.title}</title>
+	<meta name="description" content="{$seoInfo.description}">
+	<meta property="og:title" content="{$seoInfo.title}" />
+	<meta property="og:description" content="{$seoInfo.description}" />
+	<meta property="og:url" content="{$seoInfo.url}" />
+	<meta property="og:locale" content="bg_BG" />
+	<meta property="og:site_name" content='{$seoInfo.siteName}' />
+	{#if $seoInfo.imageUrl}
+		<meta property="og:image" content="{env.PUBLIC_SERVER_URL + $seoInfo.imageUrl}" />
+	{/if}
+	{#if $seoInfo.type}
+		<meta property="og:type" content="{$seoInfo.type}" />
+	{/if}
+	{#if $seoInfo.publishDate}
+		<meta property="article:published_time" content="{$seoInfo.publishDate}" />
+	{/if}
 </svelte:head>
 
 <Navbar fixed="{$layout.navbar.fixed}"
