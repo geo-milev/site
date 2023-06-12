@@ -11,10 +11,10 @@
 	seoInfo.update(seoInfo => {
 		seoInfo.title = data.News.title
 		seoInfo.description = data.News.description
-		seoInfo.url = `${env.FRONTEND_URL}/news/${data.News.id}`
 		seoInfo.type = "article"
 		seoInfo.imageUrl = data.News.postImage.url
 		seoInfo.publishDate = data.News.publishDate
+
 		return seoInfo
 	})
 </script>

@@ -6,6 +6,7 @@
 	import { cacheExchange, Client, fetchExchange, setContextClient } from "@urql/svelte";
 	import { env } from "$env/dynamic/public";
 	import { seoInfo } from "../lib/seoInfo";
+	import { page } from "$app/stores";
 
 	setContext('layout', layout);
 
@@ -28,12 +29,38 @@
 
 	seoInfo.set({
 		title: data.MainInfo.name,
-		description: data.MainInfo.metaDescription,
-		url: env.FRONTEND_URL,
+		description: undefined,
+		url: $page.url.href,
 		siteName: data.MainInfo.name,
 		imageUrl: undefined,
-		type: undefined
+		type: undefined,
+		publishDate: undefined
 	})
+
+	$: if (data.seoData) {
+		seoInfo.update((seoInfo) => {
+			seoInfo.title = data.seoData.title
+			seoInfo.description = data.seoData.description
+			seoInfo.imageUrl = data.seoData.image.url
+			seoInfo.url = $page.url.href
+			seoInfo.type = undefined
+			seoInfo.publishDate = undefined
+
+			return seoInfo
+		})
+	} else {
+		if (!$page.url.pathname.startsWith("/news/")) {
+			seoInfo.set({
+				title: data.MainInfo.name,
+				description: undefined,
+				url: $page.url.href,
+				siteName: data.MainInfo.name,
+				imageUrl: undefined,
+				type: undefined,
+				publishDate: undefined
+			})
+		}
+	}
 </script>
 
 <svelte:head>
@@ -55,13 +82,15 @@
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
 	{/each}
-	<title>{$seoInfo.title}</title>
-	<meta name="description" content="{$seoInfo.description}">
 	<meta property="og:title" content="{$seoInfo.title}" />
-	<meta property="og:description" content="{$seoInfo.description}" />
 	<meta property="og:url" content="{$seoInfo.url}" />
 	<meta property="og:locale" content="bg_BG" />
 	<meta property="og:site_name" content='{$seoInfo.siteName}' />
+	<title>{$seoInfo.title}</title>
+	{#if $seoInfo.description}
+		<meta name="description" content="{$seoInfo.description}">
+		<meta property="og:description" content="{$seoInfo.description}" />
+	{/if}
 	{#if $seoInfo.imageUrl}
 		<meta property="og:image" content="{env.PUBLIC_SERVER_URL + $seoInfo.imageUrl}" />
 	{/if}
