@@ -81,15 +81,17 @@
     @media only screen and (max-width: 1050px) {
 		.content-container {
 			overflow-x: auto;
+			margin-left: 0;
 		}
 
 		.line {
-			left: calc(2rem - 5px);
+			left: calc(2rem - 8px);
 		}
 
 		.circle {
-			width: calc(2rem + 10px);
-            height: calc(2rem + 10px);
+			width: calc(2rem + 14px);
+            height: calc(2rem + 14px);
+			border-width: 6px;
 		}
 
 		.circle span {
