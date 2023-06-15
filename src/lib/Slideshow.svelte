@@ -95,7 +95,7 @@
 	}
 </script>
 
-<div class="slideshow-container" on:touchstart={onTouchStart} on:touchend={onTouchEnd}>
+<div class="slideshow-container" on:touchstart|passive={onTouchStart} on:touchend|passive={onTouchEnd}>
 	<div class="slideshow-background"
 		 style="--background-url: url({slides[selectedIndex].src}); --gradient-opacity: {$darkGradientOpacity}; --transition-duration: {transitionDuration}ms"></div>
 	<div class="content-container">

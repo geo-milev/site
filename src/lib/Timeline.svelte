@@ -50,7 +50,8 @@
 
 <svelte:window bind:innerWidth={clientWidth} />
 
-<div class="container" style="--circle-radius: {circleRadius}rem; --circle-gap: {circleGap}rem" on:touchstart={onTouchStart} on:touchend={onTouchEnd}>
+<div class="container" style="--circle-radius: {circleRadius}rem; --circle-gap: {circleGap}rem"
+	 on:touchstart|passive={onTouchStart} on:touchend|passive={onTouchEnd}>
 	<div class="timeline">
 		<div class="line"></div>
 		<div class="circles" style="--move-coefficient: {moveCoefficient}">
