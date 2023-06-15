@@ -24,23 +24,32 @@
 	setContextClient(client);
 
 	export let data;
+
+	let loaded = false;
+
+	onMount(() => {
+		loaded = true
+		console.log("load")
+	})
 </script>
 
 <svelte:head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;700&display=swap"
-		rel="stylesheet"
-	/>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,400,45;8..144,400,50;8..144,1000,0&display=swap"
-		rel="stylesheet"
-	/>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
-		rel="stylesheet"
-	/>
+	{#if loaded}
+		<link
+			href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,400,45;8..144,400,50;8..144,1000,0&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+	{/if}
 	{#each data.MainInfo.favicons as favicon}
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
