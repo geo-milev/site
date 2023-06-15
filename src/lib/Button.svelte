@@ -2,10 +2,11 @@
 	export let href: string = undefined;
 	export let action: () => void = undefined;
 	export let text: string;
+	export let target: string;
 </script>
 
 {#if href}
-	<a href="{href}">
+	<a href="{href}" target="{target}">
 		<button>{text}</button>
 	</a>
 {:else}

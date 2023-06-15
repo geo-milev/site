@@ -22,7 +22,7 @@
 			<h4>{preview.title}</h4>
 			<p>{preview.description}</p>
 		</div>
-		<div class="button"><Button href="{preview.href}" text="Виж още" /></div>
+		<div class="button"><Button href="{preview.href}" text="Виж още" target="_blank"/></div>
 	</div>
 </div>
 
