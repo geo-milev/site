@@ -61,6 +61,35 @@
 		})
 	}
 
+	let filteredDocuments = sort(documents)
+	let searchValue;
+
+	if (searchValue && searchValue != "") {
+		search(searchValue)
+	}
+
+	const search = (value) => {
+		if (value === "") {
+			filteredDocuments = sort(documents)
+			return
+		}
+
+		const options = {
+			keys: [
+				"name"
+			]
+		};
+
+		import("fuse.js").then((Fuse: any) => {
+			const fuse = new Fuse.default(documents, options);
+
+			filteredDocuments = fuse.search(value).map((doc) => doc.item)
+		})
+	}
+
+	$: if (filteredDocuments.indexOf(hoveredDocument) == -1) {
+		hoveredDocument = undefined
+	}
 
 	onMount(() => {
 		if (autoSelect) hoveredDocument = documents[0]
@@ -70,8 +99,11 @@
 <div class="container">
 	<div class="list">
 		<h2>{header}</h2>
+		<label for="search" hidden>Търсене</label>
+		<input type="search" id="search" name="search" class="search" placeholder="Търси..."
+			   on:input={(event) => { search(event.target.value )}} bind:value={searchValue}>
 		<ul bind:this={list} on:scroll={onScrollList}>
-			{#each sort(documents) as document}
+			{#each filteredDocuments as document}
 				<li on:mouseenter={() => { hoveredDocument = document}}
 					class:selected={hoveredDocument ? (hoveredDocument.file.url === document.file.url) : false}>
 					<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
@@ -87,7 +119,7 @@
 			<iframe src="{env.PUBLIC_SERVER_URL + hoveredDocument.file.url}"
 					title="{hoveredDocument.name}"
 					referrerpolicy="no-referrer"
-					transition:fade={{ duration: 300 }}></iframe>
+					in:fade={{ duration: 300 }} out:fade={{ duration: 100 }}></iframe>
 		{:else}
 			<p>Поставете мишката си върху елемент от списъка за да се покаже тук.</p>
 		{/if}
@@ -122,6 +154,22 @@
         font-size: 32px;
         line-height: 44px;
         color: #000000;
+		padding-right: 1rem;
+	}
+
+	.list .search {
+		margin-right: 3rem;
+		border: none;
+        border-bottom: 1px solid #000000;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+	}
+
+	.list .search:focus {
+        border-color: #7d0b09;
 	}
 
     .list ul::-webkit-scrollbar {

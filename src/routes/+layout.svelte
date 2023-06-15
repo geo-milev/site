@@ -29,7 +29,6 @@
 
 	onMount(() => {
 		loaded = true
-		console.log("load")
 	})
 </script>
 
