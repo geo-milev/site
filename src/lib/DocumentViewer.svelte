@@ -54,6 +54,12 @@
 	export let getNext: (page: number) => Promise<Document[]>;
 	export let header: string;
 	export let autoSelect = false;
+	export let sort: (documents: Document[]) => Document[] = (documents) => {
+		return documents.sort((a: Document, b: Document) => {
+			return a.name.localeCompare(b.name)
+		})
+	}
+
 
 	onMount(() => {
 		if (autoSelect) hoveredDocument = documents[0]
@@ -64,7 +70,7 @@
 	<div class="list">
 		<h2>{header}</h2>
 		<ul bind:this={list} on:scroll={onScrollList}>
-			{#each documents as document}
+			{#each sort(documents) as document}
 				<li on:mouseenter={() => { hoveredDocument = document}}
 					class:selected={hoveredDocument ? (hoveredDocument.file.url === document.file.url) : false}>
 					<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
