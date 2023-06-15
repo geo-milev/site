@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	import { tweened } from "svelte/motion";
 	import { linear } from "svelte/easing";
 	import { fade } from "svelte/transition";
@@ -17,6 +16,7 @@
 	}
 
 	let slideSwitchIntervalMs = 3000
+
 	const switchSlide = () => {
 		darkGradientOpacity.set(1).then(() => {
 				if (selectedIndex + 1 >= slides.length) {
@@ -44,9 +44,58 @@
 	$: {
 		resetInterval()
 	}
+
+	let touchStartX;
+	let touchStartY;
+	let touchEndX;
+	let touchEndY;
+
+	const onTouchStart = (e) => {
+		touchStartX = e.changedTouches[0].screenX;
+		touchStartY = e.changedTouches[0].screenY;
+	};
+
+	const onTouchEnd = (e) => {
+		touchEndX = e.changedTouches[0].screenX;
+		touchEndY = e.changedTouches[0].screenY;
+		handleGesture();
+	}
+
+	function handleGesture() {
+		const xChange = Math.abs(touchEndX - touchStartX);
+		const yChange = Math.abs(touchEndY - touchStartY)
+
+		if (yChange > xChange) return;
+
+		resetInterval()
+
+		if (touchEndX < touchStartX) {
+			darkGradientOpacity.set(1).then(() => {
+					if (selectedIndex + 1 >= slides.length) {
+						selectedIndex = 0;
+					} else {
+						selectedIndex++;
+					}
+					darkGradientOpacity.set(0.5);
+				}
+			)
+		}
+
+		if (touchEndX > touchStartX) {
+			darkGradientOpacity.set(1).then(() => {
+					if (selectedIndex - 1 < 0) {
+						selectedIndex = slides.length - 1;
+					} else {
+						selectedIndex--;
+					}
+					darkGradientOpacity.set(0.5);
+				}
+			)
+		}
+	}
 </script>
 
-<div class="slideshow-container">
+<div class="slideshow-container" on:touchstart={onTouchStart} on:touchend={onTouchEnd}>
 	<div class="slideshow-background"
 		 style="--background-url: url({slides[selectedIndex].src}); --gradient-opacity: {$darkGradientOpacity}; --transition-duration: {transitionDuration}ms"></div>
 	<div class="content-container">
