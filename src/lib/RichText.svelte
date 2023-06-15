@@ -80,7 +80,6 @@
     }
 
     :global(.markup-content p) {
-        text-indent: 1rem;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
 		color: var(--text-color);
@@ -163,10 +162,6 @@
 
 	.markup-content.centered :global(li) {
 		text-align: left !important;
-	}
-
-	.markup-content.centered :global(p) {
-		text-indent: 0;
 	}
 
     .markup-content.centered :global(pre) {
