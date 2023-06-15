@@ -15,7 +15,7 @@
 		dest: string;
 	}
 
-	let slideSwitchIntervalMs = 3000
+	let slideSwitchIntervalMs = 4000
 
 	const switchSlide = () => {
 		darkGradientOpacity.set(1).then(() => {
