@@ -80,7 +80,7 @@
 			]
 		};
 
-		import("fuse.js").then((Fuse: any) => {
+		import("fuse.js").then((Fuse: { default: never }) => {
 			const fuse = new Fuse.default(documents, options);
 
 			filteredDocuments = fuse.search(value).map((doc) => doc.item)
