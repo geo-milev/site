@@ -2,6 +2,7 @@
 	import { env } from "$env/dynamic/public";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { onMount } from "svelte";
+	import { fade } from "svelte/transition";
 
 	export interface Document {
 		name: string;
@@ -79,13 +80,14 @@
 		</ul>
 	</div>
 	{#if hoveredDocument}
-		<SecondaryButton action={downloadDoc} text="Изтегли" />
+		<SecondaryButton action={downloadDoc} text="Изтегли"/>
 	{/if}
 	<div class="preview">
 		{#if hoveredDocument}
 			<iframe src="{env.PUBLIC_SERVER_URL + hoveredDocument.file.url}"
 					title="{hoveredDocument.name}"
-					referrerpolicy="no-referrer"></iframe>
+					referrerpolicy="no-referrer"
+					transition:fade={{ duration: 300 }}></iframe>
 		{:else}
 			<p>Поставете мишката си върху елемент от списъка за да се покаже тук.</p>
 		{/if}
@@ -96,7 +98,7 @@
 	.container {
 		display: flex;
 		width: 100%;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
 		flex-wrap: wrap;
 	}
