@@ -78,4 +78,8 @@
         color: #FFFFFF;
 		margin: 0;
 	}
+
+	.button {
+         margin-top: 0.5rem;
+     }
 </style>
