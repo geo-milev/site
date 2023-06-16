@@ -2,10 +2,21 @@
 	import { setLayout, tertiaryLayout } from "$lib/setLayout";
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
+	import { seoInfo } from "$lib/seoInfo";
 
 	setLayout(tertiaryLayout)
 
 	export let data;
+
+	seoInfo.update(seoInfo => {
+		seoInfo.title = data.News.title
+		seoInfo.description = data.News.description
+		seoInfo.type = "article"
+		seoInfo.imageUrl = data.News.postImage.url
+		seoInfo.publishDate = data.News.publishDate
+
+		return seoInfo
+	})
 </script>
 
 <div class="article-content">
