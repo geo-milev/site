@@ -24,12 +24,18 @@
 	<div class="content">
 		<h4>{book.name}</h4>
 		<div class="line"></div>
-		<span>{book.publisher.name}</span>
-		<span>{book.authors.map((val) => val.author).join(", ")}</span>
+		{#if book.publisher}
+			<span>{book.publisher}</span>
+		{/if}
+		{#if book.authors}
+			<span>{book.authors.map((val) => val.author).join(", ")}</span>
+		{/if}
 		{#if book.note}
 			<span>{book.note}</span>
 		{/if}
-		<span class="year">{book.year}</span>
+		{#if book.year}
+			<span class="year">{book.year}</span>
+		{/if}
 	</div>
 </div>
 

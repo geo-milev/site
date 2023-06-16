@@ -80,25 +80,20 @@ const parseRichText = (richText) => {
                         const src = env.PUBLIC_SERVER_URL + value.url;
                         if (node.fields) {
                             if (node.fields.isNonImage) {
-                                return `<div class="button"><a href="${src}" target="_blank"><button>${node.fields.buttonText}</button></a></div>`;
+                                return `<div class="button"><a href="${src}" target="_blank"><button tabindex="-1">${node.fields.buttonText}</button></a></div>`;
                             }
                         }
                         if (value.mimeType.startsWith("image/")) {
                             return `<img src="${src}" alt="${value.alt}" style="width: 100%" loading="lazy"/>`;
                         } else {
                             if (value.alt.match(/^\s*$/)) value.alt = "Изтегли";
-                            return `<div class="button"><a href="${src}" target="_blank"><button>${value.alt}</button></a></div>`;
+                            return `<div class="button"><a href="${src}" target="_blank"><button tabindex="-1">${value.alt}</button></a></div>`;
                         }
                     }
                     case "indent": {
                         return `<div style="padding-left: 2rem">${parseRichText(
                             node.children
                         )}</div>`;
-                    }
-                    case "relationship": {
-                        if (node.relationTo === "news") {
-                            return `<a href="${node.value.id}" target="_blank">${node.value.title}</a>`;
-                        } else return "";
                     }
                     case "center": {
                         return `<div class="center-align">${parseRichText(

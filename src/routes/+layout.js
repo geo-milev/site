@@ -1,48 +1,24 @@
-import { cacheExchange, Client, fetchExchange } from "@urql/svelte";
 import { env } from "$env/dynamic/public";
 
-export async function load({ fetch }) {
-    const client = new Client({
-        url: env.PUBLIC_SERVER_URL + "/api/graphql",
-        exchanges: [cacheExchange, fetchExchange],
-        fetch: fetch,
-    });
+export async function load({ fetch, data, url }) {
+    const res = await fetch(
+        env.PUBLIC_SERVER_URL +
+            `/api/pages-seo-data?where[relativeUrl][equals]=${url.pathname}`
+    );
 
-    const QUERY = `
-     	query {
-            MainInfo {
-                name
-                logo {
-                    url
-                    alt
-                    width
-                }
-                favicons {
-                    size
-                    favicon {
-                        url
-                    }
-                }
-            }
-            Contact {
-                locationInfo {
-                  address
-                }
-                workingHours {
-                    workingHoursStart
-                    workingHoursEnd
-                }
-                emails {
-                    mainEmail
-                    secondaryEmail
-                }
-                phones {
-                    principalPhone
-                    assistantPrincipalPhone
-                }
-            }
-        }
-    `;
+    const json = await res.json();
 
-    return (await client.query(QUERY, {})).data;
+    if (json.docs.length !== 1) {
+        return {
+            seoData: undefined,
+            ...data,
+        };
+    }
+
+    const remoteSeoData = json.docs[0];
+
+    return {
+        seoData: remoteSeoData,
+        ...data,
+    };
 }

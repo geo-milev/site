@@ -19,7 +19,7 @@
 	export let component;
 	export let componentHeight;
 	export let componentWidth;
-	export let arrowFill;
+	export let arrowFill = "#FFFFFF";
 
 	const scrollConfig: ScrollIntoViewOptions = {
 		behavior: 'smooth',
@@ -128,7 +128,7 @@
 </script>
 
 <div class="container" style="--component-width: {componentWidth}; --component-height: {componentHeight}; --arrow-fill: {arrowFill}">
-	<button on:click={scrollLeft} class="arrow-button big-screen" disabled="{selectedGroupIndex === 0}">
+	<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedGroupIndex === 0}">
 		<ArrowLeft />
 	</button>
 	<div class="carousel" bind:clientWidth={carouselWidth} bind:this={carousel} on:scroll={updateSelectedGroupIndex}>
@@ -156,14 +156,14 @@
 			</div>
 		{/each}
 	</div>
-	<button on:click={scrollRight} class="arrow-button big-screen" disabled="{selectedGroupIndex === groups.length - 1}">
+	<button on:click={scrollRight} aria-label="дясна стрелка" class="arrow-button big-screen" disabled="{selectedGroupIndex === groups.length - 1}">
 		<ArrowRight />
 	</button>
 	<div class="small-screen-navigation">
-		<button on:click={scrollLeft} class="arrow-button" disabled="{selectedGroupIndex === 0}">
+		<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button" disabled="{selectedGroupIndex === 0}">
 			<ArrowLeft />
 		</button>
-		<button on:click={scrollRight} class="arrow-button" disabled="{selectedGroupIndex === groups.length - 1}">
+		<button on:click={scrollRight} aria-label="дясна стрелка" class="arrow-button" disabled="{selectedGroupIndex === groups.length - 1}">
 			<ArrowRight />
 		</button>
 	</div>

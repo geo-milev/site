@@ -11,7 +11,7 @@
 		<div class="text">
 			<span>{preview.date.toLocaleDateString("bg-BG", { year: 'numeric', month: 'long', day: 'numeric' })}</span>
 			<div class="separator"></div>
-			<h4>{preview.title}</h4>
+			<h2>{preview.title}</h2>
 		</div>
 		<div class="button"><Button href="{preview.href}" text="Виж още" target="_blank" /></div>
 	</div>
@@ -69,7 +69,7 @@
 		background-color: #7D0B09;
 	}
 
-	h4 {
+	h2 {
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 700;

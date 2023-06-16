@@ -112,7 +112,12 @@
 		{/if}
 		<div class="dot-container">
 			{#each slides as slide, i}
-				<input type="radio" bind:group={selectedIndex} on:change={resetInterval} name="dots" value={i}>
+				<input type="radio"
+					   bind:group={selectedIndex}
+					   on:change={resetInterval}
+					   name="dots"
+					   value={i}
+					   aria-label="Избери снимка номер {i + 1}">
 			{/each}
 		</div>
 	</div>
