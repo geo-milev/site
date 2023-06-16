@@ -2,6 +2,7 @@
 	export let href: string = undefined;
 	export let action: () => void = undefined;
 	export let text: string;
+	export let target: string = undefined;
 </script>
 
 {#if href}

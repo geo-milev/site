@@ -31,7 +31,9 @@
 	}
 
 	const onClick = (_, index) => {
-		setSelectedImageIndex(index)
+		setSelectedImageIndex(index).then(() => {
+			elements[selectedImageIndex].scrollIntoView(scrollConfig)
+		})
 	}
 
 	const scrollLeft = () => {

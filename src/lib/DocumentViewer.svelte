@@ -2,6 +2,7 @@
 	import { env } from "$env/dynamic/public";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { onMount } from "svelte";
+	import { fade } from "svelte/transition";
 
 	export interface Document {
 		name: string;
@@ -54,6 +55,41 @@
 	export let getNext: (page: number) => Promise<Document[]>;
 	export let header: string;
 	export let autoSelect = false;
+	export let sort: (documents: Document[]) => Document[] = (documents) => {
+		return documents.sort((a: Document, b: Document) => {
+			return a.name.localeCompare(b.name)
+		})
+	}
+
+	let filteredDocuments = sort(documents)
+	let searchValue;
+
+	if (searchValue && searchValue != "") {
+		search(searchValue)
+	}
+
+	const search = (value) => {
+		if (value === "") {
+			filteredDocuments = sort(documents)
+			return
+		}
+
+		const options = {
+			keys: [
+				"name"
+			]
+		};
+
+		import("fuse.js").then((Fuse: { default: never }) => {
+			const fuse = new Fuse.default(documents, options);
+
+			filteredDocuments = fuse.search(value).map((doc) => doc.item)
+		})
+	}
+
+	$: if (filteredDocuments.indexOf(hoveredDocument) == -1) {
+		hoveredDocument = undefined
+	}
 
 	onMount(() => {
 		if (autoSelect) hoveredDocument = documents[0]
@@ -63,8 +99,11 @@
 <div class="container">
 	<div class="list">
 		<h2>{header}</h2>
+		<label for="search" hidden>Търсене</label>
+		<input type="search" id="search" name="search" class="search" placeholder="Търси..."
+			   on:input={(event) => { search(event.target.value )}} bind:value={searchValue}>
 		<ul bind:this={list} on:scroll={onScrollList}>
-			{#each documents as document}
+			{#each filteredDocuments as document}
 				<li on:mouseenter={() => { hoveredDocument = document}}
 					class:selected={hoveredDocument ? (hoveredDocument.file.url === document.file.url) : false}>
 					<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
@@ -73,13 +112,14 @@
 		</ul>
 	</div>
 	{#if hoveredDocument}
-		<SecondaryButton action={downloadDoc} text="Изтегли" />
+		<SecondaryButton action={downloadDoc} text="Изтегли"/>
 	{/if}
 	<div class="preview">
 		{#if hoveredDocument}
 			<iframe src="{env.PUBLIC_SERVER_URL + hoveredDocument.file.url}"
 					title="{hoveredDocument.name}"
-					referrerpolicy="no-referrer"></iframe>
+					referrerpolicy="no-referrer"
+					in:fade={{ duration: 300 }} out:fade={{ duration: 100 }}></iframe>
 		{:else}
 			<p>Поставете мишката си върху елемент от списъка за да се покаже тук.</p>
 		{/if}
@@ -90,7 +130,7 @@
 	.container {
 		display: flex;
 		width: 100%;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
 		flex-wrap: wrap;
 	}
@@ -114,6 +154,22 @@
         font-size: 32px;
         line-height: 44px;
         color: #000000;
+		padding-right: 1rem;
+	}
+
+	.list .search {
+		margin-right: 3rem;
+		border: none;
+        border-bottom: 1px solid #000000;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+	}
+
+	.list .search:focus {
+        border-color: #7d0b09;
 	}
 
     .list ul::-webkit-scrollbar {

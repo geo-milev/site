@@ -49,7 +49,7 @@
         color: #FFFFFF;
 		text-transform: uppercase;
         width: 100%;
-        word-break: break-all;
+        word-break: break-word;
         white-space: normal;
 	}
 
@@ -61,7 +61,7 @@
         line-height: 19px;
         color: #FFFFFF;
         width: 100%;
-        word-break: break-all;
+        word-break: break-word;
         white-space: normal;
 	}
 

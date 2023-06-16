@@ -90,7 +90,8 @@
 	{#if documents}
 		<DocumentViewer documents="{documents}" autoSelect="{true}"
 						header="{selectedBudget.isYearly ? 'Годишен': 'Месеци'}"
-						getNext="{() => { return }}"></DocumentViewer>
+						getNext="{() => { return }}"
+						sort="{(documents) => documents}"></DocumentViewer>
 	{/if}
 </div>
 

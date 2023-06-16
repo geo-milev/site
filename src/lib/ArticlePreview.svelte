@@ -22,7 +22,7 @@
 			<h3>{preview.title}</h3>
 			<p>{preview.description}</p>
 		</div>
-		<div class="button"><Button href="{preview.href}" text="Виж още" /></div>
+		<div class="button"><Button href="{preview.href}" text="Виж още" target="_blank"/></div>
 	</div>
 </div>
 
@@ -57,9 +57,13 @@
         font-size: 20px;
         line-height: 24px;
         margin: 0 0 0.5rem;
+        color: #000000;
         text-overflow: ellipsis;
-
-        color: #000000
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
 	}
 
 	p {
@@ -72,7 +76,13 @@
         color: #000000;
 		text-overflow: ellipsis;
         overflow: hidden;
-        word-wrap: break-word;
-		white-space: nowrap;
+		display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
     }
+
+	.button {
+		margin-top: 0.5rem;
+	}
 </style>
