@@ -111,7 +111,7 @@
 		display: flex;
 		justify-content: space-between;
 		min-width: 40%;
-		max-width: 70%;
+		max-width: 100%;
         position: relative;
         top: -5rem;
         padding-bottom: 2rem;
