@@ -91,7 +91,8 @@
 		<DocumentViewer documents="{documents}" autoSelect="{true}"
 						header="{selectedBudget.isYearly ? 'Годишен': 'Месеци'}"
 						getNext="{() => { return }}"
-						sort="{(documents) => documents}"></DocumentViewer>
+						sort="{(documents) => documents}"
+						hasSearch="{false}"></DocumentViewer>
 	{/if}
 </div>
 

@@ -55,6 +55,7 @@
 	export let getNext: (page: number) => Promise<Document[]>;
 	export let header: string;
 	export let autoSelect = false;
+	export let hasSearch = true;
 	export let sort: (documents: Document[]) => Document[] = (documents) => {
 		return documents.sort((a: Document, b: Document) => {
 			return a.name.localeCompare(b.name)
@@ -99,9 +100,11 @@
 <div class="container">
 	<div class="list">
 		<h2>{header}</h2>
-		<label for="search" hidden>Търсене</label>
-		<input type="search" id="search" name="search" class="search" placeholder="Търси..."
-			   on:input={(event) => { search(event.target.value )}} bind:value={searchValue}>
+		{#if hasSearch}
+			<label for="search" hidden>Търсене</label>
+			<input type="search" id="search" name="search" class="search" placeholder="Търси..."
+				   on:input={(event) => { search(event.target.value )}} bind:value={searchValue}>
+		{/if}
 		<ul bind:this={list} on:scroll={onScrollList}>
 			{#each filteredDocuments as document}
 				<li on:mouseenter={() => { hoveredDocument = document}}
