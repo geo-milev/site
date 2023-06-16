@@ -19,12 +19,12 @@
     const navigationLinksLeft: NavigationLink[] = [
         { key: "Новини", href: "/news" },
         { key: "За ученика", subsections: [
+                { key: "Седмично разписание", href: "/student/weekly-schedule" },
                 { key: "Учебници", href: "/student/books" },
                 { key: "Вестник", href: "/student/newspaper" }
             ]},
         { key: "Прием", href: "/admission" },
         { key: "Организация", subsections: [
-                { key: "Седмично разписание", href: "/organisation/weekly-schedule" },
                 { key: "Графици", href: "/organisation/schedules" },
                 { key: "Документи", href: "/organisation/documents" },
                 { key: "Административни услуги", href: "/organisation/administrative-services" },
