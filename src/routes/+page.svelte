@@ -8,6 +8,7 @@
 	import { mainLayout, setLayout } from "../lib/setLayout"
 	import { mapArticles } from "../lib/mapArticles";
 	import { env } from "$env/dynamic/public";
+	import { onMount } from "svelte";
 
 	setLayout(mainLayout)
 
@@ -43,6 +44,12 @@
 			preview: article
 		}
 	})
+
+	let loaded = false
+
+	onMount(() => {
+		loaded = true
+	})
 </script>
 
 <Slideshow slides={slides} />
@@ -52,7 +59,7 @@
 		<div class="video-column">
 				<iframe
 					class="video"
-					src="{data.VideoSection.video}"
+					src="{loaded ? data.VideoSection.video: ''}"
 					title="YouTube video player"
 					frameborder="0"
 					loading="lazy"
