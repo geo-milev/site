@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../../lib/setLayout";
 	import { getContextClient } from "@urql/svelte";
-	import { classNumberNames } from "$lib/classNumberNames.js";
+	import { getClassNumberName } from "$lib/classNumberNames.js";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { env } from "$env/dynamic/public";
 	import BookPreview from "$lib/BookPreview.svelte";
@@ -14,7 +14,10 @@
 	let books = [];
 
 	let classSelect;
-	const classNumbers = [5, 6, 7, 8, 9, 10, 11, 12];
+
+	export let data;
+
+	const classNumbers = data.BooksInfo.classes.map((c) => c.class)
 
 	const changeBooks = () => {
 		const className = classSelect.options[classSelect.selectedIndex].value
@@ -29,12 +32,7 @@
 							author
 						}
 						year
-						publisher {
-							name
-						}
-						subject {
-							name
-						}
+						publisher
 						note
 						image {
 							url
@@ -49,8 +47,6 @@
 			books = res.data.Books.docs
 		})
 	}
-
-	export let data;
 
 	onMount(() => {
 		if (data.classNumber && classNumbers.indexOf(parseInt(data.classNumber)) !== -1) {
@@ -72,7 +68,7 @@
 		<label for="classNumber">Въведи своя клас:</label>
 		<select name="classNumber" id="classNumber" bind:this={classSelect} on:change={changeBooks}>
 			{#each classNumbers as classNumber}
-				<option value="{classNumber}">{classNumberNames[classNumber - 1]}</option>
+				<option value="{classNumber}">{getClassNumberName(classNumber)}</option>
 			{/each}
 		</select>
 	</div>

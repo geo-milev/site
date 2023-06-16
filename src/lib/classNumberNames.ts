@@ -1,3 +1,11 @@
+const getClassNumberName = (index) => {
+    if (classNumberNames[index - 1] !== undefined) {
+        return classNumberNames[index - 1];
+    } else {
+        return index;
+    }
+};
+
 const classNumberNames = [
     "Първи",
     "Втори",
@@ -13,4 +21,4 @@ const classNumberNames = [
     "Дванадесети",
 ];
 
-export { classNumberNames };
+export { getClassNumberName };
