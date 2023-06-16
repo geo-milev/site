@@ -52,7 +52,7 @@
 		 src="{env.PUBLIC_SERVER_URL + images[selectedImageIndex].image.url}"
 		 alt="{images[selectedImageIndex].image.alt}" style="opacity: {$opacity};">
 	<div class="selector">
-		<button on:click={scrollLeft} class="arrow-button big-screen" disabled="{selectedImageIndex === 0}">
+		<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedImageIndex === 0}">
 			<ArrowLeft />
 		</button>
 		<div class="previews">
@@ -67,14 +67,14 @@
 				</button>
 			{/each}
 		</div>
-		<button on:click={scrollRight} class="arrow-button big-screen" disabled="{selectedImageIndex === images.length - 1}">
+		<button on:click={scrollRight} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedImageIndex === images.length - 1}">
 			<ArrowRight />
 		</button>
 		<div class="small-screen-navigation">
-			<button on:click={scrollLeft} class="arrow-button" disabled="{selectedImageIndex === 0}">
+			<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button" disabled="{selectedImageIndex === 0}">
 				<ArrowLeft />
 			</button>
-			<button on:click={scrollRight} class="arrow-button" disabled="{selectedImageIndex === images.length - 1}">
+			<button on:click={scrollRight} aria-label="дясна стрелка" class="arrow-button" disabled="{selectedImageIndex === images.length - 1}">
 				<ArrowRight />
 			</button>
 		</div>
