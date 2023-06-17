@@ -4,6 +4,10 @@
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
 	import { seoInfo } from "$lib/seoInfo";
 	import { onMount } from "svelte";
+	import DarkModeIcon from "$lib/DarkModeIcon.svelte";
+	import LightModeIcon from "$lib/LightModeIcon.svelte";
+	import { tweened } from "svelte/motion";
+	import { linear } from "svelte/easing";
 
 	setLayout(tertiaryLayout)
 
@@ -29,6 +33,16 @@
 			mode = "dark"
 		}
 	})
+
+	let darkModeButtonOpacity = tweened(1, { duration: 150, easing: linear });
+
+	const setMode = (newMode) => {
+		darkModeButtonOpacity.set(0).then(() => {
+				mode = newMode
+				darkModeButtonOpacity.set(1);
+			}
+		)
+	}
 
 	$: if (mode === "light") {
 		textColor = "#000000"
@@ -60,8 +74,16 @@
 				   buttonHoverTextColor={buttonHoverTextColor} />
 </div>
 
-<button on:click={() => (mode === "light") ? mode = "dark" : mode = "light"} title="Смени цветови режим" class="theme-button">
-	Dark Mode
+<button on:click={() => (mode === "light") ? setMode("dark") : setMode("light")}
+		title="Смени цветови режим на {(mode === 'light') ? 'тъмен' : 'светъл'}"
+		class="theme-button">
+	<span class="container" style="opacity: {$darkModeButtonOpacity}">
+		{#if mode === "light"}
+			<DarkModeIcon />
+		{:else}
+			<LightModeIcon />
+		{/if}
+	</span>
 </button>
 
 <style>
@@ -135,5 +157,22 @@
 		bottom: 12px;
 		right: 12px;
 		z-index: 3;
+		height: 48px;
+		width: 48px;
+		background-color: #7d0b09;
+		margin: 0;
+		padding: 0;
+		border: none;
+		fill: #FFFFFF;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.theme-button .container {
+		width: 36px;
+		height: 36px;
 	}
 </style>
