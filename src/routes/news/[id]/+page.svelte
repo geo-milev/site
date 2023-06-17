@@ -3,6 +3,7 @@
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
 	import { seoInfo } from "$lib/seoInfo";
+	import { onMount } from "svelte";
 
 	setLayout(tertiaryLayout)
 
@@ -22,6 +23,12 @@
 	let buttonColor = "#7D0B09"
 	let textColor = "#000000"
 	let buttonHoverTextColor = "#FFFFFF";
+
+	onMount(() => {
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			mode = "dark"
+		}
+	})
 
 	$: if (mode === "light") {
 		textColor = "#000000"
@@ -127,5 +134,6 @@
 		position: fixed;
 		bottom: 12px;
 		right: 12px;
+		z-index: 3;
 	}
 </style>
