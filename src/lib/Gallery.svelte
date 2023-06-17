@@ -6,6 +6,7 @@
 	import ArrowRight from "$lib/ArrowRight.svelte";
 
 	export let images;
+	export let arrowColor;
 
 	const imageWidth = "10rem"
 	const imageHeight = "8rem"
@@ -53,7 +54,7 @@
 	<img class="current-image" loading="lazy"
 		 src="{env.PUBLIC_SERVER_URL + images[selectedImageIndex].image.url}"
 		 alt="{images[selectedImageIndex].image.alt}" style="opacity: {$opacity};">
-	<div class="selector">
+	<div class="selector" style="--arrow-color: {arrowColor}">
 		<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedImageIndex === 0}">
 			<ArrowLeft />
 		</button>
@@ -146,7 +147,7 @@
     }
 
     .arrow-button {
-        fill: #000000;
+        fill: var(--arrow-color);
     }
 
     .arrow-button:disabled :global(path) {

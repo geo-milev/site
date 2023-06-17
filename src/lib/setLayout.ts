@@ -36,6 +36,14 @@ const tertiaryLayout: LayoutProps = {
     },
 };
 
+const tertiaryLayoutDark: LayoutProps = {
+    navbar: {
+        fixed: false,
+        showTitle: false,
+        backgroundColor: "#121212",
+    },
+};
+
 const layout = writable(mainLayout);
 
 export {
@@ -45,4 +53,5 @@ export {
     mainLayout,
     secondaryLayout,
     tertiaryLayout,
+    tertiaryLayoutDark,
 };
