@@ -90,6 +90,7 @@
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
 	{/each}
+	<link href="/news/feed" rel="alternate" type="application/rss+xml" title="RSS 2.0" />
 	<meta property="og:title" content="{$seoInfo.title}" />
 	<meta property="og:url" content="{$seoInfo.url}" />
 	<meta property="og:locale" content="bg_BG" />
