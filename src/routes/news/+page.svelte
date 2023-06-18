@@ -6,6 +6,7 @@
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
 	import { getContextClient } from "@urql/svelte";
 	import { mapArticles } from "../../lib/mapArticles";
+	import RSSFeedIcon from "$lib/RSSFeedIcon.svelte";
 
 	setLayout(secondaryLayout)
 
@@ -60,6 +61,10 @@
 		<span class="no-more-articles">Това са всички новини.</span>
 	{/if}
 </div>
+
+<a aria-label="RSS поток" title="RSS поток" class="rss-button" href="/news/feed">
+	<RSSFeedIcon></RSSFeedIcon>
+</a>
 
 <style>
 	.container {
@@ -127,5 +132,14 @@
         line-height: 18px;
         text-align: center;
         color: #FFFFFF
+	}
+
+	.rss-button {
+		position: fixed;
+		bottom: 12px;
+		right: 12px;
+		max-width: 36px;
+		max-height: 36px;
+		z-index: 3;
 	}
 </style>
