@@ -1,8 +1,13 @@
 <script>
-	import { setLayout, tertiaryLayout } from "$lib/setLayout";
+	import { setLayout, tertiaryLayout, tertiaryLayoutDark } from "$lib/setLayout";
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
 	import { seoInfo } from "$lib/seoInfo";
+	import { onMount } from "svelte";
+	import DarkModeIcon from "$lib/DarkModeIcon.svelte";
+	import LightModeIcon from "$lib/LightModeIcon.svelte";
+	import { tweened } from "svelte/motion";
+	import { linear } from "svelte/easing";
 
 	setLayout(tertiaryLayout)
 
@@ -17,9 +22,42 @@
 
 		return seoInfo
 	})
+
+	let mode = "light"
+	let buttonColor = "#7D0B09"
+	let textColor = "#000000"
+	let buttonHoverTextColor = "#FFFFFF";
+
+	onMount(() => {
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			mode = "dark"
+		}
+	})
+
+	let darkModeButtonOpacity = tweened(1, { duration: 150, easing: linear });
+
+	const setMode = (newMode) => {
+		darkModeButtonOpacity.set(0).then(() => {
+				mode = newMode
+				darkModeButtonOpacity.set(1);
+			}
+		)
+	}
+
+	$: if (mode === "light") {
+		textColor = "#000000"
+		buttonColor = "#7D0B09"
+		buttonHoverTextColor = "#FFFFFF";
+		setLayout(tertiaryLayout)
+	} else {
+		textColor = "#FFFFFF"
+		buttonColor = "#FFFFFF"
+		buttonHoverTextColor = "#000000";
+		setLayout(tertiaryLayoutDark)
+	}
 </script>
 
-<div class="article-content">
+<div class="article-content" style="--text-color: {textColor}">
 	<div class="top-container">
 		<div class="header-container">
 			<h1>{data.News.title}</h1>
@@ -30,18 +68,31 @@
 	</div>
 	<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
 	<BlockRenderer blocks="{data.News.content}"
-				   buttonColor="#7D0B09"
-				   textColor="#000000"
-				   headerLineColor="#7D0B09" />
+				   buttonColor={buttonColor}
+				   textColor={textColor}
+				   headerLineColor="#7D0B09"
+				   buttonHoverTextColor={buttonHoverTextColor} />
 </div>
+
+<button on:click={() => (mode === "light") ? setMode("dark") : setMode("light")}
+		title="Смени цветови режим на {(mode === 'light') ? 'тъмен' : 'светъл'}"
+		class="theme-button">
+	<span class="container" style="opacity: {$darkModeButtonOpacity}">
+		{#if mode === "light"}
+			<DarkModeIcon />
+		{:else}
+			<LightModeIcon />
+		{/if}
+	</span>
+</button>
 
 <style>
     .article-content h1 {
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
-        color: #000000;
-        border-bottom: 2px #7D0B09 solid;
+        color: var(--text-color);
+        border-bottom: 2px #7d0b09 solid;
         margin: 0;
         padding: 1rem;
 		text-align: center;
@@ -66,7 +117,7 @@
     }
 
     .article-content {
-        color: #000000;
+        color: var(--text-color);
         display: flex;
         flex-direction: column;
         margin-left: 3rem;
@@ -100,4 +151,28 @@
 			margin-right: 1rem;
 		}
     }
+
+	.theme-button {
+		position: fixed;
+		bottom: 12px;
+		right: 12px;
+		z-index: 3;
+		height: 48px;
+		width: 48px;
+		background-color: #7d0b09;
+		margin: 0;
+		padding: 0;
+		border: none;
+		fill: #FFFFFF;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.theme-button .container {
+		width: 36px;
+		height: 36px;
+	}
 </style>

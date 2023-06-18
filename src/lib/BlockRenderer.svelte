@@ -82,7 +82,7 @@
 		</div>
 	{/if}
 	{#if block.blockType === "gallery"}
-		<Gallery images="{block.images}"></Gallery>
+		<Gallery images="{block.images}" arrowColor={textColor}></Gallery>
 	{/if}
 	{#if block.blockType === "formula"}
 		<div class="formula" style="--text-color: {textColor}">
