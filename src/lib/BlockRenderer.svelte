@@ -12,7 +12,7 @@
 	export let buttonColor = "#FFFFFF";
 	export let textColor = "#FFFFFF"
 	export let headerLineColor = "#FFFFFF"
-	export let buttonHoverTextColor = "#FFFFFF"
+	export let buttonHoverTextColor = "#000000"
 </script>
 
 {#each blocks as block}
