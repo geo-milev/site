@@ -140,6 +140,6 @@
 		right: 12px;
 		max-width: 36px;
 		max-height: 36px;
-		z-index: 3;
+		z-index: 2;
 	}
 </style>

@@ -156,7 +156,7 @@
 		position: fixed;
 		bottom: 12px;
 		right: 12px;
-		z-index: 3;
+		z-index: 2;
 		height: 48px;
 		width: 48px;
 		background-color: #7d0b09;
