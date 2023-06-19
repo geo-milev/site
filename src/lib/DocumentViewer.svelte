@@ -100,19 +100,28 @@
 <div class="container">
 	<div class="list">
 		<h2>{header}</h2>
-		{#if hasSearch}
+		{#if hasSearch && documents.length !== 0}
 			<label for="search" hidden>Търсене</label>
 			<input type="search" id="search" name="search" class="search" placeholder="Търси..."
 				   on:input={(event) => { search(event.target.value )}} bind:value={searchValue}>
 		{/if}
-		<ul bind:this={list} on:scroll={onScrollList}>
-			{#each filteredDocuments as document}
-				<li on:mouseenter={() => { hoveredDocument = document}}
-					class:selected={hoveredDocument ? (hoveredDocument.file.url === document.file.url) : false}>
-					<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
-				</li>
-			{/each}
-		</ul>
+		{#if filteredDocuments.length !== 0}
+			<ul bind:this={list} on:scroll={onScrollList}>
+				{#each filteredDocuments as document}
+					<li on:mouseenter={() => { hoveredDocument = document}}
+						class:selected={hoveredDocument ? (hoveredDocument.file.url === document.file.url) : false}>
+						<a href="{env.PUBLIC_SERVER_URL + document.file.url}" title="Отвори">{document.name}</a>
+					</li>
+				{/each}
+			</ul>
+		{/if}
+		{#if documents.length === 0}
+			<p>Странно... тук няма нищо.</p>
+		{:else}
+			{#if filteredDocuments.length === 0}
+				<p>Няма елементи, които да отговарят на условията.</p>
+			{/if}
+		{/if}
 	</div>
 	{#if hoveredDocument}
 		<SecondaryButton action={downloadDoc} text="Изтегли"/>
@@ -244,5 +253,14 @@
         line-height: 33px;
         text-align: center;
         color: #FFFFFF;
+	}
+
+	.list p {
+        color: #000000;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
 	}
 </style>
