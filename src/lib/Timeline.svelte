@@ -85,7 +85,7 @@
         flex-wrap: nowrap;
         gap: 8px;
         transition: transform 300ms ease-out;
-        transform: translateX(calc(-100% * var(--move-coefficient-carousel) - 8px * var(--move-coefficient-carousel)));
+        transform: translateX(calc(-100% * var(--move-coefficient-carousel) - 8px * (var(--move-coefficient-carousel) - 1)));
     }
 
     .timeline {
