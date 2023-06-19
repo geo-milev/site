@@ -141,7 +141,7 @@
 			<div class="class-selects">
 				<select name="classNumber" id="classNumber" bind:this={classNumberSelect} on:change={changeSchedule}>
 					{#each classNumbers as classNumber}
-						<option value="{classNumber}">{getClassNumberName(classNumber - 1)}</option>
+						<option value="{classNumber}">{getClassNumberName(classNumber)}</option>
 					{/each}
 				</select>
 				<select name="class" id="class" bind:this={classLetterSelect} on:change={changeSchedule}>

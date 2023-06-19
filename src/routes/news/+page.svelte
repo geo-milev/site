@@ -62,7 +62,7 @@
 	{/if}
 </div>
 
-<a aria-label="RSS поток" title="RSS поток" class="rss-button" href="/news/feed">
+<a aria-label="RSS поток" data-sveltekit-reload title="RSS поток" class="rss-button" href="/news/feed">
 	<RSSFeedIcon></RSSFeedIcon>
 </a>
 
