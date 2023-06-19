@@ -40,6 +40,14 @@ export async function load({ fetch }) {
                     principalPhone
                     assistantPrincipalPhone
                 }
+                socialMedia {
+                    socialMediaTitle
+                    icon {
+                        url
+                        alt
+                    }
+                    link
+                }
             }
         }
     `;

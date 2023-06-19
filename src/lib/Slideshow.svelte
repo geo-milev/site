@@ -121,6 +121,7 @@
 			{/each}
 		</div>
 	</div>
+	<slot />
 </div>
 
 <style>

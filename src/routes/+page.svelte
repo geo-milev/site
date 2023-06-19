@@ -52,7 +52,17 @@
 	})
 </script>
 
-<Slideshow slides={slides} />
+<Slideshow slides={slides}>
+	<div class="social-media">
+		{#each data.Contact.socialMedia as socialMedia }
+			<a class="floating-action-button"
+			   title="{socialMedia.socialMediaTitle}"
+			   href="{socialMedia.link}" target="_blank">
+				<img src="{socialMedia.icon.url}" alt="{socialMedia.icon.alt}" loading="lazy">
+			</a>
+		{/each}
+	</div>
+</Slideshow>
 
 <OvalContainer>
 	<div class="hello-section">
@@ -282,4 +292,29 @@
         width: 100%;
         height: 100%;
     }
+
+	.social-media {
+		position: absolute;
+		right: 1rem;
+		bottom: 3.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.social-media .floating-action-button {
+		border: none;
+		background-color: #7d0b09;
+		border-radius: 50%;
+		width: 48px;
+		height: 48px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.social-media .floating-action-button img {
+		max-height: 24px;
+		max-width: 24px;
+	}
 </style>
