@@ -30,8 +30,13 @@
 			<IconLink href="mailto:{email}" text="{email}"><MailIcon /></IconLink>
 		</div>
 		<h4>
-			<a href="/about-us">За нас</a>
+			Създадено от
 		</h4>
+		<div class="names">
+			<span>Михаил Михов</span>
+			<span>Никола Ганчев</span>
+			<span>Пламен Желев</span>
+		</div>
 	</div>
 </footer>
 
@@ -51,7 +56,6 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        padding-bottom: 3rem;
         justify-content: flex-start;
         align-items: center;
         background-color: #151515;
@@ -120,24 +124,43 @@
         border-bottom: rgba(255, 255, 255, 0.31) 1px solid;
 	}
 
-	a {
-        text-decoration: none;
-		color: #FFFFFF;
-        font-size: 20px;
-        line-height: 23px;
-        text-align: center;
-        font-family: Roboto, serif;
-        font-weight: 400;
-	}
-
 	h4 {
         position: relative;
         top: -5rem;
         margin: 0;
         padding: 1.5rem;
         border-top: #FFFFFF 1px solid;
+        color: #FFFFFF;
+        font-size: 20px;
+        line-height: 23px;
+        text-align: center;
+        font-family: Roboto, serif;
+        font-weight: 700;
 	}
 
+	.names {
+        position: relative;
+        top: -5rem;
+        margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		align-items: center;
+		min-width: 60%;
+		max-width: 100%;
+		gap: 2rem;
+		padding-top: 0.5rem;
+	}
+
+	.names span {
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 24px;
+        line-height: 28px;
+        text-align: center;
+        color: #FFFFFF;
+	}
 
     @media only screen and (max-width: 1050px) {
 		.links {
