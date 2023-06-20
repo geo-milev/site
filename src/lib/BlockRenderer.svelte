@@ -133,7 +133,7 @@
 		</div>
 	{/if}
 	{#if block.blockType === "video"}
-		<div class="video-container">
+		<div class="video-container unfloated">
 			<iframe
 				class="video"
 				src="{loaded ? block.video: ''}"
@@ -213,6 +213,8 @@
 		width: 100%;
         display: flex;
 		overflow-x: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     .formula {
@@ -220,6 +222,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     .formula .result {
@@ -318,7 +322,9 @@
 		justify-content: space-around;
         flex-wrap: wrap;
         flex-direction: row;
-        gap: 1rem;
+        gap: 3rem;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
     }
 
     .floated-video-content .block-renderer {
@@ -329,11 +335,16 @@
         display: flex;
         position: relative;
         overflow: hidden;
-        width: 45vw;
-        height: 25.312vw;
+        width: 40vw;
+        height: 22.5vw;
 		justify-content: center;
 		align-items: center;
     }
+
+	.video-container.unfloated {
+		width: 50vw;
+		height: 28.125vw;
+	}
 
     .video-container iframe {
         position: absolute;
@@ -375,20 +386,12 @@
             grid-template-columns: repeat(auto-fill, 10rem);
         }
 
-        .video-container {
+        .video-container, .video-container.unfloated {
             display: flex;
             position: relative;
             overflow: hidden;
             width: 90vw;
             height: 50.625vw;
-        }
-
-        .floated-video-content .block-renderer {
-            order: -1;
-        }
-
-        .floated-video-content .video-container {
-            order: 1;
         }
 
 		.floated-video-content .block-renderer {
