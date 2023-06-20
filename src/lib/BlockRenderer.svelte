@@ -16,6 +16,10 @@
 	export let textColor = "#FFFFFF"
 	export let headerLineColor = "#FFFFFF"
 	export let buttonHoverTextColor = "#000000"
+	export let documentViewerBackgroundColor = "#4F0D0D"
+	export let documentViewerHoverColor = "#FFFFFF"
+	export let documentViewerTextColor = "#FFFFFF"
+	export let documentViewerTextColorNegative = "#FFFFFF"
 
 	let loaded = false;
 
@@ -171,10 +175,10 @@
 				getNext="{() => { return }}"
 				sort="{documentViewerSorts[block.sort]}"
 				hasSearch="{block.hasSearch}"
-				backgroundColor = "#4F0D0D"
-				textColor = "#FFFFFF"
-				textColorNegative = "{textColor}"
-				hoverColor = "#FFFFFF"
+				backgroundColor = "{documentViewerBackgroundColor}"
+				textColor = "{documentViewerTextColor}"
+				textColorNegative = "{documentViewerTextColorNegative}"
+				hoverColor = "{documentViewerHoverColor}"
 				buttonTextHoverColor = "{buttonHoverTextColor}"
 				buttonHoverColor = "{buttonColor}"></DocumentViewer>
 	{/if}
