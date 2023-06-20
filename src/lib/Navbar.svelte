@@ -5,6 +5,7 @@
     import NavPlus from "$lib/NavPlus.svelte";
     import { afterNavigate } from '$app/navigation';
     import { fly } from 'svelte/transition';
+    import { navigating } from '$app/stores'
 
     interface NavigationLink {
         key: string;
@@ -48,6 +49,7 @@
     let innerWidth;
     let isMobileMenuOpen;
     let navBackground;
+    let loadingBarPercentage = 0;
 
     const closeNavbar = () => {
         isMobileMenuOpen = false;
@@ -55,6 +57,22 @@
     }
 
     afterNavigate(closeNavbar)
+    afterNavigate(() => {
+        if (loadingBarPercentage > 0) {
+            loadingBarPercentage = 100;
+            setTimeout(() => {
+                loadingBarPercentage = 0;
+            }, 100)
+        }
+    })
+
+    $: if ($navigating) {
+        setTimeout(() => {
+            if ($navigating) {
+                loadingBarPercentage = 30;
+            }
+        }, 300)
+    }
 
     const onBackgroundClick = (event) => {
         if (event.target == navBackground) closeNavbar()
@@ -78,6 +96,7 @@
 <svelte:window bind:scrollY="{scrollY}" bind:innerWidth />
 
 <div class="nav-container" class:fixed="{fixed}" style="--logo-width: {logoWidth}px; --mobile-breakpoint: {mobileBreakpoint}px">
+    <div class="progress-bar" style="--loading-bar-scale: scaleX({loadingBarPercentage}%)"></div>
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
@@ -501,5 +520,16 @@
 
     .scrolled button {
         margin-bottom: 1.5rem;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 1px;
+        border-radius: 1px;
+        background-color: #FFFFFF;
+        position: absolute;
+        top: 0;
+        transform: var(--loading-bar-scale);
+        transform-origin: left;
     }
 </style>
