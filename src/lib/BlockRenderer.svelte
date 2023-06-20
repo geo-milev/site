@@ -315,8 +315,7 @@
 
     .floated-video-content {
         display: flex;
-        justify-content: center;
-        align-items: center;
+		justify-content: space-around;
         flex-wrap: wrap;
         flex-direction: row;
         gap: 1rem;
@@ -345,7 +344,6 @@
         width: 100%;
         height: 100%;
     }
-
 
     @media only screen and (max-width: 1050px) {
         .floated-blocks-wrapper .block-renderer {
@@ -392,5 +390,9 @@
         .floated-video-content .video-container {
             order: 1;
         }
+
+		.floated-video-content .block-renderer {
+			width: 100%;
+		}
     }
 </style>
