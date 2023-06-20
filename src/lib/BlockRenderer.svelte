@@ -6,6 +6,8 @@
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
 	import Gallery from "$lib/Gallery.svelte";
 	import { onMount } from "svelte";
+	import DocumentViewer from "$lib/DocumentViewer.svelte";
+	import { documentViewerSorts } from "$lib/documentViewerSorts.js";
 
 	let formulaResults: Map<string, string> = new Map<string, string>()
 
@@ -162,6 +164,19 @@
 							   buttonHoverTextColor = {buttonHoverTextColor}/>
 			</div>
 		</div>
+	{/if}
+	{#if block.blockType === "file-viewer"}
+			<DocumentViewer documents="{block.files}" autoSelect="{block.autoSelect}"
+				header="{block.title}"
+				getNext="{() => { return }}"
+				sort="{documentViewerSorts[block.sort]}"
+				hasSearch="{block.hasSearch}"
+				backgroundColor = "#4F0D0D"
+				textColor = "#FFFFFF"
+				textColorNegative = "{textColor}"
+				hoverColor = "#FFFFFF"
+				buttonTextHoverColor = "{buttonHoverTextColor}"
+				buttonHoverColor = "{buttonColor}"></DocumentViewer>
 	{/if}
 {/each}
 

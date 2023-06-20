@@ -5,10 +5,14 @@
 	export let action: () => void = undefined;
 	export let text: string;
 	export let color = "#FFFFFF";
+	export let hoverColor = "#FFFFFF"
+	export let hoverTextColor = "#000000"
 	export let active = false;
 </script>
 
-<div class="content-button" style="--color: {color}" class:active={active}>
+<div class="content-button" style="--color: {color};
+--hover-color: {hoverColor};
+--hover-text-color: {hoverTextColor}" class:active={active}>
 	<Button href="{href}" action="{action}" text="{text}" />
 </div>
 
@@ -26,15 +30,15 @@
     }
 
     .content-button :global(button:hover) {
-        color: #000000;
-        background-color: #FFFFFF;
-        border: 2px solid #FFFFFF;
+        color: var(--hover-text-color);
+        background-color: var(--hover-color);
+        border: 2px solid var(--hover-color);
         font-variation-settings: 'GRAD' 150;
     }
     .content-button.active :global(button) {
-        color: #000000;
-        background-color: #FFFFFF;
-        border: 2px solid #FFFFFF;
+        color: var(--hover-text-color);
+        background-color: var(--hover-color);
+        border: 2px solid var(--hover-color);
         font-variation-settings: 'GRAD' 150;
     }
 
