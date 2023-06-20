@@ -5,6 +5,7 @@
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
 	import Gallery from "$lib/Gallery.svelte";
+	import { onMount } from "svelte";
 
 	let formulaResults: Map<string, string> = new Map<string, string>()
 
@@ -13,6 +14,12 @@
 	export let textColor = "#FFFFFF"
 	export let headerLineColor = "#FFFFFF"
 	export let buttonHoverTextColor = "#000000"
+
+	let loaded = false;
+
+	onMount(() => {
+		loaded = true
+	})
 </script>
 
 {#each blocks as block}
@@ -121,6 +128,18 @@
 					<span class="result-number">{formulaResults.get(block.id)}</span>
 				</div>
 			{/if}
+		</div>
+	{/if}
+	{#if block.blockType === "video"}
+		<div class="video-container">
+			<iframe
+				class="video"
+				src="{loaded ? block.video: ''}"
+				title="YouTube video player"
+				frameborder="0"
+				loading="lazy"
+				allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				allowfullscreen></iframe>
 		</div>
 	{/if}
 {/each}
@@ -256,6 +275,24 @@
         flex-direction: column;
         align-items: center;
 		width: 50%;
+    }
+
+    .video-container {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        width: 50rem;
+        height: 28.125rem;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
     }
 
     @media only screen and (max-width: 1050px) {
