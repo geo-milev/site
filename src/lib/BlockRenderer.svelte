@@ -142,6 +142,27 @@
 				allowfullscreen></iframe>
 		</div>
 	{/if}
+	{#if block.blockType === "floated-video-content"}
+		<div class="floated-video-content">
+			<div class="video-container">
+				<iframe
+					class="video"
+					src="{loaded ? block.video: ''}"
+					title="YouTube video player"
+					frameborder="0"
+					loading="lazy"
+					allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen></iframe>
+			</div>
+			<div class="block-renderer">
+				<BlockRenderer blocks="{block.content}"
+							   buttonColor={buttonColor}
+							   textColor={textColor}
+							   headerLineColor={headerLineColor}
+							   buttonHoverTextColor = {buttonHoverTextColor}/>
+			</div>
+		</div>
+	{/if}
 {/each}
 
 <style>
@@ -281,8 +302,10 @@
         display: flex;
         position: relative;
         overflow: hidden;
-        width: 50rem;
-        height: 28.125rem;
+        width: 50vw;
+        height: 28.125vw;
+		justify-content: center;
+		align-items: center;
     }
 
     .video-container iframe {
@@ -294,6 +317,15 @@
         width: 100%;
         height: 100%;
     }
+
+	.floated-video-content {
+        width: 100%;
+        display: grid;
+        grid-gap: 5rem;
+        grid-template-columns: repeat(2, 1fr);
+        place-content: center;
+        margin-top: 1rem;
+	}
 
     @media only screen and (max-width: 1050px) {
         .floated-blocks-wrapper .block-renderer {
@@ -323,6 +355,28 @@
 
         .formula form .variables {
             grid-template-columns: repeat(auto-fill, 10rem);
+        }
+
+        .video-container {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            width: 90vw;
+            height: 50.625vw;
+        }
+
+        .floated-video-content .block-renderer {
+            order: -1;
+        }
+
+        .floated-video-content .video-container {
+            order: 1;
+        }
+
+        .floated-video-content {
+            grid-gap: 2rem;
+            grid-template-columns: 1fr;
+            grid-auto-rows: max-content;
         }
     }
 </style>
