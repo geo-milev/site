@@ -145,7 +145,7 @@
 		</div>
 	{/if}
 	{#if block.blockType === "floated-video-content"}
-		<div class="floated-video-content">
+		<div class="floated-video-content" style="flex-direction: {block.float === 'left' ? 'row': 'row-reverse'}">
 			<div class="video-container">
 				<iframe
 					class="video"
@@ -313,12 +313,25 @@
 		width: 50%;
     }
 
+    .floated-video-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .floated-video-content .block-renderer {
+        width: 45vw;
+    }
+
     .video-container {
         display: flex;
         position: relative;
         overflow: hidden;
-        width: 50vw;
-        height: 28.125vw;
+        width: 45vw;
+        height: 25.312vw;
 		justify-content: center;
 		align-items: center;
     }
@@ -333,14 +346,6 @@
         height: 100%;
     }
 
-	.floated-video-content {
-        width: 100%;
-        display: grid;
-        grid-gap: 5rem;
-        grid-template-columns: repeat(2, 1fr);
-        place-content: center;
-        margin-top: 1rem;
-	}
 
     @media only screen and (max-width: 1050px) {
         .floated-blocks-wrapper .block-renderer {
@@ -386,12 +391,6 @@
 
         .floated-video-content .video-container {
             order: 1;
-        }
-
-        .floated-video-content {
-            grid-gap: 2rem;
-            grid-template-columns: 1fr;
-            grid-auto-rows: max-content;
         }
     }
 </style>
