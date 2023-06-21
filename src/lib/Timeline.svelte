@@ -56,7 +56,8 @@
 		<div class="line"></div>
 		<div class="circles" style="--move-coefficient: {moveCoefficient}">
 			{#each componentProps as props, index}
-				<button on:click={() => {selectedIndex = index}} class="circle">
+				<button on:click={() => {selectedIndex = index}} class="circle"
+						style="--transform: {selectedIndex === index ? 'scale(1.2, 1.2)': ''}">
 					<span>{props.event[timelineTextProperty]}</span>
 				</button>
 			{/each}
@@ -72,67 +73,88 @@
 </div>
 
 <style>
-	.container {
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-	}
+    .container {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
 
-	.carousel {
+    .carousel {
         display: flex;
         position: relative;
         flex-wrap: nowrap;
-		gap: 8px;
+        gap: 8px;
         transition: transform 300ms ease-out;
-        transform: translateX(calc(-100% * var(--move-coefficient-carousel) - 8px * var(--move-coefficient-carousel)));
-	}
+        transform: translateX(calc(-100% * var(--move-coefficient-carousel) - 8px * (var(--move-coefficient-carousel) - 1)));
+    }
 
-	.timeline {
-		display: flex;
-		width: 100%;
-		flex-direction: row;
-		justify-content: center;
-		position: relative;
-		overflow: hidden;
-		margin-bottom: 3rem;
-	}
-
-	.line {
+    .timeline {
+        display: flex;
         width: 100%;
-		display: block;
-		background-color: #D9D9D9;
-		height: 6px;
-		position: absolute;
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .line {
+        width: 100%;
+        display: block;
+        background-color: #D9D9D9;
+        height: 6px;
+        position: absolute;
         top: 50%;
         transform: translateY(-50%);
-	}
+    }
 
-	.circles {
-		display: flex;
-		flex-direction: row;
-		gap: var(--circle-gap);
-		transition: transform 300ms ease-out;
+    .circles {
+        display: flex;
+        flex-direction: row;
+        gap: var(--circle-gap);
+        transition: transform 300ms ease-out;
         transform: translateX(calc(var(--circle-radius) * var(--move-coefficient) + var(--circle-gap) * var(--move-coefficient)));
-	}
+        overflow-y: visible;
+    }
 
-	.circle {
-		display: flex;
-		height: var(--circle-radius);
-		width: var(--circle-radius);
+    .circle {
+        display: flex;
+        height: var(--circle-radius);
+        width: var(--circle-radius);
         border-radius: 50%;
-        background-color: #D9D9D9;
-		justify-content: center;
-		align-items: center;
-		z-index: 1;
+        background-color: #FFFFFF;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
         border: none;
         padding: 0;
         cursor: pointer;
-	}
+        transition: transform 300ms ease-out;
+        transform: var(--transform);
+    }
 
-	.item-container {
-		width: var(--carousel-width);
-		flex-shrink: 0;
-		position: relative;
-		overflow-x: hidden;
-	}
+    .circle span {
+        color: #7C1416;
+        font-family: 'Roboto', serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 39px;
+    }
+
+    .item-container {
+        width: var(--carousel-width);
+        flex-shrink: 0;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    @media only screen and (max-width: 675px) {
+        .circle span {
+            font-size: 26px;
+            line-height: 32px;
+        }
+    }
 </style>

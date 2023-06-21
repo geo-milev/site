@@ -29,7 +29,10 @@
 	let buttonHoverTextColor = "#FFFFFF";
 
 	onMount(() => {
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		const savedMode = localStorage.getItem("mode");
+		if (savedMode === "light" || savedMode === "dark") {
+			mode = savedMode
+		} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			mode = "dark"
 		}
 	})
@@ -39,6 +42,7 @@
 	const setMode = (newMode) => {
 		darkModeButtonOpacity.set(0).then(() => {
 				mode = newMode
+				localStorage.setItem("mode", newMode);
 				darkModeButtonOpacity.set(1);
 			}
 		)
@@ -156,7 +160,7 @@
 		position: fixed;
 		bottom: 12px;
 		right: 12px;
-		z-index: 3;
+		z-index: 2;
 		height: 48px;
 		width: 48px;
 		background-color: #7d0b09;
