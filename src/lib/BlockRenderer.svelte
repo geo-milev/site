@@ -5,6 +5,9 @@
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
 	import Gallery from "$lib/Gallery.svelte";
+	import { onMount } from "svelte";
+	import DocumentViewer from "$lib/DocumentViewer.svelte";
+	import { documentViewerSorts } from "$lib/documentViewerSorts.js";
 
 	let formulaResults: Map<string, string> = new Map<string, string>()
 
@@ -13,6 +16,16 @@
 	export let textColor = "#FFFFFF"
 	export let headerLineColor = "#FFFFFF"
 	export let buttonHoverTextColor = "#000000"
+	export let documentViewerBackgroundColor = "#4F0D0D"
+	export let documentViewerHoverColor = "#FFFFFF"
+	export let documentViewerTextColor = "#FFFFFF"
+	export let documentViewerTextColorNegative = "#FFFFFF"
+
+	let loaded = false;
+
+	onMount(() => {
+		loaded = true
+	})
 </script>
 
 {#each blocks as block}
@@ -123,6 +136,52 @@
 			{/if}
 		</div>
 	{/if}
+	{#if block.blockType === "video"}
+		<div class="video-container unfloated">
+			<iframe
+				class="video"
+				src="{loaded ? block.video: ''}"
+				title="YouTube video player"
+				frameborder="0"
+				loading="lazy"
+				allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				allowfullscreen></iframe>
+		</div>
+	{/if}
+	{#if block.blockType === "floated-video-content"}
+		<div class="floated-video-content" style="flex-direction: {block.float === 'left' ? 'row': 'row-reverse'}">
+			<div class="video-container">
+				<iframe
+					class="video"
+					src="{loaded ? block.video: ''}"
+					title="YouTube video player"
+					frameborder="0"
+					loading="lazy"
+					allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					allowfullscreen></iframe>
+			</div>
+			<div class="block-renderer">
+				<BlockRenderer blocks="{block.content}"
+							   buttonColor={buttonColor}
+							   textColor={textColor}
+							   headerLineColor={headerLineColor}
+							   buttonHoverTextColor = {buttonHoverTextColor}/>
+			</div>
+		</div>
+	{/if}
+	{#if block.blockType === "file-viewer"}
+			<DocumentViewer documents="{block.files}" autoSelect="{block.autoSelect}"
+				header="{block.title}"
+				getNext="{() => { return }}"
+				sort="{documentViewerSorts[block.sort]}"
+				hasSearch="{block.hasSearch}"
+				backgroundColor = "{documentViewerBackgroundColor}"
+				textColor = "{documentViewerTextColor}"
+				textColorNegative = "{documentViewerTextColorNegative}"
+				hoverColor = "{documentViewerHoverColor}"
+				buttonTextHoverColor = "{buttonHoverTextColor}"
+				buttonHoverColor = "{buttonColor}"></DocumentViewer>
+	{/if}
 {/each}
 
 <style>
@@ -158,6 +217,8 @@
 		width: 100%;
         display: flex;
 		overflow-x: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     .formula {
@@ -165,6 +226,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     .formula .result {
@@ -258,6 +321,45 @@
 		width: 50%;
     }
 
+    .floated-video-content {
+        display: flex;
+		justify-content: space-around;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 3rem;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+    }
+
+    .floated-video-content .block-renderer {
+        width: 45vw;
+    }
+
+    .video-container {
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        width: 40vw;
+        height: 22.5vw;
+		justify-content: center;
+		align-items: center;
+    }
+
+	.video-container.unfloated {
+		width: 50vw;
+		height: 28.125vw;
+	}
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
+
     @media only screen and (max-width: 1050px) {
         .floated-blocks-wrapper .block-renderer {
             width: 100%;
@@ -287,5 +389,17 @@
         .formula form .variables {
             grid-template-columns: repeat(auto-fill, 10rem);
         }
+
+        .video-container, .video-container.unfloated {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            width: 90vw;
+            height: 50.625vw;
+        }
+
+		.floated-video-content .block-renderer {
+			width: 100%;
+		}
     }
 </style>

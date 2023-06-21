@@ -14,7 +14,11 @@
 					<span>{step.stepNumber}</span>
 				</div>
 				<div class="content-container">
-					<BlockRenderer blocks="{step.info}" />
+					<BlockRenderer blocks="{step.info}"
+								   documentViewerBackgroundColor = "#FFFFFF"
+								   documentViewerHoverColor = "#7d0b09"
+								   documentViewerTextColor = "#000000"
+								   documentViewerTextColorNegative = "#FFFFFF"/>
 				</div>
 			</div>
 		{/each}

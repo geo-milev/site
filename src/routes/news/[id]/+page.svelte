@@ -24,9 +24,13 @@
 	})
 
 	let mode = "light"
-	let buttonColor = "#7D0B09"
-	let textColor = "#000000"
-	let buttonHoverTextColor = "#FFFFFF";
+	let buttonColor
+	let textColor
+	let buttonHoverTextColor
+	let documentViewerBackgroundColor
+	let documentViewerHoverColor
+	let documentViewerTextColor
+	let documentViewerTextColorNegative
 
 	onMount(() => {
 		const savedMode = localStorage.getItem("mode");
@@ -52,11 +56,19 @@
 		textColor = "#000000"
 		buttonColor = "#7D0B09"
 		buttonHoverTextColor = "#FFFFFF";
+		documentViewerBackgroundColor = "#FFFFFF"
+		documentViewerHoverColor = "#7d0b09"
+		documentViewerTextColor = "#000000"
+		documentViewerTextColorNegative = "#000000"
 		setLayout(tertiaryLayout)
 	} else {
 		textColor = "#FFFFFF"
 		buttonColor = "#FFFFFF"
 		buttonHoverTextColor = "#000000";
+		documentViewerBackgroundColor = "#000000"
+		documentViewerHoverColor = "#FFFFFF"
+		documentViewerTextColor = "#FFFFFF"
+		documentViewerTextColorNegative = "#FFFFFF"
 		setLayout(tertiaryLayoutDark)
 	}
 </script>
@@ -75,7 +87,12 @@
 				   buttonColor={buttonColor}
 				   textColor={textColor}
 				   headerLineColor="#7D0B09"
-				   buttonHoverTextColor={buttonHoverTextColor} />
+				   buttonHoverTextColor={buttonHoverTextColor}
+				   documentViewerBackgroundColor ={documentViewerBackgroundColor}
+				   documentViewerHoverColor ={documentViewerHoverColor}
+				   documentViewerTextColor = {documentViewerTextColor}
+				   documentViewerTextColorNegative = {documentViewerTextColorNegative}
+	/>
 </div>
 
 <button on:click={() => (mode === "light") ? setMode("dark") : setMode("light")}

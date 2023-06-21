@@ -3,6 +3,7 @@
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition";
+	import { documentViewerSorts } from "./documentViewerSorts";
 
 	export interface Document {
 		name: string;
@@ -42,9 +43,9 @@
 	let list;
 
 	$:  {
-		if (typeof documents !== 'undefined') {
+		if (typeof filteredDocuments !== 'undefined') {
 			if (autoSelect) {
-				hoveredDocument = documents[0]
+				hoveredDocument = filteredDocuments[0]
 			} else {
 				hoveredDocument = undefined
 			}
@@ -56,11 +57,13 @@
 	export let header: string;
 	export let autoSelect = false;
 	export let hasSearch = true;
-	export let sort: (documents: Document[]) => Document[] = (documents) => {
-		return documents.sort((a: Document, b: Document) => {
-			return a.name.localeCompare(b.name)
-		})
-	}
+	export let sort: (documents: Document[]) => Document[] = documentViewerSorts.alphabetical
+	export let backgroundColor = "#FFFFFF";
+	export let textColor = "#000000";
+	export let textColorNegative = "#FFFFFF";
+	export let hoverColor = "#7d0b09";
+	export let buttonHoverColor = "#FFFFFF"
+	export let buttonTextHoverColor = "#000000"
 
 	let filteredDocuments = sort(documents)
 	let searchValue;
@@ -97,7 +100,10 @@
 	})
 </script>
 
-<div class="container">
+<div class="container" style="--background-color: {backgroundColor};
+--text-color: {textColor};
+--hover-color: {hoverColor};
+--text-color-negative: {textColorNegative}">
 	<div class="list">
 		<h2>{header}</h2>
 		{#if hasSearch && documents.length !== 0}
@@ -124,7 +130,10 @@
 		{/if}
 	</div>
 	{#if hoveredDocument}
-		<SecondaryButton action={downloadDoc} text="Изтегли"/>
+		<SecondaryButton action={downloadDoc} text="Изтегли"
+						 color="{buttonHoverColor}"
+						 hoverColor="{buttonHoverColor}"
+						 hoverTextColor="{buttonTextHoverColor}" />
 	{/if}
 	<div class="preview">
 		{#if hoveredDocument}
@@ -145,18 +154,20 @@
 		justify-content: space-around;
 		align-items: center;
 		flex-wrap: wrap;
+		margin-top: 2rem;
 	}
 
 	.list {
 		display: flex;
 		flex-direction: column;
-		margin: 3rem;
-		background-color: #FFFFFF;
+		margin: 1rem;
+		background-color: var(--background-color);
 		max-height: 30rem;
         width: 100%;
 		padding-left: 1rem;
 		max-width: 30rem;
 		overflow: hidden;
+		border: 1px var(--hover-color) solid;
 	}
 
 	.list h2 {
@@ -165,23 +176,25 @@
         font-weight: 700;
         font-size: 32px;
         line-height: 44px;
-        color: #000000;
+        color: var(--text-color);
 		padding-right: 1rem;
 	}
 
 	.list .search {
 		margin-right: 3rem;
 		border: none;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid var(--text-color);
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
         line-height: 22px;
+		background-color: var(--background-color);
+		color: var(--text-color);
 	}
 
 	.list .search:focus {
-        border-color: #7d0b09;
+        border-color: var(--hover-color);
 	}
 
     .list ul::-webkit-scrollbar {
@@ -217,25 +230,27 @@
     }
 
 	.list li.selected {
-        border-color: #7d0b09;
+        border-color: var(--hover-color);
 	}
 
 	.list li.selected a {
-        color: #7d0b09;
+        color: var(--hover-color);
 	}
 
 	.list li a {
         text-decoration: none;
-        color: #000000;
+        color: var(--text-color);
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
         line-height: 24px;
+		width: 100%;
+		display: inline-block;
 	}
 
 	.preview {
-        margin: 3rem;
+        margin: 1rem;
         width: 100%;
 		max-width: 40rem;
     }
@@ -252,7 +267,7 @@
         font-size: 26px;
         line-height: 33px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--text-color-negative);
 	}
 
 	.list p {
