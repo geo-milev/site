@@ -24,13 +24,13 @@
 	})
 
 	let mode = "light"
-	let buttonColor = "#7D0B09"
-	let textColor = "#000000"
-	let buttonHoverTextColor = "#FFFFFF";
-	let documentViewerBackgroundColor = "#4F0D0D"
-	let documentViewerHoverColor = "#FFFFFF"
-	let documentViewerTextColor = "#FFFFFF"
-	let documentViewerTextColorNegative = "#000000"
+	let buttonColor
+	let textColor
+	let buttonHoverTextColor
+	let documentViewerBackgroundColor
+	let documentViewerHoverColor
+	let documentViewerTextColor
+	let documentViewerTextColorNegative
 
 	onMount(() => {
 		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
