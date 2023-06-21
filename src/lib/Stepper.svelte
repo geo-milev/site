@@ -99,4 +99,20 @@
             line-height: 44px;
 		}
     }
+
+    @media only screen and (max-width: 650px) {
+        .line {
+			display: none;
+		}
+
+		.step {
+			flex-direction: column;
+		}
+
+		.container {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			box-sizing: border-box;
+		}
+    }
 </style>
