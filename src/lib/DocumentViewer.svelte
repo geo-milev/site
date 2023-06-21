@@ -158,6 +158,7 @@
 		padding-left: 1rem;
 		max-width: 30rem;
 		overflow: hidden;
+		border: 1px var(--hover-color) solid;
 	}
 
 	.list h2 {
@@ -235,6 +236,8 @@
         font-weight: 400;
         font-size: 20px;
         line-height: 24px;
+		width: 100%;
+		display: inline-block;
 	}
 
 	.preview {
