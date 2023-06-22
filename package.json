@@ -39,6 +39,7 @@
     "expr-eval": "^2.0.2",
     "fuse.js": "^6.6.2",
     "graphql": "^16.6.0",
+    "pdfjs-dist": "^3.7.107",
     "sanitize-html": "^2.10.0"
   }
 }

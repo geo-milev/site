@@ -4,6 +4,7 @@
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition";
 	import { documentViewerSorts } from "./documentViewerSorts";
+	import loadPDF from "./pdf.js"
 
 	export interface Document {
 		name: string;
@@ -137,10 +138,11 @@
 	{/if}
 	<div class="preview">
 		{#if hoveredDocument}
-			<iframe src="{env.PUBLIC_SERVER_URL + hoveredDocument.file.url}"
-					title="{hoveredDocument.name}"
-					referrerpolicy="no-referrer"
-					in:fade={{ duration: 300 }} out:fade={{ duration: 100 }}></iframe>
+			<canvas
+				in:fade={{ duration: 300 }} out:fade={{ duration: 100 }}
+				use:loadPDF="{{ url: env.PUBLIC_SERVER_URL + hoveredDocument.file.url }}">
+
+			</canvas>
 		{:else}
 			<p>Поставете мишката си върху елемент от списъка за да се покаже тук.</p>
 		{/if}
