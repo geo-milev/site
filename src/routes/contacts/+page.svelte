@@ -22,11 +22,16 @@
 					<textarea name="${value.name}"
 						form="contactUsForm" rows="10" style="resize: none;"
 						required="${value.required}"
-						id="${value.name}"></textarea>`
+						id="${value.name}"
+						placeholder="Въведи ${value.label.toLowerCase()}..."></textarea>`
 		}
 
 		return `<label for="${value.name}">${value.label}</label>
-				<input type="${type}" id="${value.name}" name="${value.name}" required="${value.required}">`
+				<input type="${type}"
+				id="${value.name}"
+				name="${value.name}"
+				placeholder="Въведи ${value.label.toLowerCase()}..."
+				required="${value.required}">`
 	}).join("")
 
 
