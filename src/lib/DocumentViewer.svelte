@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { env } from "$env/dynamic/public";
-	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { onMount } from "svelte";
 	import { fade } from "svelte/transition";
 	import { documentViewerSorts } from "./documentViewerSorts";
@@ -8,21 +7,6 @@
 	export interface Document {
 		name: string;
 		file: { url: string, filename: string }
-	}
-
-	const downloadDoc = () => {
-		fetch(env.PUBLIC_SERVER_URL + hoveredDocument.file.url)
-			.then(res => res.blob())
-			.then(blob => {
-				const url = window.URL.createObjectURL(blob);
-				const link = document.createElement('a');
-				link.style.display = "none";
-				link.href = url;
-				link.download = hoveredDocument.file.filename;
-				document.body.appendChild(link);
-				link.click();
-				window.URL.revokeObjectURL(url);
-			})
 	}
 
 	let page = 1;
@@ -62,8 +46,6 @@
 	export let textColor = "#000000";
 	export let textColorNegative = "#FFFFFF";
 	export let hoverColor = "#7d0b09";
-	export let buttonHoverColor = "#FFFFFF"
-	export let buttonTextHoverColor = "#000000"
 
 	let filteredDocuments = sort(documents)
 	let searchValue;
@@ -129,12 +111,6 @@
 			{/if}
 		{/if}
 	</div>
-	{#if hoveredDocument}
-		<SecondaryButton action={downloadDoc} text="Изтегли"
-						 color="{buttonHoverColor}"
-						 hoverColor="{buttonHoverColor}"
-						 hoverTextColor="{buttonTextHoverColor}" />
-	{/if}
 	<div class="preview">
 		{#if hoveredDocument}
 			<iframe src="{env.PUBLIC_SERVER_URL + hoveredDocument.file.url}"
