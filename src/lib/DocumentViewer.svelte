@@ -48,6 +48,9 @@
 	export let hoverColor = "#7d0b09";
 
 	let filteredDocuments = sort(documents)
+
+	$: filteredDocuments = sort(documents)
+
 	let searchValue;
 
 	if (searchValue && searchValue != "") {
@@ -77,9 +80,9 @@
 		hoveredDocument = undefined
 	}
 
-	onMount(() => {
-		if (autoSelect) hoveredDocument = documents[0]
-	})
+	$: if (autoSelect && documents && filteredDocuments && filteredDocuments.length > 0) {
+		hoveredDocument = filteredDocuments[0]
+	}
 </script>
 
 <div class="container" style="--background-color: {backgroundColor};
