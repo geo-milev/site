@@ -30,7 +30,6 @@
 	.image-container {
 		display: flex;
 		justify-content: center;
-		height: 100%;
 	}
 
 	.image-title-container {
