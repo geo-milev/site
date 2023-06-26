@@ -74,14 +74,14 @@
 		<label for="year">Бюджет</label>
 		{#if yearlyBudgets && quarterlyBudgets}
 			<select name="classNumber" id="classNumber" bind:value={selectedBudgetId} on:change={changeSelectedBudget}>
-				{#if yearlyBudgets}
+				{#if yearlyBudgets.length > 0}
 					<optgroup label="Годишни">
 						{#each yearlyBudgets as budget}
 							<option value="{budget.budget.id}">Годишен: {budget.budget.name}</option>
 						{/each}
 					</optgroup>
 				{/if}
-				{#if quarterlyBudgets}
+				{#if quarterlyBudgets.length > 0}
 					<optgroup label="Тримесечни">
 						{#each quarterlyBudgets as budget}
 							<option value="{budget.budget.id}">Тримесечен: {budget.budget.name}</option>

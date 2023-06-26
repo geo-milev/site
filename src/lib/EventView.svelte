@@ -5,8 +5,10 @@
 </script>
 
 <div class="container">
-	<div class="image-container">
-		<img src="{env.PUBLIC_SERVER_URL + event.image.url}" alt="{event.image.alt}" loading="lazy"/>
+	<div class="image-title-container">
+		<div class="image-container">
+			<img src="{env.PUBLIC_SERVER_URL + event.image.url}" alt="{event.image.alt}" loading="lazy"/>
+		</div>
 		<p>{event.image.alt}</p>
 	</div>
 	<div class="text">
@@ -28,7 +30,12 @@
 	.image-container {
 		display: flex;
 		justify-content: center;
-		margin-right: 3rem;
+		height: 100%;
+	}
+
+	.image-title-container {
+        display: flex;
+        margin-right: 3rem;
 		flex-direction: column;
 	}
 
