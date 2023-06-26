@@ -38,7 +38,7 @@
 				}
    		 	`, { page }).then(result => {
 					articles = articles.concat(mapArticles(result.data.allNews.docs))
-					remainArticles = result.data.hasNextPage
+					remainArticles = result.data.allNews.hasNextPage
 				})
 	}
 </script>
@@ -114,14 +114,14 @@
 
 	.article-preview {
         display: flex;
-        height: 23rem;
-        width: 16rem;
+        height: 24rem;
+        width: 17rem;
 	}
 
 	.big-article-preview {
         display: flex;
-        height: 23rem;
-        width: 34rem;
+        height: 24rem;
+        width: 36rem;
 	}
 
 	.no-more-articles {

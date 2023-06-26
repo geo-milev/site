@@ -8,6 +8,7 @@
 	let client = getContextClient();
 
 	const getNext = (page: number) => {
+		if (!hasNext) return new Promise(() => [])
 		const QUERY = `query($page: Int!) {
 							ScheduleEntries(page: $page, limit: 15) {
 								docs {
@@ -21,10 +22,15 @@
 							}
 						}`;
 
-		return client.query(QUERY, { page: page }).then(res => res.data.ScheduleEntries.docs);
+		return client.query(QUERY, { page: page }).then(res => {
+			hasNext = res.data.ScheduleEntries.hasNextPage
+			return res.data.ScheduleEntries.docs
+		});
 	}
 
 	export let data;
+
+	let hasNext = data.ScheduleEntries.hasNextPage;
 </script>
 
 <div class="container">

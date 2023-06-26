@@ -63,9 +63,9 @@
 			{/each}
 		</div>
 	</div>
-	<div class="carousel" style="--move-coefficient-carousel: {selectedIndex}" bind:offsetWidth={carouselWidth}>
+	<div class="carousel" style="--move-coefficient-carousel: {-selectedIndex}; --carousel-width: {carouselWidth}px" bind:offsetWidth={carouselWidth}>
 		{#each componentProps as props, index}
-			<div class="item-container" style="--carousel-width: {carouselWidth}px">
+			<div class="item-container">
 				<svelte:component this="{component}" {...componentProps[index]}></svelte:component>
 			</div>
 		{/each}
@@ -83,9 +83,8 @@
         display: flex;
         position: relative;
         flex-wrap: nowrap;
-        gap: 8px;
         transition: transform 300ms ease-out;
-        transform: translateX(calc(-100% * var(--move-coefficient-carousel) - 8px * (var(--move-coefficient-carousel) - 1)));
+        transform: translateX(calc((var(--carousel-width) * var(--move-coefficient-carousel))));
     }
 
     .timeline {

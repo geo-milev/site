@@ -449,4 +449,10 @@
             min-width: 50rem;
         }
     }
+
+    @media only screen and (max-width: 500px) {
+        .daily-schedule table {
+            width: 100%;
+        }
+    }
 </style>

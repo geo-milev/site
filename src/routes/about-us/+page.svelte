@@ -132,4 +132,11 @@
             grid-auto-rows: max-content;
 		}
     }
+
+    @media only screen and (max-width: 740px) {
+        .container {
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+    }
 </style>

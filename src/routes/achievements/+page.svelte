@@ -48,7 +48,7 @@
 						<SecondaryButton href="/achievements/{entry.key}" text="Виж още"></SecondaryButton>
 					</div>
 				</div>
-				<Carousel elementProps="{entry.elementProps}" component="{ArticlePreview}" componentHeight="23rem" componentWidth="16rem" />
+				<Carousel elementProps="{entry.elementProps}" component="{ArticlePreview}" componentHeight="24rem" componentWidth="17rem" />
 				<div class="button-bottom">
 					<SecondaryButton href="/achievements/{entry.key}" text="Виж още"></SecondaryButton>
 				</div>
