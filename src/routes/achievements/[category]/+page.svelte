@@ -107,8 +107,8 @@
 
     .article-preview {
         display: flex;
-        height: 23rem;
-        width: 16rem;
+        height: 24rem;
+        width: 17rem;
     }
 
     .no-more-articles {
