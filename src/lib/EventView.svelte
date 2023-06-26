@@ -7,6 +7,7 @@
 <div class="container">
 	<div class="image-container">
 		<img src="{env.PUBLIC_SERVER_URL + event.image.url}" alt="{event.image.alt}" loading="lazy"/>
+		<p>{event.image.alt}</p>
 	</div>
 	<div class="text">
 		<h2>{event.title}</h2>
@@ -28,6 +29,7 @@
 		display: flex;
 		justify-content: center;
 		margin-right: 3rem;
+		flex-direction: column;
 	}
 
 	img {
