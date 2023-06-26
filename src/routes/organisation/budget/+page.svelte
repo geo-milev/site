@@ -38,7 +38,7 @@
 				file: selectedBudget.yearlyQuarters.first
 			},
 			{
-				name: "Май - Юни",
+				name: "Април - Юни",
 				file: selectedBudget.yearlyQuarters.second
 			}
 			,{
