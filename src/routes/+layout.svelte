@@ -27,10 +27,19 @@
 
 	export let data;
 
-	let loaded = false;
-
 	onMount(() => {
-		loaded = true
+		import('@fontsource/roboto/100.css');
+		import('@fontsource/roboto/300.css');
+		import('@fontsource/roboto/400.css');
+		import('@fontsource/roboto/500.css');
+		import('@fontsource/roboto/100-italic.css');
+		import('@fontsource/roboto/300-italic.css');
+		import('@fontsource/roboto/400-italic.css');
+		import('@fontsource/roboto/500-italic.css');
+		import('@fontsource-variable/roboto-flex/opsz.css');
+		import('@fontsource/alegreya/400.css');
+		import('@fontsource/alegreya/500.css');
+		import('@fontsource/alegreya/700.css');
 	})
 
   seoInfo.set({
@@ -70,22 +79,6 @@
 </script>
 
 <svelte:head>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	{#if loaded}
-		<link
-			href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;700&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght,GRAD@8..144,400,45;8..144,400,50;8..144,1000,0&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
-			rel="stylesheet"
-		/>
-	{/if}
 	{#each data.MainInfo.favicons as favicon}
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
