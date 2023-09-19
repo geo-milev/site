@@ -4,6 +4,7 @@
 	import { linear } from "svelte/easing";
 	import ArrowLeft from "$lib/ArrowLeft.svelte";
 	import ArrowRight from "$lib/ArrowRight.svelte";
+	import Close from "$lib/Close.svelte";
 
 	export let images;
 	export let arrowColor;
@@ -13,6 +14,7 @@
 
 	let selectedImageIndex = 0
 	let elements = [];
+	let fullscreenShown = false;
 
 	const scrollConfig = {
 		behavior: 'smooth',
@@ -48,12 +50,38 @@
 			elements[selectedImageIndex].scrollIntoView(scrollConfig)
 		});
 	}
+
+	const openFullscreen = () => {
+		fullscreenShown = true
+		document.body.classList.add("no-scroll")
+	}
+
+	const closeFullscreen = () => {
+		fullscreenShown = false
+		document.body.classList.remove("no-scroll")
+	}
 </script>
 
 <div class="container">
-	<img class="current-image" loading="lazy"
-		 src="{env.PUBLIC_SERVER_URL + images[selectedImageIndex].image.url}"
-		 alt="{images[selectedImageIndex].image.alt}" style="opacity: {$opacity};">
+	<button class="fullscreen button-reset" style="{fullscreenShown? 'display: flex': ''}"
+			aria-label="затваряне на цял екран" on:click={closeFullscreen}>
+		<button class="button-reset fullscreen-close"
+				aria-label="затваряне на цял екран"
+				on:click={closeFullscreen}>
+			<Close />
+		</button>
+		<figure on:click={(e) => e.stopPropagation()}>
+			<img class="current-image" loading="lazy"
+				 src="{env.PUBLIC_SERVER_URL + images[selectedImageIndex].image.url}"
+				 alt="{images[selectedImageIndex].image.alt}" style="opacity: 1;">
+			<figcaption>{images[selectedImageIndex].image.alt}</figcaption>
+		</figure>
+	</button>
+	<button aria-label="отваряне на цял екран" class="button-reset" on:click={openFullscreen}>
+		<img class="current-image" loading="lazy"
+			 src="{env.PUBLIC_SERVER_URL + images[selectedImageIndex].image.url}"
+			 alt="{images[selectedImageIndex].image.alt}" style="opacity: {$opacity};">
+	</button>
 	<div class="selector" style="--arrow-color: {arrowColor}">
 		<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedImageIndex === 0}">
 			<ArrowLeft />
@@ -161,6 +189,55 @@
         align-items: center;
     }
 
+	.button-reset {
+		border: none;
+		padding: 0;
+		margin: 0;
+		background-color: rgba(0, 0, 0, 0);
+		cursor: pointer;
+	}
+
+    .fullscreen {
+        position: fixed;
+		display: none;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.75);
+		z-index: 5;
+    }
+
+	.fullscreen-close {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+	}
+
+	.fullscreen figcaption {
+        font-family: 'Roboto', serif;
+        font-size: 18px;
+        line-height: 22px;
+        color: #FFFFFF;
+		text-align: start;
+		overflow: auto;
+	}
+
+	.fullscreen figure {
+		margin: 1rem;
+	}
+
+    .fullscreen figure img {
+        cursor: auto;
+    }
+
+	.fullscreen .current-image {
+        max-width: 90vw;
+        max-height: 90vh;
+	}
+
     @media only screen and (max-width: 580px) {
         .big-screen {
             display: none;
@@ -172,6 +249,13 @@
 
         .small-screen-navigation {
             display: flex;
+        }
+    }
+
+    @media only screen and (max-width: 800px) {
+        .fullscreen .current-image {
+            max-width: 100%;
+			max-height: 90vh;
         }
     }
 </style>
