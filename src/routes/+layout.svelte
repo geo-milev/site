@@ -7,23 +7,11 @@
 	import { env } from "$env/dynamic/public";
 	import { seoInfo } from "../lib/seoInfo";
 	import { page } from "$app/stores";
+	import { logo } from "$lib/logo";
 
 	setContext('layout', layout);
 
 	setLayout(mainLayout)
-
-	onMount(() => {
-		layout.subscribe((layoutProps) => {
-			window.document.body.style.backgroundColor = layoutProps.navbar.backgroundColor
-		})
-	})
-
-	const client = new Client({
-		url: env.PUBLIC_SERVER_URL + "/api/graphql",
-		exchanges: [cacheExchange, fetchExchange],
-	});
-
-	setContextClient(client);
 
 	export let data;
 
@@ -40,7 +28,20 @@
 		import('@fontsource/alegreya/400.css');
 		import('@fontsource/alegreya/500.css');
 		import('@fontsource/alegreya/700.css');
+
+		logo.set(data.MainInfo.logo)
+
+		layout.subscribe((layoutProps) => {
+			window.document.body.style.backgroundColor = layoutProps.navbar.backgroundColor
+		})
 	})
+
+	const client = new Client({
+		url: env.PUBLIC_SERVER_URL + "/api/graphql",
+		exchanges: [cacheExchange, fetchExchange],
+	});
+
+	setContextClient(client);
 
   seoInfo.set({
 		title: data.MainInfo.name,

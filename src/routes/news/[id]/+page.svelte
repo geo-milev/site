@@ -17,7 +17,6 @@
 		seoInfo.title = data.News.title
 		seoInfo.description = data.News.description
 		seoInfo.type = "article"
-		seoInfo.imageUrl = data.News.postImage.url
 		seoInfo.publishDate = data.News.publishDate
 
 		return seoInfo
@@ -82,7 +81,9 @@
 			<p>{data.News.description}</p>
 		</div>
 	</div>
-	<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
+	{#if data.News.postImage}
+		<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
+	{/if}
 	<BlockRenderer blocks="{data.News.content}"
 				   buttonColor={buttonColor}
 				   textColor={textColor}
