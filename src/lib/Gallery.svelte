@@ -126,7 +126,7 @@
         width: 100%;
         max-width: 40rem;
         height: 100%;
-        max-height: 40rem;
+        max-height: 30rem;
 	}
 
     .image-button {
