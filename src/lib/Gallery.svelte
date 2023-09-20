@@ -77,15 +77,21 @@
 			<figcaption>{images[selectedImageIndex].image.alt}</figcaption>
 		</figure>
 	</button>
-	<button aria-label="отваряне на цял екран" class="button-reset" on:click={openFullscreen}>
-		<img class="current-image" loading="lazy"
-			 src="{env.PUBLIC_SERVER_URL + images[selectedImageIndex].image.url}"
-			 alt="{images[selectedImageIndex].image.alt}" style="opacity: {$opacity};">
-	</button>
-	<div class="selector" style="--arrow-color: {arrowColor}">
-		<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedImageIndex === 0}">
+
+	<div class="current-image-container" style="--arrow-color: {arrowColor}">
+		<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button left big-screen" disabled="{selectedImageIndex === 0}">
 			<ArrowLeft />
 		</button>
+		<button on:click={scrollRight} aria-label="дясна стрелка" class="arrow-button right big-screen" disabled="{selectedImageIndex === images.length - 1}">
+			<ArrowRight />
+		</button>
+		<button aria-label="отваряне на цял екран" class="button-reset" on:click={openFullscreen}>
+			<img class="current-image" loading="lazy"
+				 src="{env.PUBLIC_SERVER_URL + images[selectedImageIndex].image.url}"
+				 alt="{images[selectedImageIndex].image.alt}" style="opacity: {$opacity};">
+		</button>
+	</div>
+	<div class="selector">
 		<div class="previews">
 			{#each images as image, index}
 				<button bind:this={elements[index]}
@@ -98,10 +104,7 @@
 				</button>
 			{/each}
 		</div>
-		<button on:click={scrollRight} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedImageIndex === images.length - 1}">
-			<ArrowRight />
-		</button>
-		<div class="small-screen-navigation">
+		<div class="small-screen-navigation" style="--arrow-color: {arrowColor}">
 			<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button" disabled="{selectedImageIndex === 0}">
 				<ArrowLeft />
 			</button>
@@ -165,13 +168,34 @@
 		padding-top: 1rem;
 		padding-bottom: 1rem;
         max-width: 60rem;
-        max-height: 60rem;
+	}
+
+	.current-image-container {
+		position: relative;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		max-width: 60rem;
 	}
 
     .arrow-button {
         background-color: rgba(0, 0, 0, 0);
         border: none;
         cursor: pointer;
+		position: absolute;
+    }
+
+	.arrow-button.left {
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+    .arrow-button.right {
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .arrow-button {
@@ -239,13 +263,17 @@
 	}
 
     @media only screen and (max-width: 580px) {
+		.arrow-button {
+			position: relative;
+		}
+
         .big-screen {
             display: none;
         }
 
-		.selector {
-			flex-direction: column;
-		}
+        .selector {
+            flex-direction: column;
+        }
 
         .small-screen-navigation {
             display: flex;
