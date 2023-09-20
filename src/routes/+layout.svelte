@@ -36,7 +36,7 @@
 		import('@fontsource/roboto/300-italic.css');
 		import('@fontsource/roboto/400-italic.css');
 		import('@fontsource/roboto/500-italic.css');
-		import('@fontsource-variable/roboto-flex/opsz.css');
+		import('@fontsource-variable/roboto-flex/full.css');
 		import('@fontsource/alegreya/400.css');
 		import('@fontsource/alegreya/500.css');
 		import('@fontsource/alegreya/700.css');

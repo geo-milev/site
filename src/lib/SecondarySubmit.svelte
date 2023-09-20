@@ -14,7 +14,7 @@
         padding: 0.5rem 3rem;
         color: #FFFFFF;
         text-transform: uppercase;
-        font-family: 'Roboto Flex', serif;
+        font-family: 'Roboto Flex Variable', serif;
         font-style: normal;
         text-align: center;
         cursor: pointer;

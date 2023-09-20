@@ -6,7 +6,6 @@
 	import Carousel from "$lib/Carousel.svelte";
 	import Button from "$lib/Button.svelte";
 	import { mainLayout, setLayout } from "../lib/setLayout"
-	import { mapArticles } from "../lib/mapArticles";
 	import { env } from "$env/dynamic/public";
 	import { onMount } from "svelte";
 
@@ -39,7 +38,7 @@
 		}
 	})
 
-	let articleProps = mapArticles(data.allNews.docs).map((article) => {
+	let articleProps = data.allNews.docs.map((article) => {
 		return {
 			preview: article
 		}
