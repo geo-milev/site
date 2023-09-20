@@ -33,7 +33,7 @@
 		<div class="line"></div>
 	</div>
 	<DocumentViewer documents="{data.Newspapers.docs}"
-					header="Имена на вестници"
+					header="Издание"
 					getNext="{getNext}"></DocumentViewer>
 </div>
 
