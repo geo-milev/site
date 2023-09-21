@@ -71,6 +71,7 @@
         line-height: 45px;
         color: #D9D9D9;
 		transform: rotate(-45deg);
+		user-select: none;
     }
 
 	.content {
