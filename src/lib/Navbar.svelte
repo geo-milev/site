@@ -1,23 +1,14 @@
 <script lang="ts">
     import NavLines from "$lib/NavLines.svelte";
-    import NavClose from "$lib/NavClose.svelte";
-    import NavMinus from "$lib/NavMinus.svelte";
-    import NavPlus from "$lib/NavPlus.svelte";
     import { afterNavigate } from '$app/navigation';
-    import { fly } from 'svelte/transition';
     import { navigating } from '$app/stores'
-
-    interface NavigationLink {
-        key: string;
-        href?: string;
-        subsections?: NavigationLink[]
-    }
+    import MobileNavbar from "$lib/MobileNavbar.svelte";
+    import { onMount } from "svelte";
 
     let shownSubsectionsHref = ""
     let shownSubsectionLeftShift = 0;
-    let mobileOpenSubsectionsKeys = []
 
-    const navigationLinksLeft: NavigationLink[] = [
+    const navigationLinksLeft = [
         { key: "Новини", href: "/news" },
         { key: "За ученика", subsections: [
                 { key: "Седмично разписание", href: "/student/weekly-schedule" },
@@ -34,7 +25,7 @@
             ]},
     ];
 
-    const navigationLinksRight: NavigationLink[] = [
+    const navigationLinksRight = [
         { key: "Проекти", href: "/projects" },
         { key: "Постижения", href: "/achievements" },
         { key: "За нас", href: "/about-us" },
@@ -48,15 +39,14 @@
     let rightNavWidth;
     let innerWidth;
     let isMobileMenuOpen;
-    let navBackground;
     let loadingBarPercentage = 0;
+    let loaded = false;
 
     const closeNavbar = () => {
         isMobileMenuOpen = false;
         document.body.classList.remove("no-scroll")
     }
 
-    afterNavigate(closeNavbar)
     afterNavigate(() => {
         if (loadingBarPercentage > 0) {
             loadingBarPercentage = 100;
@@ -74,9 +64,7 @@
         }, 300)
     }
 
-    const onBackgroundClick = (event) => {
-        if (event.target == navBackground) closeNavbar()
-    }
+    onMount(() => loaded = true)
 
     $: isMobile = innerWidth < mobileBreakpoint;
 
@@ -100,7 +88,7 @@
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
-        {#if !isMobile}
+        {#if !isMobile && loaded}
             <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
                 {#each navigationLinksLeft as navigationLink, index (navigationLink.key)}
                     {#if !navigationLink.subsections}
@@ -139,7 +127,7 @@
             </a>
         </div>
 
-        {#if !isMobile}
+        {#if !isMobile && loaded}
             <nav class:scrolled="{scrollMode}" class="right-nav" bind:clientWidth={rightNavWidth}>
                 {#each navigationLinksRight as navigationLink}
                     {#if !navigationLink.subsections}
@@ -188,44 +176,9 @@
     {/if}
 
     {#if isMobile && isMobileMenuOpen}
-        <div class="nav-background" on:click={onBackgroundClick} bind:this={navBackground}></div>
-        <div class="mobile-nav" transition:fly="{{ x: 300, duration: 300 }}">
-            <div class="close">
-                <button class="icon-button" aria-label="затвори мобилна навигация" on:click={closeNavbar}>
-                    <NavClose />
-                </button>
-            </div>
-            <nav>
-                {#each [...navigationLinksLeft, ...navigationLinksRight] as navigationLink}
-                    {#if navigationLink.href}
-                        <div class="link-wrapper">
-                            <a href="{navigationLink.href}">{navigationLink.key}</a>
-                        </div>
-                    {:else}
-                        <button class="link-wrapper" on:click={() => {
-                            if (mobileOpenSubsectionsKeys.includes(navigationLink.key)) {
-                                mobileOpenSubsectionsKeys = mobileOpenSubsectionsKeys
-                                    .filter((val) => val !== navigationLink.key)
-                            } else {
-                                mobileOpenSubsectionsKeys = [...mobileOpenSubsectionsKeys, navigationLink.key]
-                            }
-                        }}>
-                            <span>{navigationLink.key}</span>
-                            {#if mobileOpenSubsectionsKeys.includes(navigationLink.key)}
-                                <NavMinus />
-                                {:else}
-                                <NavPlus />
-                            {/if}
-                        </button>
-                        <div class="mobile-subsection" class:open={mobileOpenSubsectionsKeys.includes(navigationLink.key)}>
-                            {#each navigationLink.subsections as subsection}
-                                <a href="{subsection.href}">{subsection.key}</a>
-                            {/each}
-                        </div>
-                    {/if}
-                {/each}
-            </nav>
-        </div>
+        <MobileNavbar closeNavbar={closeNavbar}
+                      navigationLinksLeft={navigationLinksLeft}
+                      navigationLinksRight={navigationLinksRight} />
     {/if}
 </div>
 
@@ -413,98 +366,6 @@
         height: 100%;
         background-color: #7d0b09;
         left: var(--subsection-left-shift)
-    }
-
-    .nav-background {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        z-index: 4;
-        pointer-events: all;
-    }
-
-    .close {
-        display: flex;
-        justify-content: flex-end;
-        padding: 1rem;
-    }
-
-    .mobile-nav {
-        height: 100%;
-        position: fixed;
-        min-width: 50%;
-        right: 0;
-        top: 0;
-        background-color: #4F0D0D;
-        z-index: 5;
-    }
-
-    .mobile-nav nav {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        flex-direction: column;
-        border: none;
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding: 0 2rem 1rem 1rem;
-        box-sizing: border-box;
-    }
-
-
-    .mobile-nav nav a, .mobile-nav nav span {
-        margin-top: 0;
-    }
-
-    .link-wrapper {
-        border-bottom: 1px solid #FFFFFF;
-        padding: 0 0 5px;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        display: flex;
-        background-color: rgba(0, 0, 0, 0);
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        font-size: 16px;
-        cursor: pointer;
-        margin-top: 15px;
-    }
-
-    .mobile-nav .link-wrapper a {
-        width: 100%;
-    }
-
-    .mobile-subsection {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 300ms ease-in;
-    }
-
-    .mobile-subsection.open {
-        max-height: 25rem;
-        width: 100%;
-    }
-
-    .mobile-subsection a:first-child {
-        padding-top: 4px;
-    }
-
-    .mobile-subsection a {
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 15px;
-        line-height: 17px;
-        text-transform: none;
-        color: #FFFFFF;
-        width: 100%;
     }
 
     .icon-button {
