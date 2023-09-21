@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { secondaryLayout, setLayout } from "../../../lib/setLayout";
-	import { mapArticles } from "../../../lib/mapArticles";
 	import ArticlePreview from "$lib/ArticlePreview.svelte";
 	import { fly } from "svelte/transition";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
@@ -18,11 +17,11 @@
 		page++;
 		client.query(getAchievementQueryWithPagination(data.category), { page: page, }).then((res) => {
 			remainArticles = res.data.allNews.hasNextPage
-			articles = [...articles, ...mapArticles(res.data.allNews.docs)]
+			articles = [...articles, ...res.data.allNews.docs]
 		})
 	}
 
-	let articles = mapArticles(data.articles.allNews.docs)
+	let articles = data.articles.allNews.docs
 </script>
 
 <div class="container">
@@ -53,7 +52,6 @@
 		align-items: center;
 		margin-top: 2rem;
 		margin-bottom: 3rem;
-		gap: 3rem;
 	}
 
     .header-container {

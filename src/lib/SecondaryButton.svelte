@@ -25,7 +25,7 @@
         font-size: 19px;
         line-height: 22px;
 		color: var(--color);
-        font-family: 'Roboto Flex', serif;
+        font-family: 'Roboto Flex Variable', serif;
         font-variation-settings: 'GRAD' -150;
     }
 

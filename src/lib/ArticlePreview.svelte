@@ -1,28 +1,23 @@
 <script lang="ts">
 	import Button from "$lib/Button.svelte";
+	import { env } from "$env/dynamic/public";
+	import { logo } from "$lib/logo.js";
 
-	interface ArticlePreview {
-		title: string;
-		description: string;
-		image: {
-			url,
-			alt
-		}
-		href: string;
-		date: Date;
-	}
-
-	export let preview: ArticlePreview;
+	export let preview;
 </script>
 
 <div class="container">
-	<img class="preview-image" loading="lazy" src="{preview.image.url}" alt="{preview.image.alt}"/>
+	{#if preview.postImage}
+		<img class="preview-image" loading="lazy" src="{env.PUBLIC_SERVER_URL + preview.postImage.url}" alt="{preview.postImage.alt}"/>
+	{:else}
+		<img class="preview-image logo" loading="lazy" src="{env.PUBLIC_SERVER_URL + $logo.url}" alt="{$logo.alt}">
+	{/if}
 	<div class="content">
 		<div class="text">
 			<h3>{preview.title}</h3>
 			<p>{preview.description}</p>
 		</div>
-		<div class="button"><Button href="{preview.href}" text="Виж още" target="_blank"/></div>
+		<div class="button"><Button href="/news/{preview.id}" text="Виж още" target="_blank"/></div>
 	</div>
 </div>
 
@@ -40,6 +35,10 @@
 		object-fit: cover;
 		height: 50%;
 		width: 100%;
+	}
+
+	.preview-image.logo {
+		object-fit: contain;
 	}
 
 	.content {
