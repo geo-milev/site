@@ -5,11 +5,11 @@
 </script>
 
 <div class="container">
-	<div class="image-title-container">
-		<div class="image-container">
+	<div class="image-container">
+		<figure>
 			<img src="{env.PUBLIC_SERVER_URL + event.image.url}" alt="{event.image.alt}" loading="lazy"/>
-		</div>
-		<p>{event.image.alt}</p>
+			<figcaption>{event.image.alt}</figcaption>
+		</figure>
 	</div>
 	<div class="text">
 		<h2>{event.title}</h2>
@@ -32,11 +32,19 @@
 		justify-content: center;
 	}
 
-	.image-title-container {
-        display: flex;
-        margin-right: 3rem;
-		flex-direction: column;
+	.image-container figure figcaption {
+        font-family: 'Roboto', serif;
+        font-size: 18px;
+        line-height: 22px;
+		font-weight: 300;
+        color: #FFFFFF;
+        text-align: start;
+        overflow: auto;
 	}
+
+	.image-container figure {
+        margin: 0 3rem 0 0;
+    }
 
 	img {
 		max-width: 100%;
@@ -91,5 +99,9 @@
 			order: -1;
 			gap: 0;
 		}
+
+        .image-container figure {
+            margin: 0;
+        }
     }
 </style>
