@@ -1,9 +1,8 @@
 <script lang="ts">
-    import { afterNavigate } from '$app/navigation';
-    import { navigating } from '$app/stores'
     import MobileNav from "$lib/MobileNav.svelte";
     import { onMount } from "svelte";
     import DesktopNav from "$lib/DesktopNav.svelte";
+    import ProgressBar from "$lib/ProgressBar.svelte";
 
     const navigationLinksLeft = [
         { key: "Новини", href: "/news" },
@@ -33,25 +32,7 @@
 
     let scrollY = 0;
     let innerWidth;
-    let loadingBarPercentage = 0;
     let loaded = false;
-
-    afterNavigate(() => {
-        if (loadingBarPercentage > 0) {
-            loadingBarPercentage = 100;
-            setTimeout(() => {
-                loadingBarPercentage = 0;
-            }, 100)
-        }
-    })
-
-    $: if ($navigating) {
-        setTimeout(() => {
-            if ($navigating) {
-                loadingBarPercentage = 30;
-            }
-        }, 300)
-    }
 
     onMount(() => loaded = true)
 
@@ -73,7 +54,7 @@
 <svelte:window bind:scrollY="{scrollY}" bind:innerWidth />
 
 <div class="nav-container" class:fixed="{fixed}" style="--logo-width: {logoWidth}px; --mobile-breakpoint: {mobileBreakpoint}px">
-    <div class="progress-bar" style="--loading-bar-scale: scaleX({loadingBarPercentage}%)"></div>
+    <ProgressBar />
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
@@ -202,16 +183,5 @@
         transform: translateY(-100px);
         color: rgba(0, 0, 0, 0);
         user-select: none;
-    }
-
-    .progress-bar {
-        width: 100%;
-        height: 1px;
-        border-radius: 1px;
-        background-color: #FFFFFF;
-        position: absolute;
-        top: 0;
-        transform: var(--loading-bar-scale);
-        transform-origin: left;
     }
 </style>
