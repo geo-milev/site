@@ -6,8 +6,10 @@
 </script>
 
 <div class="container">
-	<img src="{env.PUBLIC_SERVER_URL + project.image.url}" alt="{project.image.alt}" loading="lazy">
-	<div class="content">
+	{#if project.image}
+		<img src="{env.PUBLIC_SERVER_URL + project.image.url}" alt="{project.image.alt}" loading="lazy">
+	{/if}
+	<div class="content {project.image? '': 'no-image'}">
 		<div class="header-container">
 			<h2>{project.name}</h2>
 			<div class="line"></div>
@@ -44,6 +46,13 @@
 		padding-bottom: 1rem;
 		gap: 0.5rem;
 		padding-right: 1rem;
+	}
+
+    .content.no-image {
+		width: 100%;
+		padding: 1rem;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.content p {

@@ -118,6 +118,7 @@
 	}
 
 	.project-preview {
-		max-width: min(40rem, 100%);
+		min-width: 100%;
+		max-width: 40rem;
 	}
 </style>

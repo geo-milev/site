@@ -1,19 +1,25 @@
 <script lang="ts">
 	import Button from "$lib/Button.svelte";
-	import ArticlePreview from "./ArticlePreview.svelte";
+	import { env } from "$env/dynamic/public";
+	import { logo } from "$lib/logo";
 
-	export let preview: ArticlePreview;
+	export let preview;
 </script>
 
 <div class="container">
-	<img class="preview-image" loading="lazy" src="{preview.image.url}" alt="{preview.image.alt}">
+	{#if preview.postImage}
+		<img class="preview-image" loading="lazy" src="{env.PUBLIC_SERVER_URL + preview.postImage.url}" alt="{preview.postImage.alt}">
+	{:else}
+		<img class="preview-image logo" loading="lazy" src="{env.PUBLIC_SERVER_URL + $logo.url}" alt="{$logo.alt}">
+	{/if}
 	<div class="content">
 		<div class="text">
-			<span>{preview.date.toLocaleDateString("bg-BG", { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+			<span>{new Date(preview.publishDate)
+				.toLocaleDateString("bg-BG", { year: 'numeric', month: 'long', day: 'numeric' })}</span>
 			<div class="separator"></div>
 			<h2>{preview.title}</h2>
 		</div>
-		<div class="button"><Button href="{preview.href}" text="Виж още" target="_blank" /></div>
+		<div class="button"><Button href="/news/{preview.id}" text="Виж още" target="_blank"/></div>
 	</div>
 </div>
 
@@ -34,6 +40,10 @@
 		height: 100%;
 		bottom: 0;
 		filter: brightness(0.5);;
+	}
+
+	.preview-image.logo {
+         object-fit: contain;
 	}
 
 	.content {

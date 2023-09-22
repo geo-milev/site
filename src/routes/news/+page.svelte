@@ -5,14 +5,13 @@
 	import { fly } from "svelte/transition";
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
 	import { getContextClient } from "@urql/svelte";
-	import { mapArticles } from "../../lib/mapArticles";
 	import RSSFeedIcon from "$lib/RSSFeedIcon.svelte";
 
 	setLayout(secondaryLayout)
 
 	export let data;
 
-	let articles = mapArticles(data.allNews.docs)
+	let articles = data.allNews.docs
 
 	let remainArticles = data.allNews.hasNextPage;
 	let page = 1;
@@ -37,7 +36,7 @@
 					}
 				}
    		 	`, { page }).then(result => {
-					articles = articles.concat(mapArticles(result.data.allNews.docs))
+					articles = articles.concat(result.data.allNews.docs)
 					remainArticles = result.data.allNews.hasNextPage
 				})
 	}

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import ArticlePreview from "../../lib/ArticlePreview.svelte";
 	import { secondaryLayout, setLayout } from "../../lib/setLayout";
-	import { mapArticles } from "../../lib/mapArticles";
 	import Carousel from "$lib/Carousel.svelte";
 	import SecondaryButton from "$lib/SecondaryButton.svelte";
 
@@ -9,19 +8,19 @@
 
 	export let data;
 
-	let olympiads = mapArticles(data.olympiads).map((article) => {
+	let olympiads = data.olympiads.map((article) => {
 		return {
 			preview: article
 		}
 	})
 
-	let sports = mapArticles(data.sports).map((article) => {
+	let sports = data.sports.map((article) => {
 		return {
 			preview: article
 		}
 	})
 
-	let arts = mapArticles(data.arts).map((article) => {
+	let arts = data.arts.map((article) => {
 		return {
 			preview: article
 		}
