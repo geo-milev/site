@@ -1,5 +1,5 @@
 <script>
-	import NavClose from "$lib/NavClose.svelte";
+	import Close from "$lib/Close.svelte";
 	import NavMinus from "$lib/NavMinus.svelte";
 	import NavPlus from "$lib/NavPlus.svelte";
 	import { fly } from 'svelte/transition';
@@ -31,7 +31,7 @@
 	<div class="mobile-nav" transition:fly="{{ x: 300, duration: 300 }}">
 		<div class="close">
 			<button class="icon-button" aria-label="затвори мобилна навигация" on:click={closeNavbar}>
-				<NavClose />
+				<Close />
 			</button>
 		</div>
 		<nav>
