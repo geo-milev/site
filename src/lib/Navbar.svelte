@@ -32,7 +32,7 @@
         { key: "Контакти", href: "/contacts" },
     ];
 
-    const mobileBreakpoint = 1050;
+    const mobileBreakpoint = 1150;
 
     let scrollY = 0;
     let leftNavWidth;
@@ -88,83 +88,86 @@
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
-        {#if !isMobile && loaded}
-            <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
-                {#each navigationLinksLeft as navigationLink, index (navigationLink.key)}
-                    {#if !navigationLink.subsections}
-                        <a href="{navigationLink.href}">{navigationLink.key}</a>
-                        {:else}
-                        <div on:mouseenter={(event) => {
-                            shownSubsectionLeftShift = event.target.offsetLeft
-                            shownSubsectionsHref = navigationLink.key
-                        }}
-                             on:mouseleave="{() => { shownSubsectionsHref = '' }}"
-                             class="subsection-container">
-                            <span>{navigationLink.key}</span>
-                                <div class="subsections"
-                                     style="--subsection-width: {leftNavWidth}px"
-                                    class:open={shownSubsectionsHref === navigationLink.key}>
-                                    <div class="subsection-top">
-                                        <div class="subsection-line"></div>
-                                        <span class="subsection-title"
-                                              style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">
-                                            {navigationLink.key}</span>
+        {#if loaded}
+            {#if !isMobile}
+                <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
+                    {#each navigationLinksLeft as navigationLink, index (navigationLink.key)}
+                        {#if !navigationLink.subsections}
+                            <a href="{navigationLink.href}">{navigationLink.key}</a>
+                            {:else}
+                            <div on:mouseenter={(event) => {
+                                shownSubsectionLeftShift = event.target.offsetLeft
+                                shownSubsectionsHref = navigationLink.key
+                            }}
+                                 on:mouseleave="{() => { shownSubsectionsHref = '' }}"
+                                 class="subsection-container">
+                                <span>{navigationLink.key}</span>
+                                    <div class="subsections"
+                                         style="--subsection-width: {leftNavWidth}px"
+                                        class:open={shownSubsectionsHref === navigationLink.key}>
+                                        <div class="subsection-top">
+                                            <div class="subsection-line"></div>
+                                            <span class="subsection-title"
+                                                  style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">
+                                                {navigationLink.key}</span>
+                                        </div>
+                                        {#each navigationLink.subsections as subsection}
+                                            <a href="{subsection.href}">{subsection.key}</a>
+                                         {/each}
                                     </div>
-                                    {#each navigationLink.subsections as subsection}
-                                        <a href="{subsection.href}">{subsection.key}</a>
-                                     {/each}
-                                </div>
-                        </div>
-                    {/if}
-                {/each}
-            </nav>
-        {:else}
-            <div class="left-nav"></div>
+                            </div>
+                        {/if}
+                    {/each}
+                </nav>
+            {:else}
+                <div class="left-nav"></div>
+            {/if}
         {/if}
         <div class="logo">
             <a href="/">
                 <img alt="{logoHrefAlt}" src="{logoHref}"/>
             </a>
         </div>
-
-        {#if !isMobile && loaded}
-            <nav class:scrolled="{scrollMode}" class="right-nav" bind:clientWidth={rightNavWidth}>
-                {#each navigationLinksRight as navigationLink}
-                    {#if !navigationLink.subsections}
-                        <a href="{navigationLink.href}">{navigationLink.key}</a>
-                    {:else}
-                        <div on:mouseenter={(event) => {
-                            shownSubsectionLeftShift = event.target.offsetLeft
-                            shownSubsectionsHref = navigationLink.href
-                        }}
-                             on:mouseleave="{() => { shownSubsectionsHref = '' }}"
-                             class="subsection-container">
-                            <span>{navigationLink.key}</span>
-                            {#if shownSubsectionsHref === navigationLink.href}
-                                <div class="subsections" style="--subsection-width: {rightNavWidth + 'px'}">
-                                    <div class="subsection-top">
-                                        <div class="subsection-line"></div>
-                                        <span class="subsection-title"
-                                          style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">{navigationLink.key}</span>
+        {#if loaded}
+            {#if !isMobile}
+                <nav class:scrolled="{scrollMode}" class="right-nav" bind:clientWidth={rightNavWidth}>
+                    {#each navigationLinksRight as navigationLink}
+                        {#if !navigationLink.subsections}
+                            <a href="{navigationLink.href}">{navigationLink.key}</a>
+                        {:else}
+                            <div on:mouseenter={(event) => {
+                                shownSubsectionLeftShift = event.target.offsetLeft
+                                shownSubsectionsHref = navigationLink.href
+                            }}
+                                 on:mouseleave="{() => { shownSubsectionsHref = '' }}"
+                                 class="subsection-container">
+                                <span>{navigationLink.key}</span>
+                                {#if shownSubsectionsHref === navigationLink.href}
+                                    <div class="subsections" style="--subsection-width: {rightNavWidth + 'px'}">
+                                        <div class="subsection-top">
+                                            <div class="subsection-line"></div>
+                                            <span class="subsection-title"
+                                              style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">{navigationLink.key}</span>
+                                        </div>
+                                        {#each navigationLink.subsections as subsection}
+                                            <a href="{subsection.href}">{subsection.key}</a>
+                                        {/each}
                                     </div>
-                                    {#each navigationLink.subsections as subsection}
-                                        <a href="{subsection.href}">{subsection.key}</a>
-                                    {/each}
-                                </div>
-                            {/if}
-                        </div>
-                    {/if}
-                {/each}
-            </nav>
-            {:else}
-            <div class="right-nav" class:scrolled="{scrollMode}" >
-                <button class="icon-button" aria-label="отвори мобилна навигация" on:click={() => {
-                    isMobileMenuOpen = true
-                    document.body.classList.add("no-scroll")
-                }}>
-                    <NavLines></NavLines>
-                </button>
-            </div>
+                                {/if}
+                            </div>
+                        {/if}
+                    {/each}
+                </nav>
+                {:else}
+                <div class="right-nav" class:scrolled="{scrollMode}" >
+                    <button class="icon-button" aria-label="отвори мобилна навигация" on:click={() => {
+                        isMobileMenuOpen = true
+                        document.body.classList.add("no-scroll")
+                    }}>
+                        <NavLines></NavLines>
+                    </button>
+                </div>
+            {/if}
         {/if}
     </div>
     {#if showTitle && fixed}
@@ -258,6 +261,7 @@
         margin-top: 1rem;
         pointer-events: all;
         user-select: none;
+        grid-column: 2;
     }
 
     .background {
