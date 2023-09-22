@@ -4,10 +4,17 @@
 	import NavPlus from "$lib/NavPlus.svelte";
 	import { fly } from 'svelte/transition';
 	import { afterNavigate } from "$app/navigation";
+	import NavLines from "$lib/NavLines.svelte";
 
-	export let closeNavbar;
 	export let navigationLinksLeft;
 	export let navigationLinksRight;
+	export let scrollMode;
+	let isMobileMenuOpen;
+
+	const closeNavbar = () => {
+		isMobileMenuOpen = false;
+		document.body.classList.remove("no-scroll")
+	}
 
 	let mobileOpenSubsectionsKeys = []
 	let navBackground;
@@ -19,44 +26,55 @@
 	}
 </script>
 
-<div class="nav-background" on:click={onBackgroundClick} bind:this={navBackground}></div>
-<div class="mobile-nav" transition:fly="{{ x: 300, duration: 300 }}">
-	<div class="close">
-		<button class="icon-button" aria-label="затвори мобилна навигация" on:click={closeNavbar}>
-			<NavClose />
+{#if isMobileMenuOpen}
+	<div class="nav-background" on:click={onBackgroundClick} bind:this={navBackground}></div>
+	<div class="mobile-nav" transition:fly="{{ x: 300, duration: 300 }}">
+		<div class="close">
+			<button class="icon-button" aria-label="затвори мобилна навигация" on:click={closeNavbar}>
+				<NavClose />
+			</button>
+		</div>
+		<nav>
+			{#each [...navigationLinksLeft, ...navigationLinksRight] as navigationLink}
+				{#if navigationLink.href}
+					<div class="link-wrapper">
+						<a href="{navigationLink.href}">{navigationLink.key}</a>
+					</div>
+				{:else}
+					<button class="link-wrapper" on:click={() => {
+								if (mobileOpenSubsectionsKeys.includes(navigationLink.key)) {
+									mobileOpenSubsectionsKeys = mobileOpenSubsectionsKeys
+										.filter((val) => val !== navigationLink.key)
+								} else {
+									mobileOpenSubsectionsKeys = [...mobileOpenSubsectionsKeys, navigationLink.key]
+								}
+							}}>
+						<span>{navigationLink.key}</span>
+						{#if mobileOpenSubsectionsKeys.includes(navigationLink.key)}
+							<NavMinus />
+						{:else}
+							<NavPlus />
+						{/if}
+					</button>
+					<div class="mobile-subsection" class:open={mobileOpenSubsectionsKeys.includes(navigationLink.key)}>
+						{#each navigationLink.subsections as subsection}
+							<a href="{subsection.href}">{subsection.key}</a>
+						{/each}
+					</div>
+				{/if}
+			{/each}
+		</nav>
+	</div>
+{:else}
+	<div class="right-nav" class:scrolled="{scrollMode}" >
+		<button class="icon-button" aria-label="отвори мобилна навигация" on:click={() => {
+                        isMobileMenuOpen = true
+                        document.body.classList.add("no-scroll")
+                    }}>
+			<NavLines></NavLines>
 		</button>
 	</div>
-	<nav>
-		{#each [...navigationLinksLeft, ...navigationLinksRight] as navigationLink}
-			{#if navigationLink.href}
-				<div class="link-wrapper">
-					<a href="{navigationLink.href}">{navigationLink.key}</a>
-				</div>
-			{:else}
-				<button class="link-wrapper" on:click={() => {
-                            if (mobileOpenSubsectionsKeys.includes(navigationLink.key)) {
-                                mobileOpenSubsectionsKeys = mobileOpenSubsectionsKeys
-                                    .filter((val) => val !== navigationLink.key)
-                            } else {
-                                mobileOpenSubsectionsKeys = [...mobileOpenSubsectionsKeys, navigationLink.key]
-                            }
-                        }}>
-					<span>{navigationLink.key}</span>
-					{#if mobileOpenSubsectionsKeys.includes(navigationLink.key)}
-						<NavMinus />
-					{:else}
-						<NavPlus />
-					{/if}
-				</button>
-				<div class="mobile-subsection" class:open={mobileOpenSubsectionsKeys.includes(navigationLink.key)}>
-					{#each navigationLink.subsections as subsection}
-						<a href="{subsection.href}">{subsection.key}</a>
-					{/each}
-				</div>
-			{/if}
-		{/each}
-	</nav>
-</div>
+{/if}
 
 <style>
     nav {
@@ -118,7 +136,7 @@
         border: none;
         align-items: flex-start;
         justify-content: flex-start;
-        padding: 0 2rem 1rem 1rem;
+        padding: 0 1rem 1rem 1rem;
         box-sizing: border-box;
     }
 
@@ -184,5 +202,9 @@
 
     button {
         transition: margin-bottom 250ms;
+    }
+
+    .scrolled button {
+        margin-bottom: 1.5rem;
     }
 </style>

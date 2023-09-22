@@ -1,12 +1,9 @@
 <script lang="ts">
-    import NavLines from "$lib/NavLines.svelte";
     import { afterNavigate } from '$app/navigation';
     import { navigating } from '$app/stores'
     import MobileNavbar from "$lib/MobileNavbar.svelte";
     import { onMount } from "svelte";
-
-    let shownSubsectionsHref = ""
-    let shownSubsectionLeftShift = 0;
+    import DesktopNav from "$lib/DesktopNav.svelte";
 
     const navigationLinksLeft = [
         { key: "Новини", href: "/news" },
@@ -35,17 +32,9 @@
     const mobileBreakpoint = 1150;
 
     let scrollY = 0;
-    let leftNavWidth;
-    let rightNavWidth;
     let innerWidth;
-    let isMobileMenuOpen;
     let loadingBarPercentage = 0;
     let loaded = false;
-
-    const closeNavbar = () => {
-        isMobileMenuOpen = false;
-        document.body.classList.remove("no-scroll")
-    }
 
     afterNavigate(() => {
         if (loadingBarPercentage > 0) {
@@ -88,88 +77,25 @@
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
-        {#if loaded}
-            {#if !isMobile}
-                <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
-                    {#each navigationLinksLeft as navigationLink, index (navigationLink.key)}
-                        {#if !navigationLink.subsections}
-                            <a href="{navigationLink.href}">{navigationLink.key}</a>
-                            {:else}
-                            <div on:mouseenter={(event) => {
-                                shownSubsectionLeftShift = event.target.offsetLeft
-                                shownSubsectionsHref = navigationLink.key
-                            }}
-                                 on:mouseleave="{() => { shownSubsectionsHref = '' }}"
-                                 class="subsection-container">
-                                <span>{navigationLink.key}</span>
-                                    <div class="subsections"
-                                         style="--subsection-width: {leftNavWidth}px"
-                                        class:open={shownSubsectionsHref === navigationLink.key}>
-                                        <div class="subsection-top">
-                                            <div class="subsection-line"></div>
-                                            <span class="subsection-title"
-                                                  style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">
-                                                {navigationLink.key}</span>
-                                        </div>
-                                        {#each navigationLink.subsections as subsection}
-                                            <a href="{subsection.href}">{subsection.key}</a>
-                                         {/each}
-                                    </div>
-                            </div>
-                        {/if}
-                    {/each}
-                </nav>
-            {:else}
-                <div class="left-nav"></div>
-            {/if}
-        {/if}
         <div class="logo">
             <a href="/">
                 <img alt="{logoHrefAlt}" src="{logoHref}"/>
             </a>
         </div>
+
         {#if loaded}
             {#if !isMobile}
-                <nav class:scrolled="{scrollMode}" class="right-nav" bind:clientWidth={rightNavWidth}>
-                    {#each navigationLinksRight as navigationLink}
-                        {#if !navigationLink.subsections}
-                            <a href="{navigationLink.href}">{navigationLink.key}</a>
-                        {:else}
-                            <div on:mouseenter={(event) => {
-                                shownSubsectionLeftShift = event.target.offsetLeft
-                                shownSubsectionsHref = navigationLink.href
-                            }}
-                                 on:mouseleave="{() => { shownSubsectionsHref = '' }}"
-                                 class="subsection-container">
-                                <span>{navigationLink.key}</span>
-                                {#if shownSubsectionsHref === navigationLink.href}
-                                    <div class="subsections" style="--subsection-width: {rightNavWidth + 'px'}">
-                                        <div class="subsection-top">
-                                            <div class="subsection-line"></div>
-                                            <span class="subsection-title"
-                                              style="--subsection-left-shift: {shownSubsectionLeftShift - 10}px">{navigationLink.key}</span>
-                                        </div>
-                                        {#each navigationLink.subsections as subsection}
-                                            <a href="{subsection.href}">{subsection.key}</a>
-                                        {/each}
-                                    </div>
-                                {/if}
-                            </div>
-                        {/if}
-                    {/each}
-                </nav>
-                {:else}
-                <div class="right-nav" class:scrolled="{scrollMode}" >
-                    <button class="icon-button" aria-label="отвори мобилна навигация" on:click={() => {
-                        isMobileMenuOpen = true
-                        document.body.classList.add("no-scroll")
-                    }}>
-                        <NavLines></NavLines>
-                    </button>
-                </div>
+                <DesktopNav scrollMode={scrollMode}
+                            navigationLinksLeft={navigationLinksLeft}
+                            navigationLinksRight={navigationLinksRight} />
+            {:else}
+                <MobileNavbar scrollMode={scrollMode}
+                              navigationLinksLeft={navigationLinksLeft}
+                              navigationLinksRight={navigationLinksRight} />
             {/if}
         {/if}
     </div>
+
     {#if showTitle && fixed}
         <h1 class:scrolled="{scrollMode}">{title}</h1>
     {:else}
@@ -177,17 +103,25 @@
             <h1>{title}</h1>
         {/if}
     {/if}
-
-    {#if isMobile && isMobileMenuOpen}
-        <MobileNavbar closeNavbar={closeNavbar}
-                      navigationLinksLeft={navigationLinksLeft}
-                      navigationLinksRight={navigationLinksRight} />
-    {/if}
 </div>
 
 <style>
     :global(.no-scroll) {
         overflow: hidden;
+    }
+
+    :global(.nav-container .left-nav) {
+         justify-self: flex-start;
+         margin-left: 3rem;
+         grid-column: 1;
+        grid-row: 1;
+     }
+
+    :global(.nav-container .right-nav) {
+        justify-self: flex-end;
+        margin-right: 3rem;
+        grid-column: 3;
+        grid-row: 1;
     }
 
     .nav-container {
@@ -217,38 +151,7 @@
         position: fixed;
     }
 
-    nav {
-        display: flex;
-        flex-direction: row;
-        column-gap: 1.5rem;
-        border-top: #ffffff 2px solid;
-        pointer-events: all;
-        transition: margin-bottom 250ms;
-    }
-
-    .left-nav {
-        justify-self: flex-start;
-        margin-left: 3rem;
-    }
-
-    .right-nav {
-        justify-self: flex-end;
-        margin-right: 3rem;
-    }
-
-    nav.scrolled {
-       margin-bottom: 1.5rem;
-    }
-
     a {
-        text-decoration: none;
-        color: #ffffff;
-        text-transform: uppercase;
-        margin-top: 10px;
-        font-family: Roboto, serif;
-    }
-
-    span {
         text-decoration: none;
         color: #ffffff;
         text-transform: uppercase;
@@ -262,6 +165,7 @@
         pointer-events: all;
         user-select: none;
         grid-column: 2;
+        grid-row: 1;
     }
 
     .background {
@@ -298,93 +202,6 @@
         transform: translateY(-100px);
         color: rgba(0, 0, 0, 0);
         user-select: none;
-    }
-
-    .subsection-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .subsections {
-        display: flex;
-        position: absolute;
-        background-color: #7d0b09;
-        flex-direction: column;
-        width: var(--subsection-width);
-        top: 0;
-        right: 0;
-        gap: 1rem;
-        max-height: 0;
-        margin-top: 0.5rem;
-        transition: max-height 300ms linear;
-        transform-origin: top;
-        overflow: hidden;
-    }
-
-    .subsections.open {
-        max-height: 25rem;
-    }
-
-    .subsections a {
-        margin-left: 8px;
-    }
-
-    .subsections a:last-child {
-        margin-left: 8px;
-        padding-bottom: 1rem;
-    }
-
-    .subsection-top {
-        display: flex;
-        width: 100%;
-        padding-top: 4px;
-        align-items: center;
-        position: relative;
-        min-height: 21px;
-    }
-
-    .subsection-line {
-        display: flex;
-        background-color: #FFFFFF;
-        height: 1px;
-        flex-grow: 1;
-        margin-right: 8px;
-        width: 100%;
-        margin-left: 8px;
-    }
-
-    .subsection-title {
-        padding-right: 4px;
-        padding-left: 4px;
-        font-family: 'Roboto', serif;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 18px;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        text-align: center;
-        position: absolute;
-        height: 100%;
-        background-color: #7d0b09;
-        left: var(--subsection-left-shift)
-    }
-
-    .icon-button {
-        background-color: rgba(0, 0, 0, 0);
-        border: none;
-        cursor: pointer;
-        pointer-events: all;
-    }
-
-    button {
-        transition: margin-bottom 250ms;
-    }
-
-    .scrolled button {
-        margin-bottom: 1.5rem;
     }
 
     .progress-bar {
