@@ -1,7 +1,7 @@
 <script lang="ts">
     import { afterNavigate } from '$app/navigation';
     import { navigating } from '$app/stores'
-    import MobileNavbar from "$lib/MobileNavbar.svelte";
+    import MobileNav from "$lib/MobileNav.svelte";
     import { onMount } from "svelte";
     import DesktopNav from "$lib/DesktopNav.svelte";
 
@@ -89,7 +89,7 @@
                             navigationLinksLeft={navigationLinksLeft}
                             navigationLinksRight={navigationLinksRight} />
             {:else}
-                <MobileNavbar scrollMode={scrollMode}
+                <MobileNav scrollMode={scrollMode}
                               navigationLinksLeft={navigationLinksLeft}
                               navigationLinksRight={navigationLinksRight} />
             {/if}
