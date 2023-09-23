@@ -6,6 +6,7 @@
 	import { env } from "$env/dynamic/public";
 	import BookPreview from "$lib/BookPreview.svelte";
 	import { onMount } from "svelte";
+	import { selectedClassStore } from "../../../lib/selectedClass";
 
 	setLayout(secondaryLayout)
 
@@ -21,6 +22,12 @@
 
 	const changeBooks = () => {
 		const className = classSelect.options[classSelect.selectedIndex].value
+
+		selectedClassStore.update((selectedClass) => {
+			selectedClass.classNumber = className
+
+			return selectedClass
+		})
 
 		const QUERY = `
 			query($className: String!) {
@@ -49,9 +56,17 @@
 	}
 
 	onMount(() => {
-		if (data.classNumber && classNumbers.indexOf(parseInt(data.classNumber)) !== -1) {
-			classSelect.selectedIndex = classNumbers.indexOf(parseInt(data.classNumber))
+		let classNumber
+		if (data.classNumber) {
+			classNumber = data.classNumber
+		} else {
+			classNumber = selectedClassStore.get().classNumber
 		}
+
+		if (classNumber && classNumbers.indexOf(classNumber) !== -1) {
+			classSelect.selectedIndex = classNumbers.indexOf(classNumber)
+		}
+
 		changeBooks()
 	})
 </script>
