@@ -1,6 +1,8 @@
 import sanitizeHtml from "sanitize-html";
 import { env } from "$env/dynamic/public";
 
+const isNonEmptyString = (s: string) => s && !s.match(/^\s*$/);
+
 const parseRichText = (richText) => {
     if (richText) {
         return richText
@@ -80,16 +82,53 @@ const parseRichText = (richText) => {
                     case "upload": {
                         const value = node.value;
                         const src = env.PUBLIC_SERVER_URL + value.url;
+
+                        let maxWidth;
+                        let maxHeight;
+                        let isNonImage = false;
+                        let buttonText;
+
                         if (node.fields) {
+                            if (node.fields.maxImageSize) {
+                                maxWidth = node.fields.maxImageSize.maxWidth;
+                                maxHeight = node.fields.maxImageSize.maxHeight;
+                            }
                             if (node.fields.isNonImage) {
-                                return `<div class="button"><a href="${src}" target="_blank"><button tabindex="-1">${node.fields.buttonText}</button></a></div>`;
+                                isNonImage = true;
+                                buttonText = node.fields.buttonText;
                             }
                         }
-                        if (value.mimeType.startsWith("image/")) {
-                            return `<img src="${src}" alt="${value.alt}" style="width: 100%" loading="lazy"/>`;
+                        if (
+                            !value.mimeType.startsWith("image/") ||
+                            isNonImage
+                        ) {
+                            let text = "";
+                            if (
+                                !isNonEmptyString(value.alt) &&
+                                !isNonEmptyString(buttonText)
+                            )
+                                text = "Изтегли";
+                            else if (
+                                !isNonEmptyString(value.alt) &&
+                                isNonEmptyString(buttonText)
+                            ) {
+                                text = buttonText;
+                            } else {
+                                text = value.alt;
+                            }
+                            return `<div class="button"><a href="${src}" target="_blank"><button tabindex="-1">${text}</button></a></div>`;
                         } else {
-                            if (value.alt.match(/^\s*$/)) value.alt = "Изтегли";
-                            return `<div class="button"><a href="${src}" target="_blank"><button tabindex="-1">${value.alt}</button></a></div>`;
+                            let style = "";
+
+                            if (maxWidth) {
+                                style += `max-width: ${maxWidth}px; `;
+                            } else {
+                                style += "max-width: 100%; ";
+                            }
+                            if (maxHeight) {
+                                style += `max-height: ${maxHeight}px;`;
+                            }
+                            return `<img src="${src}" alt="${value.alt}" style="${style}" loading="lazy"/>`;
                         }
                     }
                     case "indent": {
