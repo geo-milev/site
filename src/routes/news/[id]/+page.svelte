@@ -135,7 +135,7 @@
         width: 100%;
         max-width: 50rem;
         height: 100%;
-        max-height: 30rem;
+        max-height: 25rem;
     }
 
     .article-content {
