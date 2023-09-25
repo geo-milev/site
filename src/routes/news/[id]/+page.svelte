@@ -82,7 +82,7 @@
 		</div>
 	</div>
 	{#if data.News.postImage}
-		<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}"/>
+		<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}" loading="lazy" />
 	{/if}
 	<BlockRenderer blocks="{data.News.content}"
 				   buttonColor={buttonColor}
