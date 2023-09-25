@@ -7,6 +7,8 @@ const parseRichText = (richText) => {
             .map((node) => {
                 if (node.text && node.text.length > 0) {
                     const sanitizedText = sanitizeHtml(node.text, {
+                        allowedTags: [],
+                        allowedAttributes: {},
                         disallowedTagsMode: "recursiveEscape",
                     });
                     if (!sanitizedText || sanitizedText == "") return null;
