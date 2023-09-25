@@ -11,7 +11,7 @@ const parseRichText = (richText) => {
                     });
                     if (!sanitizedText || sanitizedText == "") return null;
 
-                    let text = `<span>${sanitizedText}</span>`;
+                    let text = sanitizedText;
 
                     if (node.bold) {
                         text = `<strong>${text}</strong>`;
