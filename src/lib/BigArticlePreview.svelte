@@ -39,11 +39,12 @@
 		width: 100%;
 		height: 100%;
 		bottom: 0;
-		filter: brightness(0.5);;
+		filter: brightness(0.5);
 	}
 
 	.preview-image.logo {
          object-fit: contain;
+		background-color: #FFFFFF;
 	}
 
 	.content {
