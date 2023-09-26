@@ -49,7 +49,7 @@
 			url: data.href,
 			siteName: data.MainInfo.name,
 			imageUrl: data.MainInfo.seoAutofillImage.url,
-			type: undefined,
+			type: "website",
 			publishDate: undefined
 		})
 	}
@@ -60,9 +60,9 @@
 		seoInfo.update((seo) => {
 			seo.title = data.seoData.title
 			seo.description = data.seoData.description
-			seo.imageUrl = data.seoData.image.url
+			seo.imageUrl = data.seoData.image ? data.seoData.image.url: data.MainInfo.seoAutofillImage.url
 			seo.url = data.href
-			seo.type = undefined
+			seo.type = "website"
 			seo.publishDate = undefined
 
 			if (data.pathname.startsWith("/news/")) {
