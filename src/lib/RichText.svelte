@@ -51,12 +51,18 @@
         color: var(--color)
     }
 
+    :global(.markup-content a, .markup-content p, .markup-content span) {
+        overflow-wrap: anywhere;
+        word-wrap: anywhere;
+		hyphens: auto;
+    }
+
     :global(.markup-content img) {
         object-fit: contain;
         width: 100%;
         max-width: 50rem;
 		height: 100%;
-		max-height: 50rem;
+		max-height: 25rem;
     }
 
     :global(.markup-content) {
