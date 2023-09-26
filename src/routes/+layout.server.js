@@ -17,6 +17,10 @@ export async function load({ fetch }) {
                     alt
                     width
                 }
+                seoAutofillImage {
+                    url
+                    alt
+                }
                 favicons {
                     size
                     favicon {

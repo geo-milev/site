@@ -20,6 +20,7 @@ export async function load({ fetch, data, url }) {
     return {
         seoData: remoteSeoData,
         pathname: url.pathname,
+        href: url.href,
         ...data,
     };
 }
