@@ -5,6 +5,7 @@
 	import { onMount } from "svelte";
 	import { env } from "$env/dynamic/public";
 	import { getClassNumberName } from "../../../lib/classNumberNames";
+	import { selectedClassStore } from "../../../lib/selectedClass";
 
 	setLayout(secondaryLayout)
 
@@ -14,6 +15,13 @@
 	const dateFormatOptions: Intl.DateTimeFormatOptions = {hour: '2-digit', minute: '2-digit', hour12: false}
 
 	const classes = data.WeeklySchedules.docs.map((val) => val.class)
+	const maxNumberOfLessons = data.Schedule.weeklySchedule.weeklySchedulesAutofill.maxNumberOfLessons
+
+	let classNumberSelect;
+	let classLetterSelect;
+	let currentClassNumber;
+	let currentClassLetter;
+	let days = [];
 
 	const classNumbers = [...new Set(classes.map((val) => {
 		return val.match(/\d+/)[0]
@@ -23,12 +31,19 @@
 		return val.match(/[A-Za-zА-Яа-я]/)[0]
 	}))].sort()
 
-	let classNumberSelect;
-	let classLetterSelect;
-	let currentClassNumber;
-	let currentClassLetter;
-	let days = [];
-	const maxNumberOfLessons = data.Schedule.weeklySchedule.weeklySchedulesAutofill.maxNumberOfLessons
+	const isLetterDisabled = (classNumber: string, classLetter: string) => {
+		return classNumberSelect && !classes.includes(classNumber + classLetter)
+	}
+
+	const validateClassNumber = (classNumber) => {
+		return classNumber && classNumbers.indexOf(classNumber) !== -1;
+	}
+
+	const validateClassLetter = (classNumber, classLetter) => {
+		return classLetter &&
+			classLetters.indexOf(classLetter) !== -1 &&
+			!isLetterDisabled(classNumber, classLetter)
+	}
 
 	const changeSchedule = () => {
 		currentClassNumber = classNumberSelect.value
@@ -40,11 +55,13 @@
 			currentClassLetter = classLetterSelect.value
 		}
 
-		setSchedule(currentClassNumber + currentClassLetter)
-	}
+		selectedClassStore.update((selectedClass) => {
+			selectedClass.classNumber = currentClassNumber
+			selectedClass.classLetter = currentClassLetter
 
-	const isLetterDisabled = (classNumber: string, classLetter: string) => {
-		return classNumberSelect && !classes.includes(classNumber + classLetter)
+			return selectedClass
+		})
+		setSchedule(currentClassNumber + currentClassLetter)
 	}
 
 	const hours = data.Schedule.dailySchedule.hours.slice(0)
@@ -73,18 +90,24 @@
 	}
 
 	onMount(() => {
+		let classLetter;
+		let classNumber;
+
 		if (data.className) {
-			let classNumber = data.className.match(/\d+/)[0]
-			if (classNumber && classNumbers.indexOf(classNumber) !== -1) {
-				classNumberSelect.value = classNumber
-				let classLetter = data.className.match(/[A-Za-zА-Яа-я]/)[0]
-				if (classLetter &&
-					classLetters.indexOf(classLetter) !== -1 &&
-					!isLetterDisabled(classNumber, classLetter)) {
-					classLetterSelect.value = classLetter
-				}
+			classNumber = data.className.match(/\d+/)[0]
+			classLetter = data.className.match(/[A-Za-zА-Яа-я]/)[0]
+		} else {
+			classNumber = selectedClassStore.get().classNumber
+			classLetter = selectedClassStore.get().classLetter
+		}
+
+		if (validateClassNumber(classNumber)) {
+			classNumberSelect.value = classNumber
+			if (validateClassLetter(classNumber, classLetter)) {
+				classLetterSelect.value = classLetter
 			}
 		}
+
 		changeSchedule()
 	})
 </script>
