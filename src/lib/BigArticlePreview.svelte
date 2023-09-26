@@ -43,7 +43,6 @@
 	}
 
 	.preview-image.logo {
-         object-fit: contain;
 		background-color: #FFFFFF;
 	}
 
