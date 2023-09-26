@@ -53,29 +53,38 @@
 		publishDate: undefined
 	})
 
-	$: if (data.seoData) {
-		seoInfo.update((seoInfo) => {
-			seoInfo.title = data.seoData.title
-			seoInfo.description = data.seoData.description
-			seoInfo.imageUrl = data.seoData.image.url
-			seoInfo.url = $page.url.href
-			seoInfo.type = undefined
-			seoInfo.publishDate = undefined
+	const resetSeo = () => {
+		seoInfo.set({
+			title: data.MainInfo.name,
+			description: undefined,
+			url: $page.url.href,
+			siteName: data.MainInfo.name,
+			imageUrl: undefined,
+			type: undefined,
+			publishDate: undefined
+		})
+	}
 
-			return seoInfo
+	resetSeo()
+
+	$: if (data.seoData) {
+		seoInfo.update((seo) => {
+			seo.title = data.seoData.title
+			seo.description = data.seoData.description
+			seo.imageUrl = data.seoData.image.url
+			seo.url = $page.url.href
+			seo.type = undefined
+			seo.publishDate = undefined
+
+			if (data.pathname.startsWith("/news/")) {
+				seo.type = "article"
+				seo.publishDate = data.seoData.lastUpdate
+			}
+
+			return seo
 		})
 	} else {
-		if (!$page.url.pathname.startsWith("/news/")) {
-			seoInfo.set({
-				title: data.MainInfo.name,
-				description: undefined,
-				url: $page.url.href,
-				siteName: data.MainInfo.name,
-				imageUrl: undefined,
-				type: undefined,
-				publishDate: undefined
-			})
-		}
+		resetSeo()
 	}
 </script>
 
