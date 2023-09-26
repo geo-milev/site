@@ -199,6 +199,8 @@
         line-height: 33px;
         text-align: center;
 		margin-bottom: 0;
+		margin-left: 4rem;
+		margin-right: 4rem;
 
         color: #FFFFFF;
 	}
