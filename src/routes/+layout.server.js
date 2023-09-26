@@ -21,6 +21,9 @@ export async function load({ fetch }) {
                     url
                     alt
                 }
+                favicon {
+                    url
+                }
                 favicons {
                     size
                     favicon {

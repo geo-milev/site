@@ -78,6 +78,7 @@
 </script>
 
 <svelte:head>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	{#each data.MainInfo.favicons as favicon}
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />
