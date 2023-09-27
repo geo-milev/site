@@ -41,10 +41,6 @@
 	export let autoSelect = false;
 	export let hasSearch = true;
 	export let sort: (documents: Document[]) => Document[] = documentViewerSorts.alphabetical
-	export let backgroundColor = "#FFFFFF";
-	export let textColor = "#000000";
-	export let textColorNegative = "#FFFFFF";
-	export let hoverColor = "#7d0b09";
 
 	let filteredDocuments = sort(documents)
 
@@ -84,10 +80,7 @@
 	}
 </script>
 
-<div class="container" style="--background-color: {backgroundColor};
---text-color: {textColor};
---hover-color: {hoverColor};
---text-color-negative: {textColorNegative}">
+<div class="container">
 	<div class="list">
 		<h2>{header}</h2>
 		{#if hasSearch && documents.length !== 0}
@@ -139,13 +132,13 @@
 		display: flex;
 		flex-direction: column;
 		margin: 1rem;
-		background-color: var(--background-color);
+		background-color: #FFFFFF;
 		max-height: 30rem;
         width: 100%;
 		padding-left: 1rem;
 		max-width: 30rem;
 		overflow: hidden;
-		border: 1px var(--hover-color) solid;
+		border: 1px #7d0b09 solid;
 	}
 
 	.list h2 {
@@ -154,25 +147,25 @@
         font-weight: 700;
         font-size: 32px;
         line-height: 44px;
-        color: var(--text-color);
+        color: #000000;
 		padding-right: 1rem;
 	}
 
 	.list .search {
 		margin-right: 3rem;
 		border: none;
-        border-bottom: 1px solid var(--text-color);
+        border-bottom: 1px solid #000000;
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
         line-height: 22px;
-		background-color: var(--background-color);
-		color: var(--text-color);
+		background-color: #FFFFFF;
+		color: #000000;
 	}
 
 	.list .search:focus {
-        border-color: var(--hover-color);
+        border-color: #7d0b09;
 	}
 
     .list ul::-webkit-scrollbar {
@@ -208,16 +201,16 @@
     }
 
 	.list li.selected {
-        border-color: var(--hover-color);
+        border-color: #7d0b09;
 	}
 
 	.list li.selected a {
-        color: var(--hover-color);
+        color: #7d0b09;
 	}
 
 	.list li a {
         text-decoration: none;
-        color: var(--text-color);
+        color: #000000;
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
@@ -245,7 +238,7 @@
         font-size: 26px;
         line-height: 33px;
         text-align: center;
-        color: var(--text-color-negative);
+        color: #FFFFFF;
 	}
 
 	.list p {

@@ -1,10 +1,9 @@
 <script>
-	export let backgroundColor = "#FFFFFF";
 	export let includeTop = true;
 	export let includeBottom = true;
 </script>
 
-<div class="container" style="--background-color: {backgroundColor}; --top-display: {includeTop ? 'block': 'none'}; --bottom-display: {includeBottom ? 'block': 'none'};">
+<div class="container" style="--top-display: {includeTop ? 'block': 'none'}; --bottom-display: {includeBottom ? 'block': 'none'};">
 	<div class="content">
 		<slot />
 	</div>
@@ -12,7 +11,7 @@
 
 <style>
 	.container {
-		background-color: var(--background-color);
+		background-color: #FFFFFF;
 		width: 100%;
 		position: relative;
         overflow-x: clip;

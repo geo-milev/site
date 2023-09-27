@@ -25,11 +25,6 @@
 	let mode = "light"
 	let buttonColor
 	let textColor
-	let buttonHoverTextColor
-	let documentViewerBackgroundColor
-	let documentViewerHoverColor
-	let documentViewerTextColor
-	let documentViewerTextColorNegative
 
 	onMount(() => {
 		const savedMode = localStorage.getItem("mode");
@@ -50,26 +45,6 @@
 			}
 		)
 	}
-
-	$: if (mode === "light") {
-		textColor = "#000000"
-		buttonColor = "#7D0B09"
-		buttonHoverTextColor = "#FFFFFF";
-		documentViewerBackgroundColor = "#FFFFFF"
-		documentViewerHoverColor = "#7d0b09"
-		documentViewerTextColor = "#000000"
-		documentViewerTextColorNegative = "#000000"
-		setLayout(tertiaryLayout)
-	} else {
-		textColor = "#FFFFFF"
-		buttonColor = "#FFFFFF"
-		buttonHoverTextColor = "#000000";
-		documentViewerBackgroundColor = "#000000"
-		documentViewerHoverColor = "#FFFFFF"
-		documentViewerTextColor = "#FFFFFF"
-		documentViewerTextColorNegative = "#FFFFFF"
-		setLayout(tertiaryLayoutDark)
-	}
 </script>
 
 <div class="article-content" style="--text-color: {textColor}">
@@ -87,12 +62,6 @@
 	<BlockRenderer blocks="{data.News.content}"
 				   buttonColor={buttonColor}
 				   textColor={textColor}
-				   headerLineColor="#7D0B09"
-				   buttonHoverTextColor={buttonHoverTextColor}
-				   documentViewerBackgroundColor ={documentViewerBackgroundColor}
-				   documentViewerHoverColor ={documentViewerHoverColor}
-				   documentViewerTextColor = {documentViewerTextColor}
-				   documentViewerTextColorNegative = {documentViewerTextColorNegative}
 	/>
 </div>
 

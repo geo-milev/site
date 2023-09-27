@@ -7,7 +7,6 @@
 	import Close from "$lib/Close.svelte";
 
 	export let images;
-	export let arrowColor;
 
 	const imageWidth = "10rem"
 	const imageHeight = "8rem"
@@ -78,7 +77,7 @@
 		</figure>
 	</button>
 
-	<div class="current-image-container" style="--arrow-color: {arrowColor}">
+	<div class="current-image-container">
 		<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button left big-screen" disabled="{selectedImageIndex === 0}">
 			<ArrowLeft />
 		</button>
@@ -104,7 +103,7 @@
 				</button>
 			{/each}
 		</div>
-		<div class="small-screen-navigation" style="--arrow-color: {arrowColor}">
+		<div class="small-screen-navigation">
 			<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button" disabled="{selectedImageIndex === 0}">
 				<ArrowLeft />
 			</button>
@@ -199,7 +198,7 @@
     }
 
     .arrow-button {
-        fill: var(--arrow-color);
+        fill: #FFFFFF;
     }
 
     .arrow-button:disabled :global(path) {

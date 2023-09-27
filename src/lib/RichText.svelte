@@ -8,10 +8,6 @@
 </script>
 
 <div class="markup-content"
-	 style="--color: {buttonColor};
-	 	--text-color: {textColor};
-	 	--header-line: {headerLineColor};
-	 	--button-hover-text-color: {buttonHoverTextColor}"
 	 class:centered={isCentered}>
 	{@html richText}
 </div>
@@ -30,8 +26,8 @@
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
-        color: var(--text-color);
-        border-bottom: 2px var(--header-line) solid;
+        color: #000000;
+        border-bottom: 2px #FFFFFF solid;
         margin: 0;
         padding: 1rem;
     }
@@ -48,7 +44,7 @@
     }
 
     :global(.markup-content a) {
-        color: var(--color)
+        color: #7d0b09;
     }
 
     :global(.markup-content a, .markup-content p, .markup-content span) {
@@ -72,7 +68,7 @@
         font-weight: 300;
         font-size: 20px;
         line-height: 23px;
-        color: var(--text-color);
+        color: #000000;
     }
 
     :global(.markup-content img) {
@@ -88,7 +84,7 @@
     :global(.markup-content p) {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
-		color: var(--text-color);
+		color: #000000;
     }
 
     :global(.markup-content .code-container) {
@@ -118,20 +114,20 @@
         text-align: center;
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0);
-        border: 2px solid var(--color);
+        border: 2px solid #7d0b09;
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
-        color: var(--color);
+        color: #7d0b09;
 		margin-bottom: 1rem;
         transition: all 300ms ease-in;
 		margin-top: 1rem;
 	}
 
     .markup-content :global(button:hover) {
-        background-color: var(--color);
-        border: 2px solid var(--color);
-        color: var(--button-hover-text-color);
+        background-color: #7d0b09;
+        border: 2px solid #7d0b09;
+        color: #000000;
     }
 
 	.markup-content :global(.button) {
@@ -142,7 +138,7 @@
 	}
 
 	.markup-content :global(> *) {
-        color: var(--text-color);
+        color: #000000;
 	}
 
     :global(.markup-content.centered) {
@@ -229,7 +225,7 @@
         padding-left: 0;
     }
 	:global(.markup-content blockquote) {
-		border-left: 1px solid var(--header-line);
+		border-left: 1px solid #FFFFFF;
 		padding-left: 1rem;
 	}
 </style>

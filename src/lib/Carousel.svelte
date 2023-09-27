@@ -19,7 +19,6 @@
 	export let component;
 	export let componentHeight;
 	export let componentWidth;
-	export let arrowFill = "#FFFFFF";
 
 	const scrollConfig: ScrollIntoViewOptions = {
 		behavior: 'smooth',
@@ -127,7 +126,7 @@
 	}
 </script>
 
-<div class="container" style="--component-width: {componentWidth}; --component-height: {componentHeight}; --arrow-fill: {arrowFill}">
+<div class="container" style="--component-width: {componentWidth}; --component-height: {componentHeight}">
 	<button on:click={scrollLeft} aria-label="лява стрелка" class="arrow-button big-screen" disabled="{selectedGroupIndex === 0}">
 		<ArrowLeft />
 	</button>
@@ -251,7 +250,7 @@
 	}
 
 	.arrow-button {
-        fill: var(--arrow-fill);
+        fill: #FFFFFF;
 	}
 
     .arrow-button:disabled :global(path) {

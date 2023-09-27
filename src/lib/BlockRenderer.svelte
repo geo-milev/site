@@ -12,14 +12,6 @@
 	let formulaResults: Map<string, string> = new Map<string, string>()
 
 	export let blocks;
-	export let buttonColor = "#FFFFFF";
-	export let textColor = "#FFFFFF"
-	export let headerLineColor = "#FFFFFF"
-	export let buttonHoverTextColor = "#000000"
-	export let documentViewerBackgroundColor = "#4F0D0D"
-	export let documentViewerHoverColor = "#FFFFFF"
-	export let documentViewerTextColor = "#FFFFFF"
-	export let documentViewerTextColorNegative = "#FFFFFF"
 
 	let loaded = false;
 
@@ -31,14 +23,10 @@
 {#each blocks as block}
 	{#if block.blockType === "rich-text"}
 		<RichText richText="{parseRichText(block.importantInfo)}"
-				  isCentered="{block.isCentered}"
-				  buttonColor={buttonColor}
-				  textColor={textColor}
-				  headerLineColor={headerLineColor}
-				  buttonHoverTextColor="{buttonHoverTextColor}" />
+				  isCentered="{block.isCentered}" />
 	{/if}
 	{#if block.blockType === "admission-requirements"}
-		<div class="table-wrapper" style="--text-color: {textColor}">
+		<div class="table-wrapper">
 			<table>
 				<thead>
 				<tr>
@@ -60,7 +48,7 @@
 		</div>
 	{/if}
 	{#if block.blockType === "table"}
-		<div class="table-wrapper" style="--text-color: {textColor}">
+		<div class="table-wrapper">
 			<table>
 				<thead>
 					<tr>
@@ -85,20 +73,16 @@
 				 alt="{block.image.alt}"
 				 loading="lazy"/>
 			<div class="block-renderer">
-				<BlockRenderer blocks="{block.content}"
-							   buttonColor={buttonColor}
-							   textColor={textColor}
-							   headerLineColor={headerLineColor}
-							   buttonHoverTextColor = {buttonHoverTextColor}/>
+				<BlockRenderer blocks="{block.content}"/>
 
 			</div>
 		</div>
 	{/if}
 	{#if block.blockType === "gallery"}
-		<Gallery images="{block.images}" arrowColor={textColor}></Gallery>
+		<Gallery images="{block.images}"></Gallery>
 	{/if}
 	{#if block.blockType === "formula"}
-		<div class="formula" style="--text-color: {textColor}">
+		<div class="formula">
 			<form method="POST" on:submit|preventDefault={async function handleSubmit(event) {
 									const data = new FormData(event.target);
 									const formVariables = {}
@@ -161,11 +145,7 @@
 					allowfullscreen></iframe>
 			</div>
 			<div class="block-renderer">
-				<BlockRenderer blocks="{block.content}"
-							   buttonColor={buttonColor}
-							   textColor={textColor}
-							   headerLineColor={headerLineColor}
-							   buttonHoverTextColor = {buttonHoverTextColor}/>
+				<BlockRenderer blocks="{block.content}" />
 			</div>
 		</div>
 	{/if}
@@ -174,13 +154,7 @@
 				header="{block.title}"
 				getNext="{() => { return }}"
 				sort="{documentViewerSorts[block.sort]}"
-				hasSearch="{block.hasSearch}"
-				backgroundColor = "{documentViewerBackgroundColor}"
-				textColor = "{documentViewerTextColor}"
-				textColorNegative = "{documentViewerTextColorNegative}"
-				hoverColor = "{documentViewerHoverColor}"
-				buttonTextHoverColor = "{buttonHoverTextColor}"
-				buttonHoverColor = "{buttonColor}"></DocumentViewer>
+				hasSearch="{block.hasSearch}"></DocumentViewer>
 	{/if}
 {/each}
 
@@ -198,7 +172,7 @@
         font-size: 22px;
         line-height: 33px;
         text-align: center;
-        color: var(--text-color);
+        color: #000000;
     }
 
     td {
@@ -209,8 +183,8 @@
         font-size: 16px;
         line-height: 20px;
         text-align: center;
-        color: var(--text-color);
-        border: 3px solid var(--text-color);
+        color: #000000;
+        border: 3px solid #000000;
     }
 
     .table-wrapper {
@@ -245,7 +219,7 @@
         font-weight: 500;
         font-size: 28px;
         line-height: 34px;
-        color: var(--text-color);
+        color: #000000;
     }
 
     .formula .result-text {
@@ -254,7 +228,7 @@
         font-weight: 400;
         font-size: 22px;
         line-height: 28px;
-        color: var(--text-color);
+        color: #000000;
     }
 
     .formula form .variable-pair {
@@ -288,7 +262,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        color: var(--text-color);
+        color: #000000;
     }
 
     .formula form input {
