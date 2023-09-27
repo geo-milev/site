@@ -16,7 +16,7 @@ const mainLayout: LayoutProps = {
     navbar: {
         fixed: true,
         showTitle: true,
-        backgroundColor: "#000000",
+        backgroundColor: "var(--black)",
     },
 };
 
@@ -24,7 +24,7 @@ const secondaryLayout: LayoutProps = {
     navbar: {
         fixed: false,
         showTitle: false,
-        backgroundColor: "#4F0D0D",
+        backgroundColor: "var(--secondary)",
     },
 };
 

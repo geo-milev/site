@@ -123,8 +123,32 @@
 
 <style>
     :global(body) {
+        --primary: #7d0b09;
+        --secondary: #4F0D0D;
+        --primary-text: #FFFFFF;
+        --secondary-text: #FFFFFF;
+        --primary-semi-transparent: rgba(255, 255, 255, 0.31);
+        --primary-light-text-: #D9D9D9;
+        --primary-disabled: #B3B3B3;
+        --secondary-disabled: #B3B3B3;
+
+		--main-background: #000000;
+		--main-primary: #FFFFFF;
+		--main-primary-text: #000000;
+		--main-secondary: #151515;
+        --main-secondary-text: #FFFFFF;
+        --main-primary-disabled: #000000;
+        --main-secondary-disabled: #B3B3B3;
+
+        --black: #000000;
+        --white: #FFFFFF;
+
         padding: 0;
         margin: 0;
-		background-color: #000000;
+		background-color: var(--black);
     }
+
+	:global(body.dark) {
+
+	}
 </style>

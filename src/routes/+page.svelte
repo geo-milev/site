@@ -63,48 +63,52 @@
 	</div>
 </Slideshow>
 
-<OvalContainer>
-	<div class="hello-section">
-		<div class="video-column">
-				<iframe
-					class="video"
-					src="{loaded ? data.VideoSection.video: ''}"
-					title="YouTube video player"
-					frameborder="0"
-					loading="lazy"
-					allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-					allowfullscreen></iframe>
+<div class="oval-container">
+	<OvalContainer>
+		<div class="hello-section">
+			<div class="video-column">
+					<iframe
+						class="video"
+						src="{loaded ? data.VideoSection.video: ''}"
+						title="YouTube video player"
+						frameborder="0"
+						loading="lazy"
+						allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe>
+			</div>
+			<div class="hello-column">
+				<h2>{data.VideoSection.header}</h2>
+				<p>{data.VideoSection.text}</p>
+			</div>
 		</div>
-		<div class="hello-column">
-			<h2>{data.VideoSection.header}</h2>
-			<p>{data.VideoSection.text}</p>
-		</div>
-	</div>
-</OvalContainer>
+	</OvalContainer>
+</div>
 
 <div class="news-section">
 	<h2>Новини</h2>
 	<Carousel elementProps="{articleProps}" component="{ArticlePreview}" componentHeight="24rem" componentWidth="17rem"/>
 </div>
 
-<OvalContainer>
-	<div class="what-we-study-section">
-		<h2>{data.WhatIsStudied.header}</h2>
-		<p>{data.WhatIsStudied.text}</p>
-		<div class="profiles">
-			{#each profiles as profile}
-				<div class="profile">
-					<div class="image-container">
-						<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
+<div class="oval-container">
+	<OvalContainer>
+		<div class="what-we-study-section">
+			<h2>{data.WhatIsStudied.header}</h2>
+			<p>{data.WhatIsStudied.text}</p>
+			<div class="profiles">
+				{#each profiles as profile}
+					<div class="profile">
+						<div class="image-container">
+							<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
+						</div>
+						<h3>{profile.name}</h3>
+						<p>{profile.description}</p>
 					</div>
-					<h3>{profile.name}</h3>
-					<p>{profile.description}</p>
-				</div>
-			{/each}
+				{/each}
+			</div>
+			<Button href="/about-us" text="Виж още"></Button>
 		</div>
-		<Button href="/about-us" text="Виж още"></Button>
-	</div>
-</OvalContainer>
+	</OvalContainer>
+</div>
 
 <style>
 	.hello-section {
@@ -143,6 +147,10 @@
 		}
     }
 
+	.oval-container, .oval-container :global(.container:before), .oval-container :global(.container:after) {
+		background-color: var(--main-primary);
+	}
+
 	.hello-column {
 		width: 100%;
 	}
@@ -156,8 +164,8 @@
 		margin: 0;
 		padding-bottom: 2rem;
 		width: auto;
-		border-bottom: #7D0B09 2px solid;
-        color: #000000;
+		border-bottom: var(--primary) 2px solid;
+        color: var(--main-primary-text);
 		display: inline-block;
 		z-index: 1;
 	}
@@ -168,14 +176,14 @@
         font-weight: 300;
         font-size: 16px;
         line-height: 18px;
-        border-top: #7D0B09 1px solid;
+        border-top: var(--primary) 1px solid;
 		margin: 0;
 		padding-top: 2rem;
-        color: #000000
+        color: var(--main-primary-text);
 	}
 
     .news-section {
-        background-color: #151515;
+        background-color: var(--main-secondary);
         padding: 4rem 4rem 8rem;
         display: flex;
         flex-direction: column;
@@ -190,8 +198,15 @@
         line-height: 59px;
         text-transform: uppercase;
         text-align: center;
+        color: var(--main-secondary-text);
+    }
 
-        color: #FFFFFF;
+	.news-section :global(.arrow-button path) {
+		fill: var(--main-secondary-text)
+	}
+
+    .news-section :global(.arrow-button:disabled path) {
+        fill: var(--main-secondary-disabled)
     }
 
     .what-we-study-section {
@@ -209,7 +224,7 @@
         font-size: 48px;
         line-height: 65px;
         text-align: center;
-        color: #000000;
+        color: var(--main-primary-text);
 		max-width: 30rem;
 		margin-top: 0;
 		margin-bottom: 1rem;
@@ -225,7 +240,7 @@
         width: calc(1200px - 50vw);
 		max-width: 100%;
 		min-width: 40%;
-        color: #000000;
+        color: var(--main-primary-text);
     }
 
 	.profiles {
@@ -259,7 +274,7 @@
         font-size: 16px;
         line-height: 18px;
         text-align: center;
-        color: #000000;
+        color: var(--main-primary-text);
     }
 
 	.profile p {
@@ -270,7 +285,7 @@
         line-height: 18px;
         text-align: center;
 		width: auto;
-        color: #000000;
+        color: var(--main-primary-text);
 	}
 
     .video-column {
@@ -303,7 +318,7 @@
 
 	.social-media .floating-action-button {
 		border: none;
-		background-color: #7d0b09;
+		background-color: var(--primary);
 		border-radius: 50%;
 		width: 48px;
 		height: 48px;

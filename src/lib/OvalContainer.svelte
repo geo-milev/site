@@ -11,7 +11,6 @@
 
 <style>
 	.container {
-		background-color: #FFFFFF;
 		width: 100%;
 		position: relative;
         overflow-x: clip;

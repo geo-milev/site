@@ -248,12 +248,4 @@
 		border: none;
 		cursor: pointer;
 	}
-
-	.arrow-button {
-        fill: #FFFFFF;
-	}
-
-    .arrow-button:disabled :global(path) {
-        fill: #B3B3B3;
-    }
 </style>
