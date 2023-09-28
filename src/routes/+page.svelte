@@ -147,8 +147,8 @@
 		}
     }
 
-	.oval-container, .oval-container :global(.container:before), .oval-container :global(.container:after) {
-		background-color: var(--main-primary);
+	.oval-container {
+		--background: var(--main-primary);
 	}
 
 	.hello-column {
@@ -188,6 +188,8 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+		--background: var(--main-primary);
+		--background-text: var(--main-primary-text)
     }
 
     .news-section h2 {

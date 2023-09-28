@@ -58,7 +58,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        background-color: #151515;
+        background-color: var(--main-secondary);
     }
 
     .logo {
@@ -70,7 +70,7 @@
     }
 
     h1 {
-        color: #FFFFFF;
+        color: var(--main-secondary-text);
         font-size: 24px;
         line-height: 33px;
         text-align: center;
@@ -84,7 +84,7 @@
     }
 
     h2 {
-        color: #FFFFFF;
+        color: var(--main-secondary-text);
         font-size: 20px;
         line-height: 23px;
         text-align: center;
@@ -98,7 +98,7 @@
     }
 
     h3 {
-        color: #FFFFFF;
+        color: var(--main-secondary-text);
         font-size: 20px;
         line-height: 23px;
         text-align: center;
@@ -108,7 +108,7 @@
         top: -5rem;
         margin: 0;
         padding: 1.5rem;
-        border-top: #FFFFFF 1px solid;
+        border-top: var(--main-secondary-text) 1px solid;
     }
 
 	.links {
@@ -121,7 +121,7 @@
         padding-bottom: 2rem;
 		padding-left: 1.5rem;
         padding-right: 1.5rem;
-        border-bottom: rgba(255, 255, 255, 0.31) 1px solid;
+        border-bottom: var(--primary-semi-transparent) 1px solid;
 	}
 
 	h4 {
@@ -129,8 +129,8 @@
         top: -5rem;
         margin: 0;
         padding: 1.5rem;
-        border-top: #FFFFFF 1px solid;
-        color: #FFFFFF;
+        border-top: var(--main-secondary-text) 1px solid;
+        color: var(--main-secondary-text);
         font-size: 20px;
         line-height: 23px;
         text-align: center;
@@ -159,7 +159,7 @@
         font-size: 24px;
         line-height: 28px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--main-secondary-text);
 	}
 
     @media only screen and (max-width: 1050px) {

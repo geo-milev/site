@@ -247,5 +247,10 @@
 		background-color: rgba(0, 0, 0, 0);
 		border: none;
 		cursor: pointer;
+		fill: var(--background-text);
+	}
+
+	.arrow-button:disabled {
+        fill: var(--background-disabled);
 	}
 </style>

@@ -134,7 +134,7 @@
 
     a {
         text-decoration: none;
-        color: #ffffff;
+        color: var(--primary-text);
         text-transform: uppercase;
         margin-top: 10px;
         font-family: Roboto, serif;
@@ -162,7 +162,7 @@
     }
 
     .background.scrolled {
-        background-color: #7d0b09;
+        background-color: var(--primary);
         transform: scaleY(70%);
     }
 
@@ -175,7 +175,7 @@
         line-height: 33px;
         text-align: center;
 
-        color: #FFFFFF;
+        color: var(--primary-text);
         transition: all 100ms ease-in-out;
     }
 

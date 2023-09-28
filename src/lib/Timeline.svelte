@@ -123,7 +123,7 @@
         height: var(--circle-radius);
         width: var(--circle-radius);
         border-radius: 50%;
-        background-color: #FFFFFF;
+        background-color: var(--white);
         justify-content: center;
         align-items: center;
         z-index: 1;
@@ -135,7 +135,7 @@
     }
 
     .circle span {
-        color: #7C1416;
+        color: var(--primary);
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 700;

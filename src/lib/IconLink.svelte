@@ -16,7 +16,7 @@
         font-weight: 300;
         font-size: 20px;
         line-height: 23px;
-        color: #FFFFFF;
+        color: var(--primary-text);
 		text-decoration: none;
 		display: inline-flex;
         align-items: center;

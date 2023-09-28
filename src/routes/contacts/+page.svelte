@@ -122,7 +122,7 @@
 	.line {
 		width: 20rem;
 		height: 1px;
-		background-color: rgba(255, 255, 255, 0.31);
+		background-color: var(--primary-semi-transparent);
 		margin-top: -1px;
 	}
 
@@ -133,10 +133,10 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
-		border-bottom: 2px #FFFFFF solid;
+		border-bottom: 2px var(--background-text) solid;
 		margin: 0;
 		padding-bottom: 2rem;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
 	.main {
@@ -172,7 +172,7 @@
         font-weight: 700;
         font-size: 30px;
         line-height: 35px;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
     .contact-item span {
@@ -182,11 +182,11 @@
         font-size: 23px;
         line-height: 28px;
 
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
     .contact-item span a {
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.form {
@@ -197,7 +197,7 @@
 
 	.form form {
 		width: min(30rem, 100%);
-        color: #FFFFFF;
+        color: var(--background-text);
 		display: flex;
 		flex-direction: column;
     }
@@ -209,7 +209,7 @@
 
     :global(.form form input) {
 		width: 100%;
-        background-color: #FFFFFF;
+        background-color: var(--background-text);
 		border: none;
 		margin-bottom: 1.5rem;
 		min-height: 1.5rem;
@@ -228,7 +228,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        color: #FFFFFF;
+        color: var(--background-text);
         margin-bottom: 0.5rem;
     }
 
@@ -248,7 +248,7 @@
         font-size: 26px;
         line-height: 33px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
 
     }
 

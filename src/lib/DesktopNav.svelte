@@ -74,7 +74,7 @@
         display: flex;
         flex-direction: row;
         column-gap: 1.5rem;
-        border-top: #ffffff 2px solid;
+        border-top: var(--primary-text) 2px solid;
         pointer-events: all;
         transition: margin-bottom 250ms;
     }
@@ -85,7 +85,7 @@
 
     a {
         text-decoration: none;
-        color: #ffffff;
+        color: var(--primary-text);
         text-transform: uppercase;
         margin-top: 10px;
         font-family: Roboto, serif;
@@ -93,7 +93,7 @@
 
     span {
         text-decoration: none;
-        color: #ffffff;
+        color: var(--primary-text);
         text-transform: uppercase;
         margin-top: 10px;
         font-family: Roboto, serif;
@@ -109,7 +109,7 @@
     .subsections {
         display: flex;
         position: absolute;
-        background-color: #7d0b09;
+        background-color: var(--primary);
         flex-direction: column;
         width: var(--subsection-width);
         top: 0;
@@ -146,7 +146,7 @@
 
     .subsection-line {
         display: flex;
-        background-color: #FFFFFF;
+        background-color: var(--primary-text);
         height: 1px;
         flex-grow: 1;
         margin-right: 8px;
@@ -162,12 +162,12 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 18px;
-        color: #FFFFFF;
+        color: var(--primary-text);
         text-transform: uppercase;
         text-align: center;
         position: absolute;
         height: 100%;
-        background-color: #7d0b09;
+        background-color: var(--primary);
         left: var(--subsection-left-shift)
     }
 </style>

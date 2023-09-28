@@ -93,11 +93,11 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
 		max-width: 30rem;
 		margin-bottom: 0;
 		padding-bottom: 2rem;
-		border-bottom: rgba(255, 255, 255, 0.31) 1px solid;
+		border-bottom: var(--primary-semi-transparent) 1px solid;
 	}
 
 	h1:after {
@@ -105,7 +105,7 @@
 		display: block;
 		height: 1px;
 		width: 30%;
-		background-color: #FFFFFF;
+		background-color: var(--background-text);
 		position: relative;
 		top: calc(2rem + 1px);
         margin: auto;
@@ -130,7 +130,7 @@
         font-size: 16px;
         line-height: 18px;
         text-align: center;
-        color: #FFFFFF
+        color: var(--background-text);
 	}
 
 	.rss-button {

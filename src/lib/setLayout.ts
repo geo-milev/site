@@ -24,7 +24,7 @@ const secondaryLayout: LayoutProps = {
     navbar: {
         fixed: false,
         showTitle: false,
-        backgroundColor: "var(--secondary)",
+        backgroundColor: "var(--background)",
     },
 };
 

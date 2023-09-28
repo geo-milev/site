@@ -132,13 +132,13 @@
 		display: flex;
 		flex-direction: column;
 		margin: 1rem;
-		background-color: #FFFFFF;
+		background-color: var(--secondary);
 		max-height: 30rem;
         width: 100%;
 		padding-left: 1rem;
 		max-width: 30rem;
 		overflow: hidden;
-		border: 1px #7d0b09 solid;
+		border: 1px var(--primary) solid;
 	}
 
 	.list h2 {
@@ -147,25 +147,25 @@
         font-weight: 700;
         font-size: 32px;
         line-height: 44px;
-        color: #000000;
+        color: var(--secondary-text);
 		padding-right: 1rem;
 	}
 
 	.list .search {
 		margin-right: 3rem;
 		border: none;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid var(--secondary-text);
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
         line-height: 22px;
-		background-color: #FFFFFF;
-		color: #000000;
+		background-color: var(--secondary);
+		color: var(--secondary-text);
 	}
 
 	.list .search:focus {
-        border-color: #7d0b09;
+        border-color: var(--primary);
 	}
 
     .list ul::-webkit-scrollbar {
@@ -177,13 +177,13 @@
     }
 
 	.list ul::-webkit-scrollbar-thumb {
-        background: #7D0B09;
+        background: var(--primary);
         border-radius: 26px;
 	}
 
     /* Handle on hover */
     .list ul::-webkit-scrollbar-thumb:hover {
-        background: rgb(79, 13, 13);
+        background: var(--background);
     }
 
 	.list ul {
@@ -194,23 +194,23 @@
 
 	.list li {
 		list-style: none;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid var(--secondary-text);
         margin: 10px 2rem 10px 0;
 		padding-bottom: 8px;
 		padding-top: 8px;
     }
 
 	.list li.selected {
-        border-color: #7d0b09;
+        border-color: var(--primary);
 	}
 
 	.list li.selected a {
-        color: #7d0b09;
+        color: var(--primary);
 	}
 
 	.list li a {
         text-decoration: none;
-        color: #000000;
+        color: var(--secondary-text);
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
@@ -238,11 +238,11 @@
         font-size: 26px;
         line-height: 33px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
 	.list p {
-        color: #000000;
+        color: var(--secondary-text);
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;

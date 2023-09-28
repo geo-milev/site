@@ -68,7 +68,7 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 18px;
-        color: #FFFFFF;
+        color: var(--white);
 		margin-bottom: 0.5rem;
 	}
 
@@ -76,7 +76,7 @@
 		display: block;
 		height: 2px;
 		width: 100%;
-		background-color: #7D0B09;
+		background-color: var(--primary);
 	}
 
 	h2 {
@@ -85,7 +85,7 @@
         font-weight: 700;
         font-size: 20px;
         line-height: 23px;
-        color: #FFFFFF;
+        color: var(--primary-text);
 		margin: 0;
 	}
 

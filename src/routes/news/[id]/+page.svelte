@@ -83,7 +83,7 @@
         font-style: normal;
         font-weight: 400;
         color: var(--text-color);
-        border-bottom: 2px #7d0b09 solid;
+        border-bottom: 2px var(--primary) solid;
         margin: 0;
         padding: 1rem;
 		text-align: center;
@@ -95,7 +95,7 @@
         align-items: center;
         padding-left: 2rem;
         padding-right: 2rem;
-        border-bottom: 1px rgba(124, 20, 22, 0.33) solid;
+        border-bottom: 1px var(--primary-semi-transparent) solid;
         width: auto;
 	}
 
@@ -150,11 +150,11 @@
 		z-index: 2;
 		height: 48px;
 		width: 48px;
-		background-color: #7d0b09;
+		background-color: var(--primary);
 		margin: 0;
 		padding: 0;
 		border: none;
-		fill: #FFFFFF;
+		fill: var(--primary-text);
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;

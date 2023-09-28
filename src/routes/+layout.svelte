@@ -124,13 +124,16 @@
 <style>
     :global(body) {
         --primary: #7d0b09;
-        --secondary: #4F0D0D;
+        --background: #4F0D0D;
+        --secondary: #FFFFFF;
         --primary-text: #FFFFFF;
-        --secondary-text: #FFFFFF;
+        --primary-dark-text: #FFFFFF;
+        --background-text: #FFFFFF;
+        --secondary-text: #000000;
         --primary-semi-transparent: rgba(255, 255, 255, 0.31);
-        --primary-light-text-: #D9D9D9;
+        --secondary-light-text: #D9D9D9;
         --primary-disabled: #B3B3B3;
-        --secondary-disabled: #B3B3B3;
+        --background-disabled: #B3B3B3;
 
 		--main-background: #000000;
 		--main-primary: #FFFFFF;

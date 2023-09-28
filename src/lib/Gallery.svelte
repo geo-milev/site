@@ -198,11 +198,11 @@
     }
 
     .arrow-button {
-        fill: #FFFFFF;
+        fill: var(--background-text);
     }
 
     .arrow-button:disabled :global(path) {
-        fill: #B3B3B3;
+        fill: var(--background-disabled);
     }
 
     .small-screen-navigation {
@@ -243,7 +243,7 @@
         font-family: 'Roboto', serif;
         font-size: 18px;
         line-height: 22px;
-        color: #FFFFFF;
+        color: var(--white);
 		text-align: start;
 		overflow: auto;
 	}

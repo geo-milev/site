@@ -118,7 +118,7 @@
     .line {
         width: 50%;
         height: 1px;
-        background-color: #FFFFFF;
+        background-color: var(--background-text);
         margin-top: -1px;
     }
 
@@ -129,10 +129,10 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
-        border-bottom: 1px rgba(255, 255, 255, 0.31) solid;
+        border-bottom: 1px var(--primary-semi-transparent) solid;
         margin: 0;
         padding-bottom: 1rem;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
     .class-selector {
@@ -151,8 +151,8 @@
         gap: 0.5rem;
         width: 100%;
         background-color: rgba(0, 0, 0, 0);
-        border: 1px solid #FFFFFF;
-        color: #FFFFFF;
+        border: 1px solid var(--background-text);
+        color: var(--background-text);
         font-size: 16px;
         line-height: 20px;
         font-family: 'Roboto', serif;
@@ -164,15 +164,6 @@
         font-weight: 300;
         font-size: 16px;
         line-height: 20px;
-        color: #151515;
-    }
-
-    option:disabled {
-        font-family: 'Roboto', serif;
-        font-weight: 300;
-        font-size: 16px;
-        line-height: 20px;
-        color: #FFFFFF;
     }
 
     label {
@@ -182,7 +173,7 @@
         font-size: 20px;
         line-height: 24px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
 		margin-bottom: 0.5rem;
     }
 

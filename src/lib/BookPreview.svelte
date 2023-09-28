@@ -47,8 +47,8 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		background-color: #FFFFFF;
-		padding: 8px;
+		background-color: var(--secondary);
+        padding: 8px;
 		box-sizing: border-box;
 	}
 
@@ -69,7 +69,7 @@
         font-weight: 400;
         font-size: 40px;
         line-height: 45px;
-        color: #D9D9D9;
+        color: var(--secondary-light-text);
 		transform: rotate(-45deg);
 		user-select: none;
     }
@@ -87,7 +87,7 @@
 	.line {
 		width: 50%;
 		height: 1px;
-		background-color: #000000;
+		background-color: var(--secondary-text);
 	}
 
 	h4 {
@@ -96,7 +96,7 @@
         font-weight: 700;
         font-size: 20px;
         line-height: 23px;
-        color: #000000;
+        color: var(--secondary-text);
 		text-align: center;
 		margin: 0;
 		width: 100%;
@@ -108,7 +108,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        color: #000000;
+        color: var(--secondary-text);
     }
 
 	.year {
@@ -118,7 +118,7 @@
         font-size: 16px;
         line-height: 19px;
 		text-align: end;
-        color: #000000;
+        color: var(--secondary-text);
 		width: 100%;
 	}
 </style>

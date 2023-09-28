@@ -76,7 +76,7 @@
     .line {
         width: 100%;
         height: 1px;
-        background-color: rgba(255, 255, 255, 0.31);
+        background-color: var(--primary-semi-transparent);
         margin-top: -1px;
     }
 
@@ -87,10 +87,10 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
-        border-bottom: 2px #FFFFFF solid;
+        border-bottom: 2px var(--background-text) solid;
         margin: 0;
         padding-bottom: 1rem;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.achievements-container {
@@ -126,7 +126,7 @@
         font-weight: 300;
         font-size: 32px;
         line-height: 38px;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.button-bottom {

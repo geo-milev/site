@@ -81,14 +81,14 @@
         display: flex;
         flex-direction: row;
         column-gap: 1.5rem;
-        border-top: #ffffff 2px solid;
+        border-top: var(--background-text) 2px solid;
         pointer-events: all;
         transition: margin-bottom 250ms;
     }
 
     a {
         text-decoration: none;
-        color: #ffffff;
+        color: var(--background-text);
         text-transform: uppercase;
         margin-top: 10px;
         font-family: Roboto, serif;
@@ -96,7 +96,7 @@
 
     span {
         text-decoration: none;
-        color: #ffffff;
+        color: var(--background-text);
         text-transform: uppercase;
         margin-top: 10px;
         font-family: Roboto, serif;
@@ -124,7 +124,7 @@
         min-width: 50%;
         right: 0;
         top: 0;
-        background-color: #4F0D0D;
+        background-color: var(--background);
         z-index: 5;
     }
 
@@ -145,7 +145,7 @@
     }
 
     .link-wrapper {
-        border-bottom: 1px solid #FFFFFF;
+        border-bottom: 1px solid var(--background-text);
         padding: 0 0 5px;
         width: 100%;
         justify-content: space-between;
@@ -189,7 +189,7 @@
         font-size: 15px;
         line-height: 17px;
         text-transform: none;
-        color: #FFFFFF;
+        color: var(--background-text);
         width: 100%;
     }
 

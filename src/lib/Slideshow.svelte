@@ -171,7 +171,7 @@
 		padding: 0;
         width: 12px;
         height: 12px;
-        border: 1px solid #FFFFFF;
+        border: 1px solid var(--secondary);
         border-radius: 50%;
 		display: flex;
 		align-items: center;
@@ -187,7 +187,7 @@
     }
 
     input[type="radio"]:checked::before {
-        background-color: #FFFFFF;
+        background-color: var(--secondary);
     }
 
 	h2 {
@@ -202,6 +202,6 @@
 		margin-left: 4rem;
 		margin-right: 4rem;
 
-        color: #FFFFFF;
+        color: var(--secondary);
 	}
 </style>
