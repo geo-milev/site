@@ -124,10 +124,11 @@
 <style>
     :global(body) {
         --primary: #7d0b09;
+        --primary-dark: #4F0D0D;
+        --primary-dark-text: #FFFFFF;
         --background: #4F0D0D;
         --secondary: #FFFFFF;
         --primary-text: #FFFFFF;
-        --primary-dark-text: #FFFFFF;
         --background-text: #FFFFFF;
         --secondary-text: #000000;
         --primary-semi-transparent: rgba(255, 255, 255, 0.31);
@@ -135,23 +136,37 @@
         --primary-disabled: #B3B3B3;
         --background-disabled: #B3B3B3;
 
-		--main-background: #000000;
-		--main-primary: #FFFFFF;
-		--main-primary-text: #000000;
-		--main-secondary: #151515;
+        --main-background: #000000;
+        --main-primary: #FFFFFF;
+        --main-primary-text: #000000;
+        --main-secondary: #151515;
         --main-secondary-text: #FFFFFF;
         --main-primary-disabled: #000000;
         --main-secondary-disabled: #B3B3B3;
+
+        --news-primary: #7d0b09;
+        --news-primary-dark: #4F0D0D;
+        --news-primary-dark-text: #FFFFFF;
+        --news-secondary: #FFFFFF;
+        --news-primary-text: #FFFFFF;
+        --news-secondary-text: #FFFFFF;
+        --news-primary-semi-transparent: rgba(255, 255, 255, 0.31);
+        --news-secondary-light-text: #D9D9D9;
+        --news-primary-disabled: #B3B3B3;
+        --news-background-disabled: #B3B3B3;
+        --news-background: #FFFFFF;
+        --news-background-text: #000000;
 
         --black: #000000;
         --white: #FFFFFF;
 
         padding: 0;
         margin: 0;
-		background-color: var(--black);
+        background-color: var(--black);
     }
 
-	:global(body.dark) {
-
-	}
+    :global(body.dark) {
+        --news-background: #121212;
+        --news-background-text: #FFFFFF;
+    }
 </style>

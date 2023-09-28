@@ -209,8 +209,7 @@
 
     :global(.form form input) {
 		width: 100%;
-        background-color: var(--background-text);
-		border: none;
+        background-color: var(--background);
 		margin-bottom: 1.5rem;
 		min-height: 1.5rem;
         font-family: 'Roboto', serif;
@@ -218,6 +217,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
+		border: 1px solid var(--primary);
 	}
 
     :global(.form form label) {
@@ -249,7 +249,6 @@
         line-height: 33px;
         text-align: center;
         color: var(--background-text);
-
     }
 
     @media only screen and (max-width: 1050px) {

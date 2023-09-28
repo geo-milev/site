@@ -62,7 +62,7 @@
         font-weight: 700;
         font-size: 96px;
         line-height: 116px;
-        color: var(--white);
+        color: var(--background-text);
 	}
 
 	.step {

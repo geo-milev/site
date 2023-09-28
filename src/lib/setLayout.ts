@@ -32,15 +32,7 @@ const tertiaryLayout: LayoutProps = {
     navbar: {
         fixed: false,
         showTitle: false,
-        backgroundColor: "#FFFFFF",
-    },
-};
-
-const tertiaryLayoutDark: LayoutProps = {
-    navbar: {
-        fixed: false,
-        showTitle: false,
-        backgroundColor: "#121212",
+        backgroundColor: "var(--news-background)",
     },
 };
 
@@ -53,5 +45,4 @@ export {
     mainLayout,
     secondaryLayout,
     tertiaryLayout,
-    tertiaryLayoutDark,
 };

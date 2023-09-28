@@ -1,10 +1,6 @@
 <script>
 	export let richText;
 	export let isCentered = false;
-	export let buttonColor = "#FFFFFF";
-	export let buttonHoverTextColor = "#000000";
-	export let textColor = "#FFFFFF"
-	export let headerLineColor = "#FFFFFF"
 </script>
 
 <div class="markup-content"
@@ -26,8 +22,7 @@
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
-        color: #000000;
-        border-bottom: 2px #FFFFFF solid;
+        color: var(--background-text);
         margin: 0;
         padding: 1rem;
     }
@@ -36,7 +31,7 @@
         display: flex;
         align-items: center;
         padding-right: 2rem;
-        border-bottom: 1px rgba(124, 20, 22, 0.33) solid;
+        border-bottom: 1px var(--primary-semi-transparent) solid;
         width: auto;
         justify-content: flex-start;
         padding-left: 0;
@@ -44,7 +39,7 @@
     }
 
     :global(.markup-content a) {
-        color: #7d0b09;
+        color: var(--background-text);
     }
 
     :global(.markup-content a, .markup-content p, .markup-content span) {
@@ -68,7 +63,7 @@
         font-weight: 300;
         font-size: 20px;
         line-height: 23px;
-        color: #000000;
+        color: var(--background-text);
     }
 
     :global(.markup-content img) {
@@ -84,7 +79,7 @@
     :global(.markup-content p) {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
-		color: #000000;
+		color: var(--background-text);
     }
 
     :global(.markup-content .code-container) {
@@ -114,20 +109,20 @@
         text-align: center;
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0);
-        border: 2px solid #7d0b09;
+        border: 2px solid var(--secondary);
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
-        color: #7d0b09;
+        color: var(--secondary);
 		margin-bottom: 1rem;
         transition: all 300ms ease-in;
 		margin-top: 1rem;
 	}
 
     .markup-content :global(button:hover) {
-        background-color: #7d0b09;
-        border: 2px solid #7d0b09;
-        color: #000000;
+        background-color: var(--secondary);
+        border: 2px solid var(--secondary);
+        color: var(--secondary-text);
     }
 
 	.markup-content :global(.button) {
@@ -138,7 +133,7 @@
 	}
 
 	.markup-content :global(> *) {
-        color: #000000;
+        color: var(--background-text);
 	}
 
     :global(.markup-content.centered) {
@@ -225,7 +220,7 @@
         padding-left: 0;
     }
 	:global(.markup-content blockquote) {
-		border-left: 1px solid #FFFFFF;
+		border-left: 1px solid var(--background-text);
 		padding-left: 1rem;
 	}
 </style>

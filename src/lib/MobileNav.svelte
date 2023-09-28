@@ -50,11 +50,13 @@
 								}
 							}}>
 						<span>{navigationLink.key}</span>
-						{#if mobileOpenSubsectionsKeys.includes(navigationLink.key)}
-							<NavMinus />
-						{:else}
-							<NavPlus />
-						{/if}
+						<div class="icon-button">
+							{#if mobileOpenSubsectionsKeys.includes(navigationLink.key)}
+								<NavMinus />
+							{:else}
+								<NavPlus />
+							{/if}
+						</div>
 					</button>
 					<div class="mobile-subsection" class:open={mobileOpenSubsectionsKeys.includes(navigationLink.key)}>
 						{#each navigationLink.subsections as subsection}
@@ -81,14 +83,14 @@
         display: flex;
         flex-direction: row;
         column-gap: 1.5rem;
-        border-top: var(--background-text) 2px solid;
+        border-top: var(--primary-dark-text) 2px solid;
         pointer-events: all;
         transition: margin-bottom 250ms;
     }
 
     a {
         text-decoration: none;
-        color: var(--background-text);
+        color: var(--primary-dark-text);
         text-transform: uppercase;
         margin-top: 10px;
         font-family: Roboto, serif;
@@ -96,7 +98,7 @@
 
     span {
         text-decoration: none;
-        color: var(--background-text);
+        color: var(--primary-dark-text);
         text-transform: uppercase;
         margin-top: 10px;
         font-family: Roboto, serif;
@@ -124,7 +126,7 @@
         min-width: 50%;
         right: 0;
         top: 0;
-        background-color: var(--background);
+        background-color: var(--primary-dark);
         z-index: 5;
     }
 
@@ -145,7 +147,7 @@
     }
 
     .link-wrapper {
-        border-bottom: 1px solid var(--background-text);
+        border-bottom: 1px solid var(--primary-dark-text);
         padding: 0 0 5px;
         width: 100%;
         justify-content: space-between;
@@ -189,7 +191,7 @@
         font-size: 15px;
         line-height: 17px;
         text-transform: none;
-        color: var(--background-text);
+        color: var(--primary-dark-text);
         width: 100%;
     }
 
@@ -198,6 +200,7 @@
         border: none;
         cursor: pointer;
         pointer-events: all;
+		fill: var(--primary-dark-text);
     }
 
     button {

@@ -150,11 +150,13 @@
 		</div>
 	{/if}
 	{#if block.blockType === "file-viewer"}
+		<div class="document-viewer">
 			<DocumentViewer documents="{block.files}" autoSelect="{block.autoSelect}"
 				header="{block.title}"
 				getNext="{() => { return }}"
 				sort="{documentViewerSorts[block.sort]}"
 				hasSearch="{block.hasSearch}"></DocumentViewer>
+		</div>
 	{/if}
 {/each}
 
@@ -162,7 +164,7 @@
     table {
 		width: 100%;
         border-collapse: collapse;
-        border: 3px solid #FFFFFF;
+        border: 3px solid var(--background-text);
     }
 
     thead td {
@@ -172,7 +174,7 @@
         font-size: 22px;
         line-height: 33px;
         text-align: center;
-        color: #000000;
+        color: var(--background-text);
     }
 
     td {
@@ -183,8 +185,8 @@
         font-size: 16px;
         line-height: 20px;
         text-align: center;
-        color: #000000;
-        border: 3px solid #000000;
+        color: var(--background-text);
+        border: 3px solid var(--background-text);
     }
 
     .table-wrapper {
@@ -219,7 +221,7 @@
         font-weight: 500;
         font-size: 28px;
         line-height: 34px;
-        color: #000000;
+        color: var(--background-text);
     }
 
     .formula .result-text {
@@ -228,7 +230,7 @@
         font-weight: 400;
         font-size: 22px;
         line-height: 28px;
-        color: #000000;
+        color: var(--background-text);
     }
 
     .formula form .variable-pair {
@@ -262,7 +264,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        color: #000000;
+        color: var(--background-text);
     }
 
     .formula form input {

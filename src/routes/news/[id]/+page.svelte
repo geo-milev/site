@@ -1,5 +1,5 @@
 <script>
-	import { setLayout, tertiaryLayout, tertiaryLayoutDark } from "$lib/setLayout";
+	import { setLayout, tertiaryLayout } from "$lib/setLayout";
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
 	import { seoInfo } from "$lib/seoInfo";
@@ -23,15 +23,23 @@
 	})
 
 	let mode = "light"
-	let buttonColor
-	let textColor
+
+	const changeMode = (newMode) => {
+		mode = newMode
+		if (mode === "dark") {
+			document.body.classList.add("dark");
+		} else {
+			document.body.classList.remove("dark");
+		}
+	}
 
 	onMount(() => {
 		const savedMode = localStorage.getItem("mode");
 		if (savedMode === "light" || savedMode === "dark") {
-			mode = savedMode
+			changeMode(savedMode)
 		} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			mode = "dark"
+			document.body.classList.add("dark");
 		}
 	})
 
@@ -39,7 +47,7 @@
 
 	const setMode = (newMode) => {
 		darkModeButtonOpacity.set(0).then(() => {
-				mode = newMode
+				changeMode(newMode)
 				localStorage.setItem("mode", newMode);
 				darkModeButtonOpacity.set(1);
 			}
@@ -47,7 +55,7 @@
 	}
 </script>
 
-<div class="article-content" style="--text-color: {textColor}">
+<div class="article-content" class:dark={mode === "dark"}>
 	<div class="top-container">
 		<div class="header-container">
 			<h1>{data.News.title}</h1>
@@ -59,10 +67,7 @@
 	{#if data.News.postImage}
 		<img src="{env.PUBLIC_SERVER_URL + data.News.postImage.url}" alt="{data.News.postImage.alt}" loading="lazy" />
 	{/if}
-	<BlockRenderer blocks="{data.News.content}"
-				   buttonColor={buttonColor}
-				   textColor={textColor}
-	/>
+	<BlockRenderer blocks="{data.News.content}" />
 </div>
 
 <button on:click={() => (mode === "light") ? setMode("dark") : setMode("light")}
@@ -78,11 +83,45 @@
 </button>
 
 <style>
+    .article-content {
+		--background: var(--news-background);
+        --background-text: var(--news-background-text);
+        --secondary: var(--news-primary);
+        --secondary-text: var(--news-primary-text);
+		--primary: var(--news-primary);
+        --primary-dark: var(--news-primary-dark);
+        --primary-dark-text: var(--news-primary-dark-text);
+        --primary-text: var(--news-primary-text);
+        --primary-semi-transparent: rgba(124, 20, 22, 0.33);
+        --secondary-light-text: var(--news-secondary-light-text);
+        --primary-disabled: var(--news-primary-disabled);
+        --background-disabled: var(--background-disabled);
+	}
+
+    .dark {
+        --primary: var(--news-background-text);
+        --secondary: var(--news-background-text);
+        --secondary-text: var(--news-background);
+    }
+
+	.article-content :global(.markup-content a) {
+		--background-text: var(--news-primary);
+	}
+
+    .article-content.dark :global(.markup-content a) {
+        --background-text: var(--news-background-text);
+    }
+
+    .article-content :global(.document-viewer .container) {
+        --secondary: var(--news-background);
+        --secondary-text: var(--news-background-text);
+    }
+
     .article-content h1 {
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
-        color: var(--text-color);
+        color: var(--background-text);
         border-bottom: 2px var(--primary) solid;
         margin: 0;
         padding: 1rem;
@@ -108,7 +147,7 @@
     }
 
     .article-content {
-        color: var(--text-color);
+        color: var(--background-text);
         display: flex;
         flex-direction: column;
         margin-left: 3rem;
