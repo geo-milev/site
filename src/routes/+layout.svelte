@@ -128,7 +128,7 @@
         --primary-dark-text: #FFFFFF;
         --background: #4F0D0D;
         --secondary: #FFFFFF;
-		--accent: #FFFFFF;
+        --accent: #FFFFFF;
         --primary-text: #FFFFFF;
         --background-text: #FFFFFF;
         --secondary-text: #000000;
@@ -137,13 +137,9 @@
         --primary-disabled: #B3B3B3;
         --background-disabled: #B3B3B3;
 
-        --main-primary: #7d0b09;
-        --main-primary-dark: #4F0D0D;
-        --main-primary-dark-text: #FFFFFF;
         --main-background: #000000;
         --main-secondary: #FFFFFF;
         --main-accent: #7d0b09;
-        --main-primary-text: #FFFFFF;
         --main-background-text: #FFFFFF;
         --main-secondary-text: #000000;
         --main-primary-semi-transparent: rgba(255, 255, 255, 0.31);
@@ -151,14 +147,10 @@
         --main-primary-disabled: #000000;
         --main-background-disabled: #B3B3B3;
 
-        --news-primary: #7d0b09;
-        --news-primary-dark: #4F0D0D;
-        --news-primary-dark-text: #FFFFFF;
         --news-secondary: #FFFFFF;
         --news-accent: #7d0b09;
-        --news-primary-text: #FFFFFF;
         --news-secondary-text: #FFFFFF;
-        --news-primary-semi-transparent: rgba(255, 255, 255, 0.31);
+        --news-primary-semi-transparent: rgba(124, 20, 22, 0.33);;
         --news-secondary-light-text: #D9D9D9;
         --news-primary-disabled: #B3B3B3;
         --news-background-disabled: #B3B3B3;

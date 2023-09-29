@@ -86,14 +86,10 @@
     .article-content {
 		--background: var(--news-background);
         --background-text: var(--news-background-text);
-        --secondary: var(--news-primary);
-        --secondary-text: var(--news-primary-text);
-		--primary: var(--news-primary);
+        --secondary: var(--news-secondary);
+        --secondary-text: var(--news-secondary-text);
 		--accent: var(--news-accent);
-        --primary-dark: var(--news-primary-dark);
-        --primary-dark-text: var(--news-primary-dark-text);
-        --primary-text: var(--news-primary-text);
-        --primary-semi-transparent: rgba(124, 20, 22, 0.33);
+        --primary-semi-transparent: var(--news-primary-semi-transparent);
         --secondary-light-text: var(--news-secondary-light-text);
         --primary-disabled: var(--news-primary-disabled);
         --background-disabled: var(--news-background-text);
