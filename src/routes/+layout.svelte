@@ -128,6 +128,7 @@
         --primary-dark-text: #FFFFFF;
         --background: #4F0D0D;
         --secondary: #FFFFFF;
+		--accent: #FFFFFF;
         --primary-text: #FFFFFF;
         --background-text: #FFFFFF;
         --secondary-text: #000000;
@@ -148,6 +149,7 @@
         --news-primary-dark: #4F0D0D;
         --news-primary-dark-text: #FFFFFF;
         --news-secondary: #FFFFFF;
+        --news-accent: #7d0b09;
         --news-primary-text: #FFFFFF;
         --news-secondary-text: #FFFFFF;
         --news-primary-semi-transparent: rgba(255, 255, 255, 0.31);

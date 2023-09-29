@@ -39,7 +39,7 @@
     }
 
     :global(.markup-content a) {
-        color: var(--background-text);
+        color: var(--accent);
     }
 
     :global(.markup-content a, .markup-content p, .markup-content span) {
@@ -109,19 +109,19 @@
         text-align: center;
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0);
-        border: 2px solid var(--secondary);
+        border: 2px solid var(--accent);
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
-        color: var(--secondary);
+        color: var(--accent);
 		margin-bottom: 1rem;
         transition: all 300ms ease-in;
 		margin-top: 1rem;
 	}
 
     .markup-content :global(button:hover) {
-        background-color: var(--secondary);
-        border: 2px solid var(--secondary);
+        background-color: var(--accent);
+        border: 2px solid var(--accent);
         color: var(--secondary-text);
     }
 

@@ -15,25 +15,25 @@
 <style>
     .content-button :global(button) {
         background-color: rgba(0, 0, 0, 0);
-        border: 2px solid var(--secondary);
+        border: 2px solid var(--accent);
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
-		color: var(--secondary);
+		color: var(--accent);
         font-family: 'Roboto Flex Variable', serif;
         font-variation-settings: 'GRAD' -150;
     }
 
     .content-button :global(button:hover) {
         color: var(--secondary-text);
-        background-color: var(--secondary);
-        border: 2px solid var(--secondary);
+        background-color: var(--accent);
+        border: 2px solid var(--accent);
         font-variation-settings: 'GRAD' 150;
     }
     .content-button.active :global(button) {
         color: var(--secondary-text);
-        background-color: var(--secondary);
-        border: 2px solid var(--secondary);
+        background-color: var(--accent);
+        border: 2px solid var(--accent);
         font-variation-settings: 'GRAD' 150;
     }
 

@@ -89,6 +89,7 @@
         --secondary: var(--news-primary);
         --secondary-text: var(--news-primary-text);
 		--primary: var(--news-primary);
+		--accent: var(--news-accent);
         --primary-dark: var(--news-primary-dark);
         --primary-dark-text: var(--news-primary-dark-text);
         --primary-text: var(--news-primary-text);
@@ -99,22 +100,16 @@
 	}
 
     .dark {
-        --primary: var(--news-background-text);
-        --secondary: var(--news-background-text);
-        --secondary-text: var(--news-background);
-    }
-
-	.article-content :global(.markup-content a) {
-		--background-text: var(--news-primary);
-	}
-
-    .article-content.dark :global(.markup-content a) {
-        --background-text: var(--news-background-text);
+        --primary: var(--background-text);
+        --secondary: var(--background-text);
+        --secondary-text: var(--background);
+		--accent: var(--background-text);
     }
 
     .article-content :global(.document-viewer .container) {
-        --secondary: var(--news-background);
-        --secondary-text: var(--news-background-text);
+        --secondary: var(--background);
+        --secondary-text: var(--background-text);
+		--primary: var(--accent);
     }
 
     .article-content h1 {
