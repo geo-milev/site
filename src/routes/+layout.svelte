@@ -147,7 +147,7 @@
         --main-primary-disabled: #000000;
         --main-background-disabled: #B3B3B3;
 
-        --news-secondary: #FFFFFF;
+        --news-secondary: #7d0b09;
         --news-accent: #7d0b09;
         --news-secondary-text: #FFFFFF;
         --news-primary-semi-transparent: rgba(124, 20, 22, 0.33);;
