@@ -16,7 +16,9 @@
 		</div>
 		<p>{project.description}</p>
 		{#if project.article}
-			<SecondaryButton href="news/{project.article.id}" text="Виж още" color="#7C1416" />
+			<div class="button">
+				<SecondaryButton href="news/{project.article.id}" text="Виж още" />
+			</div>
 		{/if}
 	</div>
 
@@ -93,6 +95,11 @@
         background-color: var(--primary-semi-transparent);
         margin-top: -1px;
     }
+
+	.button {
+		--background-text: var(--primary);
+		--accent: var(--primary);
+	}
 
     @media only screen and (max-width: 640px) {
 		.container {

@@ -137,13 +137,19 @@
         --primary-disabled: #B3B3B3;
         --background-disabled: #B3B3B3;
 
+        --main-primary: #7d0b09;
+        --main-primary-dark: #4F0D0D;
+        --main-primary-dark-text: #FFFFFF;
         --main-background: #000000;
-        --main-primary: #FFFFFF;
-        --main-primary-text: #000000;
-        --main-secondary: #151515;
-        --main-secondary-text: #FFFFFF;
+        --main-secondary: #FFFFFF;
+        --main-accent: #7d0b09;
+        --main-primary-text: #FFFFFF;
+        --main-background-text: #FFFFFF;
+        --main-secondary-text: #000000;
+        --main-primary-semi-transparent: rgba(255, 255, 255, 0.31);
+        --main-secondary-light-text: #D9D9D9;
         --main-primary-disabled: #000000;
-        --main-secondary-disabled: #B3B3B3;
+        --main-background-disabled: #B3B3B3;
 
         --news-primary: #7d0b09;
         --news-primary-dark: #4F0D0D;

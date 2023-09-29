@@ -14,7 +14,7 @@
 		width: 100%;
 		position: relative;
         overflow-x: clip;
-        background-color: var(--background);
+        background-color: var(--secondary);
 	}
 
     @media only screen and (max-width: 1050px) {
@@ -37,7 +37,7 @@
 		left: 50%;
 		margin-left: -50%;
         height: 8rem;
-        background-color: var(--background);
+        background-color: var(--secondary);
 		position: absolute;
 		top: -4rem;
 		display: var(--top-display);
@@ -50,7 +50,7 @@
         left: 50%;
         margin-left: -50%;
         height: 8rem;
-        background-color: var(--background);
+        background-color: var(--secondary);
         position: absolute;
        	bottom: -4rem;
         display: var(--bottom-display);

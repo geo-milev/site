@@ -35,7 +35,7 @@
 		position: absolute;
 		left: calc(4rem - 5px);
 		top: 5px;
-        background-color: var(--background-text);
+        background-color: var(--secondary);
     }
 
 	.step-container {
@@ -47,8 +47,8 @@
 	.circle {
 		width: calc(6rem + 10px);
 		height: calc(6rem + 10px);
-		background-color: var(--background);
-        border: 12px solid #FCFCFC;
+		background-color: var(--secondary);
+        border: 12px solid var(--accent);
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;
@@ -62,7 +62,7 @@
         font-weight: 700;
         font-size: 96px;
         line-height: 116px;
-        color: var(--background-text);
+        color: var(--secondary-text);
 	}
 
 	.step {

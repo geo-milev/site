@@ -51,22 +51,23 @@
 	})
 </script>
 
-<Slideshow slides={slides}>
-	<div class="social-media">
-		{#each data.Contact.socialMedia as socialMedia }
-			<a class="floating-action-button"
-			   title="{socialMedia.socialMediaTitle}"
-			   href="{socialMedia.link}" target="_blank">
-				<img src="{socialMedia.icon.url}" alt="{socialMedia.icon.alt}" loading="lazy">
-			</a>
-		{/each}
-	</div>
-</Slideshow>
+<div class="page">
+	<Slideshow slides={slides}>
+		<div class="social-media">
+			{#each data.Contact.socialMedia as socialMedia }
+				<a class="floating-action-button"
+				   title="{socialMedia.socialMediaTitle}"
+				   href="{socialMedia.link}" target="_blank">
+					<img src="{socialMedia.icon.url}" alt="{socialMedia.icon.alt}" loading="lazy">
+				</a>
+			{/each}
+		</div>
+	</Slideshow>
 
-<div class="oval-container">
-	<OvalContainer>
-		<div class="hello-section">
-			<div class="video-column">
+	<div class="oval-container">
+		<OvalContainer>
+			<div class="hello-section">
+				<div class="video-column">
 					<iframe
 						class="video"
 						src="{loaded ? data.VideoSection.video: ''}"
@@ -75,42 +76,59 @@
 						loading="lazy"
 						allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 						allowfullscreen></iframe>
+				</div>
+				<div class="hello-column">
+					<h2>{data.VideoSection.header}</h2>
+					<p>{data.VideoSection.text}</p>
+				</div>
 			</div>
-			<div class="hello-column">
-				<h2>{data.VideoSection.header}</h2>
-				<p>{data.VideoSection.text}</p>
-			</div>
-		</div>
-	</OvalContainer>
-</div>
+		</OvalContainer>
+	</div>
 
-<div class="news-section">
-	<h2>Новини</h2>
-	<Carousel elementProps="{articleProps}" component="{ArticlePreview}" componentHeight="24rem" componentWidth="17rem"/>
-</div>
+	<div class="news-section">
+		<h2>Новини</h2>
+		<Carousel elementProps="{articleProps}" component="{ArticlePreview}" componentHeight="24rem" componentWidth="17rem"/>
+	</div>
 
-<div class="oval-container">
-	<OvalContainer>
-		<div class="what-we-study-section">
-			<h2>{data.WhatIsStudied.header}</h2>
-			<p>{data.WhatIsStudied.text}</p>
-			<div class="profiles">
-				{#each profiles as profile}
-					<div class="profile">
-						<div class="image-container">
-							<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
+	<div class="oval-container">
+		<OvalContainer>
+			<div class="what-we-study-section">
+				<h2>{data.WhatIsStudied.header}</h2>
+				<p>{data.WhatIsStudied.text}</p>
+				<div class="profiles">
+					{#each profiles as profile}
+						<div class="profile">
+							<div class="image-container">
+								<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
+							</div>
+							<h3>{profile.name}</h3>
+							<p>{profile.description}</p>
 						</div>
-						<h3>{profile.name}</h3>
-						<p>{profile.description}</p>
-					</div>
-				{/each}
+					{/each}
+				</div>
+				<Button href="/about-us" text="Виж още"></Button>
 			</div>
-			<Button href="/about-us" text="Виж още"></Button>
-		</div>
-	</OvalContainer>
+		</OvalContainer>
+	</div>
 </div>
 
 <style>
+	.page {
+        --background: var(--main-background);
+        --background-text: var(--main-background-text);
+        --secondary: var(--main-secondary);
+        --secondary-text: var(--main-secondary-text);
+        --primary: var(--main-primary);
+        --accent: var(--main-accent);
+        --primary-dark: var(--main-primary-dark);
+        --primary-dark-text: var(--main-primary-dark-text);
+        --primary-text: var(--main-primary-text);
+        --primary-semi-transparent: rgba(124, 20, 22, 0.33);
+        --secondary-light-text: var(--main-secondary-light-text);
+        --primary-disabled: var(--main-primary-disabled);
+        --background-disabled: var(--main-background-disabled);
+	}
+
 	.hello-section {
 		width: 100%;
         display: grid;
@@ -146,11 +164,6 @@
 			padding-right: 2rem !important;
 		}
     }
-
-	.oval-container {
-		--background: var(--main-primary);
-	}
-
 	.hello-column {
 		width: 100%;
 	}
@@ -165,7 +178,7 @@
 		padding-bottom: 2rem;
 		width: auto;
 		border-bottom: var(--primary) 2px solid;
-        color: var(--main-primary-text);
+        color: var(--secondary-text);
 		display: inline-block;
 		z-index: 1;
 	}
@@ -179,17 +192,15 @@
         border-top: var(--primary) 1px solid;
 		margin: 0;
 		padding-top: 2rem;
-        color: var(--main-primary-text);
+        color: var(--secondary-text);
 	}
 
     .news-section {
-        background-color: var(--main-secondary);
+        background-color: var(--background);
         padding: 4rem 4rem 8rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
-		--background: var(--main-primary);
-		--background-text: var(--main-primary-text)
     }
 
     .news-section h2 {
@@ -200,15 +211,7 @@
         line-height: 59px;
         text-transform: uppercase;
         text-align: center;
-        color: var(--main-secondary-text);
-    }
-
-	.news-section :global(.arrow-button path) {
-		fill: var(--main-secondary-text)
-	}
-
-    .news-section :global(.arrow-button:disabled path) {
-        fill: var(--main-secondary-disabled)
+        color: var(--background-text);
     }
 
     .what-we-study-section {
@@ -226,7 +229,7 @@
         font-size: 48px;
         line-height: 65px;
         text-align: center;
-        color: var(--main-primary-text);
+        color: var(--secondary-tex);
 		max-width: 30rem;
 		margin-top: 0;
 		margin-bottom: 1rem;
@@ -242,7 +245,7 @@
         width: calc(1200px - 50vw);
 		max-width: 100%;
 		min-width: 40%;
-        color: var(--main-primary-text);
+        color: var(--secondary-text);
     }
 
 	.profiles {
@@ -276,7 +279,7 @@
         font-size: 16px;
         line-height: 18px;
         text-align: center;
-        color: var(--main-primary-text);
+        color: var(--secondary-text);
     }
 
 	.profile p {
@@ -287,7 +290,7 @@
         line-height: 18px;
         text-align: center;
 		width: auto;
-        color: var(--main-primary-text);
+        color: var(--secondary-text);
 	}
 
     .video-column {

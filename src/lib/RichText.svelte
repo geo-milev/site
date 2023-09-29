@@ -120,7 +120,7 @@
 	}
 
     .markup-content :global(button:hover) {
-        background-color: var(--accent);
+        background-color: var(--secondary);
         border: 2px solid var(--accent);
         color: var(--secondary-text);
     }

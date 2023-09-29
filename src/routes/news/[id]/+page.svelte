@@ -96,7 +96,7 @@
         --primary-semi-transparent: rgba(124, 20, 22, 0.33);
         --secondary-light-text: var(--news-secondary-light-text);
         --primary-disabled: var(--news-primary-disabled);
-        --background-disabled: var(--background-disabled);
+        --background-disabled: var(--news-background-text);
 	}
 
     .dark {

@@ -58,7 +58,7 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        background-color: var(--main-secondary);
+        background-color: var(--main-background);
     }
 
     .logo {
@@ -70,7 +70,7 @@
     }
 
     h1 {
-        color: var(--main-secondary-text);
+        color: var(--main-background-text);
         font-size: 24px;
         line-height: 33px;
         text-align: center;
@@ -84,7 +84,7 @@
     }
 
     h2 {
-        color: var(--main-secondary-text);
+        color: var(--main-background-text);
         font-size: 20px;
         line-height: 23px;
         text-align: center;
@@ -94,11 +94,11 @@
         top: -5rem;
 		margin: 0;
 		padding: 1.5rem;
-		border-bottom: rgba(255, 255, 255, 0.31) 1px solid;
+		border-bottom: var(--main-primary-semi-transparent) 1px solid;
     }
 
     h3 {
-        color: var(--main-secondary-text);
+        color: var(--main-background-text);
         font-size: 20px;
         line-height: 23px;
         text-align: center;
@@ -108,7 +108,7 @@
         top: -5rem;
         margin: 0;
         padding: 1.5rem;
-        border-top: var(--main-secondary-text) 1px solid;
+        border-top: var(--main-background-text) 1px solid;
     }
 
 	.links {
@@ -121,7 +121,7 @@
         padding-bottom: 2rem;
 		padding-left: 1.5rem;
         padding-right: 1.5rem;
-        border-bottom: var(--primary-semi-transparent) 1px solid;
+        border-bottom: var(--main-primary-semi-transparent) 1px solid;
 	}
 
 	h4 {
@@ -129,8 +129,8 @@
         top: -5rem;
         margin: 0;
         padding: 1.5rem;
-        border-top: var(--main-secondary-text) 1px solid;
-        color: var(--main-secondary-text);
+        border-top: var(--main-background-text) 1px solid;
+        color: var(--main-background-text);
         font-size: 20px;
         line-height: 23px;
         text-align: center;
@@ -159,7 +159,7 @@
         font-size: 24px;
         line-height: 28px;
         text-align: center;
-        color: var(--main-secondary-text);
+        color: var(--main-background-text);
 	}
 
     @media only screen and (max-width: 1050px) {

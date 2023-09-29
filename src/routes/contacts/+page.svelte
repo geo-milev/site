@@ -209,7 +209,7 @@
 
     :global(.form form input) {
 		width: 100%;
-        background-color: var(--background);
+        background-color: var(--secondary);
 		margin-bottom: 1.5rem;
 		min-height: 1.5rem;
         font-family: 'Roboto', serif;
@@ -217,7 +217,8 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-		border: 1px solid var(--primary);
+		color: var(--secondary-text);
+		border: 1px solid var(--accent);
 	}
 
     :global(.form form label) {
@@ -239,6 +240,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
+        border: 1px solid var(--accent);
     }
 
 	.send-message {

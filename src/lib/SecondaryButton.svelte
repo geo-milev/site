@@ -19,20 +19,20 @@
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
-		color: var(--accent);
+		color: var(--background-text);
         font-family: 'Roboto Flex Variable', serif;
         font-variation-settings: 'GRAD' -150;
     }
 
     .content-button :global(button:hover) {
         color: var(--secondary-text);
-        background-color: var(--accent);
+        background-color: var(--secondary);
         border: 2px solid var(--accent);
         font-variation-settings: 'GRAD' 150;
     }
     .content-button.active :global(button) {
         color: var(--secondary-text);
-        background-color: var(--accent);
+        background-color: var(--secondary);
         border: 2px solid var(--accent);
         font-variation-settings: 'GRAD' 150;
     }
