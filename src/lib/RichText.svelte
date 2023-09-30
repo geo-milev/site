@@ -109,7 +109,7 @@
         text-align: center;
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0);
-        border: 2px solid var(--secondary);
+        border: 2px solid var(--background-accent);
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
@@ -120,9 +120,9 @@
 	}
 
     .markup-content :global(button:hover) {
-        background-color: var(--secondary);
+        background-color: var(--background-accent);
         border: 2px solid var(--secondary);
-        color: var(--secondary-text);
+        color: var(--background);
     }
 
 	.markup-content :global(.button) {
