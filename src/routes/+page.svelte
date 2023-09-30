@@ -226,7 +226,7 @@
         font-size: 48px;
         line-height: 65px;
         text-align: center;
-        color: var(--secondary-tex);
+        color: var(--secondary-text);
 		max-width: 30rem;
 		margin-top: 0;
 		margin-bottom: 1rem;
@@ -262,11 +262,17 @@
 	}
 
 	.profile .image-container {
-		height: 10rem;
 		margin: 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+        border-radius: 50%;
+        background-color: var(--white);
+		padding: 1rem;
+	}
+
+	.profile .image-container img {
+		max-height: 10rem;
 	}
 
 	.profile h3 {
@@ -277,6 +283,7 @@
         line-height: 18px;
         text-align: center;
         color: var(--secondary-text);
+		margin-top: 0;
     }
 
 	.profile p {

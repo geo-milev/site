@@ -45,6 +45,7 @@
         display: flex;
         position: relative;
         top: 10px;
+		--background: var(--main-background);
     }
 
     footer {

@@ -183,6 +183,17 @@
         --news-primary-disabled: #B3B3B3;
         --news-background-disabled: #B3B3B3;
 
+        --main-background: #000000;
+        --main-secondary: #151515;
+        --main-background-accent: #7d0b09;
+        --main-secondary-accent: #FFFFFF;
+        --main-background-text: #FFFFFF;
+        --main-secondary-text: #FFFFFF;
+        --main-primary-semi-transparent: rgba(255, 255, 255, 0.31);
+        --main-secondary-light-text: #D9D9D9;
+        --main-primary-disabled: #000000;
+        --main-background-disabled: #B3B3B3;
+
         --background: #4F0D0D;
         --secondary: #FFFFFF;
         --background-text: #FFFFFF;
