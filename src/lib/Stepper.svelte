@@ -48,7 +48,7 @@
 		width: calc(6rem + 10px);
 		height: calc(6rem + 10px);
 		background-color: var(--secondary);
-        border: 12px solid var(--accent);
+        border: 12px solid var(--secondary);
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;

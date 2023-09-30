@@ -126,20 +126,22 @@
         --primary: #7d0b09;
         --primary-dark: #4F0D0D;
         --primary-dark-text: #FFFFFF;
-        --background: #4F0D0D;
-        --secondary: #FFFFFF;
-        --accent: #FFFFFF;
+        --background: #FFFFFF;
+        --secondary: #666769;
+		--background-accent: #7d0b09;
+        --secondary-accent: #cb1712;
         --primary-text: #FFFFFF;
-        --background-text: #FFFFFF;
-        --secondary-text: #000000;
-        --primary-semi-transparent: rgba(255, 255, 255, 0.31);
+        --background-text: #000000;
+        --secondary-text: #ffffff;
+        --primary-semi-transparent: rgba(126, 104, 104, 0.31);
         --secondary-light-text: #D9D9D9;
         --primary-disabled: #B3B3B3;
         --background-disabled: #B3B3B3;
 
         --main-background: #000000;
         --main-secondary: #FFFFFF;
-        --main-accent: #7d0b09;
+        --main-background-accent: #7d0b09;
+        --main-secondary-accent: #000000;
         --main-background-text: #FFFFFF;
         --main-secondary-text: #000000;
         --main-primary-semi-transparent: rgba(255, 255, 255, 0.31);
@@ -147,9 +149,10 @@
         --main-primary-disabled: #000000;
         --main-background-disabled: #B3B3B3;
 
-        --news-secondary: #7d0b09;
-        --news-accent: #7d0b09;
-        --news-secondary-text: #FFFFFF;
+        --news-secondary: #FFFFFF;
+        --news-background-accent: #7d0b09;
+        --news-secondary-accent: #7d0b09;
+        --news-secondary-text: #000000;
         --news-primary-semi-transparent: rgba(124, 20, 22, 0.33);;
         --news-secondary-light-text: #D9D9D9;
         --news-primary-disabled: #B3B3B3;
@@ -166,7 +169,26 @@
     }
 
     :global(body.dark) {
+        --news-secondary: #121212;
+        --news-secondary-text: #FFFFFF;
         --news-background: #121212;
         --news-background-text: #FFFFFF;
+        --news-background-accent: #FFFFFF;
+        --news-secondary-accent: #cb1712;
+        --news-primary-semi-transparent: rgba(124, 20, 22, 0.33);;
+        --news-secondary-light-text: #D9D9D9;
+        --news-primary-disabled: #B3B3B3;
+        --news-background-disabled: #B3B3B3;
+
+        --background: #4F0D0D;
+        --secondary: #FFFFFF;
+        --background-text: #FFFFFF;
+        --background-accent: #FFFFFF;
+        --secondary-accent: #7d0b09;
+        --secondary-text: #000000;
+        --primary-semi-transparent: rgba(255, 255, 255, 0.31);
+        --secondary-light-text: #D9D9D9;
+        --primary-disabled: #B3B3B3;
+        --background-disabled: #B3B3B3;
     }
 </style>

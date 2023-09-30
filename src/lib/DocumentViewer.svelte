@@ -138,7 +138,7 @@
 		padding-left: 1rem;
 		max-width: 30rem;
 		overflow: hidden;
-		border: 1px var(--primary) solid;
+		border: 1px var(--background-accent) solid;
 	}
 
 	.list h2 {
@@ -165,7 +165,7 @@
 	}
 
 	.list .search:focus {
-        border-color: var(--primary);
+        border-color: var(--secondary-accent);
 	}
 
     .list ul::-webkit-scrollbar {
@@ -177,13 +177,13 @@
     }
 
 	.list ul::-webkit-scrollbar-thumb {
-        background: var(--primary);
+        background: var(--secondary-accent);
         border-radius: 26px;
 	}
 
     /* Handle on hover */
     .list ul::-webkit-scrollbar-thumb:hover {
-        background: var(--background);
+        background: var(--primary-dark);
     }
 
 	.list ul {
@@ -201,11 +201,11 @@
     }
 
 	.list li.selected {
-        border-color: var(--primary);
+        border-color: var(--secondary-accent);
 	}
 
 	.list li.selected a {
-        color: var(--primary);
+        color: var(--secondary-accent);
 	}
 
 	.list li a {

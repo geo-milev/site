@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { env } from "$env/dynamic/public";
+	import Button from "$lib/Button.svelte";
 
 	export let project;
 </script>
@@ -17,7 +17,7 @@
 		<p>{project.description}</p>
 		{#if project.article}
 			<div class="button">
-				<SecondaryButton href="news/{project.article.id}" text="Виж още" />
+				<Button href="news/{project.article.id}" text="Виж още" />
 			</div>
 		{/if}
 	</div>
@@ -25,6 +25,11 @@
 </div>
 
 <style>
+	.button {
+		--primary: var(--secondary-text);
+		--primary-text: var(--secondary);
+	}
+
 	.container {
 		width: 100%;
 		height: 100%;
@@ -95,11 +100,6 @@
         background-color: var(--primary-semi-transparent);
         margin-top: -1px;
     }
-
-	.button {
-		--background-text: var(--primary);
-		--accent: var(--primary);
-	}
 
     @media only screen and (max-width: 640px) {
 		.container {

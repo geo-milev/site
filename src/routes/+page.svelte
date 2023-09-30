@@ -118,7 +118,8 @@
         --background-text: var(--main-background-text);
         --secondary: var(--main-secondary);
         --secondary-text: var(--main-secondary-text);
-        --accent: var(--main-accent);
+        --background-accent: var(--main-background-accent);
+        --secondary-accent: var(--main-secondary-accent);
         --primary-semi-transparent: rgba(124, 20, 22, 0.33);
         --secondary-light-text: var(--main-secondary-light-text);
         --primary-disabled: var(--main-primary-disabled);

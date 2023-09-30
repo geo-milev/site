@@ -88,25 +88,13 @@
         --background-text: var(--news-background-text);
         --secondary: var(--news-secondary);
         --secondary-text: var(--news-secondary-text);
-		--accent: var(--news-accent);
+		--background-accent: var(--news-background-accent);
+        --secondary-accent: var(--news-secondary-accent);
         --primary-semi-transparent: var(--news-primary-semi-transparent);
         --secondary-light-text: var(--news-secondary-light-text);
         --primary-disabled: var(--news-primary-disabled);
         --background-disabled: var(--news-background-text);
 	}
-
-    .dark {
-        --primary: var(--background-text);
-        --secondary: var(--background-text);
-        --secondary-text: var(--background);
-		--accent: var(--background-text);
-    }
-
-    .article-content :global(.document-viewer .container) {
-        --secondary: var(--background);
-        --secondary-text: var(--background-text);
-		--primary: var(--accent);
-    }
 
     .article-content h1 {
         font-family: 'Alegreya', serif;
