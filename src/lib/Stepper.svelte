@@ -47,7 +47,7 @@
 	.circle {
 		width: calc(6rem + 10px);
 		height: calc(6rem + 10px);
-		background-color: var(--secondary);
+		background-color: var(--background);
         border: 12px solid var(--secondary);
 		border-radius: 50%;
 		display: flex;
@@ -62,7 +62,7 @@
         font-weight: 700;
         font-size: 96px;
         line-height: 116px;
-        color: var(--secondary-text);
+        color: var(--background-text);
 	}
 
 	.step {

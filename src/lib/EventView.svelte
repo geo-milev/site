@@ -40,6 +40,7 @@
         color: var(--background-text);
         text-align: start;
         overflow: auto;
+		margin-top: 8px;
 	}
 
 	.image-container figure {

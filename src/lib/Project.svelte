@@ -25,10 +25,6 @@
 </div>
 
 <style>
-	.button {
-		--primary: var(--secondary-text);
-		--primary-text: var(--secondary);
-	}
 
 	.container {
 		width: 100%;

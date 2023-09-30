@@ -31,8 +31,7 @@
     }
 
 	button:hover {
-		color: var(--primary);
-		background-color: var(--primary-text);
-        border: 2px solid var(--primary);
+		color: var(--secondary-text);
+		background-color: var(--secondary);
 	}
 </style>

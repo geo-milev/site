@@ -55,7 +55,7 @@
 	}
 </script>
 
-<div class="article-content" class:dark={mode === "dark"}>
+<div class="article-content">
 	<div class="top-container">
 		<div class="header-container">
 			<h1>{data.News.title}</h1>
