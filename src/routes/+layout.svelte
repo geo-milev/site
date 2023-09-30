@@ -8,6 +8,7 @@
 	import { seoInfo } from "../lib/seoInfo";
 	import { page } from "$app/stores";
 	import { logo } from "$lib/logo";
+	import ThemeChangeButton from "$lib/ThemeChangeButton.svelte";
 
 	setContext('layout', layout);
 
@@ -113,6 +114,8 @@
 		logoWidth="{data.MainInfo.logo.width}" />
 
 <slot />
+
+<ThemeChangeButton />
 
 <Footer address="{data.Contact.locationInfo.address}"
 		schoolName="{data.MainInfo.name}"
