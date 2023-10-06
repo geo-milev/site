@@ -155,6 +155,7 @@
 	</div>
 	<div class="header-container">
 		<h1>Твоята програма</h1>
+		<p>{data.Schedule.weeklySchedule.year}</p>
 		<div class="line"></div>
 	</div>
 	<div class="weekly-schedule-container">
@@ -220,7 +221,8 @@
         width: auto;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
+        border-bottom: 2px var(--secondary) solid;
     }
 
     .line {
@@ -243,7 +245,16 @@
         color: var(--background-text);
     }
 
-	.daily-schedule-container {
+    .header-container p {
+        font-family: 'Alegreya', serif;
+        font-size: 22px;
+        line-height: 28px;
+        text-align: center;
+        margin: 0 0 1rem;
+		color: var(--background-text)
+    }
+
+    .daily-schedule-container {
 		width: 100%;
 		display: flex;
 	}

@@ -36,6 +36,7 @@ export async function load({ fetch, url }) {
                     }
                 }
                 weeklySchedule {
+                    year
                     weeklySchedulesAutofill {
                         maxNumberOfLessons
                     }

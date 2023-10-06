@@ -7,8 +7,8 @@
 	import { env } from "$env/dynamic/public";
 	import { seoInfo } from "../lib/seoInfo";
 	import { page } from "$app/stores";
-	import { logo } from "$lib/logo";
 	import ThemeChangeButton from "$lib/ThemeChangeButton.svelte";
+	import { seoAutofillImage } from "$lib/seoAutofillImage";
 
 	setContext('layout', layout);
 
@@ -30,7 +30,7 @@
 		import('@fontsource/alegreya/500.css');
 		import('@fontsource/alegreya/700.css');
 
-		logo.set(data.MainInfo.logo)
+		seoAutofillImage.set(data.MainInfo.seoAutofillImage)
 
 		layout.subscribe((layoutProps) => {
 			window.document.body.style.backgroundColor = layoutProps.navbar.backgroundColor
@@ -44,43 +44,43 @@
 
 	setContextClient(client);
 
-  seoInfo.set({
-		title: data.MainInfo.name,
-		description: undefined,
-		url: $page.url.href,
-		siteName: data.MainInfo.name,
-		imageUrl: undefined,
-		type: undefined,
-		publishDate: undefined
-	})
+	const resetSeo = () => {
+		seoInfo.set({
+			title: data.MainInfo.name,
+			description: data.MainInfo.name,
+			url: data.href,
+			siteName: data.MainInfo.name,
+			imageUrl: data.MainInfo.seoAutofillImage.url,
+			type: "website",
+			publishDate: undefined
+		})
+	}
+
+	resetSeo()
 
 	$: if (data.seoData) {
-		seoInfo.update((seoInfo) => {
-			seoInfo.title = data.seoData.title
-			seoInfo.description = data.seoData.description
-			seoInfo.imageUrl = data.seoData.image.url
-			seoInfo.url = $page.url.href
-			seoInfo.type = undefined
-			seoInfo.publishDate = undefined
+		seoInfo.update((seo) => {
+			seo.title = data.seoData.title
+			seo.description = data.seoData.description
+			seo.imageUrl = data.seoData.image ? data.seoData.image.url: data.MainInfo.seoAutofillImage.url
+			seo.url = data.href
+			seo.type = "website"
+			seo.publishDate = undefined
 
-			return seoInfo
+			if (data.pathname.startsWith("/news/")) {
+				seo.type = "article"
+				seo.publishDate = data.seoData.lastUpdate
+			}
+
+			return seo
 		})
 	} else {
-		if (!$page.url.pathname.startsWith("/news/")) {
-			seoInfo.set({
-				title: data.MainInfo.name,
-				description: undefined,
-				url: $page.url.href,
-				siteName: data.MainInfo.name,
-				imageUrl: undefined,
-				type: undefined,
-				publishDate: undefined
-			})
-		}
+		resetSeo()
 	}
 </script>
 
 <svelte:head>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	{#each data.MainInfo.favicons as favicon}
 		<link rel="icon" type="image/png" sizes="{favicon.size}"
 			  href={env.PUBLIC_SERVER_URL + favicon.favicon.url} />

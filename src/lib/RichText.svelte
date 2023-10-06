@@ -45,7 +45,6 @@
     :global(.markup-content a, .markup-content p, .markup-content span) {
         overflow-wrap: anywhere;
         word-wrap: anywhere;
-		hyphens: auto;
     }
 
     :global(.markup-content img) {
