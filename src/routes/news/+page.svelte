@@ -136,7 +136,7 @@
 	.rss-button {
 		position: fixed;
 		bottom: 12px;
-		right: 12px;
+		left: 12px;
 		max-width: 36px;
 		max-height: 36px;
 		z-index: 2;

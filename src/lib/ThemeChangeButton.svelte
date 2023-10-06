@@ -54,7 +54,7 @@
     .theme-button {
 		position: fixed;
         bottom: 12px;
-        left: 12px;
+        right: 12px;
         z-index: 2;
         height: 48px;
         width: 48px;
