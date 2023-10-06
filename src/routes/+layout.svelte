@@ -6,7 +6,6 @@
 	import { cacheExchange, Client, fetchExchange, setContextClient } from "@urql/svelte";
 	import { env } from "$env/dynamic/public";
 	import { seoInfo } from "../lib/seoInfo";
-	import { page } from "$app/stores";
 	import ThemeChangeButton from "$lib/ThemeChangeButton.svelte";
 	import { seoAutofillImage } from "$lib/seoAutofillImage";
 
@@ -130,12 +129,12 @@
         --primary-dark: #4F0D0D;
         --primary-dark-text: #FFFFFF;
         --background: #FFFFFF;
-        --secondary: #666769;
+        --secondary: #f1f1f1;
 		--background-accent: #7d0b09;
-        --secondary-accent: #cb1712;
+        --secondary-accent: #7d0b09;
         --primary-text: #FFFFFF;
         --background-text: #000000;
-        --secondary-text: #ffffff;
+        --secondary-text: #000000;
         --primary-semi-transparent: rgba(126, 104, 104, 0.31);
         --secondary-light-text: #D9D9D9;
         --primary-disabled: #B3B3B3;

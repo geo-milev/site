@@ -98,8 +98,10 @@
 			<form method="POST" action="/contacts" id="contactUsForm" use:enhance>
 				{@html formHtml}
 				<input type="hidden" name="formId" value="{data.Form.id}"/>
-				<SecondarySubmit text="{data.Form.submitButtonLabel}"></SecondarySubmit>
 			</form>
+			<div class="submit">
+				<SecondarySubmit text="{data.Form.submitButtonLabel}"></SecondarySubmit>
+			</div>
 		{/if}
 	</div>
 </div>
@@ -207,9 +209,8 @@
 		:global needs to be used for this reason
 	*/
 
-    :global(.form form input) {
-		width: 100%;
-        background-color: var(--background);
+    #contactUsForm :global(input) {
+        background-color: var(--secondary);
 		margin-bottom: 1.5rem;
 		min-height: 1.5rem;
         font-family: 'Roboto', serif;
@@ -217,11 +218,11 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-		color: var(--background-text);
-		border: 1px solid var(--background-accent);
+		color: var(--secondary-text);
+		border: 1px solid var(--secondary-text);
 	}
 
-    :global(.form form label) {
+    #contactUsForm :global(label) {
 		width: 100%;
 		text-align: center;
 		font-family: 'Roboto', serif;
@@ -233,17 +234,22 @@
         margin-bottom: 0.5rem;
     }
 
-    :global(.form form textarea) {
-		width: 100%;
+    #contactUsForm  :global(textarea) {
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         border: 1px solid var(--background-accent);
-        background-color: var(--background);
-        color: var(--background-text);
+        background-color: var(--secondary);
+        color: var(--secondary-text);
     }
+
+	.submit {
+		display: flex;
+        width: min(30rem, 100%);
+        flex-direction: column;
+	}
 
 	.send-message {
         font-family: 'Roboto', serif;

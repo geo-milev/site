@@ -12,7 +12,7 @@
         font-size: 19px;
         line-height: 22px;
         padding: 0.5rem 3rem;
-        color: var(--secondary);
+        color: var(--secondary-text);
         text-transform: uppercase;
         font-family: 'Roboto Flex Variable', serif;
         font-style: normal;
