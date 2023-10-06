@@ -6,6 +6,7 @@ interface LayoutProps {
         showTitle: boolean;
         backgroundColor: string;
     };
+    themeSwitchShown: boolean;
 }
 
 const setLayout = (layoutProps: LayoutProps) => {
@@ -18,6 +19,7 @@ const mainLayout: LayoutProps = {
         showTitle: true,
         backgroundColor: "var(--black)",
     },
+    themeSwitchShown: false,
 };
 
 const secondaryLayout: LayoutProps = {
@@ -26,6 +28,7 @@ const secondaryLayout: LayoutProps = {
         showTitle: false,
         backgroundColor: "var(--background)",
     },
+    themeSwitchShown: true,
 };
 
 const tertiaryLayout: LayoutProps = {
@@ -34,6 +37,7 @@ const tertiaryLayout: LayoutProps = {
         showTitle: false,
         backgroundColor: "var(--news-background)",
     },
+    themeSwitchShown: true,
 };
 
 const layout = writable(mainLayout);

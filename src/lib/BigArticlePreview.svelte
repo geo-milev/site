@@ -43,7 +43,7 @@
 	}
 
 	.preview-image.logo {
-		background-color: #FFFFFF;
+		background-color: var(--secondary);
 	}
 
 	.content {
