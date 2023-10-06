@@ -1,16 +1,16 @@
 <script lang="ts">
 	import Button from "$lib/Button.svelte";
 	import { env } from "$env/dynamic/public";
-	import { logo } from "$lib/logo.js";
+	import { seoAutofillImage } from "$lib/seoAutofillImage";
 
 	export let preview;
 </script>
 
 <div class="container">
 	{#if preview.postImage}
-		<img class="preview-image" loading="lazy" src="{env.PUBLIC_SERVER_URL + preview.postImage.url}" alt="{preview.postImage.alt}"/>
+		<img class="preview-image" loading="lazy" src="{env.PUBLIC_SERVER_URL + preview.postImage.url}" alt="{preview.postImage.alt}">
 	{:else}
-		<img class="preview-image logo" loading="lazy" src="{env.PUBLIC_SERVER_URL + $logo.url}" alt="{$logo.alt}">
+		<img class="preview-image" loading="lazy" src="{env.PUBLIC_SERVER_URL + $seoAutofillImage.url}" alt="{$seoAutofillImage.alt}">
 	{/if}
 	<div class="content">
 		<div class="text">
@@ -35,10 +35,6 @@
 		object-fit: cover;
 		height: 50%;
 		width: 100%;
-	}
-
-	.preview-image.logo {
-		object-fit: contain;
 	}
 
 	.content {

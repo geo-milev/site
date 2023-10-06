@@ -2,7 +2,6 @@
 	import { setLayout, tertiaryLayout, tertiaryLayoutDark } from "$lib/setLayout";
 	import { env } from "$env/dynamic/public";
 	import BlockRenderer from "$lib/BlockRenderer.svelte";
-	import { seoInfo } from "$lib/seoInfo";
 	import { onMount } from "svelte";
 	import DarkModeIcon from "$lib/DarkModeIcon.svelte";
 	import LightModeIcon from "$lib/LightModeIcon.svelte";
@@ -12,15 +11,6 @@
 	setLayout(tertiaryLayout)
 
 	export let data;
-
-	seoInfo.update(seoInfo => {
-		seoInfo.title = data.News.title
-		seoInfo.description = data.News.description
-		seoInfo.type = "article"
-		seoInfo.publishDate = data.News.publishDate
-
-		return seoInfo
-	})
 
 	let mode = "light"
 	let buttonColor
