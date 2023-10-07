@@ -5,7 +5,9 @@
 
 	setLayout(secondaryLayout)
 
-	let year = new Date().getFullYear();
+	export let data;
+
+	let year = data.AvailableBudget.years.sort((year1, year2) => year2.year - year1.year)[0].year
 
 	let budgets;
 	let yearlyBudgets;
@@ -18,15 +20,15 @@
 
 	const onYearChange = () => {
 		budgets = data.AvailableBudget.years.filter((val) => val.year === year)[0].budgets
-		yearlyBudgets = budgets.filter((val) => val.budget.isYearly)
-		quarterlyBudgets = budgets.filter((val) => !val.budget.isYearly)
+		yearlyBudgets = budgets.filter((val) => val.isYearly)
+		quarterlyBudgets = budgets.filter((val) => !val.isYearly)
 
-		selectedBudgetId = budgets[0].budget.id
+		selectedBudgetId = budgets[0].id
 		changeSelectedBudget()
 	}
 
 	const changeSelectedBudget = () => {
-		selectedBudget = budgets.filter((val) => val.budget.id === selectedBudgetId)[0].budget;
+		selectedBudget = budgets.filter((val) => val.id === selectedBudgetId)[0];
 		documents = selectedBudget.isYearly ? [
 			{
 				name: "Годишен",
@@ -55,8 +57,6 @@
 	onMount(() => {
 		onYearChange()
 	})
-
-	export let data;
 </script>
 
 <div class="container">
@@ -77,14 +77,14 @@
 				{#if yearlyBudgets.length > 0}
 					<optgroup label="Годишни">
 						{#each yearlyBudgets as budget}
-							<option value="{budget.budget.id}">Годишен: {budget.budget.name}</option>
+							<option value="{budget.id}">Годишен: {budget.name}</option>
 						{/each}
 					</optgroup>
 				{/if}
 				{#if quarterlyBudgets.length > 0}
 					<optgroup label="Тримесечни">
 						{#each quarterlyBudgets as budget}
-							<option value="{budget.budget.id}">Тримесечен: {budget.budget.name}</option>
+							<option value="{budget.id}">Тримесечен: {budget.name}</option>
 						{/each}
 					</optgroup>
 				{/if}

@@ -14,26 +14,24 @@ export async function load({ fetch }) {
                 years {
                     year
                     budgets {
-                        budget {
-                            id
-                            name
-                            isYearly
-                            yearly {
+                        id
+                        name
+                        isYearly
+                        yearly {
+                            url
+                        }
+                        yearlyQuarters {
+                            first {
                                 url
                             }
-                            yearlyQuarters {
-                                first {
-                                    url
-                                }
-                                second {
-                                    url
-                                }
-                                third {
-                                    url
-                                }
-                                fourth {
-                                    url
-                                }
+                            second {
+                                url
+                            }
+                            third {
+                                url
+                            }
+                            fourth {
+                                url
                             }
                         }
                     }
