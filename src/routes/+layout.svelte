@@ -131,7 +131,7 @@
         --primary-dark: #4F0D0D;
         --primary-dark-text: #FFFFFF;
         --background: #FFFFFF;
-        --secondary: #f1f1f1;
+        --secondary: #e5e5e5;
 		--background-accent: #7d0b09;
         --secondary-accent: #7d0b09;
         --primary-text: #FFFFFF;
