@@ -10,7 +10,7 @@ export async function load({ fetch }) {
 
     const QUERY = `
      	query {
-            AvailableBudget {
+            Budget {
                 years {
                     year
                     budgets {
