@@ -7,7 +7,7 @@
 
 	export let data;
 
-	let year = data.AvailableBudget.years.sort((year1, year2) => year2.year - year1.year)[0].year
+	let year = data.Budget.years.sort((year1, year2) => year2.year - year1.year)[0].year
 
 	let budgets;
 	let yearlyBudgets;
@@ -19,7 +19,7 @@
 	let documents;
 
 	const onYearChange = () => {
-		budgets = data.AvailableBudget.years.filter((val) => val.year === year)[0].budgets
+		budgets = data.Budget.years.filter((val) => val.year === year)[0].budgets
 		yearlyBudgets = budgets.filter((val) => val.isYearly)
 		quarterlyBudgets = budgets.filter((val) => !val.isYearly)
 
@@ -67,7 +67,7 @@
 	<div class="selects">
 		<label for="year">Година</label>
 		<select name="year" id="year" bind:value={year} on:change={onYearChange}>
-			{#each data.AvailableBudget.years as year}
+			{#each data.Budget.years as year}
 				<option value="{year.year}">{year.year}</option>
 			{/each}
 		</select>
