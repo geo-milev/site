@@ -1,22 +1,43 @@
 <script>
 	import OpenInNew from "$lib/OpenInNew.svelte";
 
-	export let announcement;
+	export let announcements;
 </script>
-
-<div class="announcement">
-	<a href="{announcement.link}">{announcement.text}<div class="open-in-new"><OpenInNew /></div></a>
+<div class="container">
+	{#each announcements as announcement}
+		<div class="announcement">
+			<a href="{announcement.link}">{announcement.text}<div class="open-in-new"><OpenInNew /></div></a>
+		</div>
+	{/each}
 </div>
 
 <style>
-	.announcement {
-		background-color: #7D0B09;
+	.container {
+		min-height: 2.5rem;
+		display: flex;
+		flex-wrap: wrap;
 		width: 100%;
+        background-color: #7D0B09;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+
+	.announcement {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		pointer-events: auto;
         min-height: 28px;
+		padding-left: 1rem;
+        padding-right: 1rem;
+        flex: 1 1 auto;
+		height: 100%;
+		text-align: center;
+	}
+
+	.announcement:first-child {
+		border-left: none;
 	}
 
 	.announcement a {

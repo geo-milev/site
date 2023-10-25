@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import DesktopNav from "$lib/DesktopNav.svelte";
     import ProgressBar from "$lib/ProgressBar.svelte";
-    import Announcement from "$lib/Announcement.svelte";
+    import Announcements from "$lib/Announcements.svelte";
 
     const navigationLinksLeft = [
         { key: "Новини", href: "/news" },
@@ -59,9 +59,7 @@
 
     <ProgressBar />
     {#if fixed}
-        {#each announcements as announcement}
-            <Announcement announcement="{announcement}" />
-        {/each}
+        <Announcements announcements="{announcements}"></Announcements>
     {/if}
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
