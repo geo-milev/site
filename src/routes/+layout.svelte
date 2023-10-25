@@ -109,7 +109,8 @@
 		showTitle="{$layout.navbar.showTitle}"
 		logoHref="{env.PUBLIC_SERVER_URL + data.MainInfo.logo.url}"
 		logoHrefAlt="{data.MainInfo.logo.alt}"
-		logoWidth="{data.MainInfo.logo.width}" />
+		logoWidth="{data.MainInfo.logo.width}"
+		announcements="{data.announcementData.docs}"/>
 
 <slot />
 
