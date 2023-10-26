@@ -3,7 +3,6 @@
     import { onMount } from "svelte";
     import DesktopNav from "$lib/DesktopNav.svelte";
     import ProgressBar from "$lib/ProgressBar.svelte";
-    import Announcement from "$lib/Announcement.svelte";
 
     const navigationLinksLeft = [
         { key: "Новини", href: "/news" },
@@ -48,7 +47,6 @@
     export let logoHref: string;
     export let logoHrefAlt: string;
     export let logoWidth: number;
-    export let announcements: {text: string, link: string}[]
 
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
@@ -56,13 +54,7 @@
 <svelte:window bind:scrollY="{scrollY}" bind:innerWidth />
 
 <div class="nav-container" class:fixed="{fixed}" style="--logo-width: {logoWidth}px; --mobile-breakpoint: {mobileBreakpoint}px">
-
     <ProgressBar />
-    {#if fixed}
-        {#each announcements as announcement}
-            <Announcement announcement="{announcement}" />
-        {/each}
-    {/if}
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
