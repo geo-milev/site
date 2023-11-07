@@ -21,7 +21,7 @@
 		page++;
 		client.query(
 			`query($page: Int!) {
-					allNews(page: $page, limit: 10, sort: "-publishDate") {
+					allNews(page: $page, limit: 10, sort: "-publishDate", drafts: false) {
 						docs {
 						  title
 						  description
