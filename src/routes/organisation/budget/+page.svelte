@@ -122,7 +122,7 @@
     .line {
         width: 20rem;
         height: 1px;
-        background-color: rgba(255, 255, 255, 0.31);
+        background-color: var(--primary-semi-transparent);
         margin-top: -1px;
     }
 
@@ -133,10 +133,10 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
-        border-bottom: 2px #FFFFFF solid;
+        border-bottom: 2px var(--background-text) solid;
         margin: 0;
         padding-bottom: 1rem;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.selects {
@@ -153,8 +153,8 @@
         gap: 0.5rem;
         width: 100%;
         background-color: rgba(0, 0, 0, 0);
-        border: 1px solid #FFFFFF;
-        color: #FFFFFF;
+        border: 1px solid var(--background-text);
+        color: var(--background-text);
         font-size: 16px;
         line-height: 20px;
         font-family: 'Roboto', serif;
@@ -187,7 +187,7 @@
         font-weight: 300;
         font-size: 16px;
         line-height: 20px;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
     label {
@@ -197,6 +197,6 @@
         font-size: 20px;
         line-height: 24px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 </style>

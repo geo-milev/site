@@ -98,8 +98,10 @@
 			<form method="POST" action="/contacts" id="contactUsForm" use:enhance>
 				{@html formHtml}
 				<input type="hidden" name="formId" value="{data.Form.id}"/>
-				<SecondarySubmit text="{data.Form.submitButtonLabel}"></SecondarySubmit>
 			</form>
+			<div class="submit">
+				<SecondarySubmit text="{data.Form.submitButtonLabel}"></SecondarySubmit>
+			</div>
 		{/if}
 	</div>
 </div>
@@ -122,7 +124,7 @@
 	.line {
 		width: 20rem;
 		height: 1px;
-		background-color: rgba(255, 255, 255, 0.31);
+		background-color: var(--primary-semi-transparent);
 		margin-top: -1px;
 	}
 
@@ -133,10 +135,10 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
-		border-bottom: 2px #FFFFFF solid;
+		border-bottom: 2px var(--background-text) solid;
 		margin: 0;
 		padding-bottom: 2rem;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
 	.main {
@@ -172,7 +174,7 @@
         font-weight: 700;
         font-size: 30px;
         line-height: 35px;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
     .contact-item span {
@@ -182,11 +184,11 @@
         font-size: 23px;
         line-height: 28px;
 
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
     .contact-item span a {
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.form {
@@ -197,7 +199,7 @@
 
 	.form form {
 		width: min(30rem, 100%);
-        color: #FFFFFF;
+        color: var(--background-text);
 		display: flex;
 		flex-direction: column;
     }
@@ -207,10 +209,8 @@
 		:global needs to be used for this reason
 	*/
 
-    :global(.form form input) {
-		width: 100%;
-        background-color: #FFFFFF;
-		border: none;
+    #contactUsForm :global(input) {
+        background-color: var(--secondary);
 		margin-bottom: 1.5rem;
 		min-height: 1.5rem;
         font-family: 'Roboto', serif;
@@ -218,9 +218,11 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
+		color: var(--secondary-text);
+		border: 1px solid var(--secondary-text);
 	}
 
-    :global(.form form label) {
+    #contactUsForm :global(label) {
 		width: 100%;
 		text-align: center;
 		font-family: 'Roboto', serif;
@@ -228,18 +230,26 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        color: #FFFFFF;
+        color: var(--background-text);
         margin-bottom: 0.5rem;
     }
 
-    :global(.form form textarea) {
-		width: 100%;
+    #contactUsForm  :global(textarea) {
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
+        border: 1px solid var(--background-accent);
+        background-color: var(--secondary);
+        color: var(--secondary-text);
     }
+
+	.submit {
+		display: flex;
+        width: min(30rem, 100%);
+        flex-direction: column;
+	}
 
 	.send-message {
         font-family: 'Roboto', serif;
@@ -248,8 +258,7 @@
         font-size: 26px;
         line-height: 33px;
         text-align: center;
-        color: #FFFFFF;
-
+        color: var(--background-text);
     }
 
     @media only screen and (max-width: 1050px) {

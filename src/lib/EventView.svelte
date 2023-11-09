@@ -37,9 +37,10 @@
         font-size: 18px;
         line-height: 22px;
 		font-weight: 300;
-        color: #FFFFFF;
+        color: var(--background-text);
         text-align: start;
         overflow: auto;
+		margin-top: 8px;
 	}
 
 	.image-container figure {
@@ -64,7 +65,7 @@
         font-weight: 600;
         font-size: 32px;
         line-height: 39px;
-        color: #FFFFFF;
+        color: var(--background-text);
 		text-transform: uppercase;
         width: 100%;
         word-break: break-word;
@@ -77,7 +78,7 @@
         font-weight: 300;
         font-size: 16px;
         line-height: 19px;
-        color: #FFFFFF;
+        color: var(--background-text);
         width: 100%;
         word-break: break-word;
         white-space: normal;

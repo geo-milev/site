@@ -14,11 +14,7 @@
 					<span>{step.stepNumber}</span>
 				</div>
 				<div class="content-container">
-					<BlockRenderer blocks="{step.info}"
-								   documentViewerBackgroundColor = "#FFFFFF"
-								   documentViewerHoverColor = "#7d0b09"
-								   documentViewerTextColor = "#000000"
-								   documentViewerTextColorNegative = "#FFFFFF"/>
+					<BlockRenderer blocks="{step.info}" />
 				</div>
 			</div>
 		{/each}
@@ -39,7 +35,7 @@
 		position: absolute;
 		left: calc(4rem - 5px);
 		top: 5px;
-        background-color: #FFFFFF;
+        background-color: var(--secondary);
     }
 
 	.step-container {
@@ -51,8 +47,8 @@
 	.circle {
 		width: calc(6rem + 10px);
 		height: calc(6rem + 10px);
-		background-color: #4F0D0D;
-        border: 12px solid #FCFCFC;
+		background-color: var(--background);
+        border: 12px solid var(--secondary);
 		border-radius: 50%;
 		display: flex;
 		justify-content: center;
@@ -66,7 +62,7 @@
         font-weight: 700;
         font-size: 96px;
         line-height: 116px;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
 	.step {

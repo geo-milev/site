@@ -7,12 +7,12 @@
 <style>
     input[type=submit] {
         background-color: rgba(0, 0, 0, 0);
-        border: 2px solid #FFFFFF;
+        border: 2px solid var(--secondary);
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
         padding: 0.5rem 3rem;
-        color: #FFFFFF;
+        color: var(--secondary-text);
         text-transform: uppercase;
         font-family: 'Roboto Flex Variable', serif;
         font-style: normal;
@@ -39,9 +39,9 @@
     }
 
     input[type=submit]:hover {
-        color: #000000;
-        background-color: #FFFFFF;
-        border: 2px solid #FFFFFF;
+        color: var(--secondary-text);
+        background-color: var(--secondary);
+        border: 2px solid var(--secondary);
         font-variation-settings: 'GRAD' 150;
     }
 </style>

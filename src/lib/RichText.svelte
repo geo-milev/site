@@ -1,17 +1,9 @@
 <script>
 	export let richText;
 	export let isCentered = false;
-	export let buttonColor = "#FFFFFF";
-	export let buttonHoverTextColor = "#000000";
-	export let textColor = "#FFFFFF"
-	export let headerLineColor = "#FFFFFF"
 </script>
 
 <div class="markup-content"
-	 style="--color: {buttonColor};
-	 	--text-color: {textColor};
-	 	--header-line: {headerLineColor};
-	 	--button-hover-text-color: {buttonHoverTextColor}"
 	 class:centered={isCentered}>
 	{@html richText}
 </div>
@@ -30,8 +22,7 @@
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 400;
-        color: var(--text-color);
-        border-bottom: 2px var(--header-line) solid;
+        color: var(--background-text);
         margin: 0;
         padding: 1rem;
     }
@@ -40,7 +31,7 @@
         display: flex;
         align-items: center;
         padding-right: 2rem;
-        border-bottom: 1px rgba(124, 20, 22, 0.33) solid;
+        border-bottom: 1px var(--primary-semi-transparent) solid;
         width: auto;
         justify-content: flex-start;
         padding-left: 0;
@@ -48,7 +39,7 @@
     }
 
     :global(.markup-content a) {
-        color: var(--color)
+        color: var(--background-accent);
     }
 
     :global(.markup-content a, .markup-content p, .markup-content span) {
@@ -71,7 +62,7 @@
         font-weight: 300;
         font-size: 20px;
         line-height: 23px;
-        color: var(--text-color);
+        color: var(--background-text);
     }
 
     :global(.markup-content img) {
@@ -87,7 +78,7 @@
     :global(.markup-content p) {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
-		color: var(--text-color);
+		color: var(--background-text);
     }
 
     :global(.markup-content .code-container) {
@@ -117,20 +108,20 @@
         text-align: center;
         cursor: pointer;
         background-color: rgba(0, 0, 0, 0);
-        border: 2px solid var(--color);
+        border: 2px solid var(--background-accent);
         font-weight: 300;
         font-size: 19px;
         line-height: 22px;
-        color: var(--color);
+        color: var(--background-text);
 		margin-bottom: 1rem;
         transition: all 300ms ease-in;
 		margin-top: 1rem;
 	}
 
     .markup-content :global(button:hover) {
-        background-color: var(--color);
-        border: 2px solid var(--color);
-        color: var(--button-hover-text-color);
+        background-color: var(--background-accent);
+        border: 2px solid var(--secondary);
+        color: var(--background);
     }
 
 	.markup-content :global(.button) {
@@ -141,7 +132,7 @@
 	}
 
 	.markup-content :global(> *) {
-        color: var(--text-color);
+        color: var(--background-text);
 	}
 
     :global(.markup-content.centered) {
@@ -228,7 +219,7 @@
         padding-left: 0;
     }
 	:global(.markup-content blockquote) {
-		border-left: 1px solid var(--header-line);
+		border-left: 1px solid var(--background-text);
 		padding-left: 1rem;
 	}
 </style>

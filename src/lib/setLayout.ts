@@ -6,6 +6,7 @@ interface LayoutProps {
         showTitle: boolean;
         backgroundColor: string;
     };
+    themeSwitchShown: boolean;
 }
 
 const setLayout = (layoutProps: LayoutProps) => {
@@ -16,32 +17,27 @@ const mainLayout: LayoutProps = {
     navbar: {
         fixed: true,
         showTitle: true,
-        backgroundColor: "#000000",
+        backgroundColor: "var(--black)",
     },
+    themeSwitchShown: false,
 };
 
 const secondaryLayout: LayoutProps = {
     navbar: {
         fixed: false,
         showTitle: false,
-        backgroundColor: "#4F0D0D",
+        backgroundColor: "var(--background)",
     },
+    themeSwitchShown: true,
 };
 
 const tertiaryLayout: LayoutProps = {
     navbar: {
         fixed: false,
         showTitle: false,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "var(--news-background)",
     },
-};
-
-const tertiaryLayoutDark: LayoutProps = {
-    navbar: {
-        fixed: false,
-        showTitle: false,
-        backgroundColor: "#121212",
-    },
+    themeSwitchShown: true,
 };
 
 const layout = writable(mainLayout);
@@ -53,5 +49,4 @@ export {
     mainLayout,
     secondaryLayout,
     tertiaryLayout,
-    tertiaryLayoutDark,
 };

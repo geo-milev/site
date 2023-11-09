@@ -69,14 +69,14 @@
     }
 
 	h1 {
-        border-bottom: 2px #FFFFFF solid;
+        border-bottom: 2px var(--background-text) solid;
         margin: 0;
         font-family: 'Alegreya', serif;
         font-style: normal;
         font-weight: 700;
         font-size: 40px;
         line-height: 54px;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
 	.about-us .text h1 {
@@ -89,7 +89,7 @@
         font-weight: 300;
         font-size: 16px;
         line-height: 19px;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.about-us .header-container {

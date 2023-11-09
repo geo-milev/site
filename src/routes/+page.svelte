@@ -51,62 +51,81 @@
 	})
 </script>
 
-<Slideshow slides={slides}>
-	<div class="social-media">
-		{#each data.Contact.socialMedia as socialMedia }
-			<a class="floating-action-button"
-			   title="{socialMedia.socialMediaTitle}"
-			   href="{socialMedia.link}" target="_blank">
-				<img src="{socialMedia.icon.url}" alt="{socialMedia.icon.alt}" loading="lazy">
-			</a>
-		{/each}
-	</div>
-</Slideshow>
-
-<OvalContainer>
-	<div class="hello-section">
-		<div class="video-column">
-				<iframe
-					class="video"
-					src="{loaded ? data.VideoSection.video: ''}"
-					title="YouTube video player"
-					frameborder="0"
-					loading="lazy"
-					allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-					allowfullscreen></iframe>
-		</div>
-		<div class="hello-column">
-			<h2>{data.VideoSection.header}</h2>
-			<p>{data.VideoSection.text}</p>
-		</div>
-	</div>
-</OvalContainer>
-
-<div class="news-section">
-	<h2>Новини</h2>
-	<Carousel elementProps="{articleProps}" component="{ArticlePreview}" componentHeight="24rem" componentWidth="17rem"/>
-</div>
-
-<OvalContainer>
-	<div class="what-we-study-section">
-		<h2>{data.WhatIsStudied.header}</h2>
-		<p>{data.WhatIsStudied.text}</p>
-		<div class="profiles">
-			{#each profiles as profile}
-				<div class="profile">
-					<div class="image-container">
-						<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
-					</div>
-					<h3>{profile.name}</h3>
-					<p>{profile.description}</p>
-				</div>
+<div class="page">
+	<Slideshow slides={slides}>
+		<div class="social-media">
+			{#each data.Contact.socialMedia as socialMedia }
+				<a class="floating-action-button"
+				   title="{socialMedia.socialMediaTitle}"
+				   href="{socialMedia.link}" target="_blank">
+					<img src="{socialMedia.icon.url}" alt="{socialMedia.icon.alt}" loading="lazy">
+				</a>
 			{/each}
 		</div>
-		<Button href="/about-us" text="Виж още"></Button>
+	</Slideshow>
+
+	<div class="oval-container">
+		<OvalContainer>
+			<div class="hello-section">
+				<div class="video-column">
+					<iframe
+						class="video"
+						src="{loaded ? data.VideoSection.video: ''}"
+						title="YouTube video player"
+						frameborder="0"
+						loading="lazy"
+						allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe>
+				</div>
+				<div class="hello-column">
+					<h2>{data.VideoSection.header}</h2>
+					<p>{data.VideoSection.text}</p>
+				</div>
+			</div>
+		</OvalContainer>
 	</div>
-</OvalContainer>
+
+	<div class="news-section">
+		<h2>Новини</h2>
+		<Carousel elementProps="{articleProps}" component="{ArticlePreview}" componentHeight="24rem" componentWidth="17rem"/>
+	</div>
+
+	<div class="oval-container">
+		<OvalContainer>
+			<div class="what-we-study-section">
+				<h2>{data.WhatIsStudied.header}</h2>
+				<p>{data.WhatIsStudied.text}</p>
+				<div class="profiles">
+					{#each profiles as profile}
+						<div class="profile">
+							<div class="image-container">
+								<img src="{profile.imgSrc}" alt="{profile.name}" loading="lazy"/>
+							</div>
+							<h3>{profile.name}</h3>
+							<p>{profile.description}</p>
+						</div>
+					{/each}
+				</div>
+				<Button href="/about-us" text="Виж още"></Button>
+			</div>
+		</OvalContainer>
+	</div>
+</div>
 
 <style>
+	.page {
+        --background: var(--main-background);
+        --background-text: var(--main-background-text);
+        --secondary: var(--main-secondary);
+        --secondary-text: var(--main-secondary-text);
+        --background-accent: var(--main-background-accent);
+        --secondary-accent: var(--main-secondary-accent);
+        --primary-semi-transparent: rgba(124, 20, 22, 0.33);
+        --secondary-light-text: var(--main-secondary-light-text);
+        --primary-disabled: var(--main-primary-disabled);
+        --background-disabled: var(--main-background-disabled);
+	}
+
 	.hello-section {
 		width: 100%;
         display: grid;
@@ -142,7 +161,6 @@
 			padding-right: 2rem !important;
 		}
     }
-
 	.hello-column {
 		width: 100%;
 	}
@@ -156,8 +174,8 @@
 		margin: 0;
 		padding-bottom: 2rem;
 		width: auto;
-		border-bottom: #7D0B09 2px solid;
-        color: #000000;
+		border-bottom: var(--primary) 2px solid;
+        color: var(--secondary-text);
 		display: inline-block;
 		z-index: 1;
 	}
@@ -168,14 +186,14 @@
         font-weight: 300;
         font-size: 16px;
         line-height: 18px;
-        border-top: #7D0B09 1px solid;
+        border-top: var(--primary) 1px solid;
 		margin: 0;
 		padding-top: 2rem;
-        color: #000000
+        color: var(--secondary-text);
 	}
 
     .news-section {
-        background-color: #151515;
+        background-color: var(--background);
         padding: 4rem 4rem 8rem;
         display: flex;
         flex-direction: column;
@@ -190,8 +208,7 @@
         line-height: 59px;
         text-transform: uppercase;
         text-align: center;
-
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
     .what-we-study-section {
@@ -209,7 +226,7 @@
         font-size: 48px;
         line-height: 65px;
         text-align: center;
-        color: #000000;
+        color: var(--secondary-text);
 		max-width: 30rem;
 		margin-top: 0;
 		margin-bottom: 1rem;
@@ -225,7 +242,7 @@
         width: calc(1200px - 50vw);
 		max-width: 100%;
 		min-width: 40%;
-        color: #000000;
+        color: var(--secondary-text);
     }
 
 	.profiles {
@@ -245,11 +262,17 @@
 	}
 
 	.profile .image-container {
-		height: 10rem;
 		margin: 1rem;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+        border-radius: 50%;
+        background-color: var(--white);
+		padding: 1rem;
+	}
+
+	.profile .image-container img {
+		max-height: 10rem;
 	}
 
 	.profile h3 {
@@ -259,7 +282,8 @@
         font-size: 16px;
         line-height: 18px;
         text-align: center;
-        color: #000000;
+        color: var(--secondary-text);
+		margin-top: 0;
     }
 
 	.profile p {
@@ -270,7 +294,7 @@
         line-height: 18px;
         text-align: center;
 		width: auto;
-        color: #000000;
+        color: var(--secondary-text);
 	}
 
     .video-column {
@@ -303,7 +327,7 @@
 
 	.social-media .floating-action-button {
 		border: none;
-		background-color: #7d0b09;
+		background-color: var(--primary);
 		border-radius: 50%;
 		width: 48px;
 		height: 48px;

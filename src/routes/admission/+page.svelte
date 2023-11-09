@@ -56,11 +56,11 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
         max-width: 30rem;
         margin-bottom: 0;
         padding-bottom: 2rem;
-        border-bottom: #FFFFFF 2px solid;
+        border-bottom: var(--background-text) 2px solid;
     }
 
     .header-container {
@@ -74,7 +74,7 @@
     .line {
         width: 20rem;
         height: 1px;
-        background-color: rgba(255, 255, 255, 0.31);
+        background-color: var(--primary-semi-transparent);
         margin-top: -1px;
     }
 

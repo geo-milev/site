@@ -25,7 +25,7 @@
 	.container {
 		width: 100%;
 		height: 100%;
-		background-color: #FFFFFF;
+		background-color: var(--secondary);
         position: relative;
 		display: flex;
 		flex-direction: column;
@@ -53,7 +53,7 @@
         font-size: 20px;
         line-height: 24px;
         margin: 0 0 0.5rem;
-        color: #000000;
+        color: var(--secondary-text);
         text-overflow: ellipsis;
         overflow: hidden;
         display: -webkit-box;
@@ -69,7 +69,7 @@
         font-size: 16px;
         line-height: 18px;
 		margin: 0;
-        color: #000000;
+        color: var(--secondary-text);
 		text-overflow: ellipsis;
         overflow: hidden;
 		display: -webkit-box;

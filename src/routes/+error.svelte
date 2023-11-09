@@ -52,7 +52,7 @@
 		position: relative;
 		width: 50%;
 		height: 1px;
-		background-color: #FFFFFF;
+		background-color: var(--primary-text);
 		display: flex;
 		top: -1px;
 	}
@@ -64,9 +64,9 @@
         font-size: 176px;
         line-height: 212px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--primary-text);
         margin: 0;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.31);
+		border-bottom: 1px solid var(--primary-semi-transparent);
     }
 
 	.container p {
@@ -76,7 +76,7 @@
         font-size: 40px;
         line-height: 48px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--primary-text);
 		text-transform: uppercase;
     }
 </style>

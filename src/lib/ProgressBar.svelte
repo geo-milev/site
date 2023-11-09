@@ -29,7 +29,7 @@
         width: 100%;
         height: 1px;
         border-radius: 1px;
-        background-color: #FFFFFF;
+        background-color: var(--white);
         position: absolute;
         top: 0;
         transform: var(--loading-bar-scale);

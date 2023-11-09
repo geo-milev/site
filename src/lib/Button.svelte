@@ -15,10 +15,10 @@
 
 <style>
 	button {
-		background-color: #7D0B09;
-		border: 2px solid #7d0b09;
+		background-color: var(--primary);
+		border: 2px solid var(--primary);
         padding: 0.5rem 3rem;
-        color: #FFFFFF;
+        color: var(--primary-text);
 		text-transform: uppercase;
         font-family: 'Roboto', serif;
         font-style: normal;
@@ -31,8 +31,7 @@
     }
 
 	button:hover {
-		color: #7d0b09;
-		background-color: #FFFFFF;
-        border: 2px solid #7d0b09;
+		color: var(--secondary-text);
+		background-color: var(--secondary);
 	}
 </style>

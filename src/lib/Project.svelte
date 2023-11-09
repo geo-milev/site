@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SecondaryButton from "$lib/SecondaryButton.svelte";
 	import { env } from "$env/dynamic/public";
+	import Button from "$lib/Button.svelte";
 
 	export let project;
 </script>
@@ -16,19 +16,22 @@
 		</div>
 		<p>{project.description}</p>
 		{#if project.article}
-			<SecondaryButton href="news/{project.article.id}" text="Виж още" color="#7C1416" />
+			<div class="button">
+				<Button href="news/{project.article.id}" text="Виж още" />
+			</div>
 		{/if}
 	</div>
 
 </div>
 
 <style>
+
 	.container {
 		width: 100%;
 		height: 100%;
 		display: flex;
 		flex-direction: row;
-        background-color: #FFFFFF;
+        background-color: var(--secondary);
 		gap: 1rem;
 		margin-right: 1rem;
 	}
@@ -61,7 +64,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
-        color: #000000;
+        color: var(--secondary-text);
     }
 
     h2 {
@@ -71,10 +74,10 @@
         font-size: 40px;
         line-height: 47px;
         text-align: start;
-        color: #000000;
+        color: var(--secondary-text);
 		margin: 0;
         padding-bottom: 1rem;
-        border-bottom: #FFFFFF 2px solid;
+        border-bottom: var(--secondary) 2px solid;
     }
 
     .header-container {
@@ -90,7 +93,7 @@
 		padding-right: 1rem;
 		box-sizing: border-box;
         height: 1px;
-        background-color: rgba(255, 255, 255, 0.31);
+        background-color: var(--primary-semi-transparent);
         margin-top: -1px;
     }
 

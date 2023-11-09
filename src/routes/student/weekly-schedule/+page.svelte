@@ -222,13 +222,13 @@
         flex-direction: column;
         align-items: center;
         margin-bottom: 2rem;
-        border-bottom: 2px #FFFFFF solid;
+        border-bottom: 2px var(--secondary) solid;
     }
 
     .line {
         width: 30rem;
         height: 1px;
-        background-color: rgba(255, 255, 255, 0.31);
+        background-color: var(--primary-semi-transparent);
         margin-top: -1px;
     }
 
@@ -239,8 +239,10 @@
         font-size: 40px;
         line-height: 54px;
         text-align: center;
+        border-bottom: 2px var(--background-text) solid;
         margin: 0;
-        color: #FFFFFF;
+        padding-bottom: 1rem;
+        color: var(--background-text);
     }
 
     .header-container p {
@@ -249,7 +251,7 @@
         line-height: 28px;
         text-align: center;
         margin: 0 0 1rem;
-        color: #FFFFFF;
+		color: var(--background-text)
     }
 
     .daily-schedule-container {
@@ -282,7 +284,7 @@
         line-height: 33px;
 		margin: 0;
 		padding: 0;
-        color: #FFFFFF;
+        color: var(--background-text);
 	}
 
     .daily-schedule-info h3 {
@@ -291,7 +293,7 @@
         font-weight: 700;
         font-size: 24px;
         line-height: 28px;
-        color: #FFFFFF;
+        color: var(--background-text);
         margin: 0 0 1rem;
     }
 
@@ -301,7 +303,7 @@
         font-weight: 300;
         font-size: 24px;
         line-height: 28px;
-        color: #FFFFFF;
+        color: var(--background-text);
 		margin-bottom: 1rem;
     }
 
@@ -309,7 +311,7 @@
         table-layout: fixed;
         width: 75%;
         border-collapse: collapse;
-        border: 3px solid #FFFFFF;
+        border: 3px solid var(--background-text);
 	}
 
 	thead td {
@@ -319,7 +321,7 @@
         font-size: 32px;
         line-height: 44px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	td {
@@ -330,8 +332,8 @@
         font-size: 16px;
         line-height: 20px;
         text-align: center;
-        color: #FFFFFF;
-        border: 3px solid #FFFFFF;
+        color: var(--background-text);
+        border: 3px solid var(--background-text);
     }
 
 	.weekly-schedule-container {
@@ -349,7 +351,7 @@
         font-size: 20px;
         line-height: 24px;
         text-align: center;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.class-selector {
@@ -376,8 +378,8 @@
         gap: 0.5rem;
 		width: 100%;
 		background-color: rgba(0, 0, 0, 0);
-		border: 1px solid #FFFFFF;
-		color: #FFFFFF;
+		border: 1px solid var(--background-text);
+		color: var(--background-text);
         font-size: 16px;
         line-height: 20px;
         font-family: 'Roboto', serif;
@@ -405,7 +407,7 @@
         font-weight: 300;
         font-size: 16px;
         line-height: 20px;
-        color: #FFFFFF;
+        color: var(--background-text);
     }
 
 	.weekly-schedule {
@@ -433,7 +435,7 @@
             font-size: 22px;
             line-height: 33px;
             text-align: center;
-            color: #FFFFFF;
+            color: var(--background-text);
         }
     }
 

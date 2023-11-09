@@ -102,7 +102,7 @@
     .line {
         width: 100%;
         display: block;
-        background-color: #D9D9D9;
+        background-color: var(--secondary);
         height: 6px;
         position: absolute;
         top: 50%;
@@ -123,11 +123,11 @@
         height: var(--circle-radius);
         width: var(--circle-radius);
         border-radius: 50%;
-        background-color: #FFFFFF;
+		border: none;
+        background-color: var(--secondary);
         justify-content: center;
         align-items: center;
         z-index: 1;
-        border: none;
         padding: 0;
         cursor: pointer;
         transition: transform 300ms ease-out;
@@ -135,7 +135,7 @@
     }
 
     .circle span {
-        color: #7C1416;
+        color: var(--secondary-text);
         font-family: 'Roboto', serif;
         font-style: normal;
         font-weight: 700;
