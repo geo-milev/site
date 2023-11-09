@@ -3,6 +3,7 @@
     import { onMount } from "svelte";
     import DesktopNav from "$lib/DesktopNav.svelte";
     import ProgressBar from "$lib/ProgressBar.svelte";
+    import Announcements from "$lib/Announcements.svelte";
 
     export let navigation;
 
@@ -28,6 +29,7 @@
     export let logoHref: string;
     export let logoHrefAlt: string;
     export let logoWidth: number;
+    export let announcements: {text: string, link: string}[]
 
     $: scrollMode = (scrollY > 0) || !fixed;
 </script>
@@ -36,6 +38,9 @@
 
 <div class="nav-container" class:fixed="{fixed}" style="--logo-width: {logoWidth}px; --mobile-breakpoint: {mobileBreakpoint}px">
     <ProgressBar />
+    {#if fixed && announcements.length > 0}
+        <Announcements announcements="{announcements}"></Announcements>
+    {/if}
     <div class="navbar">
         <div class="background" class:scrolled="{scrollMode}"></div>
 
