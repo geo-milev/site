@@ -10,7 +10,7 @@ export async function load({ fetch }) {
 
     const QUERY = `
      	query($page: Int!) {
-            allNews(page: $page, limit: 10, sort: "-publishDate") {
+            allNews(page: $page, limit: 10, sort: "-publishDate", where: {_status: {equals: published}}) {
                 docs {
                   title
                   description
