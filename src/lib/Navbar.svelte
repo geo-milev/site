@@ -56,7 +56,6 @@
 <svelte:window bind:scrollY="{scrollY}" bind:innerWidth />
 
 <div class="nav-container" class:fixed="{fixed}" style="--logo-width: {logoWidth}px; --mobile-breakpoint: {mobileBreakpoint}px">
-
     <ProgressBar />
     {#if fixed && announcements.length > 0}
         <Announcements announcements="{announcements}"></Announcements>
