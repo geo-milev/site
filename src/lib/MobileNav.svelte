@@ -6,8 +6,7 @@
 	import { afterNavigate } from "$app/navigation";
 	import NavLines from "$lib/NavLines.svelte";
 
-	export let navigationLinksLeft;
-	export let navigationLinksRight;
+	export let navigation;
 	export let scrollMode;
 	let isMobileMenuOpen;
 
@@ -35,7 +34,7 @@
 			</button>
 		</div>
 		<nav>
-			{#each [...navigationLinksLeft, ...navigationLinksRight] as navigationLink}
+			{#each navigation as navigationLink}
 				{#if navigationLink.href}
 					<div class="link-wrapper">
 						<a href="{navigationLink.href}">{navigationLink.key}</a>

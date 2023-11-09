@@ -12,7 +12,7 @@
 
 <nav class:scrolled="{scrollMode}" class="left-nav" bind:clientWidth={leftNavWidth}>
 	{#each navigationLinksLeft as navigationLink, index (navigationLink.key)}
-		{#if !navigationLink.subsections}
+		{#if navigationLink.href}
 			<a href="{navigationLink.href}">{navigationLink.key}</a>
 		{:else}
 			<div on:mouseenter={(event) => {
@@ -42,7 +42,7 @@
 
 <nav class:scrolled="{scrollMode}" class="right-nav" bind:clientWidth={rightNavWidth}>
 	{#each navigationLinksRight as navigationLink}
-		{#if !navigationLink.subsections}
+		{#if navigationLink.href}
 			<a href="{navigationLink.href}">{navigationLink.key}</a>
 		{:else}
 			<div on:mouseenter={(event) => {

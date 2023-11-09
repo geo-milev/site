@@ -4,29 +4,10 @@
     import DesktopNav from "$lib/DesktopNav.svelte";
     import ProgressBar from "$lib/ProgressBar.svelte";
 
-    const navigationLinksLeft = [
-        { key: "Новини", href: "/news" },
-        { key: "За ученика", subsections: [
-                { key: "Седмично разписание", href: "/student/weekly-schedule" },
-                { key: "Учебници", href: "/student/books" },
-                { key: "Вестник", href: "/student/newspaper" }
-            ]},
-        { key: "Прием", href: "/admission" },
-        { key: "Организация", subsections: [
-                { key: "Графици", href: "/organisation/schedules" },
-                { key: "Документи", href: "/organisation/documents" },
-                { key: "Административни услуги", href: "/organisation/administrative-services" },
-                { key: "Бланки", href: "/organisation/forms" },
-                { key: "Бюджет", href: "/organisation/budget" }
-            ]},
-    ];
+    export let navigation;
 
-    const navigationLinksRight = [
-        { key: "Проекти", href: "/projects" },
-        { key: "Постижения", href: "/achievements" },
-        { key: "За нас", href: "/about-us" },
-        { key: "Контакти", href: "/contacts" },
-    ];
+    const navigationLinksRight = structuredClone(navigation)
+    const navigationLinksLeft = navigationLinksRight.splice(0, navigation.length / 2);
 
     const mobileBreakpoint = 1150;
 
@@ -71,8 +52,7 @@
                             navigationLinksRight={navigationLinksRight} />
             {:else}
                 <MobileNav scrollMode={scrollMode}
-                              navigationLinksLeft={navigationLinksLeft}
-                              navigationLinksRight={navigationLinksRight} />
+                    navigation="{navigation}"/>
             {/if}
         {/if}
     </div>

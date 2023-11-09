@@ -31,6 +31,16 @@ export async function load({ fetch }) {
                     }
                 }
             }
+            Navigation {
+                sections {
+                    key
+                    href
+                    subsections {
+                        key
+                        href
+                    }
+                }
+            }
             Contact {
                 locationInfo {
                   address
