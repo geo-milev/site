@@ -20,7 +20,7 @@ export const getAchievementQuery = (
     achievementCategory: AchievementCategory
 ) => {
     return `query {
-    	allNews(limit: 10, sort: "-publishDate",where: { AND: [{successCategory: { equals: ${achievementCategory.toString()}}}, {isSuccess: { equals: true}}]}) {
+    	allNews(limit: 10, sort: "-publishDate",where: { AND: [{_status: {equals: published}}, {successCategory: { equals: ${achievementCategory.toString()}}}, {isSuccess: { equals: true}}]}) {
     	    docs {
     	        title
     	        description
@@ -39,7 +39,7 @@ export const getAchievementQueryWithPagination = (
     achievementCategory: AchievementCategory
 ) => {
     return `query($page: Int!) {
-    	allNews(page: $page, limit: 10, sort: "-publishDate",where: { AND: [{successCategory: { equals: ${achievementCategory.toString()}}}, {isSuccess: { equals: true}}]}) {
+    	allNews(page: $page, limit: 10, sort: "-publishDate",where: { AND: [{_status: {equals: published}}, {successCategory: { equals: ${achievementCategory.toString()}}}, {isSuccess: { equals: true}}]}) {
     	    docs {
     	        title
     	        description
