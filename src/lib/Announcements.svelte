@@ -6,7 +6,11 @@
 <div class="container">
 	{#each announcements as announcement}
 		<div class="announcement">
-			<a href="{announcement.link}">{announcement.text}<div class="open-in-new"><OpenInNew /></div></a>
+			{#if announcement.href}
+				<a href="{announcement.href}">{announcement.text}<div class="open-in-new"><OpenInNew /></div></a>
+				{:else}
+				<span>{announcement.text}</span>
+			{/if}
 		</div>
 	{/each}
 </div>
@@ -27,7 +31,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		pointer-events: auto;
         min-height: 28px;
 		padding-left: 1rem;
         padding-right: 1rem;
@@ -41,6 +44,10 @@
 	}
 
 	.announcement a {
+        pointer-events: auto;
+	}
+
+	.announcement a, .announcement span {
         font-family: 'Roboto', serif;
         font-weight: 300;
         font-size: 18px;
